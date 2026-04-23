@@ -1,0 +1,13 @@
+The Transformer is a neural network architecture introduced by Vaswani et al.
+in the 2017 paper "Attention Is All You Need". It dispenses with recurrence
+and convolutions and relies entirely on self-attention to model dependencies
+between input and output tokens.
+
+A Transformer block consists of multi-head self-attention followed by a
+position-wise feed-forward network, with residual connections and layer
+normalisation around each sublayer. Positional encodings are added to the
+input embeddings to inject sequence order information.
+
+Transformers have become the dominant architecture for large language models
+such as GPT and Llama. They scale well with data and compute, a property
+captured by the scaling laws reported by Kaplan and collaborators.

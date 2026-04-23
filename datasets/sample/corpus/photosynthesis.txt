@@ -1,0 +1,12 @@
+Photosynthesis is the biochemical process by which green plants, algae, and
+some bacteria convert light energy into chemical energy. The reaction uses
+carbon dioxide and water to produce glucose and oxygen. The overall reaction
+is 6 CO2 + 6 H2O + light -> C6H12O6 + 6 O2.
+
+The light-dependent reactions take place in the thylakoid membranes of
+chloroplasts. They split water molecules and generate ATP and NADPH, which
+power the Calvin cycle.
+
+The Calvin cycle fixes carbon dioxide into a three-carbon sugar called
+glyceraldehyde-3-phosphate. This cycle occurs in the stroma of the
+chloroplast and does not directly require light.

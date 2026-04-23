@@ -1,0 +1,1 @@
+{"id": "c1", "question": "Does coffee consumption reduce the risk of type 2 diabetes?", "answer": null, "expected_behavior": "note_contradiction", "doc_sources": ["contradictions/doc_a.txt", "contradictions/doc_b.txt"], "type": "contradiction"}

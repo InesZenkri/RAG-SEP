@@ -1,0 +1,12 @@
+Mitochondria are double-membrane organelles found in most eukaryotic cells.
+They produce most of the cell's ATP through cellular respiration. The inner
+membrane is folded into structures called cristae which increase the surface
+area available for ATP synthesis.
+
+Cellular respiration in mitochondria proceeds through glycolysis, the citric
+acid cycle, and oxidative phosphorylation. Oxidative phosphorylation takes
+place along the electron transport chain embedded in the inner membrane.
+
+Mitochondria contain their own circular DNA and ribosomes, and they replicate
+independently of the nucleus. Most mitochondrial DNA is inherited from the
+mother in animals.

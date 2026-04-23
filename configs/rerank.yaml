@@ -1,0 +1,31 @@
+# Hybrid + cross-encoder rerank (filled in at M4).
+name: hybrid_rerank
+
+ingest:
+  parser: pymupdf
+  strip_headers_footers: true
+  extract_tables: true
+
+chunking:
+  chunk_size: 800
+  chunk_overlap: 120
+
+retrieval:
+  mode: hybrid
+  embedding_model: BAAI/bge-small-en-v1.5
+  top_k: 5
+  hybrid_alpha: 0.5
+  rrf_k: 60
+  rerank: true
+  reranker_model: BAAI/bge-reranker-base
+  rerank_top_n: 20
+
+generation:
+  provider: echo
+  model: gemini-1.5-flash
+  prompt_template: strict_citation
+
+abstention:
+  enabled: true
+  min_retrieval_score: 0.15
+  min_citations: 1

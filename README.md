@@ -1,93 +1,154 @@
-# Code
+# Reliable PDF Search Agent - SEP 2026 Group 2
 
+A modular Retrieval-Augmented Generation (RAG) system for answering questions
+over collections of PDF documents, with grounded citations, explicit
+abstention when evidence is weak, and a reproducible evaluation pipeline.
 
+> This repository currently contains the **code scaffold** - every file the
+> project will eventually need exists with docstrings, type signatures, and
+> `NotImplementedError`. Logic is filled in milestone-by-milestone against
+> the plan at `../../.cursor/plans/sep_rag_semester_plan_*.plan.md`.
 
-## Getting started
+## Quick start
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
-
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
-
-## Add your files
-
-* [Create](https://docs.gitlab.com/user/project/repository/web_editor/#create-a-file) or [upload](https://docs.gitlab.com/user/project/repository/web_editor/#upload-a-file) files
-* [Add files using the command line](https://docs.gitlab.com/topics/git/add_files/#add-files-to-a-git-repository) or push an existing Git repository with the following command:
-
-```
-cd existing_repo
-git remote add origin https://git.rz.tu-bs.de/isf/sep/sep-2026/iai_drpsa_pdf-search-agent_g2/code.git
-git branch -M main
-git push -uf origin main
+```bash
+python -m venv .venv && source .venv/bin/activate
+pip install -r requirements-dev.txt
+cp .env.example .env          # add your GEMINI_API_KEY (optional)
+pytest                         # passing no-op until M1/M2
 ```
 
-## Integrate with your tools
+## Repository layout
 
-* [Set up project integrations](https://git.rz.tu-bs.de/isf/sep/sep-2026/iai_drpsa_pdf-search-agent_g2/code/-/settings/integrations)
+```
+code/
+  configs/                # YAML pipeline configs (baseline, hybrid, rerank)
+  datasets/
+    sample/               # tiny in-repo corpus + QA (drives tests & smoke suite)
+    adversarial/          # unanswerable + contradiction cases (M5 / M7)
+    open_rag_bench/       # populated by scripts/download_benchmark.py (gitignored)
+  reports/runs/           # timestamped eval outputs (JSON + Markdown)
+  scripts/                # one-off utilities (benchmark download, adversarial build)
+  src/
+    rag/
+      ingest/             # PDF parser, header/footer cleaner, tables, OCR
+      chunking/           # recursive, layout-aware, semantic
+      retrieval/          # dense, BM25, hybrid (RRF), cross-encoder reranker
+      generation/         # LLM clients (Gemini/HF/echo), prompt, citations,
+                          # abstention, confidence
+      pipeline.py         # orchestrator
+      config.py, types.py # dataclass schemas shared across layers
+      cache.py, cost.py   # prompt cache + token-to-euro helpers
+      logging_utils.py    # JSON logging + step timer
+    eval/
+      dataset.py          # EvalItem + JSONL/suite loaders
+      metrics/            # retrieval, answer, grounding, abstention,
+                          # robustness, efficiency
+      judge.py            # LLM-as-judge for abstractive answers
+      benchmarks/         # sample + Open RAG Benchmark adapters
+      report.py, run.py   # report rendering + CLI entry point
+    api/                  # FastAPI app (/query, /index, /stats, /health)
+    ui/                   # Streamlit management dashboard
+  tests/                  # pytest suite (mirrors src/ layout)
+  .gitlab-ci.yml          # lint + unit tests + smoke-eval regression gate
+  Makefile                # install / test / smoke / eval / api / ui targets
+  pyproject.toml          # pytest, ruff, mypy config
+  requirements.txt        # runtime deps
+  requirements-dev.txt    # runtime + dev deps
+  .env.example            # environment variables template
+```
 
-## Collaborate with your team
+## Stack (as scaffolded)
 
-* [Invite team members and collaborators](https://docs.gitlab.com/user/project/members/)
-* [Create a new merge request](https://docs.gitlab.com/user/project/merge_requests/creating_merge_requests/)
-* [Automatically close issues from merge requests](https://docs.gitlab.com/user/project/issues/managing_issues/#closing-issues-automatically)
-* [Enable merge request approvals](https://docs.gitlab.com/user/project/merge_requests/approvals/)
-* [Set auto-merge](https://docs.gitlab.com/user/project/merge_requests/auto_merge/)
+| Component            | Choice                                     | Why |
+|----------------------|--------------------------------------------|-----|
+| Language             | Python 3.11                                | Brief recommends Python |
+| PDF parsing          | PyMuPDF + pdfplumber fallback              | Fast + good at tables |
+| Chunking             | Recursive character split with overlap     | Simple, strong baseline |
+| Embeddings           | sentence-transformers / `all-MiniLM-L6-v2` | Free, CPU-friendly |
+| Lexical retrieval    | `rank_bm25`                                 | Reference BM25 |
+| Vector store         | In-memory (default) + Chroma (persistent)  | Zero-setup default |
+| Reranker             | `BAAI/bge-reranker-base` (optional, M4)    | Standard cross-encoder |
+| LLM generator        | **Gemini** (free tier) via `google-genai`  | See below |
+| LLM judge            | `gemini-1.5-pro` (or HF for independence)  | Different family than generator |
+| Eval                 | Custom harness + JSONL datasets            | Six required metric categories |
+| Backend              | FastAPI + Uvicorn                          | Lightweight + async |
+| UI                   | Streamlit                                  | Fastest path to a demo |
+| Tests / CI           | pytest + GitLab CI                         | Matches submission repo |
 
-## Test and Deploy
+### Why Gemini (not Groq)?
 
-Use the built-in continuous integration in GitLab.
+Both have free tiers, but for this project Gemini is the better default:
 
-* [Get started with GitLab CI/CD](https://docs.gitlab.com/ci/quick_start/)
-* [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/user/application_security/sast/)
-* [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/topics/autodevops/requirements/)
-* [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/user/clusters/agent/)
-* [Set up protected environments](https://docs.gitlab.com/ci/environments/protected_environments/)
+- **Larger free quota**: `gemini-1.5-flash` allows roughly 1500 requests/day
+  free, which is enough for a full evaluation run on the Open RAG Benchmark.
+  Groq's free tier is rate-limited per minute and per day, which makes batch
+  evaluation fragile.
+- **Multimodal native**: Gemini accepts PDF pages, tables, and figures as
+  inputs directly. The brief mentions multimodal questions (text + tables +
+  images) in the Open RAG Benchmark, so this matters.
+- **Named in the brief**: the project description explicitly lists Gemini
+  free as a recommended provider; using it avoids re-justification.
+- **Two model tiers from one SDK**: `flash` as generator, `pro` as judge,
+  which is enough model-family separation to reduce judge bias.
 
-***
+Provider choice is abstracted behind `rag.generation.llm_client.LLMClient`;
+swapping to Groq, a HuggingFace endpoint, or a local Ollama instance is a
+config change, not a code change.
 
-# Editing this README
+## Datasets
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+- **`datasets/sample/`**: a small hand-written corpus (photosynthesis,
+  mitochondria, transformers) + 8 QA pairs. Drives every unit test and the
+  `smoke` eval suite. Stays in git.
+- **`datasets/adversarial/`**: unanswerable questions (for abstention
+  metrics) and a coffee / type-2-diabetes contradiction pair. Stays in git.
+- **`datasets/open_rag_bench/`**: the Vectara benchmark (1000 arXiv PDFs +
+  3045 QA pairs). Downloaded on demand via
+  `python scripts/download_benchmark.py --subset 50`. **Gitignored.**
 
-## Suggestions for a good README
+## Milestones
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+| ID | Focus | Status |
+|----|-------|--------|
+| M0 | Repo scaffold, stack decided, stubs in place | done (this commit) |
+| M1 | Evaluation harness for all six metric categories | pending |
+| M2 | Baseline RAG v1 (ingest -> MiniLM -> Gemini)     | pending |
+| M3 | PDF-parsing robustness (headers, tables, OCR)    | pending |
+| M4 | Hybrid retrieval + reranker                      | pending |
+| M5 | Strict citations + calibrated confidence         | pending |
+| M6 | Streamlit management UI                          | pending |
+| M7 | Robustness + adversarial suite                   | pending |
+| M8 | Full benchmark run, ablation table, final report | pending |
 
-## Name
-Choose a self-explaining name for your project.
+See the full plan for per-milestone deliverables and the CI regression-gate
+strategy.
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+## Team split
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+- **A - Ingestion**: `rag/ingest/*`, `rag/chunking/*`, adversarial corpus.
+- **B - Retrieval**: `rag/retrieval/*`, `eval/metrics/retrieval.py`.
+- **C - Generation**: `rag/generation/*`, `eval/metrics/answer.py`,
+  `eval/metrics/grounding.py`, `eval/judge.py`.
+- **D - Platform**: `src/api/`, `src/ui/`, `eval/report.py`, `eval/run.py`,
+  GitLab CI, cost/latency instrumentation.
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+Everyone contributes to `tests/` and to the final written report.
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+## Make targets
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+| Target           | What it does                                           |
+|------------------|--------------------------------------------------------|
+| `make install`   | Install runtime deps.                                  |
+| `make install-dev` | Install runtime + dev deps.                          |
+| `make test`      | Run pytest.                                            |
+| `make lint`      | Ruff + mypy.                                           |
+| `make smoke`     | Run the smoke eval against `configs/baseline.yaml`.    |
+| `make eval`      | Run the full eval against `configs/baseline.yaml`.     |
+| `make api`       | Launch the FastAPI backend.                            |
+| `make ui`        | Launch the Streamlit UI.                               |
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+## Contacts
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+- Baptiste Bremond  - `baptiste.bremond@tu-braunschweig.de`
+- Michel Besserve   - `michel.besserve@tu-braunschweig.de`

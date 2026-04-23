@@ -1,0 +1,38 @@
+# Baseline configuration - what M2 of the plan will freeze as "v1".
+# Values are the contract between components; the real logic is filled in per milestone.
+name: baseline
+
+ingest:
+  parser: pymupdf
+  strip_headers_footers: false
+  extract_tables: false
+  ocr: false
+
+chunking:
+  strategy: recursive
+  chunk_size: 800
+  chunk_overlap: 120
+
+retrieval:
+  mode: dense              # dense | bm25 | hybrid
+  embedding_model: sentence-transformers/all-MiniLM-L6-v2
+  top_k: 5
+  store: memory            # memory | chroma
+
+generation:
+  provider: echo           # echo | gemini | huggingface   (echo = offline stub)
+  model: gemini-1.5-flash
+  temperature: 0.1
+  max_tokens: 512
+  prompt_template: default
+
+abstention:
+  enabled: true
+  min_retrieval_score: 0.15
+  min_citations: 1
+
+cost:
+  eur_per_1k_input: 0.0
+  eur_per_1k_output: 0.0
+
+cache_dir: ./.llm_cache

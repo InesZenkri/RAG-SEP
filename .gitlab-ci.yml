@@ -1,0 +1,38 @@
+# GitLab CI - scaffold. Real jobs fill in as milestones land.
+# - lint + unit tests enable as soon as metric and parser code exists (M1/M2).
+# - smoke-eval regression gate enables in M1 once eval.run is implemented.
+
+stages:
+  - lint
+  - test
+  - eval
+
+default:
+  image: python:3.11-slim
+  before_script:
+    - python -V
+    - pip install -r requirements-dev.txt
+
+lint:
+  stage: lint
+  script:
+    - ruff check src tests
+    - mypy src || true   # warning-only until types stabilise
+  allow_failure: true     # flip to false once M1 lands
+
+unit-tests:
+  stage: test
+  script:
+    - pytest -q
+  allow_failure: true     # flip to false once M2 lands
+
+smoke-eval:
+  stage: eval
+  script:
+    - python -m eval.run --suite smoke --config configs/baseline.yaml --out reports/runs
+  artifacts:
+    when: always
+    paths:
+      - reports/runs/
+    expire_in: 30 days
+  allow_failure: true     # flip to false once M1 regression thresholds are set

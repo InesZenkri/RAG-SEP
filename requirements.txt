@@ -1,0 +1,33 @@
+# Core
+pydantic>=2.6
+pyyaml>=6.0
+python-dotenv>=1.0
+numpy>=1.26
+tqdm>=4.66
+
+# PDF parsing
+pymupdf>=1.24
+pdfplumber>=0.11
+
+# Retrieval
+rank-bm25>=0.2.2
+chromadb>=0.5
+sentence-transformers>=3.0
+
+# Optional reranker / OCR (install on demand)
+# pytesseract>=0.3.10
+# ocrmypdf>=16.0
+
+# LLM clients (optional providers)
+requests>=2.32
+google-genai>=0.3           # Gemini (default free-tier provider)
+huggingface-hub>=0.24       # HF Inference API fallback
+
+# API + UI
+fastapi>=0.115
+uvicorn[standard]>=0.30
+streamlit>=1.38
+
+# Eval
+scikit-learn>=1.5
+rouge-score>=0.1.2
