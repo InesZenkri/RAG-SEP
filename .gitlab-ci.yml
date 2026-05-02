@@ -12,6 +12,7 @@ default:
   before_script:
     - python -V
     - pip install -r requirements-dev.txt
+    - pip install -e .
 
 lint:
   stage: lint

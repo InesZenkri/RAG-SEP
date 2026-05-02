@@ -1,21 +1,18 @@
-"""Evaluation dataset loaders.
-
-An ``EvalItem`` captures everything a metric needs: the question, a gold
-answer (or ``None`` for unanswerable items), the gold documents/pages, and a
-``type`` tag used to slice metrics by (extractive / abstractive /
-unanswerable / contradiction / robustness_*).
-
-TODO (M1):
-- load_jsonl(path): yield EvalItem from a JSONL file.
-- load_suite(name): return (corpus_paths, items) for suites "smoke", "full",
-  "adversarial", "robustness".
-"""
+"""Evaluation dataset loaders."""
 
 from __future__ import annotations
 
+import json
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Iterable
+
+# path to datasets/ relative to this file (src/eval/dataset.py -> code/datasets/)
+_DATASETS_ROOT = Path(__file__).resolve().parents[2] / "datasets"
+
+_EVAL_ITEM_FIELDS = {
+    "id", "question", "answer", "expected_answers",
+    "doc_ids", "doc_sources", "pages", "type", "metadata",
+}
 
 
 @dataclass
@@ -32,9 +29,72 @@ class EvalItem:
 
 
 def load_jsonl(path: str | Path) -> list[EvalItem]:
-    raise NotImplementedError
+    """Load a JSONL file into a list of EvalItems.
+
+    Unknown fields (like expected_behavior in the contradictions file) go
+    into metadata so the loader doesn't crash on future files.
+    """
+    items: list[EvalItem] = []
+    for line in Path(path).read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        raw: dict = json.loads(line)
+        known = {k: v for k, v in raw.items() if k in _EVAL_ITEM_FIELDS}
+        extra = {k: v for k, v in raw.items() if k not in _EVAL_ITEM_FIELDS}
+        if extra:
+            known.setdefault("metadata", {}).update(extra)
+        items.append(EvalItem(**known))
+    return items
 
 
 def load_suite(name: str) -> tuple[list[Path], list[EvalItem]]:
-    """Return ``(corpus_paths, eval_items)`` for a named suite."""
-    raise NotImplementedError
+    """Return (corpus_paths, eval_items) for a named test suite.
+
+    Suites: smoke (small, runs in CI), full (full benchmark, needs download),
+    adversarial (unanswerable + contradictions), robustness (mix of all).
+    """
+    sample_dir = _DATASETS_ROOT / "sample"
+    adversarial_dir = _DATASETS_ROOT / "adversarial"
+    bench_dir = _DATASETS_ROOT / "open_rag_bench"
+
+    if name == "smoke":
+        corpus = sorted((sample_dir / "corpus").glob("*.txt"))
+        items = load_jsonl(sample_dir / "qa.jsonl")
+
+    elif name == "full":
+        if not bench_dir.exists():
+            raise FileNotFoundError(
+                f"Open RAG Benchmark not found at {bench_dir}. "
+                "Run: python scripts/download_benchmark.py --subset 50"
+            )
+        corpus = sorted(bench_dir.glob("*.pdf"))
+        items = load_jsonl(bench_dir / "qa.jsonl")
+
+    elif name == "adversarial":
+        contradiction_dir = adversarial_dir / "contradictions"
+        corpus = sorted(contradiction_dir.glob("*.txt"))
+        items = (
+            load_jsonl(adversarial_dir / "unanswerable.jsonl")
+            + load_jsonl(adversarial_dir / "contradictions.jsonl")
+        )
+
+    elif name == "robustness":
+        # mix sample + adversarial so all item types are covered
+        contradiction_dir = adversarial_dir / "contradictions"
+        corpus = sorted((sample_dir / "corpus").glob("*.txt")) + sorted(
+            contradiction_dir.glob("*.txt")
+        )
+        items = (
+            load_jsonl(sample_dir / "qa.jsonl")
+            + load_jsonl(adversarial_dir / "unanswerable.jsonl")
+            + load_jsonl(adversarial_dir / "contradictions.jsonl")
+        )
+
+    else:
+        raise ValueError(
+            f"Unknown suite '{name}'. "
+            "Choose from: smoke, full, adversarial, robustness."
+        )
+
+    return corpus, items
