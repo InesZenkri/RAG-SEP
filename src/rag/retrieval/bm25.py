@@ -8,6 +8,8 @@ TODO (M4):
 
 from __future__ import annotations
 
+
+import math
 from collections import Counter
 
 from rag.retrieval.base import Retriever
@@ -26,6 +28,8 @@ class BM25Retriever(Retriever):
         self.chunk_lengths = []
         self.term_frequencies = []
         self.avg_chunk_length = 0.0
+        self.document_frequencies = {}
+        self.idf_scores = {}
         
 
 
@@ -36,8 +40,8 @@ class BM25Retriever(Retriever):
         self.tokenized_chunks = [] # Creating a list to store each  tokenized chunks
         self.chunk_lengths = [] 
         self.term_frequencies = []
-        
-
+        self.document_frequencies = {}
+        self.idf_scores = {}
         
         
         
@@ -54,9 +58,25 @@ class BM25Retriever(Retriever):
             term_frequency = Counter(tokens)
             self.term_frequencies.append(term_frequency)
 
+            chunk_words = set(tokens)
+
+            for token in chunk_words:
+                if token in self.document_frequencies:
+                    self.document_frequencies[token] +=1
+                else:
+                    self.document_frequencies[token] =1
+
             
             
         self.avg_chunk_length = sum(self.chunk_lengths) / len(self.chunk_lengths) if len(self.chunk_lengths) != 0 else 0.0
+
+        N = len(self.chunks)
+
+        for token, df in self.document_frequencies.items():
+            idf = math.log(1 + (N - df + 0.5) / (df + 0.5))
+            self.idf_scores[token] = idf
+
+
         
 
     # Helper method that takes a text and convert it to lowercase words
