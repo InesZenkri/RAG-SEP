@@ -30,6 +30,8 @@ class BM25Retriever(Retriever):
         self.avg_chunk_length = 0.0
         self.document_frequencies = {}
         self.idf_scores = {}
+
+        self.bm25_index = None
         
 
 
@@ -42,7 +44,7 @@ class BM25Retriever(Retriever):
         self.term_frequencies = []
         self.document_frequencies = {}
         self.idf_scores = {}
-        
+        self.bm25_index = None
         
         
         for chunk in chunks:
@@ -51,13 +53,15 @@ class BM25Retriever(Retriever):
             tokens = self.tokenize(chunk.text)
             self.tokenized_chunks.append(tokens) 
 
-
+            # Storing the length of the chunk for BM25 length normalization
             chunk_length = len(tokens)
             self.chunk_lengths.append(chunk_length)
 
+            # Counting how often each word appears in this chunk
             term_frequency = Counter(tokens)
             self.term_frequencies.append(term_frequency)
-
+            
+            # Counting in how many chunks each word appears
             chunk_words = set(tokens)
 
             for token in chunk_words:
@@ -67,14 +71,27 @@ class BM25Retriever(Retriever):
                     self.document_frequencies[token] =1
 
             
-            
+        # Calculating the average chunk length so we can use it to avoid giving long chunks an unfair advantage
         self.avg_chunk_length = sum(self.chunk_lengths) / len(self.chunk_lengths) if len(self.chunk_lengths) != 0 else 0.0
 
         N = len(self.chunks)
 
+        # Calculating IDF scores: rare words should get more weight than common words
         for token, df in self.document_frequencies.items():
             idf = math.log(1 + (N - df + 0.5) / (df + 0.5))
             self.idf_scores[token] = idf
+
+        # Try to use the external rank_bm25 library if it is installed.
+        try:
+            from rank_bm25 import BM25Okapi
+
+            self.bm25_index = BM25Okapi(
+                self.tokenized_chunks,
+                k1=self.k1,
+                b=self.b,
+            )
+        except ImportError:
+            self.bm25_index = None
 
 
         
@@ -87,44 +104,71 @@ class BM25Retriever(Retriever):
 
 
     def query(self, text: str, top_k: int) -> list[RetrievalResult]:
-        
+
+        # No results should be returned if top_k is invalid or no chunks were indexed
         if top_k <= 0 or  len(self.chunks) == 0: 
             return []
         
         tokenized_query = self.tokenize(text)
-        scored_chunks= []
 
-        for index, chunk in enumerate(self.chunks):
+        # Empty query should not return anything
+        if len(tokenized_query) == 0:
+            return []
+        
+        scored_chunks = []
 
-            score = 0.0
-            chunk_length = self.chunk_lengths[index]
-            term_frequency = self.term_frequencies[index]
-            for token in tokenized_query:
-                if token not in term_frequency:
-                    continue
+        # Using BM25Okapi from rank_bm25 if it is available
+        if self.bm25_index is not None:
+            scores = self.bm25_index.get_scores(tokenized_query)
 
-                tf = term_frequency[token]
-                idf = self.idf_scores.get(token, 0.0)
+            for index, chunk in enumerate(self.chunks):
+                score = float(scores[index])
 
-                denominator = tf + self.k1 * (
-                            1 - self.b + self.b * (chunk_length / self.avg_chunk_length))
-                token_score = idf * ((tf * (self.k1 + 1)) / denominator)
-                score += token_score
+                if score > 0:
+                    scored_chunks.append((chunk, score))
+
+        else:
+
+            # Calculating a BM25 score for every indexed chunk
+
+            for index, chunk in enumerate(self.chunks):
+
+                score = 0.0
+
+                chunk_length = self.chunk_lengths[index]
+                term_frequency = self.term_frequencies[index]
+
+                for token in tokenized_query:
+                    # If the query word is not in this chunk, it gives no score
+                    if token not in term_frequency:
+                        continue
+
+                    tf = term_frequency[token]
+                    idf = self.idf_scores.get(token, 0.0)
+
+                    # BM25 formula with length normalization
+                    denominator = tf + self.k1 * (
+                                1 - self.b + self.b * (chunk_length / self.avg_chunk_length))
+                    token_score = idf * ((tf * (self.k1 + 1)) / denominator)
+                    score += token_score
+
+                # Only keeping chunks that matched at least one query word
+                if score > 0 :
+                    scored_chunks.append((chunk,score))
             
-            if score > 0 :
-                scored_chunks.append((chunk,score))
-            
-            scored_chunks.sort(key=lambda item: item[1], reverse=True)
+        # Sorting by BM25 score
+        scored_chunks.sort(key=lambda item: item[1], reverse=True)
 
-            results= []
+        results = []
 
+        # Converting the best chunks into RetrievalResult objects
         for rank, (chunk,score) in enumerate(scored_chunks[:top_k], start=1):
             result= RetrievalResult(
                        chunk=chunk,
                         score=score,
                         rank=rank,
                         retriever=self.name
-                )
+                    )
             results.append(result)
             
         return results
