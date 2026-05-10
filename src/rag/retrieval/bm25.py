@@ -87,4 +87,44 @@ class BM25Retriever(Retriever):
 
 
     def query(self, text: str, top_k: int) -> list[RetrievalResult]:
-        raise NotImplementedError
+        
+        if top_k <= 0 or  len(self.chunks) == 0: 
+            return []
+        
+        tokenized_query = self.tokenize(text)
+        scored_chunks= []
+
+        for index, chunk in enumerate(self.chunks):
+
+            score = 0.0
+            chunk_length = self.chunk_lengths[index]
+            term_frequency = self.term_frequencies[index]
+            for token in tokenized_query:
+                if token not in term_frequency:
+                    continue
+
+                tf = term_frequency[token]
+                idf = self.idf_scores.get(token, 0.0)
+
+                denominator = tf + self.k1 * (
+                            1 - self.b + self.b * (chunk_length / self.avg_chunk_length))
+                token_score = idf * ((tf * (self.k1 + 1)) / denominator)
+                score += token_score
+            
+            if score > 0 :
+                scored_chunks.append((chunk,score))
+            
+            scored_chunks.sort(key=lambda item: item[1], reverse=True)
+
+            results= []
+
+        for rank, (chunk,score) in enumerate(scored_chunks[:top_k], start=1):
+            result= RetrievalResult(
+                       chunk=chunk,
+                        score=score,
+                        rank=rank,
+                        retriever=self.name
+                )
+            results.append(result)
+            
+        return results
