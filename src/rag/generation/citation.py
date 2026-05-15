@@ -25,7 +25,23 @@ class CitationSupport:
 
 
 def extract_citations(text: str) -> list[Citation]:
-    raise NotImplementedError
+    """Scans the input text for [doc_id:pN] patterns and converts them into a list of Citation objects."""
+    citations = []
+    
+    for match in CITATION_PATTERN.finditer(text):
+        doc_id = match.group(1)
+        page_num = int(match.group(2))
+        
+        citations.append(
+            Citation(
+                doc_id=doc_id,
+                page=page_num,
+                chunk_id=None,
+                quote=None 
+            )
+        )
+        
+    return citations
 
 
 def validate_citations(
