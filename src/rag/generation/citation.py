@@ -14,7 +14,7 @@ from dataclasses import dataclass
 
 from rag.types import Citation, RetrievalResult
 
-CITATION_PATTERN = re.compile(r"\[([A-Za-z0-9_\-]+):p(\d+)\]")
+CITATION_PATTERN = re.compile(r"([A-Za-z0-9_\-]+):p(\d+)")
 
 
 @dataclass
@@ -27,20 +27,37 @@ class CitationSupport:
 def extract_citations(text: str) -> list[Citation]:
     """Scans the input text for [doc_id:pN] patterns and converts them into a list of Citation objects."""
     citations = []
-    
+
+    for bracket in re.finditer(r"\[([^\]]+)\]", text):
+        for match in CITATION_PATTERN.finditer(bracket.group(1)):
+            doc_id = match.group(1)
+            page_num = int(match.group(2))
+
+            citations.append(
+                Citation(
+                    doc_id=doc_id,
+                    page=page_num,
+                    chunk_id=None,
+                    quote=None
+                )
+            )
+
+    if citations:
+        return citations
+
     for match in CITATION_PATTERN.finditer(text):
         doc_id = match.group(1)
         page_num = int(match.group(2))
-        
+
         citations.append(
             Citation(
                 doc_id=doc_id,
                 page=page_num,
                 chunk_id=None,
-                quote=None 
+                quote=None
             )
         )
-        
+
     return citations
 
 

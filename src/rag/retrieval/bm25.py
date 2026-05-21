@@ -10,6 +10,7 @@ from __future__ import annotations
 
 
 import math
+import re
 from collections import Counter
 
 from rag.retrieval.base import Retriever
@@ -98,7 +99,7 @@ class BM25Retriever(Retriever):
 
     # Helper method that takes a text and convert it to lowercase words
     def tokenize(self, text : str) -> list[str]:
-        return text.lower().split()
+        return re.findall(r"[a-z0-9]+", text.lower())
 
 
 
@@ -155,6 +156,13 @@ class BM25Retriever(Retriever):
                 # Only keeping chunks that matched at least one query word
                 if score > 0 :
                     scored_chunks.append((chunk,score))
+
+        if not scored_chunks:
+            query_terms = set(tokenized_query)
+            for index, chunk in enumerate(self.chunks):
+                overlap = query_terms.intersection(self.term_frequencies[index])
+                if overlap:
+                    scored_chunks.append((chunk, float(len(overlap))))
             
         # Sorting by BM25 score
         scored_chunks.sort(key=lambda item: item[1], reverse=True)

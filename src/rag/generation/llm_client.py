@@ -33,6 +33,7 @@ class LLMResponse:
     provider: str = ""
     model: str = ""
     cached: bool = False
+    finish_reason: str = ""
 
 
 class LLMClient:
@@ -128,11 +129,14 @@ class GeminiLLMClient(LLMClient):
             from google.genai import types
             
             client = genai.Client(api_key=self.api_key)
-            config = types.GenerateContentConfig(
-                system_instruction=system,
-                temperature=temperature,
-                max_output_tokens=max_tokens,
-            )
+            config_kwargs: dict[str, Any] = {
+                "system_instruction": system,
+                "temperature": temperature,
+                "max_output_tokens": max_tokens,
+            }
+            if self.model.startswith("gemini-2.5-flash"):
+                config_kwargs["thinking_config"] = types.ThinkingConfig(thinking_budget=0)
+            config = types.GenerateContentConfig(**config_kwargs)
             
             response = client.models.generate_content(
                 model=self.model,
@@ -146,13 +150,18 @@ class GeminiLLMClient(LLMClient):
                 input_tokens = response.usage_metadata.prompt_token_count or 0
                 output_tokens = response.usage_metadata.candidates_token_count or 0
                 
+            finish_reason = ""
+            if response.candidates:
+                finish_reason = str(response.candidates[0].finish_reason or "")
+
             return LLMResponse(
                 text=response.text if response.text else "I cannot answer from the provided documents.",
                 input_tokens=input_tokens,
                 output_tokens=output_tokens,
                 provider=self.provider,
                 model=self.model,
-                cached=False
+                cached=False,
+                finish_reason=finish_reason,
             )
         except Exception as e:
             return LLMResponse(

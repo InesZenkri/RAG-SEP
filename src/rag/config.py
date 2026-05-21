@@ -111,6 +111,10 @@ class PipelineConfig:
             self.cost.eur_per_1k_input = float(os.environ["RAG_COST_PER_1K_INPUT"])
         if os.getenv("RAG_COST_PER_1K_OUTPUT"):
             self.cost.eur_per_1k_output = float(os.environ["RAG_COST_PER_1K_OUTPUT"])
+        if os.getenv("RAG_GENERATION_PROVIDER"):
+            self.generation.provider = os.environ["RAG_GENERATION_PROVIDER"]
+        if os.getenv("GEMINI_MODEL") and self.generation.provider in {"echo", "gemini"}:
+            self.generation.model = os.environ["GEMINI_MODEL"]
         if os.getenv("GROQ_MODEL") and self.generation.provider == "groq":
             self.generation.model = os.environ["GROQ_MODEL"]
         return self

@@ -25,9 +25,9 @@ def _format_context(retrieved: list[RetrievalResult]) -> str:
     parts = []
 
     for r in retrieved:
-        doc_id = getattr(r, "doc_id", "unknown")
-        page = getattr(r, "page", 0)
-        text = getattr(r, "text", "").strip()
+        doc_id = r.chunk.doc_id
+        page = r.chunk.page
+        text = r.chunk.text.strip()
 
         if text:
             parts.append(f"[{doc_id}:p{page}] {text}")

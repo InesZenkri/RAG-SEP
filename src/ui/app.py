@@ -1,4 +1,4 @@
-"""Streamlit dashboard for the Reliable PDF Search Agent.
+"""Streamlit dashboard for CoDex.
 
 Modern single-page design (no sidebar). Tabs:
 - Corpus     – stats + drag-and-drop upload + path-based indexing.
@@ -16,7 +16,9 @@ import base64
 import html
 import json
 import os
+import re
 import time
+import uuid
 from pathlib import Path
 from typing import Any
 
@@ -29,6 +31,7 @@ load_dotenv()  # cwd, if you launch from elsewhere
 
 _UI_DIR = Path(__file__).resolve().parent
 _FAVICON = _UI_DIR / "assets" / "favicon.png"
+_UPLOAD_DIR = _REPO_ROOT / ".uploads"
 
 # ---------------------------------------------------------------------------
 # Brand palette
@@ -121,16 +124,17 @@ html, body, .stApp, [class*="css"] {{
 }}
 .hero > * {{ position: relative; z-index: 1; }}
 .hero-logo {{
-    height: 70px;
+    height: 96px;
     width: auto;
     background: transparent;
     display: block;
 }}
 .hero-left h1 {{
-    font-size: 1.9rem;
+    font-size: 3rem;
     font-weight: 800;
     letter-spacing: -0.02em;
-    margin: 0 0 0.2rem 0;
+    margin: 0;
+    line-height: 1;
     color: white;
 }}
 .hero-left p {{
@@ -397,6 +401,153 @@ div[data-testid="stHorizontalBlock"]:has(.gemini-star) {{
     line-height: 1.55;
     word-wrap: break-word;
 }}
+.assistant-answer {{
+    color: #1f2937;
+    font-size: 0.98rem;
+    line-height: 1.65;
+}}
+.citation-detail {{
+    display: inline-block;
+    position: relative;
+    margin-left: 0.12rem;
+    vertical-align: super;
+    line-height: 0;
+}}
+.citation-toggle {{
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}}
+.citation-trigger {{
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1rem;
+    height: 1rem;
+    padding: 0 0.24rem;
+    border-radius: 999px;
+    border: 1px solid #bfdbfe;
+    background: #eff6ff;
+    color: #0a5ca8;
+    font-size: 0.62rem;
+    font-weight: 800;
+    line-height: 1;
+    box-shadow: 0 1px 2px rgba(15,23,42,0.08);
+}}
+.citation-trigger:hover {{
+    background: #dbeafe;
+    border-color: #93c5fd;
+}}
+.citation-modal {{
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 3000;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background: rgba(15,23,42,0.28);
+    backdrop-filter: blur(2px);
+}}
+.citation-toggle:checked ~ .citation-modal {{
+    display: flex;
+}}
+.citation-popover {{
+    position: relative;
+    width: min(820px, calc(100vw - 2rem));
+    max-height: 72vh;
+    overflow: auto;
+    background: #ffffff;
+    border: 1px solid #dbe3ef;
+    border-radius: 12px;
+    box-shadow: 0 24px 70px rgba(15,23,42,0.28);
+    padding: 1rem;
+}}
+.citation-close {{
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 999px;
+    border: 1px solid #cbd5e1;
+    background: #ffffff;
+    color: #334155;
+    cursor: pointer;
+    font-size: 1.05rem;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}}
+.citation-close:hover {{
+    background: #f1f5f9;
+}}
+.citation-title {{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    color: #0f172a;
+    font-weight: 700;
+    margin-bottom: 0.65rem;
+}}
+.citation-page-block {{
+    padding-top: 0.85rem;
+    margin-top: 0.85rem;
+    border-top: 1px solid #e2e8f0;
+}}
+.citation-page-block:first-of-type {{
+    padding-top: 0;
+    margin-top: 0;
+    border-top: none;
+}}
+.citation-page-heading {{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    color: #0f172a;
+    font-weight: 800;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}}
+.citation-source {{
+    color: #64748b;
+    font-size: 0.76rem;
+    font-weight: 500;
+    overflow-wrap: anywhere;
+    margin-bottom: 0.7rem;
+}}
+.citation-page-img {{
+    width: 100%;
+    max-height: 460px;
+    object-fit: contain;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    margin-bottom: 0.75rem;
+}}
+.citation-page-text {{
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    background: #f8fafc;
+    color: #334155;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 0.75rem;
+    font-size: 0.82rem;
+    line-height: 1.45;
+}}
+.citation-page-text mark {{
+    background: #fff3a3;
+    color: inherit;
+    padding: 0.04rem 0.1rem;
+    border-radius: 3px;
+}}
 [data-testid="stChatInput"] {{
     position: fixed;
     bottom: 0;
@@ -406,7 +557,7 @@ div[data-testid="stHorizontalBlock"]:has(.gemini-star) {{
     width: auto;
     z-index: 999;
     background: transparent;
-    padding: 1rem 0 1.25rem 0;
+    padding: 0.75rem 0 1.1rem 0;
     border-top: none;
     box-sizing: border-box;
 }}
@@ -437,6 +588,17 @@ div[data-testid="stHorizontalBlock"]:has(.gemini-star) {{
     max-width: 100% !important;
     align-self: stretch !important;
     box-sizing: border-box !important;
+    min-height: 54px !important;
+    padding: 5px 8px 5px 16px !important;
+    border: 1px solid #d7dee8 !important;
+    border-radius: 28px !important;
+    background: #ffffff !important;
+    box-shadow: none !important;
+    transition: border-color 0.15s ease !important;
+}}
+[data-testid="stChatInput"] div:has([data-testid="stChatInputTextArea"]):has([data-testid="stChatInputSubmitButton"]):focus-within {{
+    border-color: {_BLUE} !important;
+    box-shadow: none !important;
 }}
 /* Let textarea grow; keep actions compact */
 [data-testid="stChatInput"] div:has([data-testid="stChatInputTextArea"]):has([data-testid="stChatInputSubmitButton"]) > *:has([data-testid="stChatInputTextArea"]) {{
@@ -444,6 +606,19 @@ div[data-testid="stHorizontalBlock"]:has(.gemini-star) {{
     min-width: 0 !important;
     width: auto !important;
     max-width: 100% !important;
+}}
+[data-testid="stChatInput"] *:has(> [data-testid="stChatInputTextArea"]) {{
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+}}
+[data-testid="stChatInput"] [data-baseweb="textarea"],
+[data-testid="stChatInput"] [data-baseweb="base-input"],
+[data-testid="stChatInput"] [data-baseweb="input"] {{
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
 }}
 /* Shrink right action cluster to content */
 [data-testid="stChatInput"] div:has([data-testid="stChatInputTextArea"]):has([data-testid="stChatInputSubmitButton"]) > *:last-child {{
@@ -457,27 +632,35 @@ div[data-testid="stHorizontalBlock"]:has(.gemini-star) {{
     align-items: center !important;
 }}
 [data-testid="stChatInput"] textarea {{
-    border-radius: 28px !important;
-    border: 1px solid #dadce0 !important;
-    padding: 0.95rem 3.65rem 0.95rem 1.15rem !important;
-    min-height: 52px !important;
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    border-radius: 0 !important;
+    border: none !important;
+    padding: 0.55rem 0.75rem 0.55rem 0 !important;
+    min-height: 42px !important;
     box-shadow: none !important;
-    background: #ffffff !important;
+    background: transparent !important;
     font-size: 0.98rem !important;
     width: 100% !important;
     min-width: 0 !important;
     max-width: 100% !important;
     box-sizing: border-box !important;
+    resize: none !important;
 }}
 /* Override inline fit-content width from BaseWeb */
 [data-testid="stChatInput"] textarea[data-testid="stChatInputTextArea"] {{
     width: 100% !important;
     min-width: 0 !important;
     max-width: 100% !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
 }}
 [data-testid="stChatInput"] textarea:focus {{
-    border-color: #aecbfa !important;
+    border-color: transparent !important;
     box-shadow: none !important;
+    outline: none !important;
 }}
 [data-testid="stChatInput"] [data-testid="stChatInputSubmitButton"] {{
     position: relative !important;
@@ -486,28 +669,29 @@ div[data-testid="stHorizontalBlock"]:has(.gemini-star) {{
     bottom: auto !important;
     transform: none !important;
     align-self: center !important;
-    margin: 0 10px 0 -42px !important;
+    margin: 0 !important;
     z-index: 30 !important;
-    width: 30px !important;
-    height: 30px !important;
-    min-width: 30px !important;
-    min-height: 30px !important;
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+    min-height: 34px !important;
     border-radius: 50% !important;
     border: none !important;
-    background: #e8f0fe !important;
-    color: #1967d2 !important;
-    box-shadow: 0 1px 3px rgba(25,103,210,0.18) !important;
+    background: {_BLUE} !important;
+    color: #ffffff !important;
+    box-shadow: none !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
 }}
 [data-testid="stChatInput"] [data-testid="stChatInputSubmitButton"]:not(:disabled):hover {{
-    background: #d2e3fc !important;
+    background: {_BLUE_LIGHT} !important;
+    color: #ffffff !important;
 }}
 [data-testid="stChatInput"] [data-testid="stChatInputSubmitButton"]:disabled {{
-    opacity: 0.45 !important;
-    background: #f1f3f4 !important;
-    color: #80868b !important;
+    opacity: 1 !important;
+    background: #e2e8f0 !important;
+    color: #94a3b8 !important;
     box-shadow: none !important;
 }}
 .playground-hero {{
@@ -574,6 +758,11 @@ div.stButton > button[kind="tertiary"]:hover {{
 # ---------------------------------------------------------------------------
 
 API_URL = os.getenv("API_URL", "http://localhost:8000")
+STRICT_ABSTENTION_TEXT = "I cannot answer from the provided documents."
+FRIENDLY_ABSTENTION_TEXT = (
+    "I could not find this in the indexed documents. Try asking about a specific "
+    "section, topic, or upload another PDF. (._.)"
+)
 
 
 def _get(path: str) -> tuple[Any, str | None]:
@@ -599,10 +788,199 @@ def _post(path: str, payload: dict) -> tuple[Any, str | None]:
         return None, str(exc)
 
 
-def _chat_transcript(messages: list[dict[str, str]]) -> str:
+def _chat_transcript(messages: list[dict[str, Any]]) -> str:
     return "\n".join(
         f"{m['role'].upper()}: {m['content']}" for m in messages if m.get("content")
     )
+
+
+def _history_payload(messages: list[dict[str, Any]]) -> list[dict[str, str]]:
+    payload: list[dict[str, str]] = []
+    for message in messages:
+        role = str(message.get("role", "user"))
+        content = str(message.get("content", "")).strip()
+        if content:
+            payload.append({"role": role, "content": content})
+    return payload
+
+
+def _is_help_question(prompt: str) -> bool:
+    normalized = re.sub(r"[^a-z0-9\s]", " ", prompt.lower())
+    normalized = re.sub(r"\s+", " ", normalized).strip()
+    return bool(
+        re.search(r"\b(how|what)\s+can\s+(you|u|codex)\s+(do|help)\b", normalized)
+        or re.search(r"\b(can|could)\s+(you|u|codex)\s+help\b", normalized)
+        or normalized in {"help", "what can you do", "what can u do", "how can you help me", "how can u help me"}
+    )
+
+
+def _help_answer() -> str:
+    return (
+        "I am here to help you work with your indexed documents. You can ask me to summarize a PDF, "
+        "explain a topic, find where something is mentioned, compare sections, extract requirements, "
+        "or answer questions with page references. When I use the documents, I show citation icons so "
+        "you can open the referenced pages directly."
+    )
+
+
+def _display_answer_text(answer_text: str) -> str:
+    return FRIENDLY_ABSTENTION_TEXT if answer_text.strip() == STRICT_ABSTENTION_TEXT else answer_text
+
+
+def _strip_citation_summary(text: str) -> str:
+    return re.sub(r"\n+\s*_?Citations:\s*(?:\[[^\]]+\]\s*,?\s*)+_?\s*$", "", text).strip()
+
+
+def _highlight_chunk(page_text: str, chunk_text: str | None) -> str:
+    safe_page = html.escape(page_text)
+    if not chunk_text:
+        return safe_page
+
+    page_pos = page_text.find(chunk_text)
+    if page_pos < 0:
+        return safe_page
+
+    before = html.escape(page_text[:page_pos])
+    highlighted = html.escape(page_text[page_pos:page_pos + len(chunk_text)])
+    after = html.escape(page_text[page_pos + len(chunk_text):])
+    return f"{before}<mark>{highlighted}</mark>{after}"
+
+
+def _clean_doc_title(citation: dict[str, Any]) -> str:
+    raw_title = str(citation.get("title") or "").strip()
+    source = str(citation.get("source") or "").strip()
+    if not raw_title and source:
+        raw_title = Path(source).stem
+    raw_title = raw_title or str(citation.get("doc_id") or "Source")
+    return re.sub(r"^\d+_", "", raw_title)
+
+
+def _citation_label(citation: dict[str, Any]) -> str:
+    return f"{_clean_doc_title(citation)} · page {citation.get('page', '?')}"
+
+
+def _citation_table_rows(citations: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    rows: list[dict[str, Any]] = []
+    seen: set[tuple[str, str]] = set()
+    for citation in citations:
+        document = _clean_doc_title(citation)
+        page = str(citation.get("page", "–"))
+        key = (document, page)
+        if key in seen:
+            continue
+        seen.add(key)
+        rows.append(
+            {
+                "Document": document,
+                "Page": page,
+                "Source": citation.get("source") or "–",
+            }
+        )
+    return rows
+
+
+def _citation_page_block_html(citation: dict[str, Any]) -> str:
+    title = _clean_doc_title(citation)
+    page_label = f"page {citation.get('page', '?')}"
+    source = citation.get("source") or ""
+    page_text = citation.get("page_text") or citation.get("chunk_text") or ""
+    chunk_text = citation.get("chunk_text") or citation.get("quote")
+    page_image = citation.get("page_image")
+
+    image_html = (
+        f'<img class="citation-page-img" src="{html.escape(page_image)}" alt="PDF page {html.escape(str(citation.get("page", "")))}">'
+        if page_image else ""
+    )
+    text_html = (
+        f'<div class="citation-page-text">{_highlight_chunk(page_text, chunk_text)}</div>'
+        if page_text else '<div class="citation-page-text">No page preview is available for this source.</div>'
+    )
+    source_html = (
+        f'<div class="citation-source">{html.escape(source)}</div>'
+        if source else ""
+    )
+    return (
+        '<div class="citation-page-block">'
+        f'<div class="citation-page-heading"><span>{html.escape(title)}</span><span>{html.escape(page_label)}</span></div>'
+        f'{source_html}{image_html}{text_html}'
+        '</div>'
+    )
+
+
+def _citation_details_html(
+    citation: dict[str, Any],
+    ordinal: int,
+    modal_id: str | None = None,
+) -> str:
+    return _citation_group_html([citation], ordinal, modal_id)
+
+
+def _citation_group_html(
+    citations: list[dict[str, Any]],
+    ordinal: int,
+    modal_id: str | None = None,
+) -> str:
+    modal_id = modal_id or f"citation-{uuid.uuid4().hex}"
+    title = "Reference" if len(citations) == 1 else f"{len(citations)} references"
+    labels = ", ".join(_citation_label(citation) for citation in citations)
+    page_blocks = "".join(_citation_page_block_html(citation) for citation in citations)
+    return (
+        '<span class="citation-detail">'
+        f'<input class="citation-toggle" id="{html.escape(modal_id)}" type="checkbox">'
+        f'<label class="citation-trigger" for="{html.escape(modal_id)}" title="{html.escape(labels)}">{ordinal}</label>'
+        '<span class="citation-modal">'
+        '<span class="citation-popover">'
+        f'<label class="citation-close" for="{html.escape(modal_id)}" title="Close">x</label>'
+        f'<div class="citation-title"><span>{html.escape(title)}</span><span>{html.escape(labels)}</span></div>'
+        f'{page_blocks}'
+        '</span>'
+        '</span>'
+        '</span>'
+    )
+
+
+def _render_answer_html(
+    text: str,
+    citations: list[dict[str, Any]] | None = None,
+) -> str:
+    clean_text = _strip_citation_summary(text or "")
+    safe_text = html.escape(clean_text)
+    citations = citations or []
+    occurrence = 0
+    citation_index = 0
+    modal_prefix = f"citation-{uuid.uuid4().hex}"
+
+    def replace(match: re.Match[str]) -> str:
+        nonlocal occurrence, citation_index
+        refs = re.findall(r"([A-Za-z0-9_\-]+):p(\d+)", match.group(1))
+        if not refs:
+            return match.group(0)
+        occurrence += 1
+        citation_group = citations[citation_index: citation_index + len(refs)]
+        citation_index += len(refs)
+        if len(citation_group) < len(refs):
+            citation_group = [
+                {"doc_id": doc_id, "page": int(page)}
+                for doc_id, page in refs
+            ]
+        return _citation_group_html(
+            citation_group,
+            occurrence,
+            f"{modal_prefix}-{occurrence}",
+        )
+
+    rendered = re.sub(
+        r"\[((?:[A-Za-z0-9_\-]+:p\d+\s*(?:,\s*)?)+)\]",
+        replace,
+        safe_text,
+    )
+    if occurrence == 0 and citations:
+        rendered += "<br><br>" + " ".join(
+            _citation_details_html(citation, index, f"{modal_prefix}-{index}")
+            for index, citation in enumerate(citations, start=1)
+        )
+    rendered = rendered.replace("\n", "<br>")
+    return f'<div class="assistant-answer">{rendered}</div>'
 
 
 def _gemini_complete(messages: list[dict[str, str]]) -> tuple[str | None, str | None]:
@@ -828,7 +1206,7 @@ def _empty(icon: str, title: str, msg: str) -> None:
 def _archive_current_chat_to_history() -> None:
     import streamlit as st
 
-    messages: list[dict[str, str]] = st.session_state.get("chat_messages", [])
+    messages: list[dict[str, Any]] = st.session_state.get("chat_messages", [])
     if not messages:
         return
     history: list[dict[str, object]] = st.session_state.setdefault("chat_history", [])
@@ -894,7 +1272,7 @@ def _hero() -> None:
         f"""
         <div class='hero'>
             <div class='hero-left'>
-                <h1>Reliable PDF Search Agent</h1>
+                <h1>CoDex</h1>
                 <p>Where your PDFs finally start talking back.</p>
                 <div class='hero-status'>
                     <span class='dot {dot_class}'></span> {status_text}
@@ -958,15 +1336,15 @@ def _tab_corpus() -> None:
             )
             c2.caption("Files are sent to the backend for parsing and indexing.")
             if do_index:
-                import tempfile
                 saved: list[str] = []
-                with tempfile.TemporaryDirectory() as tmp:
-                    for uf in uploaded:
-                        p = Path(tmp) / uf.name
-                        p.write_bytes(uf.read())
-                        saved.append(str(p))
-                    with st.spinner(f"Indexing {len(saved)} file(s)…"):
-                        res, err = _post("/index", {"paths": saved})
+                _UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
+                for uf in uploaded:
+                    safe_name = Path(uf.name).name
+                    p = _UPLOAD_DIR / f"{int(time.time() * 1000)}_{safe_name}"
+                    p.write_bytes(uf.read())
+                    saved.append(str(p))
+                with st.spinner(f"Indexing {len(saved)} file(s)…"):
+                    res, err = _post("/index", {"paths": saved})
                 if err:
                     st.error(f"Indexing failed: {err}")
                 else:
@@ -1005,18 +1383,17 @@ def _tab_playground() -> None:
 
     model_name = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
     st.session_state.setdefault("chat_messages", [])
-    chat_messages: list[dict[str, str]] = st.session_state["chat_messages"]
+    chat_messages: list[dict[str, Any]] = st.session_state["chat_messages"]
     st.markdown(
-        f'<div class="gemini-chat-toolbar"><span class="chat-control-caption">Model: <code>{model_name}</code></span></div>',
+        f'<div class="gemini-chat-toolbar"><span class="chat-control-caption">RAG backend · Generator: <code>{model_name}</code></span></div>',
         unsafe_allow_html=True,
     )
 
     if not chat_messages:
         st.markdown(
-            f"""
+            """
             <div class="playground-hero">
-                <p class="eyebrow">Hello</p>
-                <p class="title">Where should we start?</p>
+                <p class="title">What should CoDex look up?</p>
             </div>
             """,
             unsafe_allow_html=True,
@@ -1038,41 +1415,60 @@ def _tab_playground() -> None:
                     unsafe_allow_html=True,
                 )
             with c_body:
-                st.markdown(msg["content"])
+                if msg.get("citations"):
+                    st.markdown(
+                        _render_answer_html(
+                            str(msg.get("content", "")),
+                            msg.get("citations", []),
+                        ),
+                        unsafe_allow_html=True,
+                    )
+                else:
+                    st.markdown(str(msg.get("content", "")))
 
     # room so the last message is not hidden under the fixed composer
     st.markdown('<div style="height:5.75rem"></div>', unsafe_allow_html=True)
     st.markdown("</div>", unsafe_allow_html=True)
 
-    prompt = st.chat_input("Ask Gemini")
+    prompt = st.chat_input("...")
     if prompt:
         chat_messages.append({"role": "user", "content": prompt})
-        with st.spinner("Thinking…"):
-            t0 = time.perf_counter()
-            answer, err, provider = _chat_complete(chat_messages)
-            elapsed = (time.perf_counter() - t0) * 1000
-        if err:
-            chat_messages.append({"role": "assistant", "content": f"Error: {err}"})
+        if _is_help_question(prompt):
+            chat_messages.append({"role": "assistant", "content": _help_answer()})
         else:
-            provider_note = (
-                "\n\n_Answered via Hugging Face fallback._"
-                if provider == "huggingface"
-                else ""
-            )
-            chat_messages.append({"role": "assistant", "content": (answer or "") + provider_note})
-            st.session_state.setdefault("traces", []).append(
-                {
-                    "question": prompt,
-                    "answer": (answer or "") + provider_note,
-                    "confidence": 1.0,
-                    "abstained": False,
-                    "latency_ms": {"generation": elapsed},
-                    "tokens": {"input": 0, "output": 0},
-                    "cost_eur": 0.0,
-                    "citations": [],
-                    "wall_ms": elapsed,
-                }
-            )
+            with st.spinner("Thinking…"):
+                t0 = time.perf_counter()
+                res, err = _post(
+                    "/query",
+                    {"question": prompt, "history": _history_payload(chat_messages[:-1]), "top_k": 10},
+                )
+                elapsed = (time.perf_counter() - t0) * 1000
+            if err:
+                chat_messages.append({"role": "assistant", "content": f"Error: {err}"})
+            else:
+                citations = res.get("citations", [])
+                raw_answer_text = res.get("answer") or ""
+                answer_text = _display_answer_text(raw_answer_text)
+                chat_messages.append({
+                    "role": "assistant",
+                    "content": answer_text,
+                    "citations": citations,
+                    "confidence": res.get("confidence", 0.0),
+                })
+                st.session_state.setdefault("traces", []).append(
+                    {
+                        "question": prompt,
+                        "answer": answer_text,
+                        "raw_answer": raw_answer_text,
+                        "confidence": res.get("confidence", 0.0),
+                        "abstained": res.get("abstained", False),
+                        "latency_ms": res.get("latency_ms", {"wall": elapsed}),
+                        "tokens": res.get("tokens", {"input": 0, "output": 0}),
+                        "cost_eur": res.get("cost_eur", 0.0),
+                        "citations": citations,
+                        "wall_ms": elapsed,
+                    }
+                )
         st.rerun()
 
 
@@ -1125,6 +1521,14 @@ def _tab_traces() -> None:
                         f"text-transform:uppercase;letter-spacing:0.08em'>Tokens</p>",
                         unsafe_allow_html=True)
             st.json(t.get("tokens", {}))
+        citation_rows = _citation_table_rows(t.get("citations", []))
+        if citation_rows:
+            st.markdown(f"<p style='color:{_MUTED};font-weight:600;font-size:0.78rem;"
+                        f"text-transform:uppercase;letter-spacing:0.08em;margin-top:1rem'>Cited pages</p>",
+                        unsafe_allow_html=True)
+            st.dataframe(pd.DataFrame(citation_rows), use_container_width=True, hide_index=True)
+        else:
+            st.caption("No cited pages for this answer.")
 
 
 def _tab_evaluation() -> None:
@@ -1164,7 +1568,7 @@ def _tab_evaluation() -> None:
         _section("Metrics by category")
         import pandas as pd
         tabs = st.tabs([c.capitalize() for c in categories])
-        for tab, cat in zip(tabs, categories):
+        for tab, cat in zip(tabs, categories, strict=True):
             with tab:
                 data = report[cat]
                 if isinstance(data, dict):
@@ -1184,7 +1588,7 @@ def main() -> None:
 
     icon = str(_FAVICON) if _FAVICON.is_file() else "📄"
     st.set_page_config(
-        page_title="PDF Search Agent · TU Braunschweig",
+        page_title="CoDex · TU Braunschweig",
         layout="wide",
         page_icon=icon,
         initial_sidebar_state="expanded",
@@ -1197,10 +1601,14 @@ def main() -> None:
     corpus_tab, playground_tab, traces_tab, eval_tab = st.tabs(
         ["📁  Corpus", "💬  Playground", "📊  Traces", "🧪  Evaluation"]
     )
-    with corpus_tab:    _tab_corpus()
-    with playground_tab: _tab_playground()
-    with traces_tab:    _tab_traces()
-    with eval_tab:      _tab_evaluation()
+    with corpus_tab:
+        _tab_corpus()
+    with playground_tab:
+        _tab_playground()
+    with traces_tab:
+        _tab_traces()
+    with eval_tab:
+        _tab_evaluation()
 
 
 if __name__ == "__main__":  # pragma: no cover

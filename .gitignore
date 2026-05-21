@@ -23,6 +23,7 @@ htmlcov/
 
 datasets/open_rag_bench/
 datasets/cache/
+.uploads/
 *.sqlite
 *.sqlite3
 chroma_store/

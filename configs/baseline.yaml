@@ -21,9 +21,9 @@ retrieval:
 
 generation:
   provider: echo           # echo | gemini | huggingface   (echo = offline stub)
-  model: gemini-1.5-flash
+  model: gemini-2.5-flash
   temperature: 0.1
-  max_tokens: 512
+  max_tokens: 2048
   prompt_template: default
 
 abstention:

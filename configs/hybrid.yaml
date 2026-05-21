@@ -21,7 +21,8 @@ retrieval:
 
 generation:
   provider: echo
-  model: gemini-1.5-flash
+  model: gemini-2.5-flash
+  max_tokens: 2048
   prompt_template: strict_citation
 
 abstention:

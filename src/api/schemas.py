@@ -8,6 +8,7 @@ from pydantic import BaseModel, Field
 class QueryRequest(BaseModel):
     question: str = Field(..., min_length=1)
     top_k: int | None = None
+    history: list[dict[str, str]] = Field(default_factory=list)
 
 
 class CitationSchema(BaseModel):
@@ -15,6 +16,11 @@ class CitationSchema(BaseModel):
     page: int
     chunk_id: str | None = None
     quote: str | None = None
+    source: str | None = None
+    title: str | None = None
+    page_text: str | None = None
+    chunk_text: str | None = None
+    page_image: str | None = None
 
 
 class QueryResponse(BaseModel):
