@@ -4,10 +4,9 @@ A modular Retrieval-Augmented Generation (RAG) system for answering questions
 over collections of PDF documents, with grounded citations, explicit
 abstention when evidence is weak, and a reproducible evaluation pipeline.
 
-> This repository currently contains the **code scaffold** - every file the
-> project will eventually need exists with docstrings, type signatures, and
-> `NotImplementedError`. Logic is filled in milestone-by-milestone against
-> the plan at `../../.cursor/plans/sep_rag_semester_plan_*.plan.md`.
+> This repository now contains the baseline implementation plus several
+> milestone extensions. Some advanced modules still intentionally contain
+> `NotImplementedError` and are tracked in the milestone table below.
 
 ## Quick start
 
@@ -15,7 +14,8 @@ abstention when evidence is weak, and a reproducible evaluation pipeline.
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements-dev.txt
 cp .env.example .env          # add your GEMINI_API_KEY (optional)
-pytest                         # passing no-op until M1/M2
+pytest                         # unit tests; some future-milestone tests are skipped
+python -m eval.run --suite smoke --config configs/baseline.yaml
 ```
 
 ## Repository layout
@@ -58,7 +58,7 @@ code/
   .env.example            # environment variables template
 ```
 
-## Stack (as scaffolded)
+## Stack
 
 | Component            | Choice                                     | Why |
 |----------------------|--------------------------------------------|-----|
@@ -111,14 +111,14 @@ config change, not a code change.
 
 | ID | Focus | Status |
 |----|-------|--------|
-| M0 | Repo scaffold, stack decided, stubs in place | done (this commit) |
-| M1 | Evaluation harness for all six metric categories | pending |
-| M2 | Baseline RAG v1 (ingest -> MiniLM -> Gemini)     | pending |
-| M3 | PDF-parsing robustness (headers, tables, OCR)    | pending |
-| M4 | Hybrid retrieval + reranker                      | pending |
-| M5 | Strict citations + calibrated confidence         | pending |
-| M6 | Streamlit management UI                          | pending |
-| M7 | Robustness + adversarial suite                   | pending |
+| M0 | Repo scaffold, stack decided, stubs in place | done |
+| M1 | Evaluation harness for all six metric categories | partially done - JSONL suite loading, smoke/adversarial suite wiring, eval CLI/report output, and retrieval/answer/grounding/abstention/efficiency metrics are in place; robustness slicing, LLM judge, and Open RAG benchmark adapter/download still need completion |
+| M2 | Baseline RAG v1 (ingest -> MiniLM -> Gemini) | partially done - text/PDF parsing, recursive chunking, BM25-backed pipeline, prompt building, citation extraction, Gemini/Ollama/HuggingFace/Echo clients, cost/latency traces, and API query/index flow are implemented; MiniLM dense retrieval factory, prompt cache, abstention decision, citation validation, and confidence scoring still need completion |
+| M3 | PDF-parsing robustness (headers, tables, OCR) | partially done - PyMuPDF parsing and repeated header/footer stripping are implemented; table extraction, OCR fallback, and layout/semantic chunking remain pending |
+| M4 | Hybrid retrieval + reranker | partially done - BM25 retriever with rank_bm25 or pure-Python fallback is implemented; dense retriever is started; hybrid fusion and cross-encoder reranking remain pending |
+| M5 | Strict citations + calibrated confidence | partially done - default prompt enforces `[doc_id:pN]` citations and citation extraction exists; strict prompt, citation validation, abstention rules, and calibrated confidence remain pending |
+| M6 | Streamlit management UI | done - corpus upload/path indexing, chat playground, citation display with page previews, traces, and latest evaluation report views are implemented |
+| M7 | Robustness + adversarial suite | partially done - adversarial JSONL files and suite loader exist; robustness metrics/reporting remain pending |
 | M8 | Full benchmark run, ablation table, final report | pending |
 
 See the full plan for per-milestone deliverables and the CI regression-gate
