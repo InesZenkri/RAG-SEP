@@ -4,11 +4,7 @@ Refusal reasons:
 - ``no_hits``: retriever returned nothing.
 - ``low_retrieval_score``: top score < configured threshold.
 - ``model_refusal``: the model itself emitted REFUSAL_PHRASE.
-- ``contradiction``: cited chunks disagree (M5 extension, optional).
-
-TODO (M2 base, M5 richer):
-- should_abstain(retrieved, answer_text, config) -> AbstentionDecision.
-"""
+- ``contradiction``: cited chunks disagree (M5 extension, optional)."""
 
 from __future__ import annotations
 
