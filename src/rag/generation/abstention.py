@@ -32,6 +32,13 @@ def should_abstain(
     
     top_score = max((r.score for r in retrieved), default=0.0)
 
+    if not config.enabled:
+        return AbstentionDecision(
+            abstain=False, 
+            reason="disabled", 
+            top_score=top_score
+        )
+
     if not retrieved:
         return AbstentionDecision(
             abstain=True, 
