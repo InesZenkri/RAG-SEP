@@ -63,18 +63,47 @@ def extract_citations(text: str) -> list[Citation]:
 
 def validate_citations(
     answer_text: str,
-    retrieved: list[RetrievalResult],
+    retrieved: list['RetrievalResult'],
     min_overlap: float = 0.15,
-) -> list[CitationSupport]:
-    by_key = {r.chunk.citation_key(): r.chunk for r in retrieved}
-    out: list[CitationSupport] = []
-    for cit in extract_citations(answer_text):
-        chunk = by_key.get(cit.key())
-        marker = f"[{cit.doc_id}:p{cit.page}]"
-        sentence = next((s for s in re.split(r"(?<=[.!?]) +", answer_text) if marker in s), answer_text)
-        claim = re.sub(r"\[[^\]]*\]", "", sentence)
-        claim_tokens = {w for w in re.findall(r"\b\w{3,}\b", claim.lower())}
-        chunk_tokens = {w for w in re.findall(r"\b\w{3,}\b", chunk.text.lower())} if chunk else set()
-        overlap = len(claim_tokens & chunk_tokens) / len(claim_tokens) if claim_tokens else 0.0
-        out.append(CitationSupport(cit, chunk is not None and overlap >= min_overlap, overlap))
-    return out
+) -> list['CitationSupport']:
+    """verifies for each citation, that the cited chunk contains enough informative tokens from the sentence that cites it"""
+    stops = {"the", "and", "for", "are", "was", "but", "with", "that", "this", "from"}
+    
+    by_key = {result.chunk.citation_key(): result.chunk for result in retrieved}
+    citation_list: list['CitationSupport'] = []
+    
+    raw_sentences = re.split(r"(?<=[.!?]) +", answer_text)
+    
+    for citation in extract_citations(answer_text):
+        chunk = by_key.get(citation.key())
+        marker = f"[{citation.doc_id}:p{citation.page}]"
+        
+        citing_sentence = answer_text  
+        for sentence in raw_sentences:
+            if marker in sentence:
+                citing_sentence = sentence
+                break
+                
+        claim_text = re.sub(r"\[[^\]]*\]", "", citing_sentence)
+        raw_claim_words = re.findall(r"\b\w{3,}\b", claim_text.lower())
+        
+        claim_tokens = {word for word in raw_claim_words if word not in stops}
+        
+        if chunk:
+            chunk_tokens = set(re.findall(r"\b\w{3,}\b", chunk.text.lower()))
+        else:
+            chunk_tokens = set()
+            
+        if not claim_tokens:
+            overlap = 0.0
+        else:
+            matching_tokens = claim_tokens & chunk_tokens
+            overlap = len(matching_tokens) / len(claim_tokens)
+            
+        is_supported = (chunk is not None) and (overlap >= min_overlap)
+        
+        citation_list.append(
+            CitationSupport(citation, is_supported, overlap)
+        )
+        
+    return citation_list
