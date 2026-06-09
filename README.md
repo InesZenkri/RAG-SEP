@@ -4,6 +4,10 @@ A modular Retrieval-Augmented Generation (RAG) system for answering questions
 over collections of PDF documents, with grounded citations, explicit
 abstention when evidence is weak, and a reproducible evaluation pipeline.
 
+Project documentation and submitted PDFs are maintained in the companion
+documentation repository:
+https://git.rz.tu-bs.de/isf/sep/sep-2026/iai_drpsa_pdf-search-agent_g2/abgaben/-/tree/main/submission-pdfs?ref_type=heads
+
 > This repository now contains the baseline implementation plus several
 > milestone extensions. Some advanced modules still intentionally contain
 > `NotImplementedError` and are tracked in the milestone table below.
