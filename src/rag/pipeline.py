@@ -111,7 +111,7 @@ class RAGPipeline:
             self.llm = build_llm_client(
                 provider=provider,
                 model=self.config.generation.model,
-                cache_dir=None,
+                cache_dir=self.config.cache_dir if self.config.cache_enabled else None,
             )
 
         with timed(answer.latency_ms, "generation"):

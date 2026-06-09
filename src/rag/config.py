@@ -43,12 +43,13 @@ class RetrievalConfig:
 
 @dataclass
 class GenerationConfig:
-    provider: str = "echo"  # echo | groq | huggingface
+    provider: str = "echo"  # echo | gemini s| huggingface | ollama
     model: str = "llama-3.1-8b-instant"
     temperature: float = 0.1
     max_tokens: int = 512
     prompt_template: str = "default"  # default | strict_citation
     citation_style: str = "bracket"  # bracket | footnote
+    quantization: str | None = None
 
 
 @dataclass
@@ -66,6 +67,38 @@ class CostConfig:
 
 
 @dataclass
+class JudgeConfig:
+    enabled: bool = False
+    provider: str = "gemini"
+    model: str = "gemini-2.5-pro"
+    temperature: float = 0.0
+    max_tokens: int = 512
+    rubric: list[str] = field(
+        default_factory=lambda: ["factuality", "groundedness", "completeness"]
+    )
+    calibration_set: str = "datasets/sample/qa.jsonl"
+
+
+@dataclass
+class EvaluationConfig:
+    suite: str = "smoke"
+    benchmark: str = "sample"
+    metrics: list[str] = field(
+        default_factory=lambda: [
+            "retrieval",
+            "answer",
+            "grounding",
+            "abstention",
+            "robustness",
+            "efficiency",
+        ]
+    )
+    seed: int = 42
+    output_dir: str = "reports/runs"
+    judge: JudgeConfig = field(default_factory=JudgeConfig)
+
+
+@dataclass
 class PipelineConfig:
     name: str = "baseline"
     ingest: IngestConfig = field(default_factory=IngestConfig)
@@ -74,6 +107,8 @@ class PipelineConfig:
     generation: GenerationConfig = field(default_factory=GenerationConfig)
     abstention: AbstentionConfig = field(default_factory=AbstentionConfig)
     cost: CostConfig = field(default_factory=CostConfig)
+    evaluation: EvaluationConfig = field(default_factory=EvaluationConfig)
+    cache_enabled: bool = True
     cache_dir: str = "./.llm_cache"
 
     @classmethod
@@ -92,6 +127,17 @@ class PipelineConfig:
                     setattr(defaults, k, v)
             return defaults
 
+        def _merge_evaluation(section):
+            defaults = EvaluationConfig()
+            if not section:
+                return defaults
+            for k, v in section.items():
+                if k == "judge" and isinstance(v, dict):
+                    defaults.judge = _merge(JudgeConfig, v)
+                elif hasattr(defaults, k):
+                    setattr(defaults, k, v)
+            return defaults
+
         return cls(
             name=data.get("name", "baseline"),
             ingest=_merge(IngestConfig, data.get("ingest", {})),
@@ -100,6 +146,8 @@ class PipelineConfig:
             generation=_merge(GenerationConfig, data.get("generation", {})),
             abstention=_merge(AbstentionConfig, data.get("abstention", {})),
             cost=_merge(CostConfig, data.get("cost", {})),
+            evaluation=_merge_evaluation(data.get("evaluation", {})),
+            cache_enabled=data.get("cache_enabled", True),
             cache_dir=data.get("cache_dir", "./.llm_cache"),
         )
 

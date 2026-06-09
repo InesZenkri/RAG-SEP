@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import logging
+import random
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -128,21 +129,25 @@ def _compute_robustness(pairs: list[tuple[EvalItem, Answer]]) -> dict[str, Any]:
 def main(argv: list[str] | None = None) -> int:  # noqa: C901
     parser = argparse.ArgumentParser(description="Run the RAG evaluation suite.")
     parser.add_argument(
-        "--suite", default="smoke",
+        "--suite", default=None,
         choices=["smoke", "full", "adversarial", "robustness"],
     )
     parser.add_argument("--config", default="configs/baseline.yaml")
-    parser.add_argument("--out", default="reports/runs")
+    parser.add_argument("--out", default=None)
     parser.add_argument("--tag", default=None, help="Optional run label.")
     parser.add_argument("--json-logs", action="store_true", help="Emit JSON log lines.")
     args = parser.parse_args(argv)
 
-    setup_logging(json_output=args.json_logs)
-    log.info("Starting eval run: suite=%s config=%s tag=%s", args.suite, args.config, args.tag)
-
     config = PipelineConfig.from_yaml(args.config).with_env_overrides()
-    corpus_paths, eval_items = load_suite(args.suite)
-    log.info("Suite '%s': %d corpus files, %d eval items", args.suite, len(corpus_paths), len(eval_items))
+    suite = args.suite or config.evaluation.suite
+    out_root = args.out or config.evaluation.output_dir
+    random.seed(config.evaluation.seed)
+
+    setup_logging(json_output=args.json_logs)
+    log.info("Starting eval run: suite=%s config=%s tag=%s", suite, args.config, args.tag)
+
+    corpus_paths, eval_items = load_suite(suite)
+    log.info("Suite '%s': %d corpus files, %d eval items", suite, len(corpus_paths), len(eval_items))
 
     try:
         from rag.pipeline import RAGPipeline
@@ -189,22 +194,31 @@ def main(argv: list[str] | None = None) -> int:  # noqa: C901
 
     log.info("Answered %d items (%d errors/stubs)", len(eval_items), num_errors)
 
-    metrics: dict[str, Any] = {
-        "retrieval": _compute_retrieval(pairs),
-        "answer": _compute_answer(pairs),
-        "grounding": _compute_grounding(pairs),
-        "abstention": _compute_abstention(pairs),
-        "robustness": _compute_robustness(pairs),
-        "efficiency": summarise_efficiency(answers, index_build_ms).to_dict(),
+    metric_fns = {
+        "retrieval": lambda: _compute_retrieval(pairs),
+        "answer": lambda: _compute_answer(pairs),
+        "grounding": lambda: _compute_grounding(pairs),
+        "abstention": lambda: _compute_abstention(pairs),
+        "robustness": lambda: _compute_robustness(pairs),
+        "efficiency": lambda: summarise_efficiency(answers, index_build_ms).to_dict(),
     }
+    metrics: dict[str, Any] = {}
+    for metric in config.evaluation.metrics:
+        compute = metric_fns.get(metric)
+        if compute is None:
+            log.warning("Unknown configured metric '%s' - skipping.", metric)
+            continue
+        metrics[metric] = compute()
 
     timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
-    out_dir = Path(args.out) / f"{timestamp}_{args.suite}"
+    out_dir = Path(out_root) / f"{timestamp}_{suite}"
 
     run_meta: dict[str, Any] = {
-        "suite": args.suite,
+        "suite": suite,
+        "benchmark": config.evaluation.benchmark,
         "config": args.config,
         "config_name": config.name,
+        "seed": config.evaluation.seed,
         "tag": args.tag,
         "timestamp": timestamp,
         "num_corpus_files": len(corpus_paths),

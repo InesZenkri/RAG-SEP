@@ -23,10 +23,41 @@ retrieval:
 generation:
   provider: echo
   model: gemini-2.5-flash
+  temperature: 0.1
   max_tokens: 2048
   prompt_template: strict_citation
+  citation_style: bracket
+  quantization: null
 
 abstention:
   enabled: true
   min_retrieval_score: 0.15
   min_citations: 1
+  contradiction_check: false
+
+evaluation:
+  suite: smoke
+  benchmark: sample
+  metrics:
+    - retrieval
+    - answer
+    - grounding
+    - abstention
+    - robustness
+    - efficiency
+  seed: 42
+  output_dir: reports/runs
+  judge:
+    enabled: false
+    provider: gemini
+    model: gemini-2.5-pro
+    temperature: 0.0
+    max_tokens: 512
+    rubric:
+      - factuality
+      - groundedness
+      - completeness
+    calibration_set: datasets/sample/qa.jsonl
+
+cache_enabled: true
+cache_dir: ./.llm_cache
