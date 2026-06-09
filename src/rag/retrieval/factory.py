@@ -10,6 +10,7 @@ from rag.config import RetrievalConfig
 from rag.retrieval.base import Retriever
 from rag.retrieval.bm25 import BM25Retriever
 from rag.retrieval.dense import DenseRetriever
+from rag.retrieval.hybrid import HybridRetriever
 
 
 def build_retriever(cfg: RetrievalConfig) -> Retriever:
@@ -27,6 +28,17 @@ def build_retriever(cfg: RetrievalConfig) -> Retriever:
         )
 
     if mode == "hybrid":
-        raise NotImplementedError("Hybrid retriever is not implemented yet.")
+        dense = DenseRetriever(
+            embedding_model=cfg.embedding_model,
+            store=cfg.store,
+            store_dir=cfg.store_dir,
+        )
+
+        sparse = BM25Retriever()
+
+        return HybridRetriever(
+            dense=dense,
+            sparse=sparse,
+        )
 
     raise ValueError(f"Unknown retrieval mode: {cfg.mode}")
