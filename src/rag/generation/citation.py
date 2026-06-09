@@ -66,4 +66,15 @@ def validate_citations(
     retrieved: list[RetrievalResult],
     min_overlap: float = 0.15,
 ) -> list[CitationSupport]:
-    raise NotImplementedError
+    by_key = {r.chunk.citation_key(): r.chunk for r in retrieved}
+    out: list[CitationSupport] = []
+    for cit in extract_citations(answer_text):
+        chunk = by_key.get(cit.key())
+        marker = f"[{cit.doc_id}:p{cit.page}]"
+        sentence = next((s for s in re.split(r"(?<=[.!?]) +", answer_text) if marker in s), answer_text)
+        claim = re.sub(r"\[[^\]]*\]", "", sentence)
+        claim_tokens = {w for w in re.findall(r"\b\w{3,}\b", claim.lower())}
+        chunk_tokens = {w for w in re.findall(r"\b\w{3,}\b", chunk.text.lower())} if chunk else set()
+        overlap = len(claim_tokens & chunk_tokens) / len(claim_tokens) if claim_tokens else 0.0
+        out.append(CitationSupport(cit, chunk is not None and overlap >= min_overlap, overlap))
+    return out
