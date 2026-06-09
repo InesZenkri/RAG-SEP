@@ -1,4 +1,4 @@
-# Reliable PDF Search Agent - SEP 2026 Group 2
+# Reliable PDF Search Agent - SEP 2026 Group 2: CoDex
 
 A modular Retrieval-Augmented Generation (RAG) system for answering questions
 over collections of PDF documents, with grounded citations, explicit
@@ -8,37 +8,39 @@ Project documentation and submitted PDFs are maintained in the companion
 documentation repository:
 https://git.rz.tu-bs.de/isf/sep/sep-2026/iai_drpsa_pdf-search-agent_g2/abgaben/-/tree/main/submission-pdfs?ref_type=heads
 
-> This repository now contains the baseline implementation plus several
-> milestone extensions. Some advanced modules still intentionally contain
-> `NotImplementedError` and are tracked in the milestone table below.
+> This repository contains the implementation code. The project is still under
+> active milestone development, so some advanced modules are implemented as
+> stubs or are not yet wired into the end-to-end pipeline.
 
 ## Quick start
 
 ```bash
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements-dev.txt
+pip install -e .
 cp .env.example .env          # add your GEMINI_API_KEY (optional)
 pytest                         # unit tests; some future-milestone tests are skipped
-python -m eval.run --suite smoke --config configs/baseline.yaml
+python -m eval.run --config configs/baseline.yaml
 ```
 
 ## Repository layout
 
 ```
 code/
-  configs/                # YAML pipeline configs (baseline, hybrid, rerank)
+  configs/                # YAML pipeline/evaluation configs (baseline, hybrid, rerank)
   datasets/
+    README.md             # dataset structure and usage notes
     sample/               # tiny in-repo corpus + QA (drives tests & smoke suite)
     adversarial/          # unanswerable + contradiction cases (M5 / M7)
-    open_rag_bench/       # populated by scripts/download_benchmark.py (gitignored)
-  reports/runs/           # timestamped eval outputs (JSON + Markdown)
+    open_rag_bench/       # reserved for downloaded Open RAG Benchmark data (gitignored)
+  reports/                # timestamped eval outputs (JSON + Markdown)
   scripts/                # one-off utilities (benchmark download, adversarial build)
   src/
     rag/
       ingest/             # PDF parser, header/footer cleaner, tables, OCR
       chunking/           # recursive, layout-aware, semantic
       retrieval/          # dense, BM25, hybrid (RRF), cross-encoder reranker
-      generation/         # LLM clients (Gemini/HF/echo), prompt, citations,
+      generation/         # LLM clients (Gemini/HF/Ollama/echo), prompt, citations,
                           # abstention, confidence
       pipeline.py         # orchestrator
       config.py, types.py # dataclass schemas shared across layers
@@ -53,7 +55,9 @@ code/
       report.py, run.py   # report rendering + CLI entry point
     api/                  # FastAPI app (/query, /index, /stats, /health)
     ui/                   # Streamlit management dashboard
+      assets/             # UI images and static assets
   tests/                  # pytest suite (mirrors src/ layout)
+  .uploads/               # local uploaded documents used by the UI/API
   .gitlab-ci.yml          # lint + unit tests + smoke-eval regression gate
   Makefile                # install / test / smoke / eval / api / ui targets
   pyproject.toml          # pytest, ruff, mypy config
@@ -64,63 +68,86 @@ code/
 
 ## Stack
 
-| Component            | Choice                                     | Why |
-|----------------------|--------------------------------------------|-----|
-| Language             | Python 3.11                                | Brief recommends Python |
-| PDF parsing          | PyMuPDF + pdfplumber fallback              | Fast + good at tables |
-| Chunking             | Recursive character split with overlap     | Simple, strong baseline |
-| Embeddings           | sentence-transformers / `all-MiniLM-L6-v2` | Free, CPU-friendly |
-| Lexical retrieval    | `rank_bm25`                                 | Reference BM25 |
-| Vector store         | In-memory (default) + Chroma (persistent)  | Zero-setup default |
-| Reranker             | `BAAI/bge-reranker-base` (optional, M4)    | Standard cross-encoder |
-| LLM generator        | **Gemini** (free tier) via `google-genai`  | See below |
-| LLM judge            | `gemini-1.5-pro` (or HF for independence)  | Different family than generator |
-| Eval                 | Custom harness + JSONL datasets            | Six required metric categories |
-| Backend              | FastAPI + Uvicorn                          | Lightweight + async |
-| UI                   | Streamlit                                  | Fastest path to a demo |
-| Tests / CI           | pytest + GitLab CI                         | Matches submission repo |
+| Component            | Current choice/status                       | Notes |
+|----------------------|---------------------------------------------|-------|
+| Language             | Python 3.10+                                | `pyproject.toml` requires Python >= 3.10 |
+| PDF parsing          | PyMuPDF, cleaner utilities, table/OCR stubs | Core parsing works; table extraction and OCR fallback are milestone work |
+| Chunking             | Recursive chunking                          | Layout-aware and semantic chunking are present as modules but not finished |
+| Retrieval            | BM25 and dense retrievers                   | Hybrid fusion and cross-encoder reranking are still pending |
+| Embeddings           | `sentence-transformers` models              | Baseline YAML uses `all-MiniLM-L6-v2`; hybrid/rerank use `BAAI/bge-small-en-v1.5` |
+| Vector store         | In-memory default, Chroma planned           | Persistent store settings exist in config; full persistence is not the default path yet |
+| LLM generator        | Gemini, Hugging Face, Ollama, or Echo       | Provider selected by YAML/environment |
+| LLM judge            | Configured judge section, implementation stub | Judge parameters are in YAML; actual judge scoring still needs implementation |
+| Eval                 | Custom JSONL harness and report writer      | Smoke/adversarial suite loading and core metrics exist; benchmark download/adapter still pending |
+| Backend              | FastAPI + Uvicorn                           | `/query`, `/index`, `/stats`, `/health` style API |
+| UI                   | Streamlit                                   | Upload/index, chat, traces, and eval report views |
+| Tests / CI           | pytest + GitLab CI                          | Several milestone tests are intentionally skipped until their modules are complete |
 
-### Why Gemini (not Groq)?
+### LLM Provider Strategy
 
-Both have free tiers, but for this project Gemini is the better default:
+Provider choice is abstracted behind `rag.generation.llm_client.LLMClient` and
+selected through YAML plus environment overrides. The current setup uses:
 
-- **Larger free quota**: `gemini-1.5-flash` allows roughly 1500 requests/day
-  free, which is enough for a full evaluation run on the Open RAG Benchmark.
-  Groq's free tier is rate-limited per minute and per day, which makes batch
-  evaluation fragile.
-- **Multimodal native**: Gemini accepts PDF pages, tables, and figures as
-  inputs directly. The brief mentions multimodal questions (text + tables +
-  images) in the Open RAG Benchmark, so this matters.
-- **Named in the brief**: the project description explicitly lists Gemini
-  free as a recommended provider; using it avoids re-justification.
-- **Two model tiers from one SDK**: `flash` as generator, `pro` as judge,
-  which is enough model-family separation to reduce judge bias.
+- **Gemini** as the default hosted provider for normal generation and judge
+  runs. `gemini-2.5-flash` is used for generation-oriented runs, while
+  `gemini-2.5-pro` is configured as the judge model.
+- **Hugging Face Inference** as a hosted fallback when Gemini is unavailable
+  or when a separate model family is useful for comparison.
+- **Ollama** as the local/cluster provider path. This is the direction for
+  runs on the institute cluster where models can be hosted through an Ollama
+  endpoint instead of an external API.
+- **Echo** as an offline stub for tests, smoke runs, and development without
+  API credentials.
 
-Provider choice is abstracted behind `rag.generation.llm_client.LLMClient`;
-swapping to Groq, a HuggingFace endpoint, or a local Ollama instance is a
-config change, not a code change.
+Switching provider or model is a configuration change: set
+`generation.provider` / `generation.model` in YAML or override the provider
+with `RAG_GENERATION_PROVIDER`. For Ollama, set `OLLAMA_HOST` to the local or
+cluster endpoint.
 
 ## Datasets
 
 - **`datasets/sample/`**: a small hand-written corpus (photosynthesis,
-  mitochondria, transformers) + 8 QA pairs. Drives every unit test and the
-  `smoke` eval suite. Stays in git.
+  mitochondria, transformers) + 8 QA pairs. Drives the `smoke` eval suite and
+  test fixtures. Stays in git.
 - **`datasets/adversarial/`**: unanswerable questions (for abstention
   metrics) and a coffee / type-2-diabetes contradiction pair. Stays in git.
 - **`datasets/open_rag_bench/`**: the Vectara benchmark (1000 arXiv PDFs +
-  3045 QA pairs). Downloaded on demand via
-  `python scripts/download_benchmark.py --subset 50`. **Gitignored.**
+  3045 QA pairs). This directory is gitignored and reserved for the downloaded
+  benchmark. The download script and adapter are still milestone work.
+
+## Current Status
+
+Implemented and usable now:
+
+- YAML-driven runtime and evaluation configuration in `configs/`.
+- PDF/text parsing, recursive chunking, BM25 retrieval, and an initial dense
+  retriever.
+- LLM client abstraction for Gemini, Hugging Face, Ollama, and Echo.
+- Prompt construction, citation extraction, abstention helper logic,
+  confidence heuristic, token/cost tracing, and optional prompt caching.
+- FastAPI backend and Streamlit management UI.
+- Smoke/adversarial JSONL suite loading, core metric functions, and JSON/Markdown
+  evaluation reports.
+
+Still incomplete or not fully wired:
+
+- Hybrid retrieval fusion and cross-encoder reranking.
+- Full pipeline use of dense/hybrid retrieval modes.
+- Citation validation and calibrated confidence in the final answer flow.
+- LLM-as-a-judge execution.
+- Open RAG Benchmark download/adapter and full benchmark run.
+- Table extraction, OCR fallback, layout-aware chunking, and semantic chunking.
 
 ## Milestones
 
 | ID | Focus | Status |
 |----|-------|--------|
 | M0 | Repo scaffold, stack decided, stubs in place | done |
-| M1 | Evaluation harness for all six metric categories | partially done - JSONL suite loading, smoke/adversarial suite wiring, eval CLI/report output, and retrieval/answer/grounding/abstention/efficiency metrics are in place; robustness slicing, LLM judge, and Open RAG benchmark adapter/download still need completion |
-| M2 | Baseline RAG v1 (ingest -> MiniLM -> Gemini) | partially done - text/PDF parsing, recursive chunking, BM25-backed pipeline, prompt building, citation extraction, Gemini/Ollama/HuggingFace/Echo clients, cost/latency traces, and API query/index flow are implemented; MiniLM dense retrieval factory, prompt cache, abstention decision, citation validation, and confidence scoring still need completion |
-| M3 | PDF-parsing robustness (headers, tables, OCR) | partially done - PyMuPDF parsing and repeated header/footer stripping are implemented; table extraction, OCR fallback, and layout/semantic chunking remain pending |
-| M4 | Hybrid retrieval + reranker | partially done - BM25 retriever with rank_bm25 or pure-Python fallback is implemented; dense retriever is started; hybrid fusion and cross-encoder reranking remain pending |
-| M5 | Strict citations + calibrated confidence | partially done - default prompt enforces `[doc_id:pN]` citations and citation extraction exists; strict prompt, citation validation, abstention rules, and calibrated confidence remain pending |
+| M1 | Evaluation harness for all six metric categories | partially done - smoke/adversarial suite loading, YAML-driven eval config, reports, and core metrics exist; robustness slicing, LLM judge execution, and Open RAG Benchmark integration remain pending |
+| M2 | Baseline RAG v1 | partially done - parsing, recursive chunking, BM25-backed pipeline, dense retriever, providers, prompt/citation extraction, cache wiring, API flow, abstention helper, and confidence heuristic exist; full dense/hybrid pipeline integration, citation validation, and calibrated confidence remain pending |
+| M3 | PDF-parsing robustness | partially done - PyMuPDF parsing and repeated header/footer stripping are implemented; table extraction, OCR fallback, and advanced chunking remain pending |
+| M4 | Hybrid retrieval + reranker | partially done - BM25 and dense retrieval exist; hybrid fusion and cross-encoder reranking remain pending |
+| M5 | Strict citations + calibrated confidence | partially done - strict citation prompt/citation extraction, abstention rules, and confidence heuristic exist; citation validation, pipeline-level integration, and calibration remain pending |
 | M6 | Streamlit management UI | done - corpus upload/path indexing, chat playground, citation display with page previews, traces, and latest evaluation report views are implemented |
 | M7 | Robustness + adversarial suite | partially done - adversarial JSONL files and suite loader exist; robustness metrics/reporting remain pending |
 | M8 | Full benchmark run, ablation table, final report | pending |
@@ -148,7 +175,7 @@ Everyone contributes to `tests/` and to the final written report.
 | `make test`      | Run pytest.                                            |
 | `make lint`      | Ruff + mypy.                                           |
 | `make smoke`     | Run the smoke eval against `configs/baseline.yaml`.    |
-| `make eval`      | Run the full eval against `configs/baseline.yaml`.     |
+| `make eval`      | Run the full eval path against `configs/baseline.yaml`; requires the benchmark adapter/download work to be completed. |
 | `make api`       | Launch the FastAPI backend.                            |
 | `make ui`        | Launch the Streamlit UI.                               |
 
