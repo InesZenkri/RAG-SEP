@@ -139,17 +139,19 @@ Still incomplete or not fully wired:
 
 ## Milestones
 
-| ID | Focus | Status |
-|----|-------|--------|
-| M0 | Repo scaffold, stack decided, stubs in place | done |
-| M1 | Evaluation harness for all six metric categories | partially done - smoke/adversarial suite loading, YAML-driven eval config, reports, and core metrics exist; robustness slicing, LLM judge execution, and Open RAG Benchmark integration remain pending |
-| M2 | Baseline RAG v1 | partially done - parsing, recursive chunking, BM25-backed pipeline, dense retriever, providers, prompt/citation extraction, cache wiring, API flow, abstention helper, and confidence heuristic exist; full dense/hybrid pipeline integration, citation validation, and calibrated confidence remain pending |
-| M3 | PDF-parsing robustness | partially done - PyMuPDF parsing and repeated header/footer stripping are implemented; table extraction, OCR fallback, and advanced chunking remain pending |
-| M4 | Hybrid retrieval + reranker | partially done - BM25 and dense retrieval exist; hybrid fusion and cross-encoder reranking remain pending |
-| M5 | Strict citations + calibrated confidence | partially done - strict citation prompt/citation extraction, abstention rules, and confidence heuristic exist; citation validation, pipeline-level integration, and calibration remain pending |
-| M6 | Streamlit management UI | done - corpus upload/path indexing, chat playground, citation display with page previews, traces, and latest evaluation report views are implemented |
-| M7 | Robustness + adversarial suite | partially done - adversarial JSONL files and suite loader exist; robustness metrics/reporting remain pending |
-| M8 | Full benchmark run, ablation table, final report | pending |
+Tracking links point to GitLab issue lists filtered by the milestone label.
+
+| ID | Focus | Status | Tracking |
+|----|-------|--------|----------|
+| M0 | Repo scaffold, stack decided, stubs in place | done | [M0 issues](<https://git.rz.tu-bs.de/isf/sep/sep-2026/iai_drpsa_pdf-search-agent_g2/code/-/issues?label_name[]=M0>) |
+| M1 | Evaluation harness for all six metric categories | partially done - smoke/adversarial suite loading, YAML-driven eval config, reports, and core metrics exist; robustness slicing, LLM judge execution, and Open RAG Benchmark integration remain pending | [M1 issues](<https://git.rz.tu-bs.de/isf/sep/sep-2026/iai_drpsa_pdf-search-agent_g2/code/-/issues?label_name[]=M1>) |
+| M2 | Baseline RAG v1 | partially done - parsing, recursive chunking, BM25-backed pipeline, dense retriever, providers, prompt/citation extraction, cache wiring, API flow, abstention helper, and confidence heuristic exist; full dense/hybrid pipeline integration, citation validation, and calibrated confidence remain pending | [M2 issues](<https://git.rz.tu-bs.de/isf/sep/sep-2026/iai_drpsa_pdf-search-agent_g2/code/-/issues?label_name[]=M2>) |
+| M3 | PDF-parsing robustness | partially done - PyMuPDF parsing and repeated header/footer stripping are implemented; table extraction, OCR fallback, and advanced chunking remain pending | [M3 issues](<https://git.rz.tu-bs.de/isf/sep/sep-2026/iai_drpsa_pdf-search-agent_g2/code/-/issues?label_name[]=M3>) |
+| M4 | Hybrid retrieval + reranker | partially done - BM25 and dense retrieval exist; hybrid fusion and cross-encoder reranking remain pending | [M4 issues](<https://git.rz.tu-bs.de/isf/sep/sep-2026/iai_drpsa_pdf-search-agent_g2/code/-/issues?label_name[]=M4>) |
+| M5 | Strict citations + calibrated confidence | partially done - strict citation prompt/citation extraction, abstention rules, and confidence heuristic exist; citation validation, pipeline-level integration, and calibration remain pending | [M5 issues](<https://git.rz.tu-bs.de/isf/sep/sep-2026/iai_drpsa_pdf-search-agent_g2/code/-/issues?label_name[]=M5>) |
+| M6 | Streamlit management UI | done - corpus upload/path indexing, chat playground, citation display with page previews, traces, and latest evaluation report views are implemented | [M6 issues](<https://git.rz.tu-bs.de/isf/sep/sep-2026/iai_drpsa_pdf-search-agent_g2/code/-/issues?label_name[]=M6>) |
+| M7 | Robustness + adversarial suite | partially done - adversarial JSONL files and suite loader exist; robustness metrics/reporting remain pending | [M7 issues](<https://git.rz.tu-bs.de/isf/sep/sep-2026/iai_drpsa_pdf-search-agent_g2/code/-/issues?label_name[]=M7>) |
+| M8 | Full benchmark run, ablation table, final report | pending | [M8 issues](<https://git.rz.tu-bs.de/isf/sep/sep-2026/iai_drpsa_pdf-search-agent_g2/code/-/issues?label_name[]=M8>) |
 
 See the full plan for per-milestone deliverables and the CI regression-gate
 strategy.
