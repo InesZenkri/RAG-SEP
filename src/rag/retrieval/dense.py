@@ -82,8 +82,8 @@ class DenseRetriever(Retriever):
                 retriever=self.name,
         )
 
-        results.append(result)
-        rank += 1
+            results.append(result)
+            rank += 1
 
         return results
 
