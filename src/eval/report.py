@@ -44,6 +44,20 @@ def write_report(report: dict[str, Any], out_dir: str | Path) -> Path:
         "",
     ]
 
+    snapshot = _metric_snapshot(report.get("metrics", {}))
+    if snapshot:
+        lines += [
+            "## Metric Snapshot",
+            "",
+            "| Category | Metric | Value | Status |",
+            "|----------|--------|-------|--------|",
+        ]
+        for category, metric, value in snapshot:
+            lines.append(
+                f"| {category} | {metric} | {_fmt(value)} | {_score_status(metric, value)} |"
+            )
+        lines.append("")
+
     for category, values in report.get("metrics", {}).items():
         lines.append(f"## {category.replace('_', ' ').title()}")
         if isinstance(values, dict):
@@ -70,19 +84,37 @@ def write_report(report: dict[str, Any], out_dir: str | Path) -> Path:
         lines += [
             "## Per-Item Results",
             "",
-            "| id | type | abstained | em | f1 | error |",
-            "|----|------|-----------|----|----|-------|",
+            "| id | type | retrieval | em | f1 | citation precision | issues |",
+            "|----|------|-----------|----|----|--------------------|--------|",
         ]
         for item in per_item:
             lines.append(
                 f"| {item.get('id', '?')} "
                 f"| {item.get('type', '?')} "
-                f"| {item.get('abstained', '?')} "
+                f"| {_fmt(item.get('retrieval_hit@5'))} "
                 f"| {_fmt(item.get('exact_match'))} "
                 f"| {_fmt(item.get('token_f1'))} "
-                f"| {item.get('error', '')} |"
+                f"| {_fmt(item.get('citation_precision'))} "
+                f"| {_escape_md(_issue_text(item))} |"
             )
         lines.append("")
+
+        failing_items = [item for item in per_item if item.get("issues")]
+        if failing_items:
+            lines += ["## Per-Item Diagnostics", ""]
+            for item in failing_items:
+                lines += [
+                    f"### {item.get('id', '?')}",
+                    "",
+                    f"- Question: {_escape_md(item.get('question', ''))}",
+                    f"- Gold: {_escape_md(item.get('gold_answer', ''))}",
+                    f"- Predicted: {_escape_md(item.get('predicted', ''))}",
+                    f"- Issues: {_escape_md(_issue_text(item))}",
+                    f"- Gold retrieval keys: `{', '.join(item.get('gold_retrieval_keys', []))}`",
+                    f"- Top retrieved: {_format_retrieved(item.get('retrieved', []))}",
+                    f"- Citations: {_format_citations(item.get('citations', []))}",
+                    "",
+                ]
 
     md_path = out / "report.md"
     md_path.write_text("\n".join(lines), encoding="utf-8")
@@ -97,3 +129,72 @@ def _fmt(value: Any) -> str:
     if isinstance(value, float):
         return f"{value:.4f}"
     return str(value)
+
+
+def _metric_snapshot(metrics: dict[str, Any]) -> list[tuple[str, str, Any]]:
+    preferred = [
+        ("retrieval", "recall@5"),
+        ("retrieval", "mrr"),
+        ("answer", "exact_match"),
+        ("answer", "token_f1"),
+        ("grounding", "citation_precision"),
+        ("grounding", "citation_recall"),
+        ("abstention", "false_refusal_rate"),
+        ("abstention", "false_answer_rate"),
+    ]
+    rows: list[tuple[str, str, Any]] = []
+    for category, metric in preferred:
+        value = metrics.get(category, {}).get(metric)
+        if value is not None:
+            rows.append((category, metric, value))
+    return rows
+
+
+def _score_status(metric: str, value: Any) -> str:
+    if not isinstance(value, float):
+        return "-"
+    if metric in {"false_refusal_rate", "false_answer_rate"}:
+        if value <= 0.1:
+            return "good"
+        if value <= 0.3:
+            return "ok"
+        return "needs work"
+    if value >= 0.9:
+        return "good"
+    if value >= 0.7:
+        return "ok"
+    return "needs work"
+
+
+def _issue_text(item: dict[str, Any]) -> str:
+    issues = item.get("issues") or []
+    if not issues:
+        return "none"
+    return ", ".join(issues)
+
+
+def _format_retrieved(retrieved: list[dict[str, Any]]) -> str:
+    if not retrieved:
+        return "-"
+    top = retrieved[:3]
+    return ", ".join(
+        f"`#{hit.get('rank')} {hit.get('doc_id')}:p{hit.get('page')} "
+        f"({hit.get('score'):.3f})`"
+        for hit in top
+        if isinstance(hit.get("score"), (int, float))
+    )
+
+
+def _format_citations(citations: list[dict[str, Any]]) -> str:
+    if not citations:
+        return "-"
+    values = []
+    for citation in citations:
+        key = f"{citation.get('doc_id')}:p{citation.get('page')}"
+        status = "valid" if citation.get("valid_retrieved_key") else "invalid"
+        values.append(f"`{key}` ({status})")
+    return ", ".join(values)
+
+
+def _escape_md(value: Any) -> str:
+    return str(value).replace("|", "\\|")

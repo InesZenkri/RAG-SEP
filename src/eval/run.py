@@ -10,7 +10,10 @@ from pathlib import Path
 from typing import Any
 
 from eval.dataset import EvalItem, load_suite
+from eval.metrics.answer import exact_match, token_f1
 from eval.metrics.efficiency import summarise_efficiency
+from eval.metrics.grounding import citation_precision, citation_recall
+from eval.metrics.retrieval import hit_at_k
 from eval.report import build_report, write_report
 from rag.config import PipelineConfig
 from rag.logging_utils import setup_logging, timed
@@ -58,7 +61,7 @@ def _gold_retrieval_keys(item: EvalItem) -> set[str]:
 
 def _compute_retrieval(pairs: list[tuple[EvalItem, Answer]]) -> dict[str, Any]:
     try:
-        from eval.metrics.retrieval import recall_at_k, mrr, ndcg_at_k, hit_at_k
+        from eval.metrics.retrieval import recall_at_k, mrr, ndcg_at_k
         k = 5
         results: dict[str, float] = {}
         all_recall, all_mrr, all_ndcg, all_hit = [], [], [], []
@@ -81,7 +84,6 @@ def _compute_retrieval(pairs: list[tuple[EvalItem, Answer]]) -> dict[str, Any]:
 
 def _compute_answer(pairs: list[tuple[EvalItem, Answer]]) -> dict[str, Any]:
     try:
-        from eval.metrics.answer import exact_match, token_f1
         all_em, all_f1 = [], []
         for item, answer in pairs:
             refs = item.expected_answers or ([item.answer] if item.answer else [])
@@ -98,7 +100,6 @@ def _compute_answer(pairs: list[tuple[EvalItem, Answer]]) -> dict[str, Any]:
 
 def _compute_grounding(pairs: list[tuple[EvalItem, Answer]]) -> dict[str, Any]:
     try:
-        from eval.metrics.grounding import citation_precision, citation_recall
         precs, recalls = [], []
         for _, answer in pairs:
             precs.append(citation_precision(answer))
@@ -132,6 +133,81 @@ def _compute_robustness(pairs: list[tuple[EvalItem, Answer]]) -> dict[str, Any]:
     except NotImplementedError:
         log.warning("Robustness metrics not yet implemented.")
         return {"status": "not_implemented"}
+
+
+def _per_item_result(item: EvalItem, answer: Answer, error: str) -> dict[str, Any]:
+    refs = item.expected_answers or ([item.answer] if item.answer else [])
+    gold_keys = _gold_retrieval_keys(item)
+    retrieved_keys = {result.chunk.citation_key() for result in answer.retrieved}
+    invalid_citations = [
+        citation.key()
+        for citation in answer.citations
+        if citation.key() not in retrieved_keys
+    ]
+
+    item_exact_match = exact_match(answer.text, refs) if refs else None
+    item_token_f1 = token_f1(answer.text, refs) if refs else None
+    item_retrieval_hit = hit_at_k(answer.retrieved, gold_keys, k=5)
+    item_citation_precision = citation_precision(answer)
+    item_citation_recall = citation_recall(answer)
+
+    issues = []
+    if error:
+        issues.append("error")
+    if answer.abstained:
+        issues.append("abstained")
+    if item_retrieval_hit < 1.0:
+        issues.append("retrieval_miss")
+    if item_token_f1 is not None and item_token_f1 < 0.5:
+        issues.append("low_answer_f1")
+    if answer.citations and item_citation_precision < 1.0:
+        issues.append("unsupported_citation")
+    if invalid_citations:
+        issues.append("invalid_citation_id")
+    if answer.text.strip().startswith("[") and answer.text.strip().endswith("]"):
+        issues.append("citation_only_answer")
+
+    return {
+        "id": item.id,
+        "type": item.type,
+        "question": item.question,
+        "gold_answer": item.answer,
+        "predicted": answer.text,
+        "abstained": answer.abstained,
+        "confidence": answer.confidence,
+        "retrieval_hit@5": item_retrieval_hit,
+        "exact_match": item_exact_match,
+        "token_f1": item_token_f1,
+        "citation_precision": item_citation_precision,
+        "citation_recall": item_citation_recall,
+        "gold_retrieval_keys": sorted(gold_keys),
+        "retrieved": [
+            {
+                "rank": result.rank,
+                "chunk_id": result.chunk.chunk_id,
+                "doc_id": result.chunk.doc_id,
+                "page": result.chunk.page,
+                "score": result.score,
+                "retriever": result.retriever,
+            }
+            for result in answer.retrieved
+        ],
+        "citations": [
+            {
+                "doc_id": citation.doc_id,
+                "page": citation.page,
+                "chunk_id": citation.chunk_id,
+                "quote": citation.quote,
+                "valid_retrieved_key": citation.key() in retrieved_keys,
+            }
+            for citation in answer.citations
+        ],
+        "invalid_citations": invalid_citations,
+        "issues": issues,
+        "latency_ms": answer.latency_ms,
+        "cost_eur": answer.cost_eur,
+        "error": error,
+    }
 
 
 def main(argv: list[str] | None = None) -> int:  # noqa: C901
@@ -187,18 +263,7 @@ def main(argv: list[str] | None = None) -> int:  # noqa: C901
         pairs.append((item, answer))
         answers.append(answer)
 
-        per_item.append({
-            "id": item.id,
-            "type": item.type,
-            "question": item.question,
-            "gold_answer": item.answer,
-            "predicted": answer.text,
-            "abstained": answer.abstained,
-            "confidence": answer.confidence,
-            "latency_ms": answer.latency_ms,
-            "cost_eur": answer.cost_eur,
-            "error": error,
-        })
+        per_item.append(_per_item_result(item, answer, error))
 
     log.info("Answered %d items (%d errors/stubs)", len(eval_items), num_errors)
 
