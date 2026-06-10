@@ -48,6 +48,14 @@ def _stub_answer(item: EvalItem) -> Answer:
     return Answer(question=item.question, text="", abstained=True)
 
 
+def _gold_retrieval_keys(item: EvalItem) -> set[str]:
+    return {
+        f"{Path(src).stem}:p{p}"
+        for src in item.doc_sources
+        for p in (item.pages or [1])
+    }
+
+
 def _compute_retrieval(pairs: list[tuple[EvalItem, Answer]]) -> dict[str, Any]:
     try:
         from eval.metrics.retrieval import recall_at_k, mrr, ndcg_at_k, hit_at_k
@@ -55,7 +63,7 @@ def _compute_retrieval(pairs: list[tuple[EvalItem, Answer]]) -> dict[str, Any]:
         results: dict[str, float] = {}
         all_recall, all_mrr, all_ndcg, all_hit = [], [], [], []
         for item, answer in pairs:
-            gold_keys = {f"{src}:p{p}" for src in item.doc_sources for p in (item.pages or [1])}
+            gold_keys = _gold_retrieval_keys(item)
             all_recall.append(recall_at_k(answer.retrieved, gold_keys, k))
             all_mrr.append(mrr(answer.retrieved, gold_keys))
             all_ndcg.append(ndcg_at_k(answer.retrieved, gold_keys, k))
