@@ -19,7 +19,7 @@ pip install -r requirements-dev.txt
 pip install -e .
 cp .env.example .env          # add your GEMINI_API_KEY (optional)
 pytest                         # unit tests; some future-milestone tests are skipped
-python -m eval.run --config configs/baseline.yaml
+make smoke                     # CI-compatible smoke eval using the echo provider
 ```
 
 ## Repository layout
@@ -75,9 +75,9 @@ code/
 | Retrieval            | BM25, dense, and hybrid RRF retrievers      | Hybrid retrieval is available through the retriever factory; cross-encoder reranking is still pending |
 | Embeddings           | `sentence-transformers` models              | Baseline YAML uses `all-MiniLM-L6-v2`; hybrid/rerank use `BAAI/bge-small-en-v1.5` |
 | Vector store         | In-memory default, Chroma planned           | Persistent store settings exist in config; full persistence is not the default path yet |
-| LLM generator        | Gemini, Hugging Face, Ollama, or Echo       | Provider selected by YAML/environment |
+| LLM generator        | Gemini, Hugging Face, Ollama, or Echo       | Provider selected by YAML/environment; baseline uses Echo for CI-safe smoke runs |
 | LLM judge            | Configured judge section, implementation stub | Judge parameters are in YAML; actual judge scoring still needs implementation |
-| Eval                 | Custom JSONL harness and report writer      | Smoke/adversarial suite loading and core metrics exist; benchmark download/adapter still pending |
+| Eval                 | Custom JSONL harness and report writer      | Smoke/adversarial suite loading, core metrics, per-item diagnostics, and JSON/Markdown reports exist; benchmark download/adapter still pending |
 | Backend              | FastAPI + Uvicorn                           | `/query`, `/index`, `/stats`, `/health` style API |
 | UI                   | Streamlit                                   | Upload/index, chat, traces, and eval report views |
 | Tests / CI           | pytest + GitLab CI                          | Several milestone tests are intentionally skipped until their modules are complete |
@@ -95,13 +95,34 @@ selected through YAML plus environment overrides. The current setup uses:
 - **Ollama** as the local/cluster provider path. This is the direction for
   runs on the institute cluster where models can be hosted through an Ollama
   endpoint instead of an external API.
-- **Echo** as an offline stub for tests, smoke runs, and development without
-  API credentials.
+- **Echo** as an offline stub for CI, smoke runs, and development without API
+  credentials. Echo verifies indexing, retrieval, report generation, and the
+  end-to-end control flow, but it does not measure real answer quality.
 
 Switching provider or model is a configuration change: set
 `generation.provider` / `generation.model` in YAML or override the provider
 with `RAG_GENERATION_PROVIDER`. For Ollama, set `OLLAMA_HOST` to the local or
 cluster endpoint.
+
+### Evaluation Modes
+
+The project currently uses two different evaluation modes:
+
+- **CI smoke evaluation**: `make smoke` / GitLab `smoke-eval` runs
+  `configs/baseline.yaml`, which uses `generation.provider: echo`. This mode is
+  deterministic and does not need API keys or a GPU. Its retrieval, efficiency,
+  and report-generation results are meaningful; answer and grounding quality
+  are expected to be poor because Echo returns a simulated answer.
+- **Real generation evaluation**: local or cluster runs can set
+  `RAG_GENERATION_PROVIDER=gemini`, `ollama`, or `huggingface`. These reports
+  should be used for answer quality and citation quality. Recent smoke runs with
+  a real/local model reached perfect retrieval on the sample suite and strong
+  answer/grounding scores.
+
+Reports are written to `reports/runs/<timestamp>_<suite>/report.json` and
+`report.md`. The JSON and Markdown reports include aggregate metrics plus
+per-item diagnostics: retrieved chunks, parsed citations, invalid citations,
+per-question answer scores, retrieval hits, latency, and issue labels.
 
 ## Datasets
 
@@ -123,17 +144,18 @@ Implemented and usable now:
   retriever, and RRF-based hybrid retrieval.
 - LLM client abstraction for Gemini, Hugging Face, Ollama, and Echo.
 - Prompt construction, citation extraction and validation, abstention helper
-  logic, confidence heuristic, token/cost tracing, and optional prompt caching.
+  logic, confidence heuristic, token/cost tracing, and disk-backed prompt
+  caching.
 - FastAPI backend and Streamlit management UI.
-- Smoke/adversarial JSONL suite loading, core metric functions, and JSON/Markdown
-  evaluation reports.
+- Smoke/adversarial JSONL suite loading, core metric functions, per-item
+  diagnostics, and JSON/Markdown evaluation reports.
+- GitLab CI for Ruff linting, unit tests, and artifact-producing smoke evals.
 
 Still incomplete or not fully wired:
 
 - Cross-encoder reranking.
 - Full pipeline/config use of dense and hybrid retrieval modes.
-- Pipeline-level citation validation and calibrated confidence in the final
-  answer flow.
+- Calibrated confidence in the final answer flow.
 - LLM-as-a-judge execution.
 - Open RAG Benchmark download/adapter and full benchmark run.
 - Table extraction, OCR fallback, layout-aware chunking, and semantic chunking.
@@ -145,8 +167,8 @@ Tracking links point to the GitLab milestone pages.
 | ID | Focus | Status | Tracking |
 |----|-------|--------|----------|
 | M0 | Repo scaffold, stack decided, stubs in place | done | [M0 milestone](https://git.rz.tu-bs.de/isf/sep/sep-2026/iai_drpsa_pdf-search-agent_g2/code/-/milestones/1) |
-| M1 | Evaluation harness for all six metric categories | partially done - smoke/adversarial suite loading, YAML-driven eval config, reports, and core metrics exist; robustness slicing, LLM judge execution, and Open RAG Benchmark integration remain pending | [M1 milestone](https://git.rz.tu-bs.de/isf/sep/sep-2026/iai_drpsa_pdf-search-agent_g2/code/-/milestones/2) |
-| M2 | Baseline RAG v1 | partially done - parsing, recursive chunking, BM25-backed pipeline, dense retriever, providers, prompt/citation extraction, citation validation helper, cache wiring, API flow, abstention helper, and confidence heuristic exist; full dense/hybrid pipeline integration and calibrated confidence remain pending | [M2 milestone](https://git.rz.tu-bs.de/isf/sep/sep-2026/iai_drpsa_pdf-search-agent_g2/code/-/milestones/3) |
+| M1 | Evaluation harness for all six metric categories | partially done - smoke/adversarial suite loading, YAML-driven eval config, core metrics, per-item diagnostics, Markdown/JSON reports, and CI smoke artifacts exist; robustness slicing, LLM judge execution, and Open RAG Benchmark integration remain pending | [M1 milestone](https://git.rz.tu-bs.de/isf/sep/sep-2026/iai_drpsa_pdf-search-agent_g2/code/-/milestones/2) |
+| M2 | Baseline RAG v1 | partially done - parsing, recursive chunking, BM25-backed pipeline, dense retriever, providers, prompt/citation extraction, citation validation helper, disk prompt cache, API flow, abstention helper, and confidence heuristic exist; full dense/hybrid pipeline integration and calibrated confidence remain pending | [M2 milestone](https://git.rz.tu-bs.de/isf/sep/sep-2026/iai_drpsa_pdf-search-agent_g2/code/-/milestones/3) |
 | M3 | PDF-parsing robustness | partially done - PyMuPDF parsing and repeated header/footer stripping are implemented; table extraction, OCR fallback, and advanced chunking remain pending | [M3 milestone](https://git.rz.tu-bs.de/isf/sep/sep-2026/iai_drpsa_pdf-search-agent_g2/code/-/milestones/4) |
 | M4 | Hybrid retrieval + reranker | partially done - BM25, dense retrieval, RRF hybrid fusion, and factory construction for hybrid mode exist; cross-encoder reranking and full pipeline/config integration remain pending | [M4 milestone](https://git.rz.tu-bs.de/isf/sep/sep-2026/iai_drpsa_pdf-search-agent_g2/code/-/milestones/5) |
 | M5 | Strict citations + calibrated confidence | partially done - strict citation prompt/citation extraction, citation validation helper, abstention rules, and confidence heuristic exist; pipeline-level validation integration and calibration remain pending | [M5 milestone](https://git.rz.tu-bs.de/isf/sep/sep-2026/iai_drpsa_pdf-search-agent_g2/code/-/milestones/6) |
