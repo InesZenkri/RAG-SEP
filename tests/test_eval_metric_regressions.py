@@ -1,6 +1,6 @@
 from eval.dataset import EvalItem
 from eval.run import _compute_retrieval, _gold_retrieval_keys
-from eval.metrics.grounding import citation_precision
+from eval.metrics.grounding import citation_precision, citation_recall
 from rag.generation.citation import extract_citations
 from rag.types import Answer, Chunk, Citation, RetrievalResult
 
@@ -99,3 +99,13 @@ def test_citation_precision_accepts_angle_wrapped_citation_markers():
     )
 
     assert citation_precision(answer) == 1.0
+
+
+def test_citation_recall_keeps_citation_only_fragments_with_previous_claim():
+    answer = Answer(
+        question="Who introduced the Transformer architecture?",
+        text="Vaswani et al. [transformers:p1]",
+        citations=[Citation(doc_id="transformers", page=1)],
+    )
+
+    assert citation_recall(answer) == 1.0

@@ -15,6 +15,27 @@ import re
 from rag.types import Answer
 
 
+def _citation_markers(doc_id: str, page: int) -> set[str]:
+    return {
+        f"[{doc_id}:p{page}]",
+        f"[<{doc_id}:p{page}>]",
+    }
+
+
+def _answer_sentences(text: str) -> list[str]:
+    sentences: list[str] = []
+    for sentence in re.split(r"(?<=[.!?]) +", text):
+        sentence = sentence.strip()
+        if not sentence:
+            continue
+        claim_text = re.sub(r"\[[^\]]*\]", "", sentence).strip()
+        if sentences and not claim_text:
+            sentences[-1] = f"{sentences[-1]} {sentence}"
+        else:
+            sentences.append(sentence)
+    return sentences
+
+
 def citation_precision(answer: Answer):
     """Fraction of extracted citations supported by the retrieved chunks."""
     if not answer.citations:
@@ -22,7 +43,7 @@ def citation_precision(answer: Answer):
 
     stops = {"the", "and", "for", "are", "was", "but", "with", "that", "this", "from"}
     chunks = {result.chunk.citation_key(): result.chunk for result in answer.retrieved}
-    sentences = [s for s in re.split(r"(?<=[.!?]) +", answer.text) if s.strip()]
+    sentences = _answer_sentences(answer.text)
     valid_citations = 0
 
     for citation in answer.citations:
@@ -30,10 +51,7 @@ def citation_precision(answer: Answer):
         if not chunk:
             continue
 
-        markers = {
-            f"[{citation.doc_id}:p{citation.page}]",
-            f"[<{citation.doc_id}:p{citation.page}>]",
-        }
+        markers = _citation_markers(citation.doc_id, citation.page)
         marker_index = next(
             (
                 index
@@ -64,8 +82,8 @@ def citation_precision(answer: Answer):
 
 def citation_recall(answer: Answer):
     """Checks the fraction of answer sentences that carry at least one supported citation."""
-    sentences = [s for s in re.split(r'(?<=[.!?]) +', answer.text) if s.strip()]
-    
+    sentences = _answer_sentences(answer.text)
+
     if not sentences:
         return 1.0 if not answer.citations else 0.0
 
@@ -74,11 +92,12 @@ def citation_recall(answer: Answer):
 
     for sentence in sentences:
         is_supported = False
-        
+
         for citation in answer.citations:
-            id_match = citation.doc_id and citation.doc_id in sentence
+            markers = _citation_markers(citation.doc_id, citation.page)
+            id_match = any(marker in sentence for marker in markers)
             quote_match = citation.quote and citation.quote in sentence
-            
+
             if id_match or quote_match:
                 is_supported = True
                 break
