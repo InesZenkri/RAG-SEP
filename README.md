@@ -72,7 +72,7 @@ code/
 | Language             | Python 3.10+                                | `pyproject.toml` requires Python >= 3.10 |
 | PDF parsing          | PyMuPDF, cleaner utilities, table/OCR stubs | Core parsing works; table extraction and OCR fallback are milestone work |
 | Chunking             | Recursive chunking                          | Layout-aware and semantic chunking are present as modules but not finished |
-| Retrieval            | BM25 and dense retrievers                   | Hybrid fusion and cross-encoder reranking are still pending |
+| Retrieval            | BM25, dense, and hybrid RRF retrievers      | Hybrid retrieval is available through the retriever factory; cross-encoder reranking is still pending |
 | Embeddings           | `sentence-transformers` models              | Baseline YAML uses `all-MiniLM-L6-v2`; hybrid/rerank use `BAAI/bge-small-en-v1.5` |
 | Vector store         | In-memory default, Chroma planned           | Persistent store settings exist in config; full persistence is not the default path yet |
 | LLM generator        | Gemini, Hugging Face, Ollama, or Echo       | Provider selected by YAML/environment |
@@ -119,20 +119,21 @@ cluster endpoint.
 Implemented and usable now:
 
 - YAML-driven runtime and evaluation configuration in `configs/`.
-- PDF/text parsing, recursive chunking, BM25 retrieval, and an initial dense
-  retriever.
+- PDF/text parsing, recursive chunking, BM25 retrieval, an initial dense
+  retriever, and RRF-based hybrid retrieval.
 - LLM client abstraction for Gemini, Hugging Face, Ollama, and Echo.
-- Prompt construction, citation extraction, abstention helper logic,
-  confidence heuristic, token/cost tracing, and optional prompt caching.
+- Prompt construction, citation extraction and validation, abstention helper
+  logic, confidence heuristic, token/cost tracing, and optional prompt caching.
 - FastAPI backend and Streamlit management UI.
 - Smoke/adversarial JSONL suite loading, core metric functions, and JSON/Markdown
   evaluation reports.
 
 Still incomplete or not fully wired:
 
-- Hybrid retrieval fusion and cross-encoder reranking.
-- Full pipeline use of dense/hybrid retrieval modes.
-- Citation validation and calibrated confidence in the final answer flow.
+- Cross-encoder reranking.
+- Full pipeline/config use of dense and hybrid retrieval modes.
+- Pipeline-level citation validation and calibrated confidence in the final
+  answer flow.
 - LLM-as-a-judge execution.
 - Open RAG Benchmark download/adapter and full benchmark run.
 - Table extraction, OCR fallback, layout-aware chunking, and semantic chunking.
@@ -145,10 +146,10 @@ Tracking links point to the GitLab milestone pages.
 |----|-------|--------|----------|
 | M0 | Repo scaffold, stack decided, stubs in place | done | [M0 milestone](https://git.rz.tu-bs.de/isf/sep/sep-2026/iai_drpsa_pdf-search-agent_g2/code/-/milestones/1) |
 | M1 | Evaluation harness for all six metric categories | partially done - smoke/adversarial suite loading, YAML-driven eval config, reports, and core metrics exist; robustness slicing, LLM judge execution, and Open RAG Benchmark integration remain pending | [M1 milestone](https://git.rz.tu-bs.de/isf/sep/sep-2026/iai_drpsa_pdf-search-agent_g2/code/-/milestones/2) |
-| M2 | Baseline RAG v1 | partially done - parsing, recursive chunking, BM25-backed pipeline, dense retriever, providers, prompt/citation extraction, cache wiring, API flow, abstention helper, and confidence heuristic exist; full dense/hybrid pipeline integration, citation validation, and calibrated confidence remain pending | [M2 milestone](https://git.rz.tu-bs.de/isf/sep/sep-2026/iai_drpsa_pdf-search-agent_g2/code/-/milestones/3) |
+| M2 | Baseline RAG v1 | partially done - parsing, recursive chunking, BM25-backed pipeline, dense retriever, providers, prompt/citation extraction, citation validation helper, cache wiring, API flow, abstention helper, and confidence heuristic exist; full dense/hybrid pipeline integration and calibrated confidence remain pending | [M2 milestone](https://git.rz.tu-bs.de/isf/sep/sep-2026/iai_drpsa_pdf-search-agent_g2/code/-/milestones/3) |
 | M3 | PDF-parsing robustness | partially done - PyMuPDF parsing and repeated header/footer stripping are implemented; table extraction, OCR fallback, and advanced chunking remain pending | [M3 milestone](https://git.rz.tu-bs.de/isf/sep/sep-2026/iai_drpsa_pdf-search-agent_g2/code/-/milestones/4) |
-| M4 | Hybrid retrieval + reranker | partially done - BM25 and dense retrieval exist; hybrid fusion and cross-encoder reranking remain pending | [M4 milestone](https://git.rz.tu-bs.de/isf/sep/sep-2026/iai_drpsa_pdf-search-agent_g2/code/-/milestones/5) |
-| M5 | Strict citations + calibrated confidence | partially done - strict citation prompt/citation extraction, abstention rules, and confidence heuristic exist; citation validation, pipeline-level integration, and calibration remain pending | [M5 milestone](https://git.rz.tu-bs.de/isf/sep/sep-2026/iai_drpsa_pdf-search-agent_g2/code/-/milestones/6) |
+| M4 | Hybrid retrieval + reranker | partially done - BM25, dense retrieval, RRF hybrid fusion, and factory construction for hybrid mode exist; cross-encoder reranking and full pipeline/config integration remain pending | [M4 milestone](https://git.rz.tu-bs.de/isf/sep/sep-2026/iai_drpsa_pdf-search-agent_g2/code/-/milestones/5) |
+| M5 | Strict citations + calibrated confidence | partially done - strict citation prompt/citation extraction, citation validation helper, abstention rules, and confidence heuristic exist; pipeline-level validation integration and calibration remain pending | [M5 milestone](https://git.rz.tu-bs.de/isf/sep/sep-2026/iai_drpsa_pdf-search-agent_g2/code/-/milestones/6) |
 | M6 | Streamlit management UI | done - corpus upload/path indexing, chat playground, citation display with page previews, traces, and latest evaluation report views are implemented | [M6 milestone](https://git.rz.tu-bs.de/isf/sep/sep-2026/iai_drpsa_pdf-search-agent_g2/code/-/milestones/7) |
 | M7 | Robustness + adversarial suite | partially done - adversarial JSONL files and suite loader exist; robustness metrics/reporting remain pending | [M7 milestone](https://git.rz.tu-bs.de/isf/sep/sep-2026/iai_drpsa_pdf-search-agent_g2/code/-/milestones/8) |
 | M8 | Full benchmark run, ablation table, final report | pending | [M8 milestone](https://git.rz.tu-bs.de/isf/sep/sep-2026/iai_drpsa_pdf-search-agent_g2/code/-/milestones/9) |
