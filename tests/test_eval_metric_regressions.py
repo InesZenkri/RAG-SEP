@@ -1,6 +1,7 @@
 from eval.dataset import EvalItem
 from eval.run import _compute_retrieval, _gold_retrieval_keys
 from eval.metrics.grounding import citation_precision
+from rag.generation.citation import extract_citations
 from rag.types import Answer, Chunk, Citation, RetrievalResult
 
 
@@ -76,3 +77,25 @@ def test_citation_precision_accepts_doc_page_citations_without_chunk_id_or_quote
 
     assert citation_precision(answer) == 1.0
 
+
+def test_angle_wrapped_citations_parse_to_plain_doc_page_keys():
+    citations = extract_citations("Self-attention [<transformers:p1>]")
+
+    assert [citation.key() for citation in citations] == ["transformers:p1"]
+
+
+def test_citation_precision_accepts_angle_wrapped_citation_markers():
+    answer = Answer(
+        question="What technique replaces recurrence in Transformers?",
+        text="Self-attention [<transformers:p1>]",
+        citations=[Citation(doc_id="transformers", page=1)],
+        retrieved=[
+            make_result(
+                "transformers",
+                1,
+                "Transformers replace recurrence with self-attention.",
+            )
+        ],
+    )
+
+    assert citation_precision(answer) == 1.0

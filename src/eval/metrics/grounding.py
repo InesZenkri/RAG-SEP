@@ -30,9 +30,16 @@ def citation_precision(answer: Answer):
         if not chunk:
             continue
 
-        marker = f"[{citation.doc_id}:p{citation.page}]"
+        markers = {
+            f"[{citation.doc_id}:p{citation.page}]",
+            f"[<{citation.doc_id}:p{citation.page}>]",
+        }
         marker_index = next(
-            (index for index, sentence in enumerate(sentences) if marker in sentence),
+            (
+                index
+                for index, sentence in enumerate(sentences)
+                if any(marker in sentence for marker in markers)
+            ),
             None,
         )
         if marker_index is None:
