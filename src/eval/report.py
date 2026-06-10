@@ -34,8 +34,8 @@ def write_report(report: dict[str, Any], out_dir: str | Path) -> Path:
     lines: list[str] = [
         f"# Eval Report — {meta.get('suite', '?')}",
         "",
-        f"| Field | Value |",
-        f"|-------|-------|",
+        "| Field | Value |",
+        "|-------|-------|",
         f"| Config | `{meta.get('config', '?')}` |",
         f"| Tag | {meta.get('tag') or 'untagged'} |",
         f"| Generated | {report.get('generated_at', '?')} |",
