@@ -61,7 +61,7 @@ def _gold_retrieval_keys(item: EvalItem) -> set[str]:
 
 def _compute_retrieval(pairs: list[tuple[EvalItem, Answer]]) -> dict[str, Any]:
     try:
-        from eval.metrics.retrieval import recall_at_k, mrr, ndcg_at_k
+        from eval.metrics.retrieval import mrr, ndcg_at_k, recall_at_k
         k = 5
         results: dict[str, float] = {}
         all_recall, all_mrr, all_ndcg, all_hit = [], [], [], []
@@ -116,7 +116,7 @@ def _compute_grounding(pairs: list[tuple[EvalItem, Answer]]) -> dict[str, Any]:
 
 def _compute_abstention(pairs: list[tuple[EvalItem, Answer]]) -> dict[str, Any]:
     try:
-        from eval.metrics.abstention import false_refusal_rate, false_answer_rate
+        from eval.metrics.abstention import false_answer_rate, false_refusal_rate
         return {
             "false_refusal_rate": false_refusal_rate(pairs),
             "false_answer_rate": false_answer_rate(pairs),

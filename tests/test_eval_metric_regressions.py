@@ -1,6 +1,6 @@
 from eval.dataset import EvalItem
-from eval.run import _compute_retrieval, _gold_retrieval_keys
 from eval.metrics.grounding import citation_precision, citation_recall
+from eval.run import _compute_retrieval, _gold_retrieval_keys
 from rag.generation.citation import extract_citations
 from rag.types import Answer, Chunk, Citation, RetrievalResult
 

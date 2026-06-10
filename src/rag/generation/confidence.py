@@ -11,11 +11,11 @@ set of answer-correct / answer-wrong labels.
 from __future__ import annotations
 
 import math
+
 from rag.generation.citation import CitationSupport
 from rag.types import RetrievalResult
 
-
-BONUS_MAX = 0.1 
+BONUS_MAX = 0.1
 
 
 def compute_confidence(
@@ -23,7 +23,7 @@ def compute_confidence(
     citation_supports: list[CitationSupport] | None = None,
     k: int = 3,
 ) -> float:
-    """Computes a confidence score bound to [0, 1]""" 
+    """Computes a confidence score bound to [0, 1]"""
     if not retrieved:
         return 0.0
 
@@ -39,5 +39,5 @@ def compute_confidence(
     if citation_supports:
        valid_count = sum(1 for c in citation_supports if c.supported)
        citation_bonus = (valid_count / len(citation_supports)) * BONUS_MAX
-       
+
     return max(0.0, min(1.0, confidence_base + citation_bonus))

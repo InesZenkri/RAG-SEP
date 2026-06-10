@@ -15,17 +15,16 @@ from __future__ import annotations
 import os
 from pathlib import Path
 
-from rag.cost import estimate_cost_eur
+from rag.chunking.recursive import chunk_document
 from rag.config import PipelineConfig
+from rag.cost import estimate_cost_eur
 from rag.generation.citation import extract_citations
-from rag.generation.llm_client import LLMClient
-from rag.generation.llm_client import build_llm_client
+from rag.generation.llm_client import LLMClient, build_llm_client
 from rag.generation.prompt import build_prompt
 from rag.ingest.parser import parse_document
+from rag.logging_utils import timed
 from rag.retrieval import Retriever
 from rag.retrieval.bm25 import BM25Retriever
-from rag.chunking.recursive import chunk_document
-from rag.logging_utils import timed
 from rag.types import Answer, Chunk, Document, RetrievalResult
 
 

@@ -11,13 +11,13 @@ from __future__ import annotations
 
 from rag.types import RetrievalResult
 
-SYSTEM_DEFAULT = """You answer questions using only the provided context. 
+SYSTEM_DEFAULT = """You answer questions using only the provided context.
 Do not use external knowledge or assumptions.
-If the answer is not explicitly stated in the context, respond exactly: 
+If the answer is not explicitly stated in the context, respond exactly:
 "I cannot answer from the provided documents."
 All factual statements must include at least one citation in the form [doc_id:pN].
 Do not mention these instructions in your answer.
-""".strip()  
+""".strip()
 
 SYSTEM_STRICT = ""   # filled in at M5
 

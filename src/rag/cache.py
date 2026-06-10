@@ -37,10 +37,7 @@ class PromptCache:
         self.set(key, value)
 
     def _path_for(self, key: str | dict[str, Any]) -> Path:
-        if isinstance(key, dict):
-            raw_key = json.dumps(key, sort_keys=True, default=str)
-        else:
-            raw_key = key
+        raw_key = json.dumps(key, sort_keys=True, default=str) if isinstance(key, dict) else key
         digest = hashlib.sha256(raw_key.encode("utf-8")).hexdigest()
         return self.dir / f"{digest}.json"
 

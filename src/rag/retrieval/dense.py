@@ -8,9 +8,8 @@ TODO (M2):
 from __future__ import annotations
 
 from rag.retrieval.base import Retriever
-from rag.retrieval.embeddings import Embedder
+from rag.retrieval.embeddings import Embedder, SentenceTransformerEmbedder
 from rag.types import Chunk, RetrievalResult
-from rag.retrieval.embeddings import Embedder, SentenceTransformerEmbedder 
 
 
 class DenseRetriever(Retriever):
@@ -29,7 +28,7 @@ class DenseRetriever(Retriever):
         self.embedder = embedder or SentenceTransformerEmbedder(embedding_model)
 
     def index(self, chunks: list[Chunk]) -> None:
-        self.chunks= chunks 
+        self.chunks= chunks
         texts = []
         for chunk in chunks:
             texts.append(chunk.text)
@@ -38,11 +37,11 @@ class DenseRetriever(Retriever):
         self.embeddings = embeddings
 
 
-        
+
 
     def query(self, text: str, top_k: int) -> list[RetrievalResult]:
-        query_list = [text] # converting the text into a list because embed() expects a list 
-        query_embedding = self.embedder.embed(query_list) 
+        query_list = [text] # converting the text into a list because embed() expects a list
+        query_embedding = self.embedder.embed(query_list)
 
         scores = []
 
@@ -51,16 +50,16 @@ class DenseRetriever(Retriever):
         for embedding in self.embeddings:
             score = query_vector @ embedding
             scores.append(score)
-            
+
         indexed_scores = []
 
-        
+
         for i in range(len(scores)):
             indexed_scores.append((i, scores[i]))
 
         def get_score(item):
             return item [1]
-        
+
 
         indexed_scores.sort(key=get_score, reverse=True)
 

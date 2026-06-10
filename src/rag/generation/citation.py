@@ -96,10 +96,7 @@ def validate_citations(
 
         claim_tokens = {word for word in raw_claim_words if word not in stops}
 
-        if chunk:
-            chunk_tokens = set(re.findall(r"\b\w{3,}\b", chunk.text.lower()))
-        else:
-            chunk_tokens = set()
+        chunk_tokens = set(re.findall(r"\b\w{3,}\b", chunk.text.lower())) if chunk else set()
 
         if not claim_tokens:
             overlap = 0.0

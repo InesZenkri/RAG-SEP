@@ -36,10 +36,10 @@ class HybridRetriever(Retriever):
 
 
     def query(self, text: str, top_k: int) -> list[RetrievalResult]:
-        
+
         if top_k <= 0 :
             return []
-        
+
         candidate_k = top_k * 4
         dense_results = self.dense.query( text, candidate_k)
         sparse_results = self.sparse.query( text, candidate_k)
@@ -53,7 +53,7 @@ class HybridRetriever(Retriever):
             rrf_score = 1 / (self.rrf_k + result.rank)
             scores[chunk_id] = scores.get(chunk_id, 0.0) + rrf_score
             results_by_id[chunk_id] = result
-        
+
         for result in sparse_results:
             chunk_id = result.chunk.chunk_id
             rrf_score = 1 / (self.rrf_k + result.rank)
@@ -87,12 +87,12 @@ class HybridRetriever(Retriever):
 
         return final_results
 
-        
 
 
 
-        
-        
+
+
+
 
 
 

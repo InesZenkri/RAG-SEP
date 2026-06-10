@@ -7,8 +7,8 @@ from pathlib import Path
 import fitz
 
 from rag.config import IngestConfig
-from rag.types import Document
 from rag.ingest.cleaner import strip_headers_footers
+from rag.types import Document
 
 
 def parse_text_file(path: str | Path, doc_id: str | None = None) -> Document:

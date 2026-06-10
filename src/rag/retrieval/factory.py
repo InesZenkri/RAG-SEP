@@ -14,7 +14,7 @@ from rag.retrieval.hybrid import HybridRetriever
 
 
 def build_retriever(cfg: RetrievalConfig) -> Retriever:
-    
+
     mode = cfg.mode.lower()
 
     if mode == "bm25":

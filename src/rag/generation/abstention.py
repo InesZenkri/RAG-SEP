@@ -29,41 +29,40 @@ def should_abstain(
     config: AbstentionConfig,
 ) -> AbstentionDecision:
     """Evaluates if the system should abstain from answering"""
-    
+
     top_score = max((r.score for r in retrieved), default=0.0)
 
     if not config.enabled:
         return AbstentionDecision(
-            abstain=False, 
-            reason="disabled", 
+            abstain=False,
+            reason="disabled",
             top_score=top_score
         )
 
     if not retrieved:
         return AbstentionDecision(
-            abstain=True, 
-            reason="no_hits", 
+            abstain=True,
+            reason="no_hits",
             top_score=0.0
         )
 
     if top_score < config.min_retrieval_score:
         return AbstentionDecision(
-            abstain=True, 
-            reason="low_retrieval_score", 
+            abstain=True,
+            reason="low_retrieval_score",
             top_score=top_score
         )
 
     if answer_text is not None and REFUSAL_PHRASE in answer_text:
         return AbstentionDecision(
-            abstain=True, 
-            reason="model_refusal", 
+            abstain=True,
+            reason="model_refusal",
             top_score=top_score
         )
 
     return AbstentionDecision(
-        abstain=False, 
-        reason="success", 
+        abstain=False,
+        reason="success",
         top_score=top_score
     )
-        
-       
+

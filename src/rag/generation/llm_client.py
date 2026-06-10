@@ -15,12 +15,14 @@ transparently via ``PromptCache`` so re-running evals does not burn quota.
 """
 
 from __future__ import annotations
+
 import os
 import re
-import requests
 from dataclasses import dataclass
-from typing import Optional, Dict, Any
+from typing import Any
 from urllib.parse import urlparse
+
+import requests
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -40,7 +42,7 @@ class LLMClient:
     """defines base architecture and shared caching logic"""
     provider: str = "base"
     model: str = ""
-    
+
     def __init__(self, cache: Any | None = None) -> None:
         self.cache = cache
 
@@ -53,7 +55,7 @@ class LLMClient:
         max_tokens: int = 512,
     ) -> LLMResponse:
         cache_key = f"{self.provider}:{self.model}:{system}:{user}:{temperature}:{max_tokens}"
-        
+
         if self.cache is not None:
             cached_val = self.cache.get(cache_key)
             if cached_val is not None:
@@ -65,10 +67,10 @@ class LLMClient:
                     return LLMResponse(**cached_val)
 
         response = self._call(system, user, temperature=temperature, max_tokens=max_tokens)
-        
+
         if self.cache is not None:
             self.cache.set(cache_key, response)
-            
+
         return response
 
     def _call(
@@ -87,12 +89,12 @@ class EchoLLMClient(LLMClient):
     ) -> LLMResponse:
         citation_match = re.search(r"(\[[A-Za-z0-9_\-]+:p\d+\])", user)
         citation = citation_match.group(1) if citation_match else "[doc_unknown:p0]"
-        
+
         mock_text = f"Based on the provided documents, this is a simulated response. {citation}"
-        
+
         est_input = int((len(system) + len(user)) / 4)
         est_output = int(len(mock_text) / 4)
-        
+
         return LLMResponse(
             text=mock_text,
             input_tokens=est_input,
@@ -123,11 +125,11 @@ class GeminiLLMClient(LLMClient):
                 provider=self.provider,
                 model=self.model
             )
-            
+
         try:
             from google import genai
             from google.genai import types
-            
+
             client = genai.Client(api_key=self.api_key)
             config_kwargs: dict[str, Any] = {
                 "system_instruction": system,
@@ -137,19 +139,19 @@ class GeminiLLMClient(LLMClient):
             if self.model.startswith("gemini-2.5-flash"):
                 config_kwargs["thinking_config"] = types.ThinkingConfig(thinking_budget=0)
             config = types.GenerateContentConfig(**config_kwargs)
-            
+
             response = client.models.generate_content(
                 model=self.model,
                 contents=user,
                 config=config,
             )
-            
+
             input_tokens = 0
             output_tokens = 0
             if response.usage_metadata:
                 input_tokens = response.usage_metadata.prompt_token_count or 0
                 output_tokens = response.usage_metadata.candidates_token_count or 0
-                
+
             finish_reason = ""
             if response.candidates:
                 finish_reason = str(response.candidates[0].finish_reason or "")
@@ -178,19 +180,16 @@ class OllamaLLMClient(LLMClient):
     def __init__(self, model: str | None = None, cache: Any | None = None) -> None:
         super().__init__(cache)
         self.model = model.strip() if model else "llama3.1:8b"
-        
+
         raw_host = os.getenv("OLLAMA_HOST", "localhost:11434").strip()
-        
+
         if not raw_host.startswith("http://") and not raw_host.startswith("https://"):
             parsed_host = urlparse(f"http://{raw_host}")
         else:
             parsed_host = urlparse(raw_host)
-            
-        if parsed_host.port is None:
-            netloc = f"{parsed_host.netloc}:11434"
-        else:
-            netloc = parsed_host.netloc
-            
+
+        netloc = f"{parsed_host.netloc}:11434" if parsed_host.port is None else parsed_host.netloc
+
         base_url = f"{parsed_host.scheme}://{netloc}"
         self.api_url = f"{base_url}/api/chat"
         print(f"\n[Ollama Client] Context established target route: {self.api_url}")
@@ -215,7 +214,7 @@ class OllamaLLMClient(LLMClient):
             response = requests.post(self.api_url, json=payload, timeout=30)
             response.raise_for_status()
             res_json = response.json()
-            
+
             output_text = res_json.get("message", {}).get("content", "")
             return LLMResponse(
                 text=output_text if output_text else "I cannot answer from the provided documents.",
@@ -259,14 +258,14 @@ class HuggingFaceLLMClient(LLMClient):
             "Authorization": f"Bearer {self.api_token}",
             "Content-Type": "application/json"
         }
-        
+
         payload = {
             "model": self.model,
             "messages": [
                 {"role": "system", "content": system},
                 {"role": "user", "content": user}
             ],
-            "temperature": temperature, 
+            "temperature": temperature,
             "max_tokens": max_tokens
         }
 
@@ -274,13 +273,13 @@ class HuggingFaceLLMClient(LLMClient):
             response = requests.post(self.api_url, json=payload, headers=headers, timeout=30)
             response.raise_for_status()
             res_json = response.json()
-            
+
             output_text = ""
             if "choices" in res_json and len(res_json["choices"]) > 0:
                 output_text = res_json["choices"][0].get("message", {}).get("content", "")
 
             usage = res_json.get("usage", {})
-            
+
             input_tokens = usage.get("prompt_tokens", int((len(system) + len(user)) / 4))
             output_tokens = usage.get("completion_tokens", int(len(output_text) / 4))
 

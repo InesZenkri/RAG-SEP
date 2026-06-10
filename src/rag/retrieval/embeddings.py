@@ -30,18 +30,18 @@ class HashedEmbedder:
 
 class SentenceTransformerEmbedder:
     def __init__(self, model_name: str) -> None:
-        #Loading the model 
-        from sentence_transformers import SentenceTransformer 
-        self.model_name= model_name  
-        self.model = SentenceTransformer(model_name) 
+        #Loading the model
+        from sentence_transformers import SentenceTransformer
+        self.model_name= model_name
+        self.model = SentenceTransformer(model_name)
 
     def embed(self, texts: list[str]) -> np.ndarray:
         # Convert texts to vectors
 
         embedded_text = self.model.encode(texts, normalize_embeddings=True)  # the model converts the list of texts to vectors and store it in a list
-        em_array= np.array(embedded_text) #  convert the list into a numpy array 
+        em_array= np.array(embedded_text) #  convert the list into a numpy array
         return em_array # returning the array
-        
+
 
 class GeminiEmbedder:
     def __init__(self, model_name: str = "text-embedding-004") -> None:

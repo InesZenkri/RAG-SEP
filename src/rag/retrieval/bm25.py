@@ -8,7 +8,6 @@ TODO (M4):
 
 from __future__ import annotations
 
-
 import math
 import re
 from collections import Counter
@@ -33,7 +32,7 @@ class BM25Retriever(Retriever):
         self.idf_scores = {}
 
         self.bm25_index = None
-        
+
 
 
     def index(self, chunks: list[Chunk]) -> None:
@@ -41,18 +40,18 @@ class BM25Retriever(Retriever):
 
         self.chunks = chunks # Storing the original chunks
         self.tokenized_chunks = [] # Creating a list to store each  tokenized chunks
-        self.chunk_lengths = [] 
+        self.chunk_lengths = []
         self.term_frequencies = []
         self.document_frequencies = {}
         self.idf_scores = {}
         self.bm25_index = None
-        
-        
+
+
         for chunk in chunks:
 
             # Converting chunk texts into lowercase words and storing them for BM25 retrievel later
             tokens = self.tokenize(chunk.text)
-            self.tokenized_chunks.append(tokens) 
+            self.tokenized_chunks.append(tokens)
 
             # Storing the length of the chunk for BM25 length normalization
             chunk_length = len(tokens)
@@ -61,7 +60,7 @@ class BM25Retriever(Retriever):
             # Counting how often each word appears in this chunk
             term_frequency = Counter(tokens)
             self.term_frequencies.append(term_frequency)
-            
+
             # Counting in how many chunks each word appears
             chunk_words = set(tokens)
 
@@ -71,15 +70,15 @@ class BM25Retriever(Retriever):
                 else:
                     self.document_frequencies[token] =1
 
-            
+
         # Calculating the average chunk length so we can use it to avoid giving long chunks an unfair advantage
         self.avg_chunk_length = sum(self.chunk_lengths) / len(self.chunk_lengths) if len(self.chunk_lengths) != 0 else 0.0
 
-        N = len(self.chunks)
+        n = len(self.chunks)
 
         # Calculating IDF scores: rare words should get more weight than common words
         for token, df in self.document_frequencies.items():
-            idf = math.log(1 + (N - df + 0.5) / (df + 0.5))
+            idf = math.log(1 + (n - df + 0.5) / (df + 0.5))
             self.idf_scores[token] = idf
 
         # Try to use the external rank_bm25 library if it is installed.
@@ -95,7 +94,7 @@ class BM25Retriever(Retriever):
             self.bm25_index = None
 
 
-        
+
 
     # Helper method that takes a text and convert it to lowercase words
     def tokenize(self, text : str) -> list[str]:
@@ -107,15 +106,15 @@ class BM25Retriever(Retriever):
     def query(self, text: str, top_k: int) -> list[RetrievalResult]:
 
         # No results should be returned if top_k is invalid or no chunks were indexed
-        if top_k <= 0 or  len(self.chunks) == 0: 
+        if top_k <= 0 or  len(self.chunks) == 0:
             return []
-        
+
         tokenized_query = self.tokenize(text)
 
         # Empty query should not return anything
         if len(tokenized_query) == 0:
             return []
-        
+
         scored_chunks = []
 
         # Using BM25Okapi from rank_bm25 if it is available
@@ -163,7 +162,7 @@ class BM25Retriever(Retriever):
                 overlap = query_terms.intersection(self.term_frequencies[index])
                 if overlap:
                     scored_chunks.append((chunk, float(len(overlap))))
-            
+
         # Sorting by BM25 score
         scored_chunks.sort(key=lambda item: item[1], reverse=True)
 
@@ -178,5 +177,5 @@ class BM25Retriever(Retriever):
                         retriever=self.name
                     )
             results.append(result)
-            
+
         return results

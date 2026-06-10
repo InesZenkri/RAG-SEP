@@ -10,7 +10,8 @@ generator to reduce bias.
 """
 
 from __future__ import annotations
-import re 
+
+import re
 import string
 from collections import Counter
 
@@ -45,28 +46,28 @@ def exact_match(prediction: str, references: list[str]) -> float:
 def token_f1(prediction: str, references: list[str]) -> float:
     """measures overlap between prediction and ground-truth tokens."""
     pred_tokens = normalize(prediction).split()
-    
+
     if not references:
         return 0.0
-    
+
     f1_scores = []
     for ref in references:
         ref_tokens = normalize(ref).split()
-        
+
         if not pred_tokens or not ref_tokens:
             f1_scores.append(1.0 if pred_tokens == ref_tokens else 0.0)
             continue
-            
+
         common = Counter(pred_tokens) & Counter(ref_tokens)
         num_same = sum(common.values())
-        
+
         if num_same == 0:
             f1_scores.append(0.0)
             continue
-            
+
         precision = 1.0 * num_same / len(pred_tokens)
         recall = 1.0 * num_same / len(ref_tokens)
         f1 = (2 * precision * recall) / (precision + recall)
         f1_scores.append(f1)
-        
+
     return max(f1_scores)

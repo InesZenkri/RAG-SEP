@@ -1,4 +1,4 @@
-from eval.metrics.retrieval import hit_at_k, recall_at_k, mrr, ndcg_at_k
+from eval.metrics.retrieval import hit_at_k, mrr, ndcg_at_k, recall_at_k
 from rag.types import Chunk, RetrievalResult
 
 

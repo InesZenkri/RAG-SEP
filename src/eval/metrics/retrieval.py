@@ -13,6 +13,7 @@ import math
 
 from rag.types import RetrievalResult
 
+
 #Helper method to turn retrieved results into keys
 def _make_key (result: RetrievalResult) -> str:
     return result.chunk.citation_key()
@@ -29,16 +30,16 @@ def recall_at_k(retrieved: list[RetrievalResult], gold_keys: set[str], k: int) -
         key = _make_key(result)
 
         if key in gold_keys:
-            matched_keys.add(key)  
+            matched_keys.add(key)
 
 
-    return len(matched_keys)  / len(gold_keys)    
+    return len(matched_keys)  / len(gold_keys)
 
 def mrr(retrieved: list[RetrievalResult], gold_keys: set[str]) -> float:
-    
+
     if len(gold_keys) == 0:
         return 0.0
-    
+
     for index, result in enumerate(retrieved):
         rank = index + 1
         key = _make_key(result)
@@ -51,7 +52,7 @@ def mrr(retrieved: list[RetrievalResult], gold_keys: set[str]) -> float:
 
 
 def ndcg_at_k(retrieved: list[RetrievalResult], gold_keys: set[str], k: int) -> float:
-    
+
     dcg = 0.0
 
     seen_keys = set()
@@ -65,10 +66,10 @@ def ndcg_at_k(retrieved: list[RetrievalResult], gold_keys: set[str], k: int) -> 
             seen_keys.add(key)
         else:
             relevance = 0
-        
+
         dcg += relevance / math.log2(rank + 1)
 
-    
+
     ideal_hits = min(len(gold_keys), k)
     ideal_dcg = 0.0
 
@@ -78,21 +79,21 @@ def ndcg_at_k(retrieved: list[RetrievalResult], gold_keys: set[str], k: int) -> 
 
     if ideal_dcg == 0:
         return 0.0
-    
+
     return dcg / ideal_dcg
 
 
 
 def hit_at_k(retrieved: list[RetrievalResult], gold_keys: set[str], k: int) -> float:
-    
+
     if len(gold_keys) == 0:
         return 0.0
-    
+
     for result in retrieved[:k]:
         key = _make_key(result)
         if key in gold_keys:
             return 1.0
-        
+
     return 0.0
 
 
