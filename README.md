@@ -159,12 +159,15 @@ strategy.
 
 ## Team split
 
-- **A - Ingestion**: `rag/ingest/*`, `rag/chunking/*`, adversarial corpus.
-- **B - Retrieval**: `rag/retrieval/*`, `eval/metrics/retrieval.py`.
-- **C - Generation**: `rag/generation/*`, `eval/metrics/answer.py`,
+- **Hiba - Ingestion**: `rag/ingest/*`, `rag/chunking/*`, adversarial corpus.
+- **Mohammed - Retrieval**: `rag/retrieval/*`, `eval/metrics/retrieval.py`.
+- **Finn - Generation**: `rag/generation/*`, `eval/metrics/answer.py`,
   `eval/metrics/grounding.py`, `eval/judge.py`.
-- **D - Platform**: `src/api/`, `src/ui/`, `eval/report.py`, `eval/run.py`,
-  GitLab CI, cost/latency instrumentation.
+- **Ines - Platform & evaluation harness**: `src/api/`, `src/ui/`,
+  `eval/run.py`, `eval/report.py`, `eval/dataset.py`,
+  `eval/metrics/efficiency.py`, `rag/config.py`, `rag/cost.py`,
+  `rag/logging_utils.py`, `configs/*.yaml`, GitLab CI, cost/latency
+  instrumentation.
 
 Everyone contributes to `tests/` and to the final written report.
 
