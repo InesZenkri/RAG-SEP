@@ -24,9 +24,9 @@ from rag.generation.prompt import build_prompt
 from rag.ingest.parser import parse_document
 from rag.logging_utils import timed
 from rag.retrieval import Retriever
-from rag.retrieval.bm25 import BM25Retriever
+from rag.retrieval.factory import build_retriever
 from rag.types import Answer, Chunk, Document, RetrievalResult
-
+from rag.retrieval.rerank import CrossEncoderReranker
 
 class RAGPipeline:
     def __init__(
@@ -40,6 +40,11 @@ class RAGPipeline:
         self.llm = llm
         self._documents: list[Document] = []
         self._chunks: list[Chunk] = []
+        self.reranker = (
+            CrossEncoderReranker(config.retrieval.reranker_model)
+            if config.retrieval.rerank
+            else None
+        )
 
     def add_documents(self, paths: list[str | Path]) -> None:
         documents = [parse_document(path, config=self.config.ingest) for path in paths]
@@ -56,7 +61,7 @@ class RAGPipeline:
         if not self._chunks:
             return
         if self.retriever is None:
-            self.retriever = BM25Retriever()
+            self.retriever = build_retriever(self.config.retrieval)
         self.retriever.index(self._chunks)
 
     @property
@@ -84,10 +89,20 @@ class RAGPipeline:
             return answer
 
         top_k = self.config.retrieval.top_k
+        candidate_k = max(top_k, self.config.retrieval.rerank_top_n)
+
         with timed(answer.latency_ms, "retrieval"):
-            retrieved = self.retriever.query(question, top_k=top_k)
+            retrieved = self.retriever.query(question, top_k=candidate_k)
+
             if self._is_broad_document_question(question):
-                retrieved = self._add_first_page_context(retrieved, top_k)
+                retrieved = self._add_first_page_context(retrieved, candidate_k)
+
+        with timed(answer.latency_ms, "rerank"):
+            if self.reranker is not None:
+                retrieved = self.reranker.rerank(question, retrieved, top_n=top_k)
+            else:
+                retrieved = retrieved[:top_k]
+
         answer.retrieved = retrieved
 
         if not retrieved:
@@ -186,3 +201,4 @@ class RAGPipeline:
             )
             break
         return merged
+    
