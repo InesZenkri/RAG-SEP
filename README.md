@@ -206,6 +206,9 @@ Everyone contributes to `tests/` and to the final written report.
 | `make api`       | Launch the FastAPI backend.                            |
 | `make ui`        | Launch the Streamlit UI.                               |
 
+See [docs/linting.md](./docs/linting.md) for the linting rules that should be
+checked before pushing code changes.
+
 ## Contacts
 
 - Baptiste Bremond  - `baptiste.bremond@tu-braunschweig.de`
