@@ -75,17 +75,12 @@ html, body, .stApp, [class*="css"] {{
 #MainMenu, footer {{
     display: none !important;
 }}
-/* keep sidebar visible like ChatGPT */
+/* hide native sidebar; Playground renders its own history panel */
 [data-testid="stSidebar"] {{
-    display: block !important;
-    background: #ffffff !important;
-    border-right: 1px solid #e5e7eb;
+    display: none !important;
 }}
 [data-testid="stSidebarCollapsedControl"] {{
-    display: flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    z-index: 10000 !important;
+    display: none !important;
 }}
 
 /* ── main container ── */
@@ -1221,38 +1216,38 @@ def _archive_current_chat_to_history() -> None:
     history.append({"title": title, "messages": [dict(m) for m in messages]})
 
 
-def _render_chat_sidebar() -> None:
+def _render_chat_history_panel() -> None:
     import streamlit as st
 
     st.session_state.setdefault("chat_history", [])
     st.session_state.setdefault("chat_messages", [])
     history: list[dict[str, object]] = st.session_state["chat_history"]
 
-    with st.sidebar:
-        st.markdown("### Chats")
-        query = st.text_input("Search", placeholder="Search conversations", label_visibility="collapsed")
-        if st.button("＋ New chat", use_container_width=True):
-            _archive_current_chat_to_history()
-            st.session_state["chat_messages"] = []
-            st.session_state.pop("traces", None)
-            st.rerun()
+    st.markdown("### Chats")
+    query = st.text_input("Search", placeholder="Search conversations", label_visibility="collapsed")
+    if st.button("＋ New chat", use_container_width=True):
+        _archive_current_chat_to_history()
+        st.session_state["chat_messages"] = []
+        st.session_state.pop("traces", None)
+        st.rerun()
 
-        st.markdown("---")
-        shown = 0
-        for i in range(len(history) - 1, -1, -1):
-            item = history[i]
-            label = str(item.get("title", "Untitled chat"))
-            if query and query.lower() not in label.lower():
-                continue
-            if st.button(label, key=f"sidebar_chat_{i}", use_container_width=True):
-                messages = item.get("messages", [])
-                st.session_state["chat_messages"] = [
-                    dict(message) for message in messages
-                ] if isinstance(messages, list) else []
-                st.rerun()
-            shown += 1
-        if shown == 0:
-            st.caption("No matching chats." if query else "No chats yet.")
+    st.markdown("---")
+    shown = 0
+    for i in range(len(history) - 1, -1, -1):
+        item = history[i]
+        label = str(item.get("title", "Untitled chat"))
+        if query and query.lower() not in label.lower():
+            continue
+        if st.button(label, key=f"history_chat_{i}", use_container_width=True):
+            messages = item.get("messages", [])
+            st.session_state["chat_messages"] = [
+                dict(message) for message in messages
+            ] if isinstance(messages, list) else []
+            st.session_state["show_chat_history"] = False
+            st.rerun()
+        shown += 1
+    if shown == 0:
+        st.caption("No matching chats." if query else "No chats yet.")
 
 
 # ---------------------------------------------------------------------------
@@ -1514,7 +1509,28 @@ def _tab_playground() -> None:
 
     model_name = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
     st.session_state.setdefault("chat_messages", [])
+    st.session_state.setdefault("show_chat_history", False)
     chat_messages: list[dict[str, Any]] = st.session_state["chat_messages"]
+
+    toggle_label = "Hide history" if st.session_state["show_chat_history"] else "History"
+    toggle_col, _ = st.columns([0.14, 0.86])
+    if toggle_col.button(toggle_label, key="toggle_chat_history", use_container_width=True):
+        st.session_state["show_chat_history"] = not st.session_state["show_chat_history"]
+        st.rerun()
+
+    if st.session_state["show_chat_history"]:
+        history_col, chat_col = st.columns([0.24, 0.76], gap="large")
+        with history_col:
+            _render_chat_history_panel()
+        with chat_col:
+            _render_playground_chat(model_name, chat_messages)
+    else:
+        _render_playground_chat(model_name, chat_messages)
+
+
+def _render_playground_chat(model_name: str, chat_messages: list[dict[str, Any]]) -> None:
+    import streamlit as st
+
     st.markdown(
         f'<div class="gemini-chat-toolbar"><span class="chat-control-caption">RAG backend · Generator: <code>{model_name}</code></span></div>',
         unsafe_allow_html=True,
@@ -1722,10 +1738,9 @@ def main() -> None:
         page_title="CoDex · TU Braunschweig",
         layout="wide",
         page_icon=icon,
-        initial_sidebar_state="expanded",
+        initial_sidebar_state="collapsed",
     )
     st.markdown(_CSS, unsafe_allow_html=True)
-    _render_chat_sidebar()
 
     _hero()
 
