@@ -82,7 +82,10 @@ html, body, .stApp, [class*="css"] {{
     border-right: 1px solid #e5e7eb;
 }}
 [data-testid="stSidebarCollapsedControl"] {{
-    display: none !important;
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    z-index: 10000 !important;
 }}
 
 /* ── main container ── */
