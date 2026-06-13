@@ -1355,6 +1355,25 @@ def _tab_corpus() -> None:
             st.markdown(f"#### Chunks · {title}")
             render_chunks()
 
+    def index_with_progress(paths: list[str], labels: list[str]) -> tuple[dict[str, Any] | None, str | None]:
+        progress = st.progress(0)
+        status = st.empty()
+        total = len(paths)
+        latest: dict[str, Any] | None = None
+
+        for index, (path, label) in enumerate(zip(paths, labels, strict=True), start=1):
+            status.markdown(f"Indexing **{html.escape(label)}** ({index}/{total})")
+            res, err = _post("/index", {"paths": [path]})
+            if err:
+                progress.empty()
+                status.empty()
+                return None, f"{label}: {err}"
+            latest = res
+            progress.progress(index / total)
+
+        status.markdown("Indexing complete.")
+        return latest, None
+
     _section("Library overview")
     stats, err = _get("/stats")
     c1, c2, c3 = st.columns(3)
@@ -1445,17 +1464,18 @@ def _tab_corpus() -> None:
                 c2.caption("Files are sent to the backend for parsing and indexing.")
                 if do_index:
                     saved: list[str] = []
+                    labels: list[str] = []
                     _UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
                     for uf in new_uploads:
                         safe_name = Path(uf.name).name
                         p = _UPLOAD_DIR / f"{int(time.time() * 1000)}_{safe_name}"
                         p.write_bytes(uf.read())
                         saved.append(str(p))
-                    with st.spinner(f"Indexing {len(saved)} file(s)…"):
-                        res, err = _post("/index", {"paths": saved})
+                        labels.append(safe_name)
+                    res, err = index_with_progress(saved, labels)
                     if err:
                         st.error(f"Indexing failed: {err}")
-                    else:
+                    elif res is not None:
                         st.success(
                             f"✅ {res['documents']} doc(s) · {res['chunks']} chunks · "
                             f"{res['pages']} pages indexed."
@@ -1474,11 +1494,11 @@ def _tab_corpus() -> None:
             if not paths:
                 st.error("Enter at least one path.")
             else:
-                with st.spinner("Indexing…"):
-                    res, err = _post("/index", {"paths": paths})
+                labels = [Path(path).name or path for path in paths]
+                res, err = index_with_progress(paths, labels)
                 if err:
                     st.error(f"Indexing failed: {err}")
-                else:
+                elif res is not None:
                     st.success(
                         f"✅ {res['documents']} doc(s) · {res['chunks']} chunks · "
                         f"{res['pages']} pages indexed."
