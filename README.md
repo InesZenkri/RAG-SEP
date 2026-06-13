@@ -201,7 +201,7 @@ Everyone contributes to `tests/` and to the final written report.
 | `make install-dev` | Install runtime + dev deps.                          |
 | `make test`      | Run pytest.                                            |
 | `make lint`      | Ruff + mypy.                                           |
-| `make smoke`     | Run the smoke eval against `configs/baseline.yaml`.    |
+| `make smoke`     | Run the CI-safe smoke eval against `configs/ci-smoke.yaml`. |
 | `make eval`      | Run the full eval path against `configs/baseline.yaml`; requires the benchmark adapter/download work to be completed. |
 | `make api`       | Launch the FastAPI backend.                            |
 | `make ui`        | Launch the Streamlit UI.                               |

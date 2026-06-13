@@ -20,7 +20,7 @@ format:
 	ruff check --fix src tests
 
 smoke:
-	python -m eval.run --suite smoke --config configs/baseline.yaml
+	python -m eval.run --suite smoke --config configs/ci-smoke.yaml
 
 eval:
 	python -m eval.run --suite full --config configs/baseline.yaml

@@ -18,22 +18,19 @@ lint:
   stage: lint
   script:
     - ruff check src tests
-    - mypy src || true   # warning-only until types stabilise
-  allow_failure: true     # flip to false once M1 lands
+    - mypy src
 
 unit-tests:
   stage: test
   script:
     - pytest -q
-  allow_failure: true     # flip to false once M2 lands
 
 smoke-eval:
   stage: eval
   script:
-    - python -m eval.run --suite smoke --config configs/baseline.yaml --out reports/runs
+    - python -m eval.run --suite smoke --config configs/ci-smoke.yaml --out reports/runs
   artifacts:
     when: always
     paths:
       - reports/runs/
     expire_in: 30 days
-  allow_failure: true     # flip to false once M1 regression thresholds are set
