@@ -163,6 +163,8 @@ class PipelineConfig:
             self.generation.provider = os.environ["RAG_GENERATION_PROVIDER"]
         if os.getenv("GEMINI_MODEL") and self.generation.provider in {"echo", "gemini"}:
             self.generation.model = os.environ["GEMINI_MODEL"]
+        if os.getenv("OLLAMA_MODEL") and self.generation.provider == "ollama":
+            self.generation.model = os.environ["OLLAMA_MODEL"]
         if os.getenv("GROQ_MODEL") and self.generation.provider == "groq":
             self.generation.model = os.environ["GROQ_MODEL"]
         return self
