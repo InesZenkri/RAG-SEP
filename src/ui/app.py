@@ -1294,7 +1294,6 @@ def _hero() -> None:
 
 
 def _tab_corpus() -> None:
-    import pandas as pd
     import streamlit as st
 
     def upload_display_name(source: str) -> str:
@@ -1303,6 +1302,28 @@ def _tab_corpus() -> None:
     def is_already_indexed(upload_name: str, indexed_sources: set[str]) -> bool:
         safe_name = Path(upload_name).name
         return any(source == safe_name or source.endswith(f"_{safe_name}") for source in indexed_sources)
+
+    def pdf_preview_html(source: str) -> str:
+        path = Path(source)
+        if not path.exists() or path.suffix.lower() != ".pdf":
+            return "<p>PDF preview is not available for this file.</p>"
+        encoded = base64.b64encode(path.read_bytes()).decode("ascii")
+        return (
+            f'<iframe src="data:application/pdf;base64,{encoded}" '
+            'width="100%" height="720" style="border:1px solid #e2e8f0;'
+            'border-radius:8px;background:white;"></iframe>'
+        )
+
+    def show_pdf_preview(title: str, source: str) -> None:
+        if hasattr(st, "dialog"):
+            @st.dialog(title, width="large")
+            def preview_dialog() -> None:
+                st.markdown(pdf_preview_html(source), unsafe_allow_html=True)
+
+            preview_dialog()
+        else:
+            st.markdown(f"#### {title}")
+            st.markdown(pdf_preview_html(source), unsafe_allow_html=True)
 
     _section("Library overview")
     stats, err = _get("/stats")
@@ -1321,16 +1342,25 @@ def _tab_corpus() -> None:
     if doc_err:
         st.error(f"Could not load indexed documents: {doc_err}")
     elif documents:
-        indexed_rows = [
-            {
-                "Document": upload_display_name(str(document.get("source", ""))),
-                "Pages": document.get("pages", 0),
-                "Chunks": document.get("chunks", 0),
-                "Source": document.get("source", ""),
-            }
-            for document in documents
-        ]
-        st.dataframe(pd.DataFrame(indexed_rows), use_container_width=True, hide_index=True)
+        header = st.columns([5, 1, 1, 1])
+        header[0].caption("Document")
+        header[1].caption("Pages")
+        header[2].caption("Chunks")
+        header[3].caption("See file")
+
+        selected_preview: tuple[str, str] | None = None
+        for index, document in enumerate(documents):
+            source = str(document.get("source", ""))
+            title = upload_display_name(source)
+            row = st.columns([5, 1, 1, 1])
+            row[0].markdown(f"**{html.escape(title)}**")
+            row[1].write(document.get("pages", 0))
+            row[2].write(document.get("chunks", 0))
+            if row[3].button("View", key=f"view_indexed_doc_{index}", use_container_width=True):
+                selected_preview = (title, source)
+
+        if selected_preview is not None:
+            show_pdf_preview(*selected_preview)
     else:
         st.info("No documents indexed yet.")
 
