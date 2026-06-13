@@ -1325,6 +1325,36 @@ def _tab_corpus() -> None:
             st.markdown(f"#### {title}")
             st.markdown(pdf_preview_html(source), unsafe_allow_html=True)
 
+    def show_chunks_preview(title: str, chunks: list[dict[str, Any]]) -> None:
+        def render_chunks() -> None:
+            if not chunks:
+                st.info("No chunks are available for this document.")
+                return
+            for chunk in chunks:
+                chunk_id = str(chunk.get("chunk_id", ""))
+                page = chunk.get("page", "–")
+                start = chunk.get("start", "–")
+                end = chunk.get("end", "–")
+                text = str(chunk.get("text", ""))
+                with st.expander(f"{chunk_id} · page {page} · chars {start}-{end}"):
+                    st.text_area(
+                        "Chunk text",
+                        value=text,
+                        height=180,
+                        label_visibility="collapsed",
+                        key=f"chunk_text_{chunk_id}",
+                    )
+
+        if hasattr(st, "dialog"):
+            @st.dialog(f"Chunks · {title}", width="large")
+            def chunks_dialog() -> None:
+                render_chunks()
+
+            chunks_dialog()
+        else:
+            st.markdown(f"#### Chunks · {title}")
+            render_chunks()
+
     _section("Library overview")
     stats, err = _get("/stats")
     c1, c2, c3 = st.columns(3)
@@ -1342,25 +1372,32 @@ def _tab_corpus() -> None:
     if doc_err:
         st.error(f"Could not load indexed documents: {doc_err}")
     elif documents:
-        header = st.columns([5, 1, 1, 1])
+        header = st.columns([5, 1, 1, 1, 1])
         header[0].caption("Document")
         header[1].caption("Pages")
         header[2].caption("Chunks")
         header[3].caption("See file")
+        header[4].caption("See chunks")
 
         selected_preview: tuple[str, str] | None = None
+        selected_chunks: tuple[str, list[dict[str, Any]]] | None = None
         for index, document in enumerate(documents):
             source = str(document.get("source", ""))
             title = upload_display_name(source)
-            row = st.columns([5, 1, 1, 1])
+            row = st.columns([5, 1, 1, 1, 1])
             row[0].markdown(f"**{html.escape(title)}**")
             row[1].write(document.get("pages", 0))
             row[2].write(document.get("chunks", 0))
             if row[3].button("View", key=f"view_indexed_doc_{index}", use_container_width=True):
                 selected_preview = (title, source)
+            if row[4].button("Chunks", key=f"view_indexed_chunks_{index}", use_container_width=True):
+                chunks = document.get("chunk_details", [])
+                selected_chunks = (title, chunks if isinstance(chunks, list) else [])
 
         if selected_preview is not None:
             show_pdf_preview(*selected_preview)
+        if selected_chunks is not None:
+            show_chunks_preview(*selected_chunks)
     else:
         st.info("No documents indexed yet.")
 

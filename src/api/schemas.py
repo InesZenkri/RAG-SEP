@@ -44,9 +44,18 @@ class IndexResponse(BaseModel):
     pages: int
 
 
+class ChunkSchema(BaseModel):
+    chunk_id: str
+    page: int
+    start: int
+    end: int
+    text: str
+
+
 class DocumentSchema(BaseModel):
     doc_id: str
     title: str | None = None
     source: str
     pages: int
     chunks: int
+    chunk_details: list[ChunkSchema] = Field(default_factory=list)

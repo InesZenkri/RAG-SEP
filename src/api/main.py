@@ -18,6 +18,7 @@ from pathlib import Path
 from fastapi import FastAPI, HTTPException
 
 from api.schemas import (
+    ChunkSchema,
     CitationSchema,
     DocumentSchema,
     IndexRequest,
@@ -97,9 +98,17 @@ def stats() -> dict[str, int]:
 
 @app.get("/documents", response_model=list[DocumentSchema])
 def documents() -> list[DocumentSchema]:
-    chunks_by_doc: dict[str, int] = {}
+    chunks_by_doc: dict[str, list[ChunkSchema]] = {}
     for chunk in _PIPELINE.chunks:
-        chunks_by_doc[chunk.doc_id] = chunks_by_doc.get(chunk.doc_id, 0) + 1
+        chunks_by_doc.setdefault(chunk.doc_id, []).append(
+            ChunkSchema(
+                chunk_id=chunk.chunk_id,
+                page=chunk.page,
+                start=chunk.start,
+                end=chunk.end,
+                text=chunk.text,
+            )
+        )
 
     return [
         DocumentSchema(
@@ -107,7 +116,8 @@ def documents() -> list[DocumentSchema]:
             title=document.title,
             source=document.source,
             pages=document.num_pages,
-            chunks=chunks_by_doc.get(document.doc_id, 0),
+            chunks=len(chunks_by_doc.get(document.doc_id, [])),
+            chunk_details=chunks_by_doc.get(document.doc_id, []),
         )
         for document in _PIPELINE.documents
     ]
