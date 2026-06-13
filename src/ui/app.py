@@ -1223,31 +1223,36 @@ def _render_chat_history_panel() -> None:
     st.session_state.setdefault("chat_messages", [])
     history: list[dict[str, object]] = st.session_state["chat_history"]
 
-    st.markdown("### Chats")
-    query = st.text_input("Search", placeholder="Search conversations", label_visibility="collapsed")
-    if st.button("＋ New chat", use_container_width=True):
-        _archive_current_chat_to_history()
-        st.session_state["chat_messages"] = []
-        st.session_state.pop("traces", None)
-        st.rerun()
-
-    st.markdown("---")
-    shown = 0
-    for i in range(len(history) - 1, -1, -1):
-        item = history[i]
-        label = str(item.get("title", "Untitled chat"))
-        if query and query.lower() not in label.lower():
-            continue
-        if st.button(label, key=f"history_chat_{i}", use_container_width=True):
-            messages = item.get("messages", [])
-            st.session_state["chat_messages"] = [
-                dict(message) for message in messages
-            ] if isinstance(messages, list) else []
+    with st.sidebar:
+        st.markdown("### Chats")
+        if st.button("Close history", key="close_chat_history", use_container_width=True):
             st.session_state["show_chat_history"] = False
             st.rerun()
-        shown += 1
-    if shown == 0:
-        st.caption("No matching chats." if query else "No chats yet.")
+        query = st.text_input("Search", placeholder="Search conversations", label_visibility="collapsed")
+        if st.button("＋ New chat", use_container_width=True):
+            _archive_current_chat_to_history()
+            st.session_state["chat_messages"] = []
+            st.session_state.pop("traces", None)
+            st.session_state["show_chat_history"] = False
+            st.rerun()
+
+        st.markdown("---")
+        shown = 0
+        for i in range(len(history) - 1, -1, -1):
+            item = history[i]
+            label = str(item.get("title", "Untitled chat"))
+            if query and query.lower() not in label.lower():
+                continue
+            if st.button(label, key=f"history_chat_{i}", use_container_width=True):
+                messages = item.get("messages", [])
+                st.session_state["chat_messages"] = [
+                    dict(message) for message in messages
+                ] if isinstance(messages, list) else []
+                st.session_state["show_chat_history"] = False
+                st.rerun()
+            shown += 1
+        if shown == 0:
+            st.caption("No matching chats." if query else "No chats yet.")
 
 
 # ---------------------------------------------------------------------------
@@ -1519,13 +1524,35 @@ def _tab_playground() -> None:
         st.rerun()
 
     if st.session_state["show_chat_history"]:
-        history_col, chat_col = st.columns([0.24, 0.76], gap="large")
-        with history_col:
-            _render_chat_history_panel()
-        with chat_col:
-            _render_playground_chat(model_name, chat_messages)
-    else:
-        _render_playground_chat(model_name, chat_messages)
+        st.markdown(
+            """
+            <style>
+            [data-testid="stSidebar"] {
+                display: block !important;
+                position: fixed !important;
+                left: 0 !important;
+                top: 0 !important;
+                bottom: 0 !important;
+                width: 320px !important;
+                min-width: 320px !important;
+                max-width: 320px !important;
+                background: #ffffff !important;
+                border-right: 1px solid #e5e7eb !important;
+                box-shadow: 0 16px 40px rgba(15, 23, 42, 0.16) !important;
+                z-index: 10000 !important;
+            }
+            [data-testid="stSidebar"] > div:first-child {
+                width: 320px !important;
+                min-width: 320px !important;
+                max-width: 320px !important;
+            }
+            </style>
+            """,
+            unsafe_allow_html=True,
+        )
+        _render_chat_history_panel()
+
+    _render_playground_chat(model_name, chat_messages)
 
 
 def _render_playground_chat(model_name: str, chat_messages: list[dict[str, Any]]) -> None:
