@@ -1294,6 +1294,7 @@ def _hero() -> None:
 
 
 def _tab_corpus() -> None:
+    import pandas as pd
     import streamlit as st
 
     _section("Library overview")
@@ -1302,6 +1303,24 @@ def _tab_corpus() -> None:
     c1.metric("Documents", stats.get("documents", "–") if not err else "–")
     c2.metric("Chunks",    stats.get("chunks", "–")    if not err else "–")
     c3.metric("Pages",     stats.get("pages", "–")     if not err else "–")
+
+    documents, doc_err = _get("/documents")
+    _section("Indexed documents")
+    if doc_err:
+        st.error(f"Could not load indexed documents: {doc_err}")
+    elif documents:
+        indexed_rows = [
+            {
+                "Document": document.get("title") or document.get("doc_id"),
+                "Pages": document.get("pages", 0),
+                "Chunks": document.get("chunks", 0),
+                "Source": document.get("source", ""),
+            }
+            for document in documents
+        ]
+        st.dataframe(pd.DataFrame(indexed_rows), use_container_width=True, hide_index=True)
+    else:
+        st.info("No documents indexed yet.")
 
     _section("Index new documents")
     upload_tab, path_tab = st.tabs(["☁️  Upload files", "🗂️  File paths"])
@@ -1313,6 +1332,7 @@ def _tab_corpus() -> None:
             label_visibility="collapsed",
         )
         if uploaded:
+            st.caption("New upload queue. These files are not indexed until you press Index.")
             st.markdown("<br>", unsafe_allow_html=True)
             for uf in uploaded:
                 kb = len(uf.getvalue()) / 1024

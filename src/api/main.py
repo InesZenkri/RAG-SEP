@@ -19,6 +19,7 @@ from fastapi import FastAPI, HTTPException
 
 from api.schemas import (
     CitationSchema,
+    DocumentSchema,
     IndexRequest,
     IndexResponse,
     QueryRequest,
@@ -92,6 +93,24 @@ def health() -> dict[str, str]:
 @app.get("/stats")
 def stats() -> dict[str, int]:
     return _PIPELINE.stats()
+
+
+@app.get("/documents", response_model=list[DocumentSchema])
+def documents() -> list[DocumentSchema]:
+    chunks_by_doc: dict[str, int] = {}
+    for chunk in _PIPELINE.chunks:
+        chunks_by_doc[chunk.doc_id] = chunks_by_doc.get(chunk.doc_id, 0) + 1
+
+    return [
+        DocumentSchema(
+            doc_id=document.doc_id,
+            title=document.title,
+            source=document.source,
+            pages=document.num_pages,
+            chunks=chunks_by_doc.get(document.doc_id, 0),
+        )
+        for document in _PIPELINE.documents
+    ]
 
 
 @app.post("/index", response_model=IndexResponse)

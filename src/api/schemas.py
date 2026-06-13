@@ -42,3 +42,11 @@ class IndexResponse(BaseModel):
     documents: int
     chunks: int
     pages: int
+
+
+class DocumentSchema(BaseModel):
+    doc_id: str
+    title: str | None = None
+    source: str
+    pages: int
+    chunks: int
