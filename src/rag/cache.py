@@ -11,7 +11,7 @@ import hashlib
 import json
 from dataclasses import asdict, is_dataclass
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 
 
 class PromptCache:
@@ -43,7 +43,7 @@ class PromptCache:
 
     def _to_jsonable(self, value: Any) -> Any:
         if is_dataclass(value):
-            return asdict(value)
+            return asdict(cast(Any, value))
         if isinstance(value, dict):
             return value
         return json.loads(json.dumps(value, default=str))

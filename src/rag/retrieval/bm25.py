@@ -11,6 +11,7 @@ from __future__ import annotations
 import math
 import re
 from collections import Counter
+from typing import Any
 
 from rag.retrieval.base import Retriever
 from rag.types import Chunk, RetrievalResult
@@ -23,15 +24,15 @@ class BM25Retriever(Retriever):
         self.k1 = k1
         self.b = b
 
-        self.chunks = []
-        self.tokenized_chunks = []
-        self.chunk_lengths = []
-        self.term_frequencies = []
+        self.chunks: list[Chunk] = []
+        self.tokenized_chunks: list[list[str]] = []
+        self.chunk_lengths: list[int] = []
+        self.term_frequencies: list[Counter[str]] = []
         self.avg_chunk_length = 0.0
-        self.document_frequencies = {}
-        self.idf_scores = {}
+        self.document_frequencies: dict[str, int] = {}
+        self.idf_scores: dict[str, float] = {}
 
-        self.bm25_index = None
+        self.bm25_index: Any | None = None
 
 
 
@@ -115,7 +116,7 @@ class BM25Retriever(Retriever):
         if len(tokenized_query) == 0:
             return []
 
-        scored_chunks = []
+        scored_chunks: list[tuple[Chunk, float]] = []
 
         # Using BM25Okapi from rank_bm25 if it is available
         if self.bm25_index is not None:

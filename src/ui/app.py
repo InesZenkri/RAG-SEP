@@ -19,6 +19,7 @@ import os
 import re
 import time
 import uuid
+from collections.abc import Iterable
 from pathlib import Path
 from typing import Any
 
@@ -999,7 +1000,7 @@ def _gemini_complete(messages: list[dict[str, str]]) -> tuple[str | None, str | 
 
     model = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
     try:
-        from google import genai  # type: ignore
+        from google import genai
 
         # Send a simple text transcript for robust compatibility.
         transcript = _chat_transcript(messages)
@@ -1055,10 +1056,9 @@ def _coerce_hf_text_generation_output(generated: object) -> str:
         return "".join(
             str(x) if not isinstance(x, str) else x for x in generated
         ).strip()
-    try:
-        return "".join(str(x) for x in generated).strip()  # type: ignore[arg-type]
-    except TypeError:
-        return str(generated).strip()
+    if isinstance(generated, Iterable):
+        return "".join(str(x) for x in generated).strip()
+    return str(generated).strip()
 
 
 def _exc_detail(exc: BaseException) -> str:
@@ -1092,7 +1092,7 @@ def _huggingface_try_model(
 ) -> tuple[str | None, str | None]:
     """HF routing: conversational models (e.g. Llama on Novita) need chat_completion, not text_generation."""
     try:
-        from huggingface_hub import InferenceClient  # type: ignore
+        from huggingface_hub import InferenceClient
     except ImportError:
         return None, "huggingface_hub not installed (pip install huggingface-hub)."
 
@@ -1242,7 +1242,10 @@ def _render_chat_sidebar() -> None:
             if query and query.lower() not in label.lower():
                 continue
             if st.button(label, key=f"sidebar_chat_{i}", use_container_width=True):
-                st.session_state["chat_messages"] = [dict(m) for m in item.get("messages", [])]
+                messages = item.get("messages", [])
+                st.session_state["chat_messages"] = [
+                    dict(message) for message in messages
+                ] if isinstance(messages, list) else []
                 st.rerun()
             shown += 1
         if shown == 0:

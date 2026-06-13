@@ -18,6 +18,7 @@ from pathlib import Path
 from fastapi import FastAPI, HTTPException
 
 from api.schemas import (
+    CitationSchema,
     IndexRequest,
     IndexResponse,
     QueryRequest,
@@ -25,6 +26,7 @@ from api.schemas import (
 )
 from rag.config import PipelineConfig
 from rag.pipeline import RAGPipeline
+from rag.types import Answer
 
 app = FastAPI(title="CoDex", version="0.1.0")
 
@@ -51,14 +53,14 @@ def _render_pdf_page_data_uri(source: str | None, page: int) -> str | None:
         return None
 
 
-def _citation_payloads(answer) -> list[dict]:
+def _citation_payloads(answer: Answer) -> list[CitationSchema]:
     documents = {document.doc_id: document for document in _PIPELINE.documents}
     retrieved_by_key = {
         (result.chunk.doc_id, result.chunk.page): result.chunk
         for result in answer.retrieved
     }
 
-    payloads: list[dict] = []
+    payloads: list[CitationSchema] = []
     for citation in answer.citations:
         document = documents.get(citation.doc_id)
         chunk = retrieved_by_key.get((citation.doc_id, citation.page))
@@ -67,17 +69,17 @@ def _citation_payloads(answer) -> list[dict]:
         if document and 1 <= citation.page <= len(document.pages):
             page_text = document.pages[citation.page - 1]
         payloads.append(
-            {
-                "doc_id": citation.doc_id,
-                "page": citation.page,
-                "chunk_id": chunk.chunk_id if chunk else citation.chunk_id,
-                "quote": citation.quote,
-                "source": source,
-                "title": document.title if document else None,
-                "page_text": page_text,
-                "chunk_text": chunk.text if chunk else None,
-                "page_image": _render_pdf_page_data_uri(source, citation.page),
-            }
+            CitationSchema(
+                doc_id=citation.doc_id,
+                page=citation.page,
+                chunk_id=chunk.chunk_id if chunk else citation.chunk_id,
+                quote=citation.quote,
+                source=source,
+                title=document.title if document else None,
+                page_text=page_text,
+                chunk_text=chunk.text if chunk else None,
+                page_image=_render_pdf_page_data_uri(source, citation.page),
+            )
         )
     return payloads
 

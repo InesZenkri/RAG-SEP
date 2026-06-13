@@ -1,4 +1,3 @@
-
 from __future__ import annotations
 
 import logging
@@ -61,7 +60,7 @@ class CrossEncoderReranker:
             return hits[:top_n]
 
         ranked = sorted(
-            zip(hits, scores),
+            zip(hits, scores, strict=False),
             key=lambda item: float(item[1]),
             reverse=True,
         )

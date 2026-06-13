@@ -45,8 +45,8 @@ class HybridRetriever(Retriever):
         sparse_results = self.sparse.query( text, candidate_k)
 
 
-        scores = {}
-        results_by_id = {}
+        scores: dict[str, float] = {}
+        results_by_id: dict[str, RetrievalResult] = {}
 
         for result in dense_results:
             chunk_id = result.chunk.chunk_id
@@ -71,7 +71,7 @@ class HybridRetriever(Retriever):
 
         top_chunk_ids = sorted_chunk_ids[:top_k]
 
-        final_results = []
+        final_results: list[RetrievalResult] = []
 
         for rank, chunk_id in enumerate(top_chunk_ids, start=1):
             old_result = results_by_id[chunk_id]
@@ -86,7 +86,6 @@ class HybridRetriever(Retriever):
             final_results.append(result)
 
         return final_results
-
 
 
 

@@ -13,6 +13,7 @@ TODO (M2):
 from __future__ import annotations
 
 import os
+from collections.abc import Sequence
 from pathlib import Path
 
 from rag.chunking.recursive import chunk_document
@@ -25,8 +26,9 @@ from rag.ingest.parser import parse_document
 from rag.logging_utils import timed
 from rag.retrieval import Retriever
 from rag.retrieval.factory import build_retriever
-from rag.types import Answer, Chunk, Document, RetrievalResult
 from rag.retrieval.rerank import CrossEncoderReranker
+from rag.types import Answer, Chunk, Document, RetrievalResult
+
 
 class RAGPipeline:
     def __init__(
@@ -46,7 +48,7 @@ class RAGPipeline:
             else None
         )
 
-    def add_documents(self, paths: list[str | Path]) -> None:
+    def add_documents(self, paths: Sequence[str | Path]) -> None:
         documents = [parse_document(path, config=self.config.ingest) for path in paths]
         self.add_document_objects(documents)
 
@@ -201,4 +203,3 @@ class RAGPipeline:
             )
             break
         return merged
-    

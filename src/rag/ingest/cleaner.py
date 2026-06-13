@@ -12,7 +12,7 @@ def strip_headers_footers(
     if not pages:
         return []
 
-    line_counts = Counter()
+    line_counts: Counter[str] = Counter()
     total_pages = len(pages)
 
     for page in pages:
@@ -30,7 +30,7 @@ def strip_headers_footers(
         if count / total_pages >= min_repeat_ratio
     }
 
-    cleaned_pages = []
+    cleaned_pages: list[str] = []
 
     for page in pages:
         lines = page.split("\n")
