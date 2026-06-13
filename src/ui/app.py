@@ -1297,6 +1297,13 @@ def _tab_corpus() -> None:
     import pandas as pd
     import streamlit as st
 
+    def upload_display_name(source: str) -> str:
+        return re.sub(r"^\d{13}_", "", Path(source).name)
+
+    def is_already_indexed(upload_name: str, indexed_sources: set[str]) -> bool:
+        safe_name = Path(upload_name).name
+        return any(source == safe_name or source.endswith(f"_{safe_name}") for source in indexed_sources)
+
     _section("Library overview")
     stats, err = _get("/stats")
     c1, c2, c3 = st.columns(3)
@@ -1305,13 +1312,18 @@ def _tab_corpus() -> None:
     c3.metric("Pages",     stats.get("pages", "–")     if not err else "–")
 
     documents, doc_err = _get("/documents")
+    indexed_sources = {
+        Path(str(document.get("source", ""))).name
+        for document in documents or []
+        if isinstance(document, dict)
+    }
     _section("Indexed documents")
     if doc_err:
         st.error(f"Could not load indexed documents: {doc_err}")
     elif documents:
         indexed_rows = [
             {
-                "Document": document.get("title") or document.get("doc_id"),
+                "Document": upload_display_name(str(document.get("source", ""))),
                 "Pages": document.get("pages", 0),
                 "Chunks": document.get("chunks", 0),
                 "Source": document.get("source", ""),
@@ -1332,50 +1344,56 @@ def _tab_corpus() -> None:
             label_visibility="collapsed",
         )
         if uploaded:
-            st.caption("New upload queue. These files are not indexed until you press Index.")
-            st.markdown("<br>", unsafe_allow_html=True)
-            for uf in uploaded:
-                kb = len(uf.getvalue()) / 1024
-                size = f"{kb:.0f} KB" if kb < 1024 else f"{kb/1024:.1f} MB"
-                st.markdown(
-                    f"<div style='display:flex;align-items:center;gap:12px;"
-                    f"background:white;border:1px solid #eef2f7;border-radius:12px;"
-                    f"padding:10px 16px;margin-bottom:8px;"
-                    f"box-shadow:0 1px 3px rgba(15,23,42,0.04)'>"
-                    f"<div style='width:36px;height:36px;border-radius:8px;"
-                    f"background:linear-gradient(135deg,{_BLUE},{_BLUE_LIGHT});"
-                    f"display:flex;align-items:center;justify-content:center;color:white;"
-                    f"font-weight:700;font-size:0.7rem'>PDF</div>"
-                    f"<span style='flex:1;font-weight:500;color:{_INK}'>{uf.name}</span>"
-                    f"<span style='color:{_MUTED};font-size:0.85rem'>{size}</span>"
-                    f"</div>",
-                    unsafe_allow_html=True,
-                )
-            st.markdown("")
-            c1, c2 = st.columns([1, 4])
-            do_index = c1.button(
-                f"Index {len(uploaded)} file{'s' if len(uploaded) != 1 else ''}",
-                type="primary", key="btn_upload", use_container_width=True,
-            )
-            c2.caption("Files are sent to the backend for parsing and indexing.")
-            if do_index:
-                saved: list[str] = []
-                _UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
-                for uf in uploaded:
-                    safe_name = Path(uf.name).name
-                    p = _UPLOAD_DIR / f"{int(time.time() * 1000)}_{safe_name}"
-                    p.write_bytes(uf.read())
-                    saved.append(str(p))
-                with st.spinner(f"Indexing {len(saved)} file(s)…"):
-                    res, err = _post("/index", {"paths": saved})
-                if err:
-                    st.error(f"Indexing failed: {err}")
-                else:
-                    st.success(
-                        f"✅ {res['documents']} doc(s) · {res['chunks']} chunks · "
-                        f"{res['pages']} pages indexed."
+            new_uploads = [
+                uf for uf in uploaded if not is_already_indexed(uf.name, indexed_sources)
+            ]
+            if not new_uploads:
+                st.info("All selected files are already indexed.")
+            else:
+                st.caption("New upload queue. These files are not indexed until you press Index.")
+                st.markdown("<br>", unsafe_allow_html=True)
+                for uf in new_uploads:
+                    kb = len(uf.getvalue()) / 1024
+                    size = f"{kb:.0f} KB" if kb < 1024 else f"{kb/1024:.1f} MB"
+                    st.markdown(
+                        f"<div style='display:flex;align-items:center;gap:12px;"
+                        f"background:white;border:1px solid #eef2f7;border-radius:12px;"
+                        f"padding:10px 16px;margin-bottom:8px;"
+                        f"box-shadow:0 1px 3px rgba(15,23,42,0.04)'>"
+                        f"<div style='width:36px;height:36px;border-radius:8px;"
+                        f"background:linear-gradient(135deg,{_BLUE},{_BLUE_LIGHT});"
+                        f"display:flex;align-items:center;justify-content:center;color:white;"
+                        f"font-weight:700;font-size:0.7rem'>PDF</div>"
+                        f"<span style='flex:1;font-weight:500;color:{_INK}'>{uf.name}</span>"
+                        f"<span style='color:{_MUTED};font-size:0.85rem'>{size}</span>"
+                        f"</div>",
+                        unsafe_allow_html=True,
                     )
-                    st.rerun()
+                st.markdown("")
+                c1, c2 = st.columns([1, 4])
+                do_index = c1.button(
+                    f"Index {len(new_uploads)} file{'s' if len(new_uploads) != 1 else ''}",
+                    type="primary", key="btn_upload", use_container_width=True,
+                )
+                c2.caption("Files are sent to the backend for parsing and indexing.")
+                if do_index:
+                    saved: list[str] = []
+                    _UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
+                    for uf in new_uploads:
+                        safe_name = Path(uf.name).name
+                        p = _UPLOAD_DIR / f"{int(time.time() * 1000)}_{safe_name}"
+                        p.write_bytes(uf.read())
+                        saved.append(str(p))
+                    with st.spinner(f"Indexing {len(saved)} file(s)…"):
+                        res, err = _post("/index", {"paths": saved})
+                    if err:
+                        st.error(f"Indexing failed: {err}")
+                    else:
+                        st.success(
+                            f"✅ {res['documents']} doc(s) · {res['chunks']} chunks · "
+                            f"{res['pages']} pages indexed."
+                        )
+                        st.rerun()
 
     with path_tab:
         st.caption("One absolute path per line (paths are read by the backend).")
