@@ -209,9 +209,39 @@ Everyone contributes to `tests/` and to the final written report.
 See [docs/linting.md](./docs/linting.md) for the linting rules that should be
 checked before pushing code changes.
 
+## Open RAG Benchmark + RAGAS
+
+Download and prepare the Vectara Open RAG Benchmark:
+
+```bash
+python scripts/download_benchmark.py --subset 50
+python scripts/download_benchmark.py --subset all
+```
+
+The downloader fetches `vectara/open_ragbench` from Hugging Face and writes a
+prepared text corpus plus QA file under `datasets/open_rag_bench/prepared/`.
+That directory is gitignored because the benchmark is large.
+
+Run the full benchmark with Ollama/RAGAS:
+
+```bash
+ollama pull llama3.1:8b
+ollama pull nomic-embed-text
+ollama serve
+
+export OLLAMA_HOST=http://localhost:11434
+export OLLAMA_MODEL=llama3.1:8b
+
+python -m eval.ragas_run \
+  --suite full \
+  --config configs/ollama-full.yaml \
+  --judge-model llama3.1:8b \
+  --embedding-model nomic-embed-text \
+  --batch-size 1
+```
+
 ## Contacts
 
 - Baptiste Bremond  - `baptiste.bremond@tu-braunschweig.de`
 - Michel Besserve   - `michel.besserve@tu-braunschweig.de`
-
 

@@ -63,13 +63,15 @@ def load_suite(name: str) -> tuple[list[Path], list[EvalItem]]:
         items = load_jsonl(sample_dir / "qa.jsonl")
 
     elif name == "full":
+        from eval.benchmarks.open_rag_bench import load_corpus, load_questions
+
         if not bench_dir.exists():
             raise FileNotFoundError(
                 f"Open RAG Benchmark not found at {bench_dir}. "
                 "Run: python scripts/download_benchmark.py --subset 50"
             )
-        corpus = sorted(bench_dir.glob("*.pdf"))
-        items = load_jsonl(bench_dir / "qa.jsonl")
+        corpus = load_corpus(bench_dir)
+        items = load_questions(bench_dir)
 
     elif name == "adversarial":
         contradiction_dir = adversarial_dir / "contradictions"
