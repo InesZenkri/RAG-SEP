@@ -1,4 +1,4 @@
-.PHONY: install install-dev test lint format smoke eval api ui clean
+.PHONY: install install-dev test lint format smoke eval ragas ragas-full api ui clean
 
 install:
 	pip install -r requirements.txt
@@ -24,6 +24,12 @@ smoke:
 
 eval:
 	python -m eval.run --suite full --config configs/baseline.yaml
+
+ragas:
+	python -m eval.ragas_run --suite smoke --config configs/ollama-smoke.yaml
+
+ragas-full:
+	python -m eval.ragas_run --suite full --config configs/ollama-full.yaml
 
 api:
 	uvicorn api.main:app --reload --port 8000

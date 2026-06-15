@@ -1,0 +1,65 @@
+# Local Ollama/Llama configuration for full benchmark evaluation.
+# Requires datasets/open_rag_bench/ to contain PDFs plus qa.jsonl.
+name: ollama_full
+
+ingest:
+  parser: pymupdf
+  strip_headers_footers: false
+  extract_tables: false
+  ocr: false
+
+chunking:
+  strategy: recursive
+  chunk_size: 800
+  chunk_overlap: 120
+
+retrieval:
+  mode: bm25
+  top_k: 5
+  store: memory
+
+generation:
+  provider: ollama
+  model: llama3.1:8b
+  temperature: 0.1
+  max_tokens: 2048
+  prompt_template: default
+  citation_style: bracket
+  quantization: null
+
+abstention:
+  enabled: true
+  min_retrieval_score: 0.15
+  min_citations: 1
+  contradiction_check: false
+
+cost:
+  eur_per_1k_input: 0.0
+  eur_per_1k_output: 0.0
+
+evaluation:
+  suite: full
+  benchmark: open_rag_bench
+  metrics:
+    - retrieval
+    - answer
+    - grounding
+    - abstention
+    - robustness
+    - efficiency
+  seed: 42
+  output_dir: reports/runs
+  judge:
+    enabled: false
+    provider: ollama
+    model: llama3.1:8b
+    temperature: 0.0
+    max_tokens: 512
+    rubric:
+      - factuality
+      - groundedness
+      - completeness
+    calibration_set: datasets/sample/qa.jsonl
+
+cache_enabled: true
+cache_dir: ./.llm_cache
