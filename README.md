@@ -209,6 +209,21 @@ Everyone contributes to `tests/` and to the final written report.
 See [docs/linting.md](./docs/linting.md) for the linting rules that should be
 checked before pushing code changes.
 
+## Team Management Automation
+
+The CI config includes scheduled jobs that are independent from the RAG app and
+use GitLab CI only as a cron runner:
+
+| Job | Purpose |
+|-----|---------|
+| `issue-reminders` | Emails assignees their open GitLab issues across `code` and `abgaben`. |
+| `stale-issue-comments` | Comments on open issues with no activity for `STALE_ISSUE_DAYS` days and mentions assignees. |
+| `weekly-team-digest` | Emails a team digest with new issues, closed issues, recent commits, and upcoming due dates. |
+
+The stale-comment job writes an internal marker in its comment so it does not
+repeat the same reminder every day. Keep `STALE_ISSUE_DRY_RUN=true` until the
+first dry-run output has been reviewed.
+
 ## Open RAG Benchmark + RAGAS
 
 Download and prepare the Vectara Open RAG Benchmark:
@@ -244,4 +259,3 @@ python -m eval.ragas_run \
 
 - Baptiste Bremond  - `baptiste.bremond@tu-braunschweig.de`
 - Michel Besserve   - `michel.besserve@tu-braunschweig.de`
-

@@ -19,6 +19,10 @@ default:
   rules:
     - if: '$CI_PIPELINE_SOURCE == "schedule" && $RUN_ISSUE_REMINDERS == "true"'
       when: never
+    - if: '$CI_PIPELINE_SOURCE == "schedule" && $RUN_STALE_ISSUE_COMMENTS == "true"'
+      when: never
+    - if: '$CI_PIPELINE_SOURCE == "schedule" && $RUN_WEEKLY_TEAM_DIGEST == "true"'
+      when: never
     - when: on_success
 
 lint:
@@ -58,3 +62,31 @@ issue-reminders:
     - pip install requests
   script:
     - python scripts/remind_issue_assignees.py
+
+stale-issue-comments:
+  stage: maintenance
+  image: python:3.11-slim
+  needs: []
+  # Team-management automation only.
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule" && $RUN_STALE_ISSUE_COMMENTS == "true"'
+    - when: never
+  before_script:
+    - python -V
+    - pip install requests
+  script:
+    - python scripts/gitlab_team_automation.py stale-comments
+
+weekly-team-digest:
+  stage: maintenance
+  image: python:3.11-slim
+  needs: []
+  # Team-management automation only.
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule" && $RUN_WEEKLY_TEAM_DIGEST == "true"'
+    - when: never
+  before_script:
+    - python -V
+    - pip install requests
+  script:
+    - python scripts/gitlab_team_automation.py weekly-digest
