@@ -224,6 +224,9 @@ The stale-comment job writes an internal marker in its comment so it does not
 repeat the same reminder every day. Keep `STALE_ISSUE_DRY_RUN=true` until the
 first dry-run output has been reviewed.
 
+The weekly digest supports `TEAM_DIGEST_RECIPIENTS` and optional `TEAM_DIGEST_CC`
+as comma-separated email lists.
+
 ## Open RAG Benchmark + RAGAS
 
 Download and prepare the Vectara Open RAG Benchmark:

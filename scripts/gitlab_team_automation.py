@@ -24,6 +24,10 @@ class Project:
     project_id: str
     name: str
 
+    @property
+    def label(self) -> str:
+        return self.name.rsplit("/", maxsplit=1)[-1].strip()
+
 
 def env(name: str, default: str | None = None) -> str:
     value = os.getenv(name, default)
@@ -134,10 +138,18 @@ def fetch_projects(
     return projects
 
 
-def send_email(sender: str, recipients: list[str], subject: str, body: str) -> None:
+def send_email(
+    sender: str,
+    recipients: list[str],
+    subject: str,
+    body: str,
+    cc: list[str] | None = None,
+) -> None:
     message = EmailMessage()
     message["From"] = sender
     message["To"] = ", ".join(recipients)
+    if cc:
+        message["Cc"] = ", ".join(cc)
     message["Subject"] = subject
     message.set_content(body)
 
@@ -243,7 +255,7 @@ def run_stale_comments(session: requests.Session, base_url: str, projects: list[
 
 def issue_line(project: Project, issue: dict[str, Any]) -> str:
     due = f" | due: {issue['due_date']}" if issue.get("due_date") else ""
-    return f"- [{project.name}] {issue['title']}{due}\n  {issue['web_url']}"
+    return f"- {project.label}: {issue['title']}{due}\n  URL: {issue['web_url']}"
 
 
 def collect_digest(
@@ -293,7 +305,7 @@ def collect_digest(
             title = str(commit.get("title") or commit.get("message", "")).splitlines()[0]
             author = commit.get("author_name", "unknown")
             sections["Commits pushed recently"].append(
-                f"- [{project.name}] {title} ({author})\n  {commit['web_url']}"
+                f"- {project.label}: {title} ({author})\n  URL: {commit['web_url']}"
             )
 
         for issue in fetch_open_issues(session, base_url, project):
@@ -308,14 +320,26 @@ def collect_digest(
 
 
 def build_digest_body(sections: dict[str, list[str]]) -> str:
+    new_count = len(sections["New issues"])
+    closed_count = len(sections["Closed issues"])
+    commit_count = len(sections["Commits pushed recently"])
+    due_count = len(sections["Upcoming due dates"])
+
     lines = [
         "Hi team,",
         "",
-        "here is the weekly SEP GitLab digest:",
+        "Here is the weekly SEP GitLab digest.",
+        "",
+        "Summary",
+        "-------",
+        f"- {new_count} new issue(s)",
+        f"- {closed_count} closed issue(s)",
+        f"- {commit_count} recent commit(s)",
+        f"- {due_count} upcoming due date(s)",
         "",
     ]
     for title, items in sections.items():
-        lines.extend([title, "-" * len(title)])
+        lines.extend([f"{title} ({len(items)})", "-" * (len(title) + len(str(len(items))) + 3)])
         if items:
             lines.extend(items)
         else:
@@ -327,6 +351,7 @@ def build_digest_body(sections: dict[str, list[str]]) -> str:
 
 def run_digest(session: requests.Session, base_url: str, projects: list[Project]) -> int:
     recipients = split_csv(env("TEAM_DIGEST_RECIPIENTS"))
+    cc = split_csv(os.getenv("TEAM_DIGEST_CC"))
     sender = env("REMINDER_EMAIL_FROM")
     subject = env("TEAM_DIGEST_SUBJECT", "[SEP GitLab digest]")
     dry_run = env("TEAM_DIGEST_DRY_RUN", "true").lower() in {"1", "true", "yes"}
@@ -336,8 +361,8 @@ def run_digest(session: requests.Session, base_url: str, projects: list[Project]
         print(body)
         return 0
 
-    send_email(sender, recipients, subject, body)
-    print(f"Sent weekly digest to {len(recipients)} recipient(s).")
+    send_email(sender, recipients, subject, body, cc=cc)
+    print(f"Sent weekly digest to {len(recipients)} recipient(s), cc {len(cc)} recipient(s).")
     return 0
 
 
