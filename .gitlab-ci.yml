@@ -6,6 +6,7 @@ stages:
   - lint
   - test
   - eval
+  - maintenance
 
 default:
   image: python:3.11-slim
@@ -34,3 +35,16 @@ smoke-eval:
     paths:
       - reports/runs/
     expire_in: 30 days
+
+issue-reminders:
+  stage: maintenance
+  image: python:3.11-slim
+  # Team-management automation only.
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule" && $RUN_ISSUE_REMINDERS == "true"'
+    - when: never
+  before_script:
+    - python -V
+    - pip install requests
+  script:
+    - python scripts/remind_issue_assignees.py
