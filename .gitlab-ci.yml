@@ -15,18 +15,27 @@ default:
     - pip install -r requirements-dev.txt
     - pip install -e .
 
+.skip-issue-reminder-schedule:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule" && $RUN_ISSUE_REMINDERS == "true"'
+      when: never
+    - when: on_success
+
 lint:
+  extends: .skip-issue-reminder-schedule
   stage: lint
   script:
     - ruff check src tests
     - mypy src
 
 unit-tests:
+  extends: .skip-issue-reminder-schedule
   stage: test
   script:
     - pytest -q
 
 smoke-eval:
+  extends: .skip-issue-reminder-schedule
   stage: eval
   script:
     - python -m eval.run --suite smoke --config configs/ci-smoke.yaml --out reports/runs
@@ -39,6 +48,7 @@ smoke-eval:
 issue-reminders:
   stage: maintenance
   image: python:3.11-slim
+  needs: []
   # Team-management automation only.
   rules:
     - if: '$CI_PIPELINE_SOURCE == "schedule" && $RUN_ISSUE_REMINDERS == "true"'
