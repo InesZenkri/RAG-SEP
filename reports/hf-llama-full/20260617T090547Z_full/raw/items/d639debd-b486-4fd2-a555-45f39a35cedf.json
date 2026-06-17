@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "d639debd-b486-4fd2-a555-45f39a35cedf",
+    "question": "How does discarding q-axis dynamics affect noise reduction in power networks?",
+    "answer": "Discarding q-axis dynamics improves noise rejection, resulting in lower RMSPE values for resistance and inductance when only d-axis dynamics are used, enhancing estimation accuracy.",
+    "expected_answers": [
+      "Discarding q-axis dynamics improves noise rejection, resulting in lower RMSPE values for resistance and inductance when only d-axis dynamics are used, enhancing estimation accuracy."
+    ],
+    "doc_ids": [
+      "2410.14077v2"
+    ],
+    "doc_sources": [
+      "2410.14077v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text-table-image",
+      "section_id": 9,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "d639debd-b486-4fd2-a555-45f39a35cedf",
+    "type": "abstractive",
+    "question": "How does discarding q-axis dynamics affect noise reduction in power networks?",
+    "gold_answer": "Discarding q-axis dynamics improves noise rejection, resulting in lower RMSPE values for resistance and inductance when only d-axis dynamics are used, enhancing estimation accuracy.",
+    "predicted": "Discarding q-axis dynamics allows for effective rejection of noise in power networks.",
+    "abstained": false,
+    "confidence": 0.49468666315078735,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.38888888888888895,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2410.14077v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2410.14077v2:p1:c62",
+        "doc_id": "2410.14077v2",
+        "page": 1,
+        "score": 0.49468666315078735,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2410.14077v2:p1:c16",
+        "doc_id": "2410.14077v2",
+        "page": 1,
+        "score": 0.47442764043807983,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2410.14077v2:p1:c61",
+        "doc_id": "2410.14077v2",
+        "page": 1,
+        "score": 0.4582112729549408,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2410.14077v2:p1:c33",
+        "doc_id": "2410.14077v2",
+        "page": 1,
+        "score": 0.43520963191986084,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2410.14077v2:p1:c32",
+        "doc_id": "2410.14077v2",
+        "page": 1,
+        "score": 0.42557257413864136,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 60.409124998841435,
+      "rerank": 0.002333021257072687,
+      "generation": 640.1039999909699
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

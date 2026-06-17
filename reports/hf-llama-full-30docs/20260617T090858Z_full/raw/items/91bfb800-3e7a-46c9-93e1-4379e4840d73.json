@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "91bfb800-3e7a-46c9-93e1-4379e4840d73",
+    "question": "Why might a custom tempering schedule be necessary for poorly conditioned target distributions?",
+    "answer": "A custom tempering schedule can improve convergence when a target distribution is poorly conditioned relative to the proposal distribution because it allows for adjustments that better accommodate the specific characteristics of the target's geometry.",
+    "expected_answers": [
+      "A custom tempering schedule can improve convergence when a target distribution is poorly conditioned relative to the proposal distribution because it allows for adjustments that better accommodate the specific characteristics of the target's geometry."
+    ],
+    "doc_ids": [
+      "2410.09697v2"
+    ],
+    "doc_sources": [
+      "2410.09697v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text-image",
+      "section_id": 6,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "91bfb800-3e7a-46c9-93e1-4379e4840d73",
+    "type": "abstractive",
+    "question": "Why might a custom tempering schedule be necessary for poorly conditioned target distributions?",
+    "gold_answer": "A custom tempering schedule can improve convergence when a target distribution is poorly conditioned relative to the proposal distribution because it allows for adjustments that better accommodate the specific characteristics of the target's geometry.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.5814770460128784,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.03225806451612904,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2410.09697v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2410.09697v2:p1:c60",
+        "doc_id": "2410.09697v2",
+        "page": 1,
+        "score": 0.5814770460128784,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2410.09697v2:p1:c4",
+        "doc_id": "2410.09697v2",
+        "page": 1,
+        "score": 0.5464015007019043,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2410.09697v2:p1:c2",
+        "doc_id": "2410.09697v2",
+        "page": 1,
+        "score": 0.5385609865188599,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2410.09697v2:p1:c61",
+        "doc_id": "2410.09697v2",
+        "page": 1,
+        "score": 0.5347219705581665,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2410.09697v2:p1:c36",
+        "doc_id": "2410.09697v2",
+        "page": 1,
+        "score": 0.5235669016838074,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 19.584041991038248,
+      "rerank": 0.0012919772416353226,
+      "generation": 174.9001670104917
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

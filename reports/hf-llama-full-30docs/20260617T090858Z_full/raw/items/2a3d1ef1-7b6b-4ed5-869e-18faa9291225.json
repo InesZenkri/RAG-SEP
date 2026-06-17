@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "2a3d1ef1-7b6b-4ed5-869e-18faa9291225",
+    "question": "What are the computational time differences between GAM models and other machine learning benchmarks for electricity load forecasting in France and Germany?",
+    "answer": "The Generalized Additive Models (GAM) have computation times ranging from 2.6 to 4.8 seconds, which are longer than simpler linear benchmarks but shorter than more complex models like deep neural networks that can take up to an hour. In France, the FNN benchmark takes about 6.73 seconds, while in Germany it takes about 9.08 seconds.",
+    "expected_answers": [
+      "The Generalized Additive Models (GAM) have computation times ranging from 2.6 to 4.8 seconds, which are longer than simpler linear benchmarks but shorter than more complex models like deep neural networks that can take up to an hour. In France, the FNN benchmark takes about 6.73 seconds, while in Germany it takes about 9.08 seconds."
+    ],
+    "doc_ids": [
+      "2405.17070v2"
+    ],
+    "doc_sources": [
+      "2405.17070v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {
+      "source": "text-table",
+      "section_id": 19,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "2a3d1ef1-7b6b-4ed5-869e-18faa9291225",
+    "type": "extractive",
+    "question": "What are the computational time differences between GAM models and other machine learning benchmarks for electricity load forecasting in France and Germany?",
+    "gold_answer": "The Generalized Additive Models (GAM) have computation times ranging from 2.6 to 4.8 seconds, which are longer than simpler linear benchmarks but shorter than more complex models like deep neural networks that can take up to an hour. In France, the FNN benchmark takes about 6.73 seconds, while in Germany it takes about 9.08 seconds.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.6845402717590332,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.09411764705882353,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2405.17070v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2405.17070v2:p1:c150",
+        "doc_id": "2405.17070v2",
+        "page": 1,
+        "score": 0.6845402717590332,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2405.17070v2:p1:c142",
+        "doc_id": "2405.17070v2",
+        "page": 1,
+        "score": 0.6844348907470703,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2405.17070v2:p1:c147",
+        "doc_id": "2405.17070v2",
+        "page": 1,
+        "score": 0.6792896389961243,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2405.17070v2:p1:c151",
+        "doc_id": "2405.17070v2",
+        "page": 1,
+        "score": 0.6652962565422058,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2405.17070v2:p1:c137",
+        "doc_id": "2405.17070v2",
+        "page": 1,
+        "score": 0.6332046985626221,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 59.08033301238902,
+      "rerank": 0.0019580184016376734,
+      "generation": 221.82470798725262
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

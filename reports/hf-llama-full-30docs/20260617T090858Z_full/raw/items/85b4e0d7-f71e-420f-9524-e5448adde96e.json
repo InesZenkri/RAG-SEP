@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "85b4e0d7-f71e-420f-9524-e5448adde96e",
+    "question": "What is the mean loss for Bitcoin (BTC) in the cryptocurrency market analysis?",
+    "answer": "-0.174",
+    "expected_answers": [
+      "-0.174"
+    ],
+    "doc_ids": [
+      "2411.13384v2"
+    ],
+    "doc_sources": [
+      "2411.13384v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {
+      "source": "text-table",
+      "section_id": 7,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "85b4e0d7-f71e-420f-9524-e5448adde96e",
+    "type": "extractive",
+    "question": "What is the mean loss for Bitcoin (BTC) in the cryptocurrency market analysis?",
+    "gold_answer": "-0.174",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.6286448240280151,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2411.13384v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2411.13384v2:p1:c73",
+        "doc_id": "2411.13384v2",
+        "page": 1,
+        "score": 0.6286448240280151,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2411.13384v2:p1:c72",
+        "doc_id": "2411.13384v2",
+        "page": 1,
+        "score": 0.6084884405136108,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2411.13384v2:p1:c74",
+        "doc_id": "2411.13384v2",
+        "page": 1,
+        "score": 0.5894848704338074,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2411.13384v2:p1:c76",
+        "doc_id": "2411.13384v2",
+        "page": 1,
+        "score": 0.5664937496185303,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2411.13384v2:p1:c97",
+        "doc_id": "2411.13384v2",
+        "page": 1,
+        "score": 0.47288089990615845,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 30.27270798338577,
+      "rerank": 0.0029170187190175056,
+      "generation": 182.51799998688512
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

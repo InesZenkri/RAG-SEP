@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "e49fdf65-0c99-4122-a586-2839a81b2920",
+    "question": "How do audience expectations influence engagement with stories?",
+    "answer": "Audience expectations about how a story might unfold play a significant role in their engagement decisions. By modeling these forward-looking beliefs, content creators can better understand the factors that drive continued reading, commenting, and voting on narrative media.",
+    "expected_answers": [
+      "Audience expectations about how a story might unfold play a significant role in their engagement decisions. By modeling these forward-looking beliefs, content creators can better understand the factors that drive continued reading, commenting, and voting on narrative media."
+    ],
+    "doc_ids": [
+      "2412.15239v2"
+    ],
+    "doc_sources": [
+      "2412.15239v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 0,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "e49fdf65-0c99-4122-a586-2839a81b2920",
+    "type": "abstractive",
+    "question": "How do audience expectations influence engagement with stories?",
+    "gold_answer": "Audience expectations about how a story might unfold play a significant role in their engagement decisions. By modeling these forward-looking beliefs, content creators can better understand the factors that drive continued reading, commenting, and voting on narrative media.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.746040940284729,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2412.15239v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2412.15239v2:p1:c25",
+        "doc_id": "2412.15239v2",
+        "page": 1,
+        "score": 0.746040940284729,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2412.15239v2:p1:c19",
+        "doc_id": "2412.15239v2",
+        "page": 1,
+        "score": 0.7242254614830017,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2412.15239v2:p1:c17",
+        "doc_id": "2412.15239v2",
+        "page": 1,
+        "score": 0.7002819776535034,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2412.15239v2:p1:c43",
+        "doc_id": "2412.15239v2",
+        "page": 1,
+        "score": 0.6840885877609253,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2412.15239v2:p1:c9",
+        "doc_id": "2412.15239v2",
+        "page": 1,
+        "score": 0.6799598932266235,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 19.91533298860304,
+      "rerank": 0.0017920101527124643,
+      "generation": 194.78162500308827
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

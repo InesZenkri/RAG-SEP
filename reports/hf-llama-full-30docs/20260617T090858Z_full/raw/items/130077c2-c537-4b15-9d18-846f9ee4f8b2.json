@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "130077c2-c537-4b15-9d18-846f9ee4f8b2",
+    "question": "Can execution-guided strategies increase SQL generation time with large databases?",
+    "answer": "Yes.",
+    "expected_answers": [
+      "Yes."
+    ],
+    "doc_ids": [
+      "2408.05109v4"
+    ],
+    "doc_sources": [
+      "2408.05109v4.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 20,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "130077c2-c537-4b15-9d18-846f9ee4f8b2",
+    "type": "extractive",
+    "question": "Can execution-guided strategies increase SQL generation time with large databases?",
+    "gold_answer": "Yes.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.5196554064750671,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2408.05109v4:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2408.05109v4:p1:c101",
+        "doc_id": "2408.05109v4",
+        "page": 1,
+        "score": 0.5196554064750671,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2408.05109v4:p1:c102",
+        "doc_id": "2408.05109v4",
+        "page": 1,
+        "score": 0.5172500610351562,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2408.05109v4:p1:c166",
+        "doc_id": "2408.05109v4",
+        "page": 1,
+        "score": 0.49805837869644165,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2408.05109v4:p1:c173",
+        "doc_id": "2408.05109v4",
+        "page": 1,
+        "score": 0.49681901931762695,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2408.05109v4:p1:c100",
+        "doc_id": "2408.05109v4",
+        "page": 1,
+        "score": 0.4949040412902832,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 16.891125007532537,
+      "rerank": 0.0012080126907676458,
+      "generation": 170.68949999520555
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

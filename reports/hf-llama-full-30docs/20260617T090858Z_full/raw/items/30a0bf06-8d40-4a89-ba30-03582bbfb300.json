@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "30a0bf06-8d40-4a89-ba30-03582bbfb300",
+    "question": "Is perplexity higher or lower for more accurate occupation models?",
+    "answer": "Lower.",
+    "expected_answers": [
+      "Lower."
+    ],
+    "doc_ids": [
+      "2406.17972v3"
+    ],
+    "doc_sources": [
+      "2406.17972v3.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 3,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "30a0bf06-8d40-4a89-ba30-03582bbfb300",
+    "type": "extractive",
+    "question": "Is perplexity higher or lower for more accurate occupation models?",
+    "gold_answer": "Lower.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.6672384738922119,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2406.17972v3:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2406.17972v3:p1:c37",
+        "doc_id": "2406.17972v3",
+        "page": 1,
+        "score": 0.6672384738922119,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2406.17972v3:p1:c98",
+        "doc_id": "2406.17972v3",
+        "page": 1,
+        "score": 0.5439213514328003,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2406.17972v3:p1:c94",
+        "doc_id": "2406.17972v3",
+        "page": 1,
+        "score": 0.5312523245811462,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2406.17972v3:p1:c105",
+        "doc_id": "2406.17972v3",
+        "page": 1,
+        "score": 0.5181155204772949,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2406.17972v3:p1:c115",
+        "doc_id": "2406.17972v3",
+        "page": 1,
+        "score": 0.5076322555541992,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 29.187000007368624,
+      "rerank": 0.0026250199880450964,
+      "generation": 200.62087499536574
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "3098ddfe-66a5-46a4-9bce-c9b56c97d364",
+    "question": "Does the spectral density of the back-action torque include contributions from classical noise?",
+    "answer": "Yes.",
+    "expected_answers": [
+      "Yes."
+    ],
+    "doc_ids": [
+      "2409.02275v2"
+    ],
+    "doc_sources": [
+      "2409.02275v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 13,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "3098ddfe-66a5-46a4-9bce-c9b56c97d364",
+    "type": "extractive",
+    "question": "Does the spectral density of the back-action torque include contributions from classical noise?",
+    "gold_answer": "Yes.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.4954991936683655,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2409.02275v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2409.02275v2:p1:c77",
+        "doc_id": "2409.02275v2",
+        "page": 1,
+        "score": 0.4954991936683655,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2409.02275v2:p1:c78",
+        "doc_id": "2409.02275v2",
+        "page": 1,
+        "score": 0.47584855556488037,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2409.02275v2:p1:c82",
+        "doc_id": "2409.02275v2",
+        "page": 1,
+        "score": 0.46114861965179443,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2409.02275v2:p1:c34",
+        "doc_id": "2409.02275v2",
+        "page": 1,
+        "score": 0.4181472957134247,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2409.02275v2:p1:c107",
+        "doc_id": "2409.02275v2",
+        "page": 1,
+        "score": 0.40522047877311707,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 23.70474999770522,
+      "rerank": 0.0022919848561286926,
+      "generation": 180.0113329954911
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

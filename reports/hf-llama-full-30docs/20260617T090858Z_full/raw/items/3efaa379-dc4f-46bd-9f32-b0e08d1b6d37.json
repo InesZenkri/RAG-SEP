@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "3efaa379-dc4f-46bd-9f32-b0e08d1b6d37",
+    "question": "Why is non-Gaussianity important for identifying shocks in nonlinear SVAR models?",
+    "answer": "Identification by non-Gaussianity allows for recognizing economic shocks without imposing additional restrictions. It enables capturing complex dynamics and variations across different regimes within nonlinear SVAR frameworks, facilitating more accurate structural analysis.",
+    "expected_answers": [
+      "Identification by non-Gaussianity allows for recognizing economic shocks without imposing additional restrictions. It enables capturing complex dynamics and variations across different regimes within nonlinear SVAR frameworks, facilitating more accurate structural analysis."
+    ],
+    "doc_ids": [
+      "2404.19707v4"
+    ],
+    "doc_sources": [
+      "2404.19707v4.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 1,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "3efaa379-dc4f-46bd-9f32-b0e08d1b6d37",
+    "type": "abstractive",
+    "question": "Why is non-Gaussianity important for identifying shocks in nonlinear SVAR models?",
+    "gold_answer": "Identification by non-Gaussianity allows for recognizing economic shocks without imposing additional restrictions. It enables capturing complex dynamics and variations across different regimes within nonlinear SVAR frameworks, facilitating more accurate structural analysis.",
+    "predicted": "Non-Gaussianity is important for identifying shocks in nonlinear SVAR models because it allows for time-variation in the impact responses of the variables to the shocks, which is not restricted by the assumption of constant relative magnitudes of the impact responses over time, as in identification by heteroscedasticity.",
+    "abstained": false,
+    "confidence": 0.7450679540634155,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.24657534246575344,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2404.19707v4:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2404.19707v4:p1:c8",
+        "doc_id": "2404.19707v4",
+        "page": 1,
+        "score": 0.7450679540634155,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2404.19707v4:p1:c9",
+        "doc_id": "2404.19707v4",
+        "page": 1,
+        "score": 0.6676315069198608,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2404.19707v4:p1:c28",
+        "doc_id": "2404.19707v4",
+        "page": 1,
+        "score": 0.6335651874542236,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2404.19707v4:p1:c35",
+        "doc_id": "2404.19707v4",
+        "page": 1,
+        "score": 0.6204882264137268,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2404.19707v4:p1:c25",
+        "doc_id": "2404.19707v4",
+        "page": 1,
+        "score": 0.5895742774009705,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 59.89479200798087,
+      "rerank": 0.001667009200900793,
+      "generation": 724.028124997858
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

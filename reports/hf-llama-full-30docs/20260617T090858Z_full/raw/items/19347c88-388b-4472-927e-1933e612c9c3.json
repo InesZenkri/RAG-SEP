@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "19347c88-388b-4472-927e-1933e612c9c3",
+    "question": "What external inputs are incorporated into the final load forecast?",
+    "answer": "The final load forecast incorporates smoothed temperatures, seasonal data, holiday information, and ETS unit root states.",
+    "expected_answers": [
+      "The final load forecast incorporates smoothed temperatures, seasonal data, holiday information, and ETS unit root states."
+    ],
+    "doc_ids": [
+      "2405.17070v2"
+    ],
+    "doc_sources": [
+      "2405.17070v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {
+      "source": "text-image",
+      "section_id": 9,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "19347c88-388b-4472-927e-1933e612c9c3",
+    "type": "extractive",
+    "question": "What external inputs are incorporated into the final load forecast?",
+    "gold_answer": "The final load forecast incorporates smoothed temperatures, seasonal data, holiday information, and ETS unit root states.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.6657408475875854,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2405.17070v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2405.17070v2:p1:c55",
+        "doc_id": "2405.17070v2",
+        "page": 1,
+        "score": 0.6657408475875854,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2405.17070v2:p1:c56",
+        "doc_id": "2405.17070v2",
+        "page": 1,
+        "score": 0.6160366535186768,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2405.17070v2:p1:c6",
+        "doc_id": "2405.17070v2",
+        "page": 1,
+        "score": 0.5803589820861816,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2405.17070v2:p1:c119",
+        "doc_id": "2405.17070v2",
+        "page": 1,
+        "score": 0.5770537853240967,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2405.17070v2:p1:c10",
+        "doc_id": "2405.17070v2",
+        "page": 1,
+        "score": 0.576234757900238,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 32.464582996908575,
+      "rerank": 0.0027919886633753777,
+      "generation": 265.1644590077922
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "item": {
+    "id": "u3",
+    "question": "What is the melting point of tungsten?",
+    "answer": null,
+    "expected_answers": [],
+    "doc_ids": [],
+    "doc_sources": [],
+    "pages": [],
+    "type": "unanswerable",
+    "metadata": {}
+  },
+  "result": {
+    "id": "u3",
+    "type": "unanswerable",
+    "question": "What is the melting point of tungsten?",
+    "gold_answer": null,
+    "predicted": "I cannot answer from the provided documents.",
+    "abstained": true,
+    "confidence": 0.0,
+    "retrieval_hit@5": 0.0,
+    "exact_match": null,
+    "token_f1": null,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "doc_b:p1:c1",
+        "doc_id": "doc_b",
+        "page": 1,
+        "score": -0.010065101087093353,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "doc_a:p1:c1",
+        "doc_id": "doc_a",
+        "page": 1,
+        "score": -0.02039308287203312,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "abstained",
+      "retrieval_miss"
+    ],
+    "latency_ms": {
+      "retrieval": 22.39745800034143,
+      "rerank": 0.0010829826351255178,
+      "generation": 17225.04433299764
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

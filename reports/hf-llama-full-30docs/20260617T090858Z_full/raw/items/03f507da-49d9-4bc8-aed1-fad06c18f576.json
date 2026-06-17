@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "03f507da-49d9-4bc8-aed1-fad06c18f576",
+    "question": "What challenges do long-tailed distributions present in object detection tasks?",
+    "answer": "Long-tailed distributions in object detection lead to poor performance for rare classes because traditional methods often focus on frequent classes, causing an imbalance that affects accuracy.",
+    "expected_answers": [
+      "Long-tailed distributions in object detection lead to poor performance for rare classes because traditional methods often focus on frequent classes, causing an imbalance that affects accuracy."
+    ],
+    "doc_ids": [
+      "2410.11774v2"
+    ],
+    "doc_sources": [
+      "2410.11774v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text-image",
+      "section_id": 1,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "03f507da-49d9-4bc8-aed1-fad06c18f576",
+    "type": "abstractive",
+    "question": "What challenges do long-tailed distributions present in object detection tasks?",
+    "gold_answer": "Long-tailed distributions in object detection lead to poor performance for rare classes because traditional methods often focus on frequent classes, causing an imbalance that affects accuracy.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.7124431133270264,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.03448275862068965,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2410.11774v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2410.11774v2:p1:c13",
+        "doc_id": "2410.11774v2",
+        "page": 1,
+        "score": 0.7124431133270264,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2410.11774v2:p1:c91",
+        "doc_id": "2410.11774v2",
+        "page": 1,
+        "score": 0.6847590804100037,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2410.11774v2:p1:c76",
+        "doc_id": "2410.11774v2",
+        "page": 1,
+        "score": 0.6825923323631287,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2410.11774v2:p1:c88",
+        "doc_id": "2410.11774v2",
+        "page": 1,
+        "score": 0.6654787659645081,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2410.11774v2:p1:c81",
+        "doc_id": "2410.11774v2",
+        "page": 1,
+        "score": 0.6613109707832336,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 23.606417002156377,
+      "rerank": 0.002167013008147478,
+      "generation": 218.926959001692
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

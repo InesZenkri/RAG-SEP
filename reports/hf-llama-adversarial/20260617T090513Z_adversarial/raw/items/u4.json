@@ -1,0 +1,59 @@
+{
+  "item": {
+    "id": "u4",
+    "question": "What is the capital of Bhutan?",
+    "answer": null,
+    "expected_answers": [],
+    "doc_ids": [],
+    "doc_sources": [],
+    "pages": [],
+    "type": "unanswerable",
+    "metadata": {}
+  },
+  "result": {
+    "id": "u4",
+    "type": "unanswerable",
+    "question": "What is the capital of Bhutan?",
+    "gold_answer": null,
+    "predicted": "I cannot answer from the provided documents.",
+    "abstained": true,
+    "confidence": 0.0,
+    "retrieval_hit@5": 0.0,
+    "exact_match": null,
+    "token_f1": null,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "doc_a:p1:c1",
+        "doc_id": "doc_a",
+        "page": 1,
+        "score": 0.000475345179438591,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "doc_b:p1:c1",
+        "doc_id": "doc_b",
+        "page": 1,
+        "score": -0.020454593002796173,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "abstained",
+      "retrieval_miss"
+    ],
+    "latency_ms": {
+      "retrieval": 275.9119999827817,
+      "rerank": 0.0005420006345957518,
+      "generation": 478.21500001009554
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "95e992a3-cef6-4163-bea2-1cfd82759123",
+    "question": "Does training and testing on sequential data result in higher gains than training on sequential data and testing on jump data?",
+    "answer": "Yes",
+    "expected_answers": [
+      "Yes"
+    ],
+    "doc_ids": [
+      "2408.02322v2"
+    ],
+    "doc_sources": [
+      "2408.02322v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {
+      "source": "text-table-image",
+      "section_id": 9,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "95e992a3-cef6-4163-bea2-1cfd82759123",
+    "type": "extractive",
+    "question": "Does training and testing on sequential data result in higher gains than training on sequential data and testing on jump data?",
+    "gold_answer": "Yes",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.614324152469635,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2408.02322v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2408.02322v2:p1:c64",
+        "doc_id": "2408.02322v2",
+        "page": 1,
+        "score": 0.614324152469635,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2408.02322v2:p1:c63",
+        "doc_id": "2408.02322v2",
+        "page": 1,
+        "score": 0.5074261426925659,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2408.02322v2:p1:c69",
+        "doc_id": "2408.02322v2",
+        "page": 1,
+        "score": 0.44120854139328003,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2408.02322v2:p1:c71",
+        "doc_id": "2408.02322v2",
+        "page": 1,
+        "score": 0.4404493272304535,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2408.02322v2:p1:c65",
+        "doc_id": "2408.02322v2",
+        "page": 1,
+        "score": 0.41335785388946533,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 19.262165995314717,
+      "rerank": 0.0020830193534493446,
+      "generation": 170.01604198594578
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

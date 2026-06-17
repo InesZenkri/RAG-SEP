@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "183b3b1a-7ea3-4beb-9051-dd3b52f35520",
+    "question": "How do different wavelengths affect polarizability in dysprosium?",
+    "answer": "Different wavelengths affect polarizability by altering both scalar and tensorial components. In specific spectral regions, such as around 402-404 nm and 415-418 nm, these changes can create optimal conditions for repulsive potentials depending on polarization angles.",
+    "expected_answers": [
+      "Different wavelengths affect polarizability by altering both scalar and tensorial components. In specific spectral regions, such as around 402-404 nm and 415-418 nm, these changes can create optimal conditions for repulsive potentials depending on polarization angles."
+    ],
+    "doc_ids": [
+      "2403.18677v2"
+    ],
+    "doc_sources": [
+      "2403.18677v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text-table-image",
+      "section_id": 3,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "183b3b1a-7ea3-4beb-9051-dd3b52f35520",
+    "type": "abstractive",
+    "question": "How do different wavelengths affect polarizability in dysprosium?",
+    "gold_answer": "Different wavelengths affect polarizability by altering both scalar and tensorial components. In specific spectral regions, such as around 402-404 nm and 415-418 nm, these changes can create optimal conditions for repulsive potentials depending on polarization angles.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.6367635130882263,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2403.18677v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2403.18677v2:p1:c53",
+        "doc_id": "2403.18677v2",
+        "page": 1,
+        "score": 0.6367635130882263,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2403.18677v2:p1:c54",
+        "doc_id": "2403.18677v2",
+        "page": 1,
+        "score": 0.612714409828186,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2403.18677v2:p1:c21",
+        "doc_id": "2403.18677v2",
+        "page": 1,
+        "score": 0.584934413433075,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2403.18677v2:p1:c7",
+        "doc_id": "2403.18677v2",
+        "page": 1,
+        "score": 0.5579426288604736,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2403.18677v2:p1:c18",
+        "doc_id": "2403.18677v2",
+        "page": 1,
+        "score": 0.5450429320335388,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 16.467625013319775,
+      "rerank": 0.0014579854905605316,
+      "generation": 175.18837499665096
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

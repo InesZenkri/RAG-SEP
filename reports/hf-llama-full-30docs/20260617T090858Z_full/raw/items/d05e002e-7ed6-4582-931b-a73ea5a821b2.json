@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "d05e002e-7ed6-4582-931b-a73ea5a821b2",
+    "question": "What role does phase variation play in understanding analytic functions?",
+    "answer": "Phase variation plays a crucial role by indicating how an analytic function's argument changes with respect to its parameters. This can reveal important characteristics about zeros and poles of the function, aiding in deeper comprehension of its structure.",
+    "expected_answers": [
+      "Phase variation plays a crucial role by indicating how an analytic function's argument changes with respect to its parameters. This can reveal important characteristics about zeros and poles of the function, aiding in deeper comprehension of its structure."
+    ],
+    "doc_ids": [
+      "2412.11130v5"
+    ],
+    "doc_sources": [
+      "2412.11130v5.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text-image",
+      "section_id": 3,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "d05e002e-7ed6-4582-931b-a73ea5a821b2",
+    "type": "abstractive",
+    "question": "What role does phase variation play in understanding analytic functions?",
+    "gold_answer": "Phase variation plays a crucial role by indicating how an analytic function's argument changes with respect to its parameters. This can reveal important characteristics about zeros and poles of the function, aiding in deeper comprehension of its structure.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.45217129588127136,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.029411764705882356,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2412.11130v5:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2412.11130v5:p1:c3",
+        "doc_id": "2412.11130v5",
+        "page": 1,
+        "score": 0.45217129588127136,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2412.11130v5:p1:c8",
+        "doc_id": "2412.11130v5",
+        "page": 1,
+        "score": 0.4344490170478821,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2412.11130v5:p1:c21",
+        "doc_id": "2412.11130v5",
+        "page": 1,
+        "score": 0.39630237221717834,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2412.11130v5:p1:c6",
+        "doc_id": "2412.11130v5",
+        "page": 1,
+        "score": 0.3675486743450165,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2412.11130v5:p1:c15",
+        "doc_id": "2412.11130v5",
+        "page": 1,
+        "score": 0.3529013991355896,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 25.225834018783644,
+      "rerank": 0.0020840088836848736,
+      "generation": 188.12916599563323
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "4fa69900-8154-4121-935b-a4f706f9e515",
+    "question": "What are some aspects involved in refining SQL during post-processing for NL2SQL?",
+    "answer": "Some aspects involved include SQL correction, ensuring output consistency, and execution-guided checking.",
+    "expected_answers": [
+      "Some aspects involved include SQL correction, ensuring output consistency, and execution-guided checking."
+    ],
+    "doc_ids": [
+      "2408.05109v4"
+    ],
+    "doc_sources": [
+      "2408.05109v4.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 17,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "4fa69900-8154-4121-935b-a4f706f9e515",
+    "type": "abstractive",
+    "question": "What are some aspects involved in refining SQL during post-processing for NL2SQL?",
+    "gold_answer": "Some aspects involved include SQL correction, ensuring output consistency, and execution-guided checking.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.6965992450714111,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2408.05109v4:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2408.05109v4:p1:c45",
+        "doc_id": "2408.05109v4",
+        "page": 1,
+        "score": 0.6965992450714111,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2408.05109v4:p1:c43",
+        "doc_id": "2408.05109v4",
+        "page": 1,
+        "score": 0.6817929148674011,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2408.05109v4:p1:c46",
+        "doc_id": "2408.05109v4",
+        "page": 1,
+        "score": 0.6592860221862793,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2408.05109v4:p1:c44",
+        "doc_id": "2408.05109v4",
+        "page": 1,
+        "score": 0.6496844291687012,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2408.05109v4:p1:c97",
+        "doc_id": "2408.05109v4",
+        "page": 1,
+        "score": 0.6407228708267212,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 16.41824998660013,
+      "rerank": 0.0010420044418424368,
+      "generation": 171.56987500493415
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "679f1070-6689-41f8-adea-603132492a7b",
+    "question": "Are temperature effects incorporated into any forecasting models for short-term forecasts in France?",
+    "answer": "Yes, temperature effects are incorporated into forecasting models like GAM for short-term forecasts in France.",
+    "expected_answers": [
+      "Yes, temperature effects are incorporated into forecasting models like GAM for short-term forecasts in France."
+    ],
+    "doc_ids": [
+      "2405.17070v2"
+    ],
+    "doc_sources": [
+      "2405.17070v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {
+      "source": "text-image",
+      "section_id": 18,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "679f1070-6689-41f8-adea-603132492a7b",
+    "type": "extractive",
+    "question": "Are temperature effects incorporated into any forecasting models for short-term forecasts in France?",
+    "gold_answer": "Yes, temperature effects are incorporated into forecasting models like GAM for short-term forecasts in France.",
+    "predicted": "Yes, incorporating temperature effects contributes to improved forecasting accuracy in France, with an approximate 10% improvement for horizons greater than a few days.",
+    "abstained": false,
+    "confidence": 0.7107856869697571,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.3888888888888889,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2405.17070v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2405.17070v2:p1:c141",
+        "doc_id": "2405.17070v2",
+        "page": 1,
+        "score": 0.7107856869697571,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2405.17070v2:p1:c134",
+        "doc_id": "2405.17070v2",
+        "page": 1,
+        "score": 0.6822846531867981,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2405.17070v2:p1:c143",
+        "doc_id": "2405.17070v2",
+        "page": 1,
+        "score": 0.6282557249069214,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2405.17070v2:p1:c35",
+        "doc_id": "2405.17070v2",
+        "page": 1,
+        "score": 0.6188358068466187,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2405.17070v2:p1:c34",
+        "doc_id": "2405.17070v2",
+        "page": 1,
+        "score": 0.6115493774414062,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 17.045750020770356,
+      "rerank": 0.0010420044418424368,
+      "generation": 528.2142079959158
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

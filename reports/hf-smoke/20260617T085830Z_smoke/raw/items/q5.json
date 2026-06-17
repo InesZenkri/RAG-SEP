@@ -1,0 +1,74 @@
+{
+  "item": {
+    "id": "q5",
+    "question": "What paper introduced Transformers?",
+    "answer": "Attention Is All You Need",
+    "expected_answers": [
+      "Attention Is All You Need"
+    ],
+    "doc_ids": [],
+    "doc_sources": [
+      "transformers.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {}
+  },
+  "result": {
+    "id": "q5",
+    "type": "extractive",
+    "question": "What paper introduced Transformers?",
+    "gold_answer": "Attention Is All You Need",
+    "predicted": "[HuggingFace Error] Router call failed: 400 Client Error: Bad Request for url: https://router.huggingface.co/v1/chat/completions",
+    "abstained": false,
+    "confidence": 0.32329291105270386,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "transformers:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "transformers:p1:c1",
+        "doc_id": "transformers",
+        "page": 1,
+        "score": 0.32329291105270386,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "photosynthesis:p1:c1",
+        "doc_id": "photosynthesis",
+        "page": 1,
+        "score": 0.08960521221160889,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "mitochondria:p1:c1",
+        "doc_id": "mitochondria",
+        "page": 1,
+        "score": 0.0641506016254425,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 35.06558301160112,
+      "rerank": 0.000500003807246685,
+      "generation": 155.40733298985288
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

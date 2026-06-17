@@ -1,0 +1,9 @@
+{
+  "cached": false,
+  "finish_reason": "",
+  "input_tokens": 941,
+  "model": "meta-llama/Meta-Llama-3-8B-Instruct",
+  "output_tokens": 16,
+  "provider": "huggingface",
+  "text": "The autoregressive order in STVAR models is assumed to satisfy p."
+}

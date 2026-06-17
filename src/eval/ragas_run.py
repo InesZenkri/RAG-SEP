@@ -14,8 +14,11 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from tqdm.auto import tqdm
+
 from datasets import Dataset
 from eval.dataset import EvalItem, load_suite
+from eval.persistence import append_jsonl, read_jsonl, write_json_atomic
 from rag.config import PipelineConfig
 from rag.pipeline import RAGPipeline
 
@@ -143,15 +146,21 @@ def main(argv: list[str] | None = None) -> int:
     suite = args.suite or config.evaluation.suite
     corpus_paths, eval_items = load_suite(suite)
 
+    timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    out_dir = Path(args.out) / f"{timestamp}_{suite}"
+    raw_dir = out_dir / "raw"
+
     pipeline = RAGPipeline(config=config)
     pipeline.add_documents(corpus_paths)
 
     rows: list[dict[str, Any]] = []
-    for item in eval_items:
+    for item in tqdm(eval_items, desc=f"Answering {suite}", unit="item"):
         answer = pipeline.answer(item.question)
-        rows.append(_answer_to_row(item, answer))
-
-    dataset = Dataset.from_list(rows)
+        row = _answer_to_row(item, answer)
+        rows.append(row)
+        raw_payload = {"item": item.__dict__, "ragas_input": row}
+        write_json_atomic(raw_dir / "inputs" / f"{item.id}.json", raw_payload)
+        append_jsonl(raw_dir / "ragas_inputs.jsonl", raw_payload)
 
     from ragas import evaluate
     from ragas.metrics import (
@@ -170,28 +179,61 @@ def main(argv: list[str] | None = None) -> int:
         num_predict=1024,
     )
 
-    result = evaluate(
-        dataset,
-        metrics=[
-            faithfulness,
-            answer_relevancy,
-            context_precision,
-            context_recall,
-            answer_correctness,
-        ],
-        llm=ragas_llm,
-        embeddings=ragas_embeddings,
-        batch_size=args.batch_size,
-        raise_exceptions=False,
-    )
+    metrics = [
+        faithfulness,
+        answer_relevancy,
+        context_precision,
+        context_recall,
+        answer_correctness,
+    ]
 
-    score_rows, aggregate = _serialise_scores(result)
-    timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
-    out_dir = Path(args.out) / f"{timestamp}_{suite}"
+    score_rows: list[dict[str, Any]] = []
+    for idx, row in enumerate(tqdm(rows, desc="Scoring RAGAS", unit="item")):
+        result = evaluate(
+            Dataset.from_list([row]),
+            metrics=metrics,
+            llm=ragas_llm,
+            embeddings=ragas_embeddings,
+            batch_size=1,
+            raise_exceptions=False,
+        )
+        item_scores, _ = _serialise_scores(result)
+        score_row = item_scores[0] if item_scores else {}
+        score_rows.append(score_row)
+        item_id = eval_items[idx].id
+        raw_payload = {"item_id": item_id, "scores": score_row}
+        write_json_atomic(raw_dir / "scores" / f"{item_id}.json", raw_payload)
+        append_jsonl(raw_dir / "ragas_scores.jsonl", raw_payload)
+
+    aggregate: dict[str, float] = {}
+    numeric_keys = {
+        key
+        for row in score_rows
+        for key, value in row.items()
+        if isinstance(value, int | float)
+    }
+    for key in sorted(numeric_keys):
+        vals = [row[key] for row in score_rows if isinstance(row.get(key), int | float)]
+        if vals:
+            aggregate[key] = sum(vals) / len(vals)
+
+    raw_inputs = read_jsonl(raw_dir / "ragas_inputs.jsonl")
+    raw_scores = read_jsonl(raw_dir / "ragas_scores.jsonl")
+    report_inputs = [
+        raw_item["ragas_input"]
+        for raw_item in raw_inputs
+        if isinstance(raw_item, dict) and isinstance(raw_item.get("ragas_input"), dict)
+    ]
+    report_scores = [
+        raw_item["scores"]
+        for raw_item in raw_scores
+        if isinstance(raw_item, dict) and isinstance(raw_item.get("scores"), dict)
+    ]
+
     report_path = _write_outputs(
         out_dir=out_dir,
-        inputs=rows,
-        score_rows=score_rows,
+        inputs=report_inputs or rows,
+        score_rows=report_scores or score_rows,
         aggregate=aggregate,
         meta={
             "suite": suite,

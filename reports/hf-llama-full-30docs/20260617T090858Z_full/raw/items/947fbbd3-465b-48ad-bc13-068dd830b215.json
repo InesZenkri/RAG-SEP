@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "947fbbd3-465b-48ad-bc13-068dd830b215",
+    "question": "How are expectations calculated in the narrative framework?",
+    "answer": "Expectations are calculated as the mean of each feature across all imagined continuations for a given chapter.",
+    "expected_answers": [
+      "Expectations are calculated as the mean of each feature across all imagined continuations for a given chapter."
+    ],
+    "doc_ids": [
+      "2412.15239v2"
+    ],
+    "doc_sources": [
+      "2412.15239v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 6,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "947fbbd3-465b-48ad-bc13-068dd830b215",
+    "type": "abstractive",
+    "question": "How are expectations calculated in the narrative framework?",
+    "gold_answer": "Expectations are calculated as the mean of each feature across all imagined continuations for a given chapter.",
+    "predicted": "Our approach uses a simplified, implementable model of how readers form expectations about stories.",
+    "abstained": false,
+    "confidence": 0.6759861707687378,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.14285714285714288,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2412.15239v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2412.15239v2:p1:c22",
+        "doc_id": "2412.15239v2",
+        "page": 1,
+        "score": 0.6759861707687378,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2412.15239v2:p1:c9",
+        "doc_id": "2412.15239v2",
+        "page": 1,
+        "score": 0.6732139587402344,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2412.15239v2:p1:c25",
+        "doc_id": "2412.15239v2",
+        "page": 1,
+        "score": 0.6378811597824097,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2412.15239v2:p1:c69",
+        "doc_id": "2412.15239v2",
+        "page": 1,
+        "score": 0.6263857483863831,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2412.15239v2:p1:c29",
+        "doc_id": "2412.15239v2",
+        "page": 1,
+        "score": 0.6210529804229736,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 66.35245800134726,
+      "rerank": 0.001667009200900793,
+      "generation": 7776.480500004254
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

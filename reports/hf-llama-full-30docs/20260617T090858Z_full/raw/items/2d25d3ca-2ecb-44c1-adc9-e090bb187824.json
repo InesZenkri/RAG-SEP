@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "2d25d3ca-2ecb-44c1-adc9-e090bb187824",
+    "question": "What is the purpose of using a variable direction forgetting recursive-least-square algorithm in power networks?",
+    "answer": "The variable direction forgetting recursive-least-square (VDF-RLS) algorithm is used in power networks to improve the estimation of inverter output impedance. It adapts effectively to changes and maintains stable estimation under no-excitation conditions, outperforming other algorithms like RLS without forgetting and Kalman filter-based methods.",
+    "expected_answers": [
+      "The variable direction forgetting recursive-least-square (VDF-RLS) algorithm is used in power networks to improve the estimation of inverter output impedance. It adapts effectively to changes and maintains stable estimation under no-excitation conditions, outperforming other algorithms like RLS without forgetting and Kalman filter-based methods."
+    ],
+    "doc_ids": [
+      "2410.14077v2"
+    ],
+    "doc_sources": [
+      "2410.14077v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text-table-image",
+      "section_id": 8,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "2d25d3ca-2ecb-44c1-adc9-e090bb187824",
+    "type": "abstractive",
+    "question": "What is the purpose of using a variable direction forgetting recursive-least-square algorithm in power networks?",
+    "gold_answer": "The variable direction forgetting recursive-least-square (VDF-RLS) algorithm is used in power networks to improve the estimation of inverter output impedance. It adapts effectively to changes and maintains stable estimation under no-excitation conditions, outperforming other algorithms like RLS without forgetting and Kalman filter-based methods.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.605263352394104,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.05405405405405405,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2410.14077v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2410.14077v2:p1:c74",
+        "doc_id": "2410.14077v2",
+        "page": 1,
+        "score": 0.605263352394104,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2410.14077v2:p1:c1",
+        "doc_id": "2410.14077v2",
+        "page": 1,
+        "score": 0.5578581094741821,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2410.14077v2:p1:c17",
+        "doc_id": "2410.14077v2",
+        "page": 1,
+        "score": 0.43895646929740906,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2410.14077v2:p1:c50",
+        "doc_id": "2410.14077v2",
+        "page": 1,
+        "score": 0.423322856426239,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2410.14077v2:p1:c48",
+        "doc_id": "2410.14077v2",
+        "page": 1,
+        "score": 0.4220123887062073,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 17.916542012244463,
+      "rerank": 0.0015840050764381886,
+      "generation": 168.58433300512843
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

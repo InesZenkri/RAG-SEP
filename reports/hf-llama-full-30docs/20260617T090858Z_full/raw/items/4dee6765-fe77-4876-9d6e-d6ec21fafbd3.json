@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "4dee6765-fe77-4876-9d6e-d6ec21fafbd3",
+    "question": "How do commutative diagrams assist in proving properties of scheme modifications?",
+    "answer": "Commutative diagrams help visualize relationships between different morphisms and constructions, ensuring that desired finiteness conditions are met while maintaining ample line bundles through pullbacks.",
+    "expected_answers": [
+      "Commutative diagrams help visualize relationships between different morphisms and constructions, ensuring that desired finiteness conditions are met while maintaining ample line bundles through pullbacks."
+    ],
+    "doc_ids": [
+      "2407.04378v2"
+    ],
+    "doc_sources": [
+      "2407.04378v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text-image",
+      "section_id": 4,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "4dee6765-fe77-4876-9d6e-d6ec21fafbd3",
+    "type": "abstractive",
+    "question": "How do commutative diagrams assist in proving properties of scheme modifications?",
+    "gold_answer": "Commutative diagrams help visualize relationships between different morphisms and constructions, ensuring that desired finiteness conditions are met while maintaining ample line bundles through pullbacks.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.476419061422348,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2407.04378v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2407.04378v2:p1:c18",
+        "doc_id": "2407.04378v2",
+        "page": 1,
+        "score": 0.476419061422348,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2407.04378v2:p1:c19",
+        "doc_id": "2407.04378v2",
+        "page": 1,
+        "score": 0.4459691047668457,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2407.04378v2:p1:c94",
+        "doc_id": "2407.04378v2",
+        "page": 1,
+        "score": 0.44533997774124146,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2407.04378v2:p1:c66",
+        "doc_id": "2407.04378v2",
+        "page": 1,
+        "score": 0.43333595991134644,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2407.04378v2:p1:c20",
+        "doc_id": "2407.04378v2",
+        "page": 1,
+        "score": 0.42817187309265137,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 28.097208007238805,
+      "rerank": 0.002667016815394163,
+      "generation": 172.72787500405684
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "03c4f0ad-8f43-40e6-b135-83e594c618f8",
+    "question": "What are the two main models in a GAN architecture?",
+    "answer": "The two main models in a GAN architecture are a generator $G$ and a discriminator $D$.",
+    "expected_answers": [
+      "The two main models in a GAN architecture are a generator $G$ and a discriminator $D$."
+    ],
+    "doc_ids": [
+      "2407.17674v2"
+    ],
+    "doc_sources": [
+      "2407.17674v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 3,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "03c4f0ad-8f43-40e6-b135-83e594c618f8",
+    "type": "extractive",
+    "question": "What are the two main models in a GAN architecture?",
+    "gold_answer": "The two main models in a GAN architecture are a generator $G$ and a discriminator $D$.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.5763387680053711,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2407.17674v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2407.17674v2:p1:c10",
+        "doc_id": "2407.17674v2",
+        "page": 1,
+        "score": 0.5763387680053711,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2407.17674v2:p1:c16",
+        "doc_id": "2407.17674v2",
+        "page": 1,
+        "score": 0.5577775239944458,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2407.17674v2:p1:c11",
+        "doc_id": "2407.17674v2",
+        "page": 1,
+        "score": 0.5315372347831726,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2407.17674v2:p1:c43",
+        "doc_id": "2407.17674v2",
+        "page": 1,
+        "score": 0.5246981382369995,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2407.17674v2:p1:c14",
+        "doc_id": "2407.17674v2",
+        "page": 1,
+        "score": 0.5120984315872192,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 24.56270798575133,
+      "rerank": 0.0029999937396496534,
+      "generation": 320.62312500784174
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

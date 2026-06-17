@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "8a5d71bc-8382-4feb-aff9-79f5e7ed5340",
+    "question": "What is the average number of comments and votes a Wattpad chapter receives?",
+    "answer": "On average, a Wattpad chapter receives about 33 comments and approximately 117 votes.",
+    "expected_answers": [
+      "On average, a Wattpad chapter receives about 33 comments and approximately 117 votes."
+    ],
+    "doc_ids": [
+      "2412.15239v2"
+    ],
+    "doc_sources": [
+      "2412.15239v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {
+      "source": "text-table",
+      "section_id": 9,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "8a5d71bc-8382-4feb-aff9-79f5e7ed5340",
+    "type": "extractive",
+    "question": "What is the average number of comments and votes a Wattpad chapter receives?",
+    "gold_answer": "On average, a Wattpad chapter receives about 33 comments and approximately 117 votes.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.716992974281311,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2412.15239v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2412.15239v2:p1:c48",
+        "doc_id": "2412.15239v2",
+        "page": 1,
+        "score": 0.716992974281311,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2412.15239v2:p1:c49",
+        "doc_id": "2412.15239v2",
+        "page": 1,
+        "score": 0.6117913722991943,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2412.15239v2:p1:c44",
+        "doc_id": "2412.15239v2",
+        "page": 1,
+        "score": 0.5921647548675537,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2412.15239v2:p1:c50",
+        "doc_id": "2412.15239v2",
+        "page": 1,
+        "score": 0.5664807558059692,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2412.15239v2:p1:c45",
+        "doc_id": "2412.15239v2",
+        "page": 1,
+        "score": 0.5632463693618774,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 23.147416999563575,
+      "rerank": 0.0014999823179095984,
+      "generation": 1140.3604999941308
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

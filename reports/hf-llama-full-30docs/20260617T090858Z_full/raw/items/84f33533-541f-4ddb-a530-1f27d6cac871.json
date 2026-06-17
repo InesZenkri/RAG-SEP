@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "84f33533-541f-4ddb-a530-1f27d6cac871",
+    "question": "How do traditional path planning algorithms like A* handle large state spaces?",
+    "answer": "Traditional path planning algorithms like A* ensure valid paths but struggle with computational and memory inefficiencies as the state space increases, making them less effective in large-scale scenarios.",
+    "expected_answers": [
+      "Traditional path planning algorithms like A* ensure valid paths but struggle with computational and memory inefficiencies as the state space increases, making them less effective in large-scale scenarios."
+    ],
+    "doc_ids": [
+      "2407.02511v2"
+    ],
+    "doc_sources": [
+      "2407.02511v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 0,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "84f33533-541f-4ddb-a530-1f27d6cac871",
+    "type": "abstractive",
+    "question": "How do traditional path planning algorithms like A* handle large state spaces?",
+    "gold_answer": "Traditional path planning algorithms like A* ensure valid paths but struggle with computational and memory inefficiencies as the state space increases, making them less effective in large-scale scenarios.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.7732324600219727,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2407.02511v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2407.02511v2:p1:c6",
+        "doc_id": "2407.02511v2",
+        "page": 1,
+        "score": 0.7732324600219727,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2407.02511v2:p1:c56",
+        "doc_id": "2407.02511v2",
+        "page": 1,
+        "score": 0.6984992027282715,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2407.02511v2:p1:c55",
+        "doc_id": "2407.02511v2",
+        "page": 1,
+        "score": 0.6924183368682861,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2407.02511v2:p1:c16",
+        "doc_id": "2407.02511v2",
+        "page": 1,
+        "score": 0.6768928170204163,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2407.02511v2:p1:c1",
+        "doc_id": "2407.02511v2",
+        "page": 1,
+        "score": 0.6552346348762512,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 26.43141700536944,
+      "rerank": 0.0024999899324029684,
+      "generation": 194.7222090093419
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

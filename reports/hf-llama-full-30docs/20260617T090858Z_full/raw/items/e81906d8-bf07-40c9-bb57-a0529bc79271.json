@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "e81906d8-bf07-40c9-bb57-a0529bc79271",
+    "question": "What is the purpose of using generative adversarial networks in synthetic cryo-EM density maps?",
+    "answer": "Generative adversarial networks (GANs) are used to improve the quality and accuracy of synthetic cryo-EM density maps by generating more realistic simulations that can better match experimental data.",
+    "expected_answers": [
+      "Generative adversarial networks (GANs) are used to improve the quality and accuracy of synthetic cryo-EM density maps by generating more realistic simulations that can better match experimental data."
+    ],
+    "doc_ids": [
+      "2407.17674v2"
+    ],
+    "doc_sources": [
+      "2407.17674v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text-image",
+      "section_id": 9,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "e81906d8-bf07-40c9-bb57-a0529bc79271",
+    "type": "abstractive",
+    "question": "What is the purpose of using generative adversarial networks in synthetic cryo-EM density maps?",
+    "gold_answer": "Generative adversarial networks (GANs) are used to improve the quality and accuracy of synthetic cryo-EM density maps by generating more realistic simulations that can better match experimental data.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.6730145215988159,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.06666666666666667,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2407.17674v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2407.17674v2:p1:c1",
+        "doc_id": "2407.17674v2",
+        "page": 1,
+        "score": 0.6730145215988159,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2407.17674v2:p1:c7",
+        "doc_id": "2407.17674v2",
+        "page": 1,
+        "score": 0.6727795600891113,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2407.17674v2:p1:c58",
+        "doc_id": "2407.17674v2",
+        "page": 1,
+        "score": 0.6464184522628784,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2407.17674v2:p1:c6",
+        "doc_id": "2407.17674v2",
+        "page": 1,
+        "score": 0.598461389541626,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2407.17674v2:p1:c47",
+        "doc_id": "2407.17674v2",
+        "page": 1,
+        "score": 0.5725047588348389,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 22.768625000026077,
+      "rerank": 0.0019170111045241356,
+      "generation": 189.24204201903194
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

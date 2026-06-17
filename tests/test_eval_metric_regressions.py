@@ -84,6 +84,12 @@ def test_angle_wrapped_citations_parse_to_plain_doc_page_keys():
     assert [citation.key() for citation in citations] == ["transformers:p1"]
 
 
+def test_arxiv_style_citations_keep_dotted_doc_ids():
+    citations = extract_citations("Impedance estimation is challenging [2410.14077v2:p1].")
+
+    assert [citation.key() for citation in citations] == ["2410.14077v2:p1"]
+
+
 def test_citation_precision_accepts_angle_wrapped_citation_markers():
     answer = Answer(
         question="What technique replaces recurrence in Transformers?",

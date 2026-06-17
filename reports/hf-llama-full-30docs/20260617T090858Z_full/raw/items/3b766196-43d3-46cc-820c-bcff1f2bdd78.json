@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "3b766196-43d3-46cc-820c-bcff1f2bdd78",
+    "question": "What are the optimal wavelength ranges for creating repulsive optical potentials in dysprosium Bose-Einstein condensates?",
+    "answer": "The study identifies two optimal spectral regions for creating repulsive potentials in dysprosium Bose-Einstein condensates: approximately 402-404 nm and 415-418 nm.",
+    "expected_answers": [
+      "The study identifies two optimal spectral regions for creating repulsive potentials in dysprosium Bose-Einstein condensates: approximately 402-404 nm and 415-418 nm."
+    ],
+    "doc_ids": [
+      "2403.18677v2"
+    ],
+    "doc_sources": [
+      "2403.18677v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {
+      "source": "text-table-image",
+      "section_id": 3,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "3b766196-43d3-46cc-820c-bcff1f2bdd78",
+    "type": "extractive",
+    "question": "What are the optimal wavelength ranges for creating repulsive optical potentials in dysprosium Bose-Einstein condensates?",
+    "gold_answer": "The study identifies two optimal spectral regions for creating repulsive potentials in dysprosium Bose-Einstein condensates: approximately 402-404 nm and 415-418 nm.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.7580652236938477,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2403.18677v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2403.18677v2:p1:c2",
+        "doc_id": "2403.18677v2",
+        "page": 1,
+        "score": 0.7580652236938477,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2403.18677v2:p1:c3",
+        "doc_id": "2403.18677v2",
+        "page": 1,
+        "score": 0.7520253658294678,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2403.18677v2:p1:c1",
+        "doc_id": "2403.18677v2",
+        "page": 1,
+        "score": 0.6779689788818359,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2403.18677v2:p1:c7",
+        "doc_id": "2403.18677v2",
+        "page": 1,
+        "score": 0.6762842535972595,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2403.18677v2:p1:c4",
+        "doc_id": "2403.18677v2",
+        "page": 1,
+        "score": 0.6688598394393921,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 18.389875011052936,
+      "rerank": 0.001167005393654108,
+      "generation": 164.34170797583647
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

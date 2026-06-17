@@ -1,0 +1,94 @@
+{
+  "item": {
+    "id": "43e26d2b-ad1a-4556-891a-1c17ede67bc9",
+    "question": "What is the task of NL2SQL?",
+    "answer": "The task of NL2SQL is to convert natural language queries into corresponding SQL queries that can be executed on a relational database.",
+    "expected_answers": [
+      "The task of NL2SQL is to convert natural language queries into corresponding SQL queries that can be executed on a relational database."
+    ],
+    "doc_ids": [
+      "2408.05109v4"
+    ],
+    "doc_sources": [
+      "2408.05109v4.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 3,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "43e26d2b-ad1a-4556-891a-1c17ede67bc9",
+    "type": "extractive",
+    "question": "What is the task of NL2SQL?",
+    "gold_answer": "The task of NL2SQL is to convert natural language queries into corresponding SQL queries that can be executed on a relational database.",
+    "predicted": "The task of NL2SQL is to translate Natural Language (NL) queries into Structured Query Language (SQL) queries.",
+    "abstained": false,
+    "confidence": 0.7481217384338379,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.6111111111111112,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2408.05109v4:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2408.05109v4:p1:c43",
+        "doc_id": "2408.05109v4",
+        "page": 1,
+        "score": 0.7481217384338379,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2408.05109v4:p1:c32",
+        "doc_id": "2408.05109v4",
+        "page": 1,
+        "score": 0.7330114841461182,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2408.05109v4:p1:c28",
+        "doc_id": "2408.05109v4",
+        "page": 1,
+        "score": 0.7265880107879639,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2408.05109v4:p1:c138",
+        "doc_id": "2408.05109v4",
+        "page": 1,
+        "score": 0.7181769609451294,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2408.05109v4:p1:c12",
+        "doc_id": "2408.05109v4",
+        "page": 1,
+        "score": 0.7111149430274963,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [],
+    "latency_ms": {
+      "retrieval": 29.398250015219674,
+      "rerank": 0.0026669877115637064,
+      "generation": 586.3832919858396
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

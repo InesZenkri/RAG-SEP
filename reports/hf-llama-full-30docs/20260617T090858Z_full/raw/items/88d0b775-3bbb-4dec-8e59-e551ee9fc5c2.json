@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "88d0b775-3bbb-4dec-8e59-e551ee9fc5c2",
+    "question": "Does the foreground class distribution change between train and test sets?",
+    "answer": "Yes.",
+    "expected_answers": [
+      "Yes."
+    ],
+    "doc_ids": [
+      "2410.11774v2"
+    ],
+    "doc_sources": [
+      "2410.11774v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 5,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "88d0b775-3bbb-4dec-8e59-e551ee9fc5c2",
+    "type": "extractive",
+    "question": "Does the foreground class distribution change between train and test sets?",
+    "gold_answer": "Yes.",
+    "predicted": "No, the foreground class distribution does not change between the train and test sets.",
+    "abstained": false,
+    "confidence": 0.5609228610992432,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2410.11774v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2410.11774v2:p1:c100",
+        "doc_id": "2410.11774v2",
+        "page": 1,
+        "score": 0.5609228610992432,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2410.11774v2:p1:c101",
+        "doc_id": "2410.11774v2",
+        "page": 1,
+        "score": 0.5197863578796387,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2410.11774v2:p1:c28",
+        "doc_id": "2410.11774v2",
+        "page": 1,
+        "score": 0.47271162271499634,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2410.11774v2:p1:c22",
+        "doc_id": "2410.11774v2",
+        "page": 1,
+        "score": 0.44398418068885803,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2410.11774v2:p1:c18",
+        "doc_id": "2410.11774v2",
+        "page": 1,
+        "score": 0.44136521220207214,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 20.167875016340986,
+      "rerank": 0.0014580145943909883,
+      "generation": 422.74720800924115
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

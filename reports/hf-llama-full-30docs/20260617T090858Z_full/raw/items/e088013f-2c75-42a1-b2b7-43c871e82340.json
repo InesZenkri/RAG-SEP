@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "e088013f-2c75-42a1-b2b7-43c871e82340",
+    "question": "Is actual story text used alongside other features to predict user engagement metrics?",
+    "answer": "Yes.",
+    "expected_answers": [
+      "Yes."
+    ],
+    "doc_ids": [
+      "2412.15239v2"
+    ],
+    "doc_sources": [
+      "2412.15239v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 7,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "e088013f-2c75-42a1-b2b7-43c871e82340",
+    "type": "extractive",
+    "question": "Is actual story text used alongside other features to predict user engagement metrics?",
+    "gold_answer": "Yes.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.7534565925598145,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2412.15239v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2412.15239v2:p1:c43",
+        "doc_id": "2412.15239v2",
+        "page": 1,
+        "score": 0.7534565925598145,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2412.15239v2:p1:c55",
+        "doc_id": "2412.15239v2",
+        "page": 1,
+        "score": 0.7387939691543579,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2412.15239v2:p1:c56",
+        "doc_id": "2412.15239v2",
+        "page": 1,
+        "score": 0.7149170637130737,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2412.15239v2:p1:c17",
+        "doc_id": "2412.15239v2",
+        "page": 1,
+        "score": 0.7132006883621216,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2412.15239v2:p1:c57",
+        "doc_id": "2412.15239v2",
+        "page": 1,
+        "score": 0.6884661912918091,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 20.26329201180488,
+      "rerank": 0.0015409896150231361,
+      "generation": 174.45387499174103
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

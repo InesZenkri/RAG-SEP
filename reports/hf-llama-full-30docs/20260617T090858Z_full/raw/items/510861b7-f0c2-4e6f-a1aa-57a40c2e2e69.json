@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "510861b7-f0c2-4e6f-a1aa-57a40c2e2e69",
+    "question": "How do various language models compare in terms of their loan approval decision frequencies?",
+    "answer": "Different language models exhibit varying frequencies for denying loans, partially approving them, or fully approving them. This comparison helps understand each model's tendency towards certain types of decisions under specific conditions.",
+    "expected_answers": [
+      "Different language models exhibit varying frequencies for denying loans, partially approving them, or fully approving them. This comparison helps understand each model's tendency towards certain types of decisions under specific conditions."
+    ],
+    "doc_ids": [
+      "2411.11853v3"
+    ],
+    "doc_sources": [
+      "2411.11853v3.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text-image",
+      "section_id": 20,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "510861b7-f0c2-4e6f-a1aa-57a40c2e2e69",
+    "type": "abstractive",
+    "question": "How do various language models compare in terms of their loan approval decision frequencies?",
+    "gold_answer": "Different language models exhibit varying frequencies for denying loans, partially approving them, or fully approving them. This comparison helps understand each model's tendency towards certain types of decisions under specific conditions.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.5488051176071167,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2411.11853v3:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2411.11853v3:p1:c31",
+        "doc_id": "2411.11853v3",
+        "page": 1,
+        "score": 0.5488051176071167,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2411.11853v3:p1:c61",
+        "doc_id": "2411.11853v3",
+        "page": 1,
+        "score": 0.46848246455192566,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2411.11853v3:p1:c5",
+        "doc_id": "2411.11853v3",
+        "page": 1,
+        "score": 0.43465620279312134,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2411.11853v3:p1:c23",
+        "doc_id": "2411.11853v3",
+        "page": 1,
+        "score": 0.4327276945114136,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2406.17972v3:p1:c307",
+        "doc_id": "2406.17972v3",
+        "page": 1,
+        "score": 0.429956316947937,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 23.844041978009045,
+      "rerank": 0.0028329959604889154,
+      "generation": 249.92183299036697
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

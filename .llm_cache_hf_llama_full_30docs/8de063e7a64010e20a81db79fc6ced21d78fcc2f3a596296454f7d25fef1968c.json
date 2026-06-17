@@ -1,0 +1,9 @@
+{
+  "cached": false,
+  "finish_reason": "",
+  "input_tokens": 854,
+  "model": "meta-llama/Meta-Llama-3-8B-Instruct",
+  "output_tokens": 26,
+  "provider": "huggingface",
+  "text": "The task of NL2SQL is to translate Natural Language (NL) queries into Structured Query Language (SQL) queries."
+}

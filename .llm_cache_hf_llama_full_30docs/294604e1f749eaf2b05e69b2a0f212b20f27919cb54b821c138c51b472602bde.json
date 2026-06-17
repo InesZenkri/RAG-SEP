@@ -1,0 +1,9 @@
+{
+  "cached": false,
+  "finish_reason": "",
+  "input_tokens": 873,
+  "model": "meta-llama/Meta-Llama-3-8B-Instruct",
+  "output_tokens": 22,
+  "provider": "huggingface",
+  "text": "Yes, according to the paper, a firm's position within the domestic production network influences its importing decisions."
+}

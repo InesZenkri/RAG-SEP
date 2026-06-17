@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "392eaa82-623a-437f-8b2c-8177fd287b24",
+    "question": "Are policies with low expected free energy more likely to be sampled by an agent?",
+    "answer": "Yes.",
+    "expected_answers": [
+      "Yes."
+    ],
+    "doc_ids": [
+      "2406.07726v3"
+    ],
+    "doc_sources": [
+      "2406.07726v3.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 3,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "392eaa82-623a-437f-8b2c-8177fd287b24",
+    "type": "extractive",
+    "question": "Are policies with low expected free energy more likely to be sampled by an agent?",
+    "gold_answer": "Yes.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.5532127618789673,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2406.07726v3:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2406.07726v3:p1:c14",
+        "doc_id": "2406.07726v3",
+        "page": 1,
+        "score": 0.5532127618789673,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2406.07726v3:p1:c16",
+        "doc_id": "2406.07726v3",
+        "page": 1,
+        "score": 0.5158882737159729,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2406.07726v3:p1:c51",
+        "doc_id": "2406.07726v3",
+        "page": 1,
+        "score": 0.47812557220458984,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2406.07726v3:p1:c52",
+        "doc_id": "2406.07726v3",
+        "page": 1,
+        "score": 0.4358150362968445,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2406.07726v3:p1:c11",
+        "doc_id": "2406.07726v3",
+        "page": 1,
+        "score": 0.4065396785736084,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 28.25195898185484,
+      "rerank": 0.002916989615187049,
+      "generation": 175.91862499830313
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

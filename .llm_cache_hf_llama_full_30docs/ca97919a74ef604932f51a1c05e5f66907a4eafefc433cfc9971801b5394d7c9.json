@@ -1,0 +1,9 @@
+{
+  "cached": false,
+  "finish_reason": "",
+  "input_tokens": 1047,
+  "model": "meta-llama/Meta-Llama-3-8B-Instruct",
+  "output_tokens": 45,
+  "provider": "huggingface",
+  "text": "Post-calibrated softmax adjustment (PCSA) is important in handling class imbalances because it boasts strong performance, good compatibility with many methods, and does not necessitate specialized loss function optimization, making it more user-friendly."
+}

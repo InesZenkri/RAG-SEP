@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "af8938dd-a0e8-45af-9250-016d987051b1",
+    "question": "How does Time-Sensitive Networking prioritize different types of network traffic in industrial applications?",
+    "answer": "Time-Sensitive Networking prioritizes network traffic using a strict priority algorithm based on Priority Code Point (PCP) values. Traffic is categorized into classes such as Background, Best effort, Excellent effort, Critical Application, Video, Voice, Internetwork Control, and Network Control. Each class is assigned a PCP value that determines its priority level for transmission.",
+    "expected_answers": [
+      "Time-Sensitive Networking prioritizes network traffic using a strict priority algorithm based on Priority Code Point (PCP) values. Traffic is categorized into classes such as Background, Best effort, Excellent effort, Critical Application, Video, Voice, Internetwork Control, and Network Control. Each class is assigned a PCP value that determines its priority level for transmission."
+    ],
+    "doc_ids": [
+      "2412.10243v3"
+    ],
+    "doc_sources": [
+      "2412.10243v3.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text-table-image",
+      "section_id": 2,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "af8938dd-a0e8-45af-9250-016d987051b1",
+    "type": "abstractive",
+    "question": "How does Time-Sensitive Networking prioritize different types of network traffic in industrial applications?",
+    "gold_answer": "Time-Sensitive Networking prioritizes network traffic using a strict priority algorithm based on Priority Code Point (PCP) values. Traffic is categorized into classes such as Background, Best effort, Excellent effort, Critical Application, Video, Voice, Internetwork Control, and Network Control. Each class is assigned a PCP value that determines its priority level for transmission.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.6859054565429688,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.024096385542168672,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2412.10243v3:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2412.10243v3:p1:c75",
+        "doc_id": "2412.10243v3",
+        "page": 1,
+        "score": 0.6859054565429688,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2412.10243v3:p1:c72",
+        "doc_id": "2412.10243v3",
+        "page": 1,
+        "score": 0.6298084259033203,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2412.10243v3:p1:c8",
+        "doc_id": "2412.10243v3",
+        "page": 1,
+        "score": 0.624968945980072,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2412.10243v3:p1:c6",
+        "doc_id": "2412.10243v3",
+        "page": 1,
+        "score": 0.6246035099029541,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2412.10243v3:p1:c71",
+        "doc_id": "2412.10243v3",
+        "page": 1,
+        "score": 0.6082397699356079,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 20.157916005700827,
+      "rerank": 0.002249988028779626,
+      "generation": 172.36220798804425
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

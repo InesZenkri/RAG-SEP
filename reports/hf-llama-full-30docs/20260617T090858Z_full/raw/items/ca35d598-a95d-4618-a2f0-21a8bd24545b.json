@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "ca35d598-a95d-4618-a2f0-21a8bd24545b",
+    "question": "What theoretical rationale supports using multilevel metamodels in simulation studies?",
+    "answer": "The theoretical rationale for using MLMM lies in their ability to handle complex data hierarchies inherent in many simulation studies. By incorporating this complexity into analysis, MLMM provide more accurate estimates and interpretations, reflecting true underlying processes rather than artifacts introduced by simplistic modeling approaches.",
+    "expected_answers": [
+      "The theoretical rationale for using MLMM lies in their ability to handle complex data hierarchies inherent in many simulation studies. By incorporating this complexity into analysis, MLMM provide more accurate estimates and interpretations, reflecting true underlying processes rather than artifacts introduced by simplistic modeling approaches."
+    ],
+    "doc_ids": [
+      "2401.07294v4"
+    ],
+    "doc_sources": [
+      "2401.07294v4.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 0,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "ca35d598-a95d-4618-a2f0-21a8bd24545b",
+    "type": "abstractive",
+    "question": "What theoretical rationale supports using multilevel metamodels in simulation studies?",
+    "gold_answer": "The theoretical rationale for using MLMM lies in their ability to handle complex data hierarchies inherent in many simulation studies. By incorporating this complexity into analysis, MLMM provide more accurate estimates and interpretations, reflecting true underlying processes rather than artifacts introduced by simplistic modeling approaches.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.7590774297714233,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.07792207792207792,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2401.07294v4:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2401.07294v4:p1:c1",
+        "doc_id": "2401.07294v4",
+        "page": 1,
+        "score": 0.7590774297714233,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2401.07294v4:p1:c2",
+        "doc_id": "2401.07294v4",
+        "page": 1,
+        "score": 0.7457525730133057,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2401.07294v4:p1:c16",
+        "doc_id": "2401.07294v4",
+        "page": 1,
+        "score": 0.7002805471420288,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2401.07294v4:p1:c99",
+        "doc_id": "2401.07294v4",
+        "page": 1,
+        "score": 0.6681503653526306,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2401.07294v4:p1:c9",
+        "doc_id": "2401.07294v4",
+        "page": 1,
+        "score": 0.6601502895355225,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 19.747250014916062,
+      "rerank": 0.0021249870769679546,
+      "generation": 169.3196669803001
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

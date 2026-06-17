@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "755e4742-ec8b-4d95-9143-ed1299d3f377",
+    "question": "How does feature selection impact model performance on ImageNet-1k when using different methods?",
+    "answer": "On ImageNet-1k, ELF performs well with significantly reduced dimensionality compared to other methods like FSA and TISP. Although these traditional methods use all available features, they show diminishing returns in accuracy improvement as more features are added.",
+    "expected_answers": [
+      "On ImageNet-1k, ELF performs well with significantly reduced dimensionality compared to other methods like FSA and TISP. Although these traditional methods use all available features, they show diminishing returns in accuracy improvement as more features are added."
+    ],
+    "doc_ids": [
+      "2412.10128v2"
+    ],
+    "doc_sources": [
+      "2412.10128v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text-table-image",
+      "section_id": 11,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "755e4742-ec8b-4d95-9143-ed1299d3f377",
+    "type": "abstractive",
+    "question": "How does feature selection impact model performance on ImageNet-1k when using different methods?",
+    "gold_answer": "On ImageNet-1k, ELF performs well with significantly reduced dimensionality compared to other methods like FSA and TISP. Although these traditional methods use all available features, they show diminishing returns in accuracy improvement as more features are added.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.5745663046836853,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.05714285714285714,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2412.10128v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2412.10128v2:p1:c76",
+        "doc_id": "2412.10128v2",
+        "page": 1,
+        "score": 0.5745663046836853,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2412.10128v2:p1:c72",
+        "doc_id": "2412.10128v2",
+        "page": 1,
+        "score": 0.5667141079902649,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2412.10128v2:p1:c74",
+        "doc_id": "2412.10128v2",
+        "page": 1,
+        "score": 0.5546821355819702,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2408.04307v3:p1:c109",
+        "doc_id": "2408.04307v3",
+        "page": 1,
+        "score": 0.5414988994598389,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2412.10128v2:p1:c4",
+        "doc_id": "2412.10128v2",
+        "page": 1,
+        "score": 0.5259829759597778,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 26.578749995678663,
+      "rerank": 0.0031250237952917814,
+      "generation": 180.10349999531172
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "c923f498-6a35-42ac-97cc-10fbcf83bb1d",
+    "question": "Can there be multiple SQL queries for a single natural language query in NL2SQL?",
+    "answer": "Yes.",
+    "expected_answers": [
+      "Yes."
+    ],
+    "doc_ids": [
+      "2408.05109v4"
+    ],
+    "doc_sources": [
+      "2408.05109v4.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 3,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "c923f498-6a35-42ac-97cc-10fbcf83bb1d",
+    "type": "extractive",
+    "question": "Can there be multiple SQL queries for a single natural language query in NL2SQL?",
+    "gold_answer": "Yes.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.6920293569564819,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2408.05109v4:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2408.05109v4:p1:c17",
+        "doc_id": "2408.05109v4",
+        "page": 1,
+        "score": 0.6920293569564819,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2408.05109v4:p1:c1",
+        "doc_id": "2408.05109v4",
+        "page": 1,
+        "score": 0.6906301975250244,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2408.05109v4:p1:c34",
+        "doc_id": "2408.05109v4",
+        "page": 1,
+        "score": 0.6755590438842773,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2408.05109v4:p1:c28",
+        "doc_id": "2408.05109v4",
+        "page": 1,
+        "score": 0.6703650951385498,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2408.05109v4:p1:c23",
+        "doc_id": "2408.05109v4",
+        "page": 1,
+        "score": 0.6621456742286682,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 29.615042003570125,
+      "rerank": 0.002207991201430559,
+      "generation": 214.6427080151625
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

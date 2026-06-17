@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "6f49fba7-5a86-4713-81b0-58107d049879",
+    "question": "Are experts distributed across different EP groups?",
+    "answer": "Yes, experts are distributed across different EP groups.",
+    "expected_answers": [
+      "Yes, experts are distributed across different EP groups."
+    ],
+    "doc_ids": [
+      "2408.04307v3"
+    ],
+    "doc_sources": [
+      "2408.04307v3.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {
+      "source": "text-image",
+      "section_id": 11,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "6f49fba7-5a86-4713-81b0-58107d049879",
+    "type": "extractive",
+    "question": "Are experts distributed across different EP groups?",
+    "gold_answer": "Yes, experts are distributed across different EP groups.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.47601670026779175,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2408.04307v3:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2408.04307v3:p1:c55",
+        "doc_id": "2408.04307v3",
+        "page": 1,
+        "score": 0.47601670026779175,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2408.04307v3:p1:c23",
+        "doc_id": "2408.04307v3",
+        "page": 1,
+        "score": 0.459503173828125,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2408.04307v3:p1:c54",
+        "doc_id": "2408.04307v3",
+        "page": 1,
+        "score": 0.39838671684265137,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2408.04307v3:p1:c45",
+        "doc_id": "2408.04307v3",
+        "page": 1,
+        "score": 0.39546066522598267,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2408.04307v3:p1:c51",
+        "doc_id": "2408.04307v3",
+        "page": 1,
+        "score": 0.39541923999786377,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 61.1308750230819,
+      "rerank": 0.001500011421740055,
+      "generation": 182.18987502041273
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

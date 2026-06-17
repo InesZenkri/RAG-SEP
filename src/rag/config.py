@@ -8,6 +8,9 @@ from pathlib import Path
 from typing import Any
 
 import yaml
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 @dataclass
@@ -43,7 +46,7 @@ class RetrievalConfig:
 
 @dataclass
 class GenerationConfig:
-    provider: str = "echo"  # echo | gemini s| huggingface | ollama
+    provider: str = "echo"  # echo | gemini | huggingface | ollama
     model: str = "llama-3.1-8b-instant"
     temperature: float = 0.1
     max_tokens: int = 512
@@ -163,6 +166,8 @@ class PipelineConfig:
             self.generation.provider = os.environ["RAG_GENERATION_PROVIDER"]
         if os.getenv("GEMINI_MODEL") and self.generation.provider in {"echo", "gemini"}:
             self.generation.model = os.environ["GEMINI_MODEL"]
+        if os.getenv("HF_MODEL") and self.generation.provider == "huggingface":
+            self.generation.model = os.environ["HF_MODEL"]
         if os.getenv("OLLAMA_MODEL") and self.generation.provider == "ollama":
             self.generation.model = os.environ["OLLAMA_MODEL"]
         if os.getenv("GROQ_MODEL") and self.generation.provider == "groq":

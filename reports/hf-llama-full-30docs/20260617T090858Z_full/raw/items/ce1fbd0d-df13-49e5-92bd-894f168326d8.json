@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "ce1fbd0d-df13-49e5-92bd-894f168326d8",
+    "question": "Does the expected probability of infection decrease with increasing variance in dose?",
+    "answer": "Yes.",
+    "expected_answers": [
+      "Yes."
+    ],
+    "doc_ids": [
+      "2404.00822v2"
+    ],
+    "doc_sources": [
+      "2404.00822v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 5,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "ce1fbd0d-df13-49e5-92bd-894f168326d8",
+    "type": "extractive",
+    "question": "Does the expected probability of infection decrease with increasing variance in dose?",
+    "gold_answer": "Yes.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.7289147973060608,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2404.00822v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2404.00822v2:p1:c27",
+        "doc_id": "2404.00822v2",
+        "page": 1,
+        "score": 0.7289147973060608,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2404.00822v2:p1:c11",
+        "doc_id": "2404.00822v2",
+        "page": 1,
+        "score": 0.7249249815940857,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2404.00822v2:p1:c81",
+        "doc_id": "2404.00822v2",
+        "page": 1,
+        "score": 0.7150049209594727,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2404.00822v2:p1:c106",
+        "doc_id": "2404.00822v2",
+        "page": 1,
+        "score": 0.7149626016616821,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2404.00822v2:p1:c1",
+        "doc_id": "2404.00822v2",
+        "page": 1,
+        "score": 0.712979793548584,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 24.923999997554347,
+      "rerank": 0.0024579931050539017,
+      "generation": 179.4620830041822
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

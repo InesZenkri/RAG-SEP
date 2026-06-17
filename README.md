@@ -13,8 +13,13 @@ Project documentation and submitted PDFs are maintained in the
 
 ## Quick start
 
+Prerequisite: use Python 3.10 or newer. The project uses modern type-hint
+syntax such as `str | None`, so Python 3.9 and older will fail before the
+requirements can help.
+
 ```bash
-python -m venv .venv && source .venv/bin/activate
+python3 --version              # must be 3.10 or newer
+python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements-dev.txt
 pip install -e .
 cp .env.example .env          # add your GEMINI_API_KEY (optional)
@@ -229,9 +234,13 @@ as comma-separated email lists.
 
 ## Open RAG Benchmark + RAGAS
 
-Download and prepare the Vectara Open RAG Benchmark:
+Download and prepare the Vectara Open RAG Benchmark. For local Ollama runs,
+start small: verify `smoke`, then try about 50 benchmark PDFs before attempting
+the full dataset. `--subset all` can take a long time, use a lot of disk, and
+make debugging provider/model issues unnecessarily expensive.
 
 ```bash
+python scripts/download_benchmark.py --subset 10
 python scripts/download_benchmark.py --subset 50
 python scripts/download_benchmark.py --subset all
 ```
@@ -239,6 +248,13 @@ python scripts/download_benchmark.py --subset all
 The downloader fetches `vectara/open_ragbench` from Hugging Face and writes a
 prepared text corpus plus QA file under `datasets/open_rag_bench/prepared/`.
 That directory is gitignored because the benchmark is large.
+
+Check the prepared size before running:
+
+```bash
+find datasets/open_rag_bench/prepared/corpus -type f | wc -l
+wc -l datasets/open_rag_bench/prepared/qa.jsonl
+```
 
 Run the full benchmark with Ollama/RAGAS:
 

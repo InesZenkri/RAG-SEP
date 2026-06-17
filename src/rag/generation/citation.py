@@ -14,7 +14,7 @@ from dataclasses import dataclass
 
 from rag.types import Citation, RetrievalResult
 
-CITATION_PATTERN = re.compile(r"<?([A-Za-z0-9_\-]+):p(\d+)>?")
+CITATION_PATTERN = re.compile(r"<?([A-Za-z0-9_.\-]+):p(\d+)>?")
 
 
 @dataclass

@@ -1,0 +1,9 @@
+{
+  "cached": false,
+  "finish_reason": "",
+  "input_tokens": 976,
+  "model": "meta-llama/Meta-Llama-3-8B-Instruct",
+  "output_tokens": 36,
+  "provider": "huggingface",
+  "text": "The self-supervised learning framework for syllabic embeddings, Sylber, offers promising potential for interpretable and efficient speech tokenization, and scalable and efficient spoken language modeling."
+}

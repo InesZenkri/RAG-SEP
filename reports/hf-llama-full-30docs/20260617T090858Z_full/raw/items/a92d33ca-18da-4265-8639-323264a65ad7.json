@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "a92d33ca-18da-4265-8639-323264a65ad7",
+    "question": "How does variability in microbe mortality impact average infectivity?",
+    "answer": "Higher variability in microbe mortality tends to increase average infectivity because microbes with lower-than-average death rates survive longer, enhancing their chances to cause infection.",
+    "expected_answers": [
+      "Higher variability in microbe mortality tends to increase average infectivity because microbes with lower-than-average death rates survive longer, enhancing their chances to cause infection."
+    ],
+    "doc_ids": [
+      "2404.00822v2"
+    ],
+    "doc_sources": [
+      "2404.00822v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text-image",
+      "section_id": 16,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "a92d33ca-18da-4265-8639-323264a65ad7",
+    "type": "abstractive",
+    "question": "How does variability in microbe mortality impact average infectivity?",
+    "gold_answer": "Higher variability in microbe mortality tends to increase average infectivity because microbes with lower-than-average death rates survive longer, enhancing their chances to cause infection.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.6998333930969238,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.07017543859649122,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2404.00822v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2404.00822v2:p1:c102",
+        "doc_id": "2404.00822v2",
+        "page": 1,
+        "score": 0.6998333930969238,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2404.00822v2:p1:c103",
+        "doc_id": "2404.00822v2",
+        "page": 1,
+        "score": 0.6646709442138672,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2404.00822v2:p1:c14",
+        "doc_id": "2404.00822v2",
+        "page": 1,
+        "score": 0.6612608432769775,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2404.00822v2:p1:c108",
+        "doc_id": "2404.00822v2",
+        "page": 1,
+        "score": 0.6547013521194458,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2404.00822v2:p1:c5",
+        "doc_id": "2404.00822v2",
+        "page": 1,
+        "score": 0.6495221853256226,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 29.21679097926244,
+      "rerank": 0.0030410010367631912,
+      "generation": 179.6060829947237
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

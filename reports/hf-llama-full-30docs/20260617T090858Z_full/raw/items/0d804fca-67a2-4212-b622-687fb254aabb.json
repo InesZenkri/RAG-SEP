@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "0d804fca-67a2-4212-b622-687fb254aabb",
+    "question": "Do the beam patterns exhibit circular symmetry within their $50\\%$ contour?",
+    "answer": "Yes",
+    "expected_answers": [
+      "Yes"
+    ],
+    "doc_ids": [
+      "2412.02582v2"
+    ],
+    "doc_sources": [
+      "2412.02582v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {
+      "source": "text-image",
+      "section_id": 13,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "0d804fca-67a2-4212-b622-687fb254aabb",
+    "type": "extractive",
+    "question": "Do the beam patterns exhibit circular symmetry within their $50\\%$ contour?",
+    "gold_answer": "Yes",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.6730175018310547,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2412.02582v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2412.02582v2:p1:c69",
+        "doc_id": "2412.02582v2",
+        "page": 1,
+        "score": 0.6730175018310547,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2412.02582v2:p1:c70",
+        "doc_id": "2412.02582v2",
+        "page": 1,
+        "score": 0.6123625040054321,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2412.02582v2:p1:c87",
+        "doc_id": "2412.02582v2",
+        "page": 1,
+        "score": 0.5887812376022339,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2412.02582v2:p1:c63",
+        "doc_id": "2412.02582v2",
+        "page": 1,
+        "score": 0.5883949995040894,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2412.02582v2:p1:c46",
+        "doc_id": "2412.02582v2",
+        "page": 1,
+        "score": 0.5715901255607605,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 19.85445898026228,
+      "rerank": 0.0015420082490891218,
+      "generation": 195.15179202426225
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "d64519ad-c447-4956-8869-c7f3ef68920c",
+    "question": "What is the purpose of incorporating feature weights in PCA?",
+    "answer": "The purpose of incorporating feature weights in PCA is to emphasize specific facial regions for facial expression recognition.",
+    "expected_answers": [
+      "The purpose of incorporating feature weights in PCA is to emphasize specific facial regions for facial expression recognition."
+    ],
+    "doc_ids": [
+      "2412.10128v2"
+    ],
+    "doc_sources": [
+      "2412.10128v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 2,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "d64519ad-c447-4956-8869-c7f3ef68920c",
+    "type": "abstractive",
+    "question": "What is the purpose of incorporating feature weights in PCA?",
+    "gold_answer": "The purpose of incorporating feature weights in PCA is to emphasize specific facial regions for facial expression recognition.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.41669023036956787,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.04,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2412.10128v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2412.10128v2:p1:c10",
+        "doc_id": "2412.10128v2",
+        "page": 1,
+        "score": 0.41669023036956787,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2412.10128v2:p1:c34",
+        "doc_id": "2412.10128v2",
+        "page": 1,
+        "score": 0.3926689326763153,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2412.10128v2:p1:c91",
+        "doc_id": "2412.10128v2",
+        "page": 1,
+        "score": 0.3913494944572449,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2412.10128v2:p1:c85",
+        "doc_id": "2412.10128v2",
+        "page": 1,
+        "score": 0.3850117325782776,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2412.10128v2:p1:c38",
+        "doc_id": "2412.10128v2",
+        "page": 1,
+        "score": 0.38355162739753723,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 17.66670899814926,
+      "rerank": 0.001167005393654108,
+      "generation": 168.59304101672024
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

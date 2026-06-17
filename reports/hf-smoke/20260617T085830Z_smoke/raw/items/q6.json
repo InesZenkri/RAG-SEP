@@ -1,0 +1,74 @@
+{
+  "item": {
+    "id": "q6",
+    "question": "What folds increase the surface area of the mitochondrial inner membrane?",
+    "answer": "cristae",
+    "expected_answers": [
+      "cristae"
+    ],
+    "doc_ids": [],
+    "doc_sources": [
+      "mitochondria.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {}
+  },
+  "result": {
+    "id": "q6",
+    "type": "extractive",
+    "question": "What folds increase the surface area of the mitochondrial inner membrane?",
+    "gold_answer": "cristae",
+    "predicted": "[HuggingFace Error] Router call failed: 400 Client Error: Bad Request for url: https://router.huggingface.co/v1/chat/completions",
+    "abstained": false,
+    "confidence": 0.5877712965011597,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "mitochondria:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "mitochondria:p1:c1",
+        "doc_id": "mitochondria",
+        "page": 1,
+        "score": 0.5877712965011597,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "photosynthesis:p1:c1",
+        "doc_id": "photosynthesis",
+        "page": 1,
+        "score": 0.2499730885028839,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "transformers:p1:c1",
+        "doc_id": "transformers",
+        "page": 1,
+        "score": 0.045994460582733154,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 36.45245899679139,
+      "rerank": 0.000500003807246685,
+      "generation": 155.02520799054764
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

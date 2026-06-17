@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "73cb4852-25f8-4c14-bad1-28aaf8c9a5a3",
+    "question": "Is environmental noise used more frequently than other speech for mixing in the denoising objective?",
+    "answer": "Yes.",
+    "expected_answers": [
+      "Yes."
+    ],
+    "doc_ids": [
+      "2410.07168v2"
+    ],
+    "doc_sources": [
+      "2410.07168v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 19,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "73cb4852-25f8-4c14-bad1-28aaf8c9a5a3",
+    "type": "extractive",
+    "question": "Is environmental noise used more frequently than other speech for mixing in the denoising objective?",
+    "gold_answer": "Yes.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.5303927659988403,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2410.07168v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2410.07168v2:p1:c98",
+        "doc_id": "2410.07168v2",
+        "page": 1,
+        "score": 0.5303927659988403,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2410.07168v2:p1:c99",
+        "doc_id": "2410.07168v2",
+        "page": 1,
+        "score": 0.5043133497238159,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2410.07168v2:p1:c122",
+        "doc_id": "2410.07168v2",
+        "page": 1,
+        "score": 0.4739696979522705,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2410.07168v2:p1:c110",
+        "doc_id": "2410.07168v2",
+        "page": 1,
+        "score": 0.43638890981674194,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2410.07168v2:p1:c22",
+        "doc_id": "2410.07168v2",
+        "page": 1,
+        "score": 0.4231300354003906,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 22.46545799425803,
+      "rerank": 0.0024579931050539017,
+      "generation": 210.20491598756053
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

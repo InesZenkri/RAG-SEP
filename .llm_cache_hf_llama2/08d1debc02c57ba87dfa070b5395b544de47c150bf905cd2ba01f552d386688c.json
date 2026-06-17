@@ -1,0 +1,9 @@
+{
+  "cached": false,
+  "finish_reason": "",
+  "input_tokens": 543,
+  "model": "meta-llama/Meta-Llama-3-8B-Instruct",
+  "output_tokens": 11,
+  "provider": "huggingface",
+  "text": "Self-attention. [transformers:p1]"
+}

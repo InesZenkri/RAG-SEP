@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "adff226a-9c91-42aa-ab90-cc620dd93bf9",
+    "question": "What is denoted by the joint survival function $\\bar{F}(\\boldsymbol{x})$?",
+    "answer": "The joint survival function $\\bar{F}(\\boldsymbol{x})$ is denoted by $\\mathbb{P}(\\boldsymbol{X}>\\boldsymbol{x})$.",
+    "expected_answers": [
+      "The joint survival function $\\bar{F}(\\boldsymbol{x})$ is denoted by $\\mathbb{P}(\\boldsymbol{X}>\\boldsymbol{x})$."
+    ],
+    "doc_ids": [
+      "2411.13384v2"
+    ],
+    "doc_sources": [
+      "2411.13384v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 2,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "adff226a-9c91-42aa-ab90-cc620dd93bf9",
+    "type": "extractive",
+    "question": "What is denoted by the joint survival function $\\bar{F}(\\boldsymbol{x})$?",
+    "gold_answer": "The joint survival function $\\bar{F}(\\boldsymbol{x})$ is denoted by $\\mathbb{P}(\\boldsymbol{X}>\\boldsymbol{x})$.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.4814263582229614,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2411.13384v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2411.13384v2:p1:c18",
+        "doc_id": "2411.13384v2",
+        "page": 1,
+        "score": 0.4814263582229614,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2411.13384v2:p1:c24",
+        "doc_id": "2411.13384v2",
+        "page": 1,
+        "score": 0.45183345675468445,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2411.13384v2:p1:c143",
+        "doc_id": "2411.13384v2",
+        "page": 1,
+        "score": 0.42507097125053406,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2411.13384v2:p1:c17",
+        "doc_id": "2411.13384v2",
+        "page": 1,
+        "score": 0.4115220010280609,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2411.13384v2:p1:c116",
+        "doc_id": "2411.13384v2",
+        "page": 1,
+        "score": 0.3938490152359009,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 17.68387499032542,
+      "rerank": 0.001208973117172718,
+      "generation": 178.54324998916127
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

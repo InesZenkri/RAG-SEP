@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "1c4dd9be-2066-4a09-8d73-aa2b1fb5dec0",
+    "question": "What are the benefits of using a three-level Multilevel Mixed Model in Monte Carlo simulation studies compared to a two-level model?",
+    "answer": "The three-level Multilevel Mixed Model (MLMM) offers all the advantages of a two-level model while providing additional insights into generalizability through random slope variances. This is not possible with the two-level model, which cannot identify analogous random slopes models.",
+    "expected_answers": [
+      "The three-level Multilevel Mixed Model (MLMM) offers all the advantages of a two-level model while providing additional insights into generalizability through random slope variances. This is not possible with the two-level model, which cannot identify analogous random slopes models."
+    ],
+    "doc_ids": [
+      "2401.07294v4"
+    ],
+    "doc_sources": [
+      "2401.07294v4.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text-table",
+      "section_id": 7,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "1c4dd9be-2066-4a09-8d73-aa2b1fb5dec0",
+    "type": "abstractive",
+    "question": "What are the benefits of using a three-level Multilevel Mixed Model in Monte Carlo simulation studies compared to a two-level model?",
+    "gold_answer": "The three-level Multilevel Mixed Model (MLMM) offers all the advantages of a two-level model while providing additional insights into generalizability through random slope variances. This is not possible with the two-level model, which cannot identify analogous random slopes models.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.5867985486984253,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2401.07294v4:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2401.07294v4:p1:c1",
+        "doc_id": "2401.07294v4",
+        "page": 1,
+        "score": 0.5867985486984253,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2401.07294v4:p1:c113",
+        "doc_id": "2401.07294v4",
+        "page": 1,
+        "score": 0.586678147315979,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2401.07294v4:p1:c45",
+        "doc_id": "2401.07294v4",
+        "page": 1,
+        "score": 0.5645939111709595,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2401.07294v4:p1:c103",
+        "doc_id": "2401.07294v4",
+        "page": 1,
+        "score": 0.5636178851127625,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2401.07294v4:p1:c3",
+        "doc_id": "2401.07294v4",
+        "page": 1,
+        "score": 0.5583892464637756,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 43.716040992876515,
+      "rerank": 0.001333013642579317,
+      "generation": 191.6229999915231
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

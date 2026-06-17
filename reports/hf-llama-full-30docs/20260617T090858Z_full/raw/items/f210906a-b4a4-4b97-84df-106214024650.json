@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "f210906a-b4a4-4b97-84df-106214024650",
+    "question": "How does incorporating demographic factors influence job transition predictions using LLMs?",
+    "answer": "Incorporating demographic factors such as gender, ethnicity, and region enhances job transition predictions by providing additional context that influences career paths. These variables help refine the model's understanding of individual differences in occupational trajectories, leading to more accurate forecasts.",
+    "expected_answers": [
+      "Incorporating demographic factors such as gender, ethnicity, and region enhances job transition predictions by providing additional context that influences career paths. These variables help refine the model's understanding of individual differences in occupational trajectories, leading to more accurate forecasts."
+    ],
+    "doc_ids": [
+      "2406.17972v3"
+    ],
+    "doc_sources": [
+      "2406.17972v3.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 0,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "f210906a-b4a4-4b97-84df-106214024650",
+    "type": "abstractive",
+    "question": "How does incorporating demographic factors influence job transition predictions using LLMs?",
+    "gold_answer": "Incorporating demographic factors such as gender, ethnicity, and region enhances job transition predictions by providing additional context that influences career paths. These variables help refine the model's understanding of individual differences in occupational trajectories, leading to more accurate forecasts.",
+    "predicted": "We further establish that demographics, most notably gender, but also the interaction of gender, ethnicity, and region, play an important role in predicting job transitions.",
+    "abstained": false,
+    "confidence": 0.6532034277915955,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.26229508196721313,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2406.17972v3:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2406.17972v3:p1:c96",
+        "doc_id": "2406.17972v3",
+        "page": 1,
+        "score": 0.6532034277915955,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2406.17972v3:p1:c226",
+        "doc_id": "2406.17972v3",
+        "page": 1,
+        "score": 0.6474480032920837,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2406.17972v3:p1:c21",
+        "doc_id": "2406.17972v3",
+        "page": 1,
+        "score": 0.6458421349525452,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2406.17972v3:p1:c33",
+        "doc_id": "2406.17972v3",
+        "page": 1,
+        "score": 0.6453099250793457,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2406.17972v3:p1:c225",
+        "doc_id": "2406.17972v3",
+        "page": 1,
+        "score": 0.6305575370788574,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 29.50129099190235,
+      "rerank": 0.002541026333346963,
+      "generation": 761.2340000050608
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

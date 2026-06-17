@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "7fc5558e-6162-485c-88fb-4be3804d8852",
+    "question": "Is utility related to similarity between distributions in expected free energy?",
+    "answer": "Yes, utility quantifies the similarity between the expected future observation distribution and the preferred observation distribution.",
+    "expected_answers": [
+      "Yes, utility quantifies the similarity between the expected future observation distribution and the preferred observation distribution."
+    ],
+    "doc_ids": [
+      "2406.07726v3"
+    ],
+    "doc_sources": [
+      "2406.07726v3.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 4,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "7fc5558e-6162-485c-88fb-4be3804d8852",
+    "type": "extractive",
+    "question": "Is utility related to similarity between distributions in expected free energy?",
+    "gold_answer": "Yes, utility quantifies the similarity between the expected future observation distribution and the preferred observation distribution.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.5606143474578857,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2406.07726v3:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2406.07726v3:p1:c16",
+        "doc_id": "2406.07726v3",
+        "page": 1,
+        "score": 0.5606143474578857,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2406.07726v3:p1:c14",
+        "doc_id": "2406.07726v3",
+        "page": 1,
+        "score": 0.5183267593383789,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2406.07726v3:p1:c17",
+        "doc_id": "2406.07726v3",
+        "page": 1,
+        "score": 0.4817182123661041,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2406.07726v3:p1:c18",
+        "doc_id": "2406.07726v3",
+        "page": 1,
+        "score": 0.4395596981048584,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2406.07726v3:p1:c13",
+        "doc_id": "2406.07726v3",
+        "page": 1,
+        "score": 0.4181746542453766,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 28.45400001388043,
+      "rerank": 0.0028329959604889154,
+      "generation": 255.70970799890347
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

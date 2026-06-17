@@ -9,11 +9,14 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from tqdm.auto import tqdm
+
 from eval.dataset import EvalItem, load_suite
 from eval.metrics.answer import exact_match, token_f1
 from eval.metrics.efficiency import summarise_efficiency
 from eval.metrics.grounding import citation_precision, citation_recall
 from eval.metrics.retrieval import hit_at_k
+from eval.persistence import append_jsonl, read_jsonl, write_json_atomic
 from eval.report import build_report, write_report
 from rag.config import PipelineConfig
 from rag.logging_utils import setup_logging, timed
@@ -230,6 +233,10 @@ def main(argv: list[str] | None = None) -> int:  # noqa: C901
     setup_logging(json_output=args.json_logs)
     log.info("Starting eval run: suite=%s config=%s tag=%s", suite, args.config, args.tag)
 
+    timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    out_dir = Path(out_root) / f"{timestamp}_{suite}"
+    raw_dir = out_dir / "raw"
+
     corpus_paths, eval_items = load_suite(suite)
     log.info("Suite '%s': %d corpus files, %d eval items", suite, len(corpus_paths), len(eval_items))
 
@@ -250,7 +257,7 @@ def main(argv: list[str] | None = None) -> int:  # noqa: C901
     per_item: list[dict[str, Any]] = []
     num_errors = 0
 
-    for item in eval_items:
+    for item in tqdm(eval_items, desc=f"Answering {suite}", unit="item"):
         if pipeline is not None:
             answer, error = _try_pipeline_answer(pipeline, item)
         else:
@@ -263,7 +270,11 @@ def main(argv: list[str] | None = None) -> int:  # noqa: C901
         pairs.append((item, answer))
         answers.append(answer)
 
-        per_item.append(_per_item_result(item, answer, error))
+        item_result = _per_item_result(item, answer, error)
+        per_item.append(item_result)
+        raw_payload = {"item": item.__dict__, "result": item_result}
+        write_json_atomic(raw_dir / "items" / f"{item.id}.json", raw_payload)
+        append_jsonl(raw_dir / "items.jsonl", raw_payload)
 
     log.info("Answered %d items (%d errors/stubs)", len(eval_items), num_errors)
 
@@ -276,15 +287,12 @@ def main(argv: list[str] | None = None) -> int:  # noqa: C901
         "efficiency": lambda: summarise_efficiency(answers, index_build_ms).to_dict(),
     }
     metrics: dict[str, Any] = {}
-    for metric in config.evaluation.metrics:
+    for metric in tqdm(config.evaluation.metrics, desc="Computing metrics", unit="metric"):
         compute = metric_fns.get(metric)
         if compute is None:
             log.warning("Unknown configured metric '%s' - skipping.", metric)
             continue
         metrics[metric] = compute()
-
-    timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
-    out_dir = Path(out_root) / f"{timestamp}_{suite}"
 
     run_meta: dict[str, Any] = {
         "suite": suite,
@@ -299,7 +307,13 @@ def main(argv: list[str] | None = None) -> int:  # noqa: C901
         "num_errors": num_errors,
     }
 
-    report = build_report(run_meta, metrics, per_item)
+    raw_items = read_jsonl(raw_dir / "items.jsonl")
+    report_items = [
+        raw_item["result"]
+        for raw_item in raw_items
+        if isinstance(raw_item, dict) and isinstance(raw_item.get("result"), dict)
+    ]
+    report = build_report(run_meta, metrics, report_items or per_item)
     json_path = write_report(report, out_dir)
 
     log.info("Report written to %s", out_dir)

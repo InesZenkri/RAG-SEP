@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "5e8983d4-c3f7-4fce-a882-6bc9b91b9e0c",
+    "question": "What is the average payoff per update for agents trained and tested with jump time dynamics?",
+    "answer": "18.6",
+    "expected_answers": [
+      "18.6"
+    ],
+    "doc_ids": [
+      "2408.02322v2"
+    ],
+    "doc_sources": [
+      "2408.02322v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {
+      "source": "text-table-image",
+      "section_id": 9,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "5e8983d4-c3f7-4fce-a882-6bc9b91b9e0c",
+    "type": "extractive",
+    "question": "What is the average payoff per update for agents trained and tested with jump time dynamics?",
+    "gold_answer": "18.6",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.6363219022750854,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2408.02322v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2408.02322v2:p1:c59",
+        "doc_id": "2408.02322v2",
+        "page": 1,
+        "score": 0.6363219022750854,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2408.02322v2:p1:c58",
+        "doc_id": "2408.02322v2",
+        "page": 1,
+        "score": 0.6122845411300659,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2408.02322v2:p1:c64",
+        "doc_id": "2408.02322v2",
+        "page": 1,
+        "score": 0.5881369113922119,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2408.02322v2:p1:c63",
+        "doc_id": "2408.02322v2",
+        "page": 1,
+        "score": 0.5706216096878052,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2408.02322v2:p1:c66",
+        "doc_id": "2408.02322v2",
+        "page": 1,
+        "score": 0.5449073910713196,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 16.644999996060506,
+      "rerank": 0.0013329845387488604,
+      "generation": 160.97074997378513
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

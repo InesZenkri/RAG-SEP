@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "09b50336-ba65-42f3-81f5-cd91882d2073",
+    "question": "Is the MoC-System related to model training?",
+    "answer": "Yes.",
+    "expected_answers": [
+      "Yes."
+    ],
+    "doc_ids": [
+      "2408.04307v3"
+    ],
+    "doc_sources": [
+      "2408.04307v3.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 2,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "09b50336-ba65-42f3-81f5-cd91882d2073",
+    "type": "extractive",
+    "question": "Is the MoC-System related to model training?",
+    "gold_answer": "Yes.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.4554504454135895,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2408.04307v3:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2408.04307v3:p1:c73",
+        "doc_id": "2408.04307v3",
+        "page": 1,
+        "score": 0.4554504454135895,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2408.04307v3:p1:c86",
+        "doc_id": "2408.04307v3",
+        "page": 1,
+        "score": 0.45284396409988403,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2408.04307v3:p1:c82",
+        "doc_id": "2408.04307v3",
+        "page": 1,
+        "score": 0.4399961233139038,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2408.04307v3:p1:c118",
+        "doc_id": "2408.04307v3",
+        "page": 1,
+        "score": 0.40831851959228516,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2408.04307v3:p1:c16",
+        "doc_id": "2408.04307v3",
+        "page": 1,
+        "score": 0.40755707025527954,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 15.446459001395851,
+      "rerank": 0.0012500095181167126,
+      "generation": 159.92037497926503
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

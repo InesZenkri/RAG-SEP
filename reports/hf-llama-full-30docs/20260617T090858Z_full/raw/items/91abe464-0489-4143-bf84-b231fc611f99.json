@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "91abe464-0489-4143-bf84-b231fc611f99",
+    "question": "What are PPCA and LFA, and how are they used in modeling classes?",
+    "answer": "PPCA (Probabilistic Principal Component Analysis) and LFA (Latent Factor Analysis) are methods for modeling data with latent variables. They estimate parameters from class-specific data to capture underlying structures for better classification.",
+    "expected_answers": [
+      "PPCA (Probabilistic Principal Component Analysis) and LFA (Latent Factor Analysis) are methods for modeling data with latent variables. They estimate parameters from class-specific data to capture underlying structures for better classification."
+    ],
+    "doc_ids": [
+      "2412.10128v2"
+    ],
+    "doc_sources": [
+      "2412.10128v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text-image",
+      "section_id": 8,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "91abe464-0489-4143-bf84-b231fc611f99",
+    "type": "abstractive",
+    "question": "What are PPCA and LFA, and how are they used in modeling classes?",
+    "gold_answer": "PPCA (Probabilistic Principal Component Analysis) and LFA (Latent Factor Analysis) are methods for modeling data with latent variables. They estimate parameters from class-specific data to capture underlying structures for better classification.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.3841567933559418,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.03125,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2412.10128v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2412.10128v2:p1:c68",
+        "doc_id": "2412.10128v2",
+        "page": 1,
+        "score": 0.3841567933559418,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2412.10128v2:p1:c44",
+        "doc_id": "2412.10128v2",
+        "page": 1,
+        "score": 0.3764471411705017,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2412.10128v2:p1:c79",
+        "doc_id": "2412.10128v2",
+        "page": 1,
+        "score": 0.3516528010368347,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2412.10128v2:p1:c54",
+        "doc_id": "2412.10128v2",
+        "page": 1,
+        "score": 0.3478427827358246,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2410.07168v2:p1:c30",
+        "doc_id": "2410.07168v2",
+        "page": 1,
+        "score": 0.34600624442100525,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 16.323290998116136,
+      "rerank": 0.0014170072972774506,
+      "generation": 192.74220801889896
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

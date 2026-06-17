@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "5baf2c66-4d77-4014-870a-a5cb82dfd70d",
+    "question": "What challenges are associated with high-dimensional data in feature selection?",
+    "answer": "High-dimensional data can lead to increased training time, algorithmic complexity, storage space issues, and noise in datasets. These challenges are collectively known as the 'curse of dimensionality,' which complicates the process of selecting relevant features without losing accuracy.",
+    "expected_answers": [
+      "High-dimensional data can lead to increased training time, algorithmic complexity, storage space issues, and noise in datasets. These challenges are collectively known as the 'curse of dimensionality,' which complicates the process of selecting relevant features without losing accuracy."
+    ],
+    "doc_ids": [
+      "2412.10128v2"
+    ],
+    "doc_sources": [
+      "2412.10128v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 1,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "5baf2c66-4d77-4014-870a-a5cb82dfd70d",
+    "type": "abstractive",
+    "question": "What challenges are associated with high-dimensional data in feature selection?",
+    "gold_answer": "High-dimensional data can lead to increased training time, algorithmic complexity, storage space issues, and noise in datasets. These challenges are collectively known as the 'curse of dimensionality,' which complicates the process of selecting relevant features without losing accuracy.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.7630879878997803,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.028985507246376812,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2412.10128v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2412.10128v2:p1:c4",
+        "doc_id": "2412.10128v2",
+        "page": 1,
+        "score": 0.7630879878997803,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2412.10128v2:p1:c5",
+        "doc_id": "2412.10128v2",
+        "page": 1,
+        "score": 0.672834038734436,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2412.10128v2:p1:c2",
+        "doc_id": "2412.10128v2",
+        "page": 1,
+        "score": 0.6142528057098389,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2412.10128v2:p1:c3",
+        "doc_id": "2412.10128v2",
+        "page": 1,
+        "score": 0.6133065223693848,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2412.10128v2:p1:c86",
+        "doc_id": "2412.10128v2",
+        "page": 1,
+        "score": 0.5800198316574097,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 29.225042002508417,
+      "rerank": 0.0027919886633753777,
+      "generation": 184.46562500321306
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

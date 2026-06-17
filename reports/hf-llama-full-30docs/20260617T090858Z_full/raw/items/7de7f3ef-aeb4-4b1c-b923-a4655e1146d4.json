@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "7de7f3ef-aeb4-4b1c-b923-a4655e1146d4",
+    "question": "What is the standard quadratic optimization problem (StQP) and why is it significant?",
+    "answer": "The standard quadratic optimization problem (StQP) involves minimizing a quadratic form over the standard simplex, which is a set of linear constraints. It is significant because it represents one of the simplest non-convex objective functions and can model various complex problems, such as portfolio optimization and maximum clique problems. Despite its simplicity, StQP can be NP-hard without specific assumptions on the matrix involved.",
+    "expected_answers": [
+      "The standard quadratic optimization problem (StQP) involves minimizing a quadratic form over the standard simplex, which is a set of linear constraints. It is significant because it represents one of the simplest non-convex objective functions and can model various complex problems, such as portfolio optimization and maximum clique problems. Despite its simplicity, StQP can be NP-hard without specific assumptions on the matrix involved."
+    ],
+    "doc_ids": [
+      "2411.14884v3"
+    ],
+    "doc_sources": [
+      "2411.14884v3.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 1,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "7de7f3ef-aeb4-4b1c-b923-a4655e1146d4",
+    "type": "abstractive",
+    "question": "What is the standard quadratic optimization problem (StQP) and why is it significant?",
+    "gold_answer": "The standard quadratic optimization problem (StQP) involves minimizing a quadratic form over the standard simplex, which is a set of linear constraints. It is significant because it represents one of the simplest non-convex objective functions and can model various complex problems, such as portfolio optimization and maximum clique problems. Despite its simplicity, StQP can be NP-hard without specific assumptions on the matrix involved.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.7099338173866272,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2411.14884v3:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2411.14884v3:p1:c8",
+        "doc_id": "2411.14884v3",
+        "page": 1,
+        "score": 0.7099338173866272,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2411.14884v3:p1:c3",
+        "doc_id": "2411.14884v3",
+        "page": 1,
+        "score": 0.6802091002464294,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2411.14884v3:p1:c7",
+        "doc_id": "2411.14884v3",
+        "page": 1,
+        "score": 0.6574561595916748,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2411.14884v3:p1:c2",
+        "doc_id": "2411.14884v3",
+        "page": 1,
+        "score": 0.6468971967697144,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2411.14884v3:p1:c1",
+        "doc_id": "2411.14884v3",
+        "page": 1,
+        "score": 0.6106082201004028,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 32.66629099380225,
+      "rerank": 0.0014169781934469938,
+      "generation": 193.0344580032397
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

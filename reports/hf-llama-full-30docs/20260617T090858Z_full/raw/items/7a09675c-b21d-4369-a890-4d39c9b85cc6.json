@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "7a09675c-b21d-4369-a890-4d39c9b85cc6",
+    "question": "Why is the concept of an ample line bundle important in scheme theory?",
+    "answer": "An ample line bundle is significant because it ensures that certain properties, like local finite presentation, are preserved during modifications. It plays a critical role in factoring classically finitely presented $U$-modifications through specific constructions.",
+    "expected_answers": [
+      "An ample line bundle is significant because it ensures that certain properties, like local finite presentation, are preserved during modifications. It plays a critical role in factoring classically finitely presented $U$-modifications through specific constructions."
+    ],
+    "doc_ids": [
+      "2407.04378v2"
+    ],
+    "doc_sources": [
+      "2407.04378v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text-image",
+      "section_id": 4,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "7a09675c-b21d-4369-a890-4d39c9b85cc6",
+    "type": "abstractive",
+    "question": "Why is the concept of an ample line bundle important in scheme theory?",
+    "gold_answer": "An ample line bundle is significant because it ensures that certain properties, like local finite presentation, are preserved during modifications. It plays a critical role in factoring classically finitely presented $U$-modifications through specific constructions.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.5545393824577332,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2407.04378v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2407.04378v2:p1:c48",
+        "doc_id": "2407.04378v2",
+        "page": 1,
+        "score": 0.5545393824577332,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2407.04378v2:p1:c78",
+        "doc_id": "2407.04378v2",
+        "page": 1,
+        "score": 0.5509853363037109,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2407.04378v2:p1:c53",
+        "doc_id": "2407.04378v2",
+        "page": 1,
+        "score": 0.5290298461914062,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2407.04378v2:p1:c47",
+        "doc_id": "2407.04378v2",
+        "page": 1,
+        "score": 0.5275320410728455,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2407.04378v2:p1:c68",
+        "doc_id": "2407.04378v2",
+        "page": 1,
+        "score": 0.5032591223716736,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 22.453083016443998,
+      "rerank": 0.0027909991331398487,
+      "generation": 177.28791700210422
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

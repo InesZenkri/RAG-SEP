@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "d0b1c83e-e2f5-4d7a-9268-da5236fabfb7",
+    "question": "What is geometric tempering in the context of sampling from probability distributions?",
+    "answer": "Geometric tempering is a method used to sample from complex multimodal probability distributions by creating a sequence of intermediate distributions. These intermediate distributions are formed using the geometric mean between an easier proposal distribution and the target distribution, facilitating more efficient sampling.",
+    "expected_answers": [
+      "Geometric tempering is a method used to sample from complex multimodal probability distributions by creating a sequence of intermediate distributions. These intermediate distributions are formed using the geometric mean between an easier proposal distribution and the target distribution, facilitating more efficient sampling."
+    ],
+    "doc_ids": [
+      "2410.09697v2"
+    ],
+    "doc_sources": [
+      "2410.09697v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 0,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "d0b1c83e-e2f5-4d7a-9268-da5236fabfb7",
+    "type": "abstractive",
+    "question": "What is geometric tempering in the context of sampling from probability distributions?",
+    "gold_answer": "Geometric tempering is a method used to sample from complex multimodal probability distributions by creating a sequence of intermediate distributions. These intermediate distributions are formed using the geometric mean between an easier proposal distribution and the target distribution, facilitating more efficient sampling.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.6083706617355347,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.08571428571428572,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2410.09697v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2410.09697v2:p1:c10",
+        "doc_id": "2410.09697v2",
+        "page": 1,
+        "score": 0.6083706617355347,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2410.09697v2:p1:c33",
+        "doc_id": "2410.09697v2",
+        "page": 1,
+        "score": 0.6036049723625183,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2410.09697v2:p1:c1",
+        "doc_id": "2410.09697v2",
+        "page": 1,
+        "score": 0.6009758710861206,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2410.09697v2:p1:c2",
+        "doc_id": "2410.09697v2",
+        "page": 1,
+        "score": 0.5829655528068542,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2410.09697v2:p1:c5",
+        "doc_id": "2410.09697v2",
+        "page": 1,
+        "score": 0.532792866230011,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 15.58870798908174,
+      "rerank": 0.0010420044418424368,
+      "generation": 170.31679200590588
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

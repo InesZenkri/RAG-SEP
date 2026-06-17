@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "8b24fc67-6cbc-4b2d-8b8f-459b238fb23e",
+    "question": "How do Poisson-Binomial distributions relate to modeling infection probabilities?",
+    "answer": "Poisson-Binomial distributions are used to describe the likelihood of different numbers of infections occurring across a population based on varying levels of exposure and susceptibility.",
+    "expected_answers": [
+      "Poisson-Binomial distributions are used to describe the likelihood of different numbers of infections occurring across a population based on varying levels of exposure and susceptibility."
+    ],
+    "doc_ids": [
+      "2404.00822v2"
+    ],
+    "doc_sources": [
+      "2404.00822v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text-image",
+      "section_id": 2,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "8b24fc67-6cbc-4b2d-8b8f-459b238fb23e",
+    "type": "abstractive",
+    "question": "How do Poisson-Binomial distributions relate to modeling infection probabilities?",
+    "gold_answer": "Poisson-Binomial distributions are used to describe the likelihood of different numbers of infections occurring across a population based on varying levels of exposure and susceptibility.",
+    "predicted": "The number of infected hosts, I, obeys a Poisson-Binomial distribution, I \u223c Poisson Bin(H, {P_h}) [31]. The mean and variance of the number of infected individuals are then given by E(I) = \u2211_{h=1}^H P_h and Var(I) = \u2211_{h=1}^H P_h (1 - P_h).",
+    "abstained": false,
+    "confidence": 0.7442401647567749,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.20689655172413796,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2404.00822v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2404.00822v2:p1:c19",
+        "doc_id": "2404.00822v2",
+        "page": 1,
+        "score": 0.7442401647567749,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2404.00822v2:p1:c12",
+        "doc_id": "2404.00822v2",
+        "page": 1,
+        "score": 0.7082681655883789,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2404.00822v2:p1:c26",
+        "doc_id": "2404.00822v2",
+        "page": 1,
+        "score": 0.6852132678031921,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2404.00822v2:p1:c35",
+        "doc_id": "2404.00822v2",
+        "page": 1,
+        "score": 0.6489195823669434,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2404.00822v2:p1:c15",
+        "doc_id": "2404.00822v2",
+        "page": 1,
+        "score": 0.6169707775115967,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 27.747000014642254,
+      "rerank": 0.002082990249618888,
+      "generation": 791.2790840200614
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

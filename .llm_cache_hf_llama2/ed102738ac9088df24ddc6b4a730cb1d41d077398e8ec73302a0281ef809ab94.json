@@ -1,0 +1,9 @@
+{
+  "cached": false,
+  "finish_reason": "",
+  "input_tokens": 541,
+  "model": "meta-llama/Meta-Llama-3-8B-Instruct",
+  "output_tokens": 14,
+  "provider": "huggingface",
+  "text": "\"Attention Is All You Need\" [transformers:p1]"
+}

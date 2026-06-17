@@ -1,0 +1,75 @@
+{
+  "item": {
+    "id": "q7",
+    "question": "What does the Calvin cycle produce?",
+    "answer": "glyceraldehyde-3-phosphate",
+    "expected_answers": [
+      "glyceraldehyde-3-phosphate",
+      "a three-carbon sugar"
+    ],
+    "doc_ids": [],
+    "doc_sources": [
+      "photosynthesis.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {}
+  },
+  "result": {
+    "id": "q7",
+    "type": "extractive",
+    "question": "What does the Calvin cycle produce?",
+    "gold_answer": "glyceraldehyde-3-phosphate",
+    "predicted": "[HuggingFace Error] Router call failed: 400 Client Error: Bad Request for url: https://router.huggingface.co/v1/chat/completions",
+    "abstained": false,
+    "confidence": 0.6490050554275513,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "photosynthesis:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "photosynthesis:p1:c1",
+        "doc_id": "photosynthesis",
+        "page": 1,
+        "score": 0.6490050554275513,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "mitochondria:p1:c1",
+        "doc_id": "mitochondria",
+        "page": 1,
+        "score": 0.33105015754699707,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "transformers:p1:c1",
+        "doc_id": "transformers",
+        "page": 1,
+        "score": 0.038264475762844086,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 22.392874991055578,
+      "rerank": 0.0011250085663050413,
+      "generation": 180.28075000620447
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

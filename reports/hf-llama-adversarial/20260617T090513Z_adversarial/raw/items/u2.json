@@ -1,0 +1,59 @@
+{
+  "item": {
+    "id": "u2",
+    "question": "Who won the 2023 Champions League final?",
+    "answer": null,
+    "expected_answers": [],
+    "doc_ids": [],
+    "doc_sources": [],
+    "pages": [],
+    "type": "unanswerable",
+    "metadata": {}
+  },
+  "result": {
+    "id": "u2",
+    "type": "unanswerable",
+    "question": "Who won the 2023 Champions League final?",
+    "gold_answer": null,
+    "predicted": "I cannot answer from the provided documents.",
+    "abstained": true,
+    "confidence": 0.0,
+    "retrieval_hit@5": 0.0,
+    "exact_match": null,
+    "token_f1": null,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "doc_a:p1:c1",
+        "doc_id": "doc_a",
+        "page": 1,
+        "score": 0.05384659022092819,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "doc_b:p1:c1",
+        "doc_id": "doc_b",
+        "page": 1,
+        "score": 0.03385461866855621,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "abstained",
+      "retrieval_miss"
+    ],
+    "latency_ms": {
+      "retrieval": 21.7078750138171,
+      "rerank": 0.001334003172814846,
+      "generation": 445.80687501002103
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

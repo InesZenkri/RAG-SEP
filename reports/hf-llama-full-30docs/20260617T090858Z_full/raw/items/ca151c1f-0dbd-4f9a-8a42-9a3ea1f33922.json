@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "ca151c1f-0dbd-4f9a-8a42-9a3ea1f33922",
+    "question": "What role do derived blowups play in generating lafp $U$-modifications?",
+    "answer": "Derived blowups are essential for generating all lafp $U$-modifications as they provide a method to construct these modifications while maintaining necessary finiteness conditions.",
+    "expected_answers": [
+      "Derived blowups are essential for generating all lafp $U$-modifications as they provide a method to construct these modifications while maintaining necessary finiteness conditions."
+    ],
+    "doc_ids": [
+      "2407.04378v2"
+    ],
+    "doc_sources": [
+      "2407.04378v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text-image",
+      "section_id": 4,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "ca151c1f-0dbd-4f9a-8a42-9a3ea1f33922",
+    "type": "abstractive",
+    "question": "What role do derived blowups play in generating lafp $U$-modifications?",
+    "gold_answer": "Derived blowups are essential for generating all lafp $U$-modifications as they provide a method to construct these modifications while maintaining necessary finiteness conditions.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.7357586026191711,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.03636363636363636,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2407.04378v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2407.04378v2:p1:c67",
+        "doc_id": "2407.04378v2",
+        "page": 1,
+        "score": 0.7357586026191711,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2407.04378v2:p1:c69",
+        "doc_id": "2407.04378v2",
+        "page": 1,
+        "score": 0.5425567030906677,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2407.04378v2:p1:c82",
+        "doc_id": "2407.04378v2",
+        "page": 1,
+        "score": 0.5322892665863037,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2407.04378v2:p1:c71",
+        "doc_id": "2407.04378v2",
+        "page": 1,
+        "score": 0.5261077880859375,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2407.04378v2:p1:c57",
+        "doc_id": "2407.04378v2",
+        "page": 1,
+        "score": 0.5185492038726807,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 17.125875019701198,
+      "rerank": 0.0012500095181167126,
+      "generation": 205.8862909907475
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

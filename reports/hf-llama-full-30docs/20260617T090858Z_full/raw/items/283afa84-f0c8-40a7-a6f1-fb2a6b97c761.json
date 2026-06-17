@@ -1,0 +1,94 @@
+{
+  "item": {
+    "id": "283afa84-f0c8-40a7-a6f1-fb2a6b97c761",
+    "question": "How does uncertainty in data affect standard quadratic optimization problems?",
+    "answer": "Uncertainty in data affects StQPs by introducing variability in the matrix used for calculations. This uncertainty can be managed through robust optimization techniques, where an uncertainty set encapsulates all known information about uncertain parameters. The decision-maker must ensure that these parameters remain within this set to avoid violations.",
+    "expected_answers": [
+      "Uncertainty in data affects StQPs by introducing variability in the matrix used for calculations. This uncertainty can be managed through robust optimization techniques, where an uncertainty set encapsulates all known information about uncertain parameters. The decision-maker must ensure that these parameters remain within this set to avoid violations."
+    ],
+    "doc_ids": [
+      "2411.14884v3"
+    ],
+    "doc_sources": [
+      "2411.14884v3.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 1,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "283afa84-f0c8-40a7-a6f1-fb2a6b97c761",
+    "type": "abstractive",
+    "question": "How does uncertainty in data affect standard quadratic optimization problems?",
+    "gold_answer": "Uncertainty in data affects StQPs by introducing variability in the matrix used for calculations. This uncertainty can be managed through robust optimization techniques, where an uncertainty set encapsulates all known information about uncertain parameters. The decision-maker must ensure that these parameters remain within this set to avoid violations.",
+    "predicted": "According to the context, uncertainty in data affects standard quadratic optimization problems by making the data matrix Q uncertain. This uncertainty can be dealt with via robust optimization, where the decision-maker has to decide upon an uncertainty set $\\mathcal{U}$ which encapsulates all the known information about the uncertain parameter. [2]",
+    "abstained": false,
+    "confidence": 0.7454220056533813,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.5168539325842696,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2411.14884v3:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2411.14884v3:p1:c8",
+        "doc_id": "2411.14884v3",
+        "page": 1,
+        "score": 0.7454220056533813,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2411.14884v3:p1:c1",
+        "doc_id": "2411.14884v3",
+        "page": 1,
+        "score": 0.6026962995529175,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2411.14884v3:p1:c2",
+        "doc_id": "2411.14884v3",
+        "page": 1,
+        "score": 0.600751519203186,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2411.14884v3:p1:c55",
+        "doc_id": "2411.14884v3",
+        "page": 1,
+        "score": 0.536961019039154,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2411.14884v3:p1:c48",
+        "doc_id": "2411.14884v3",
+        "page": 1,
+        "score": 0.5241124033927917,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [],
+    "latency_ms": {
+      "retrieval": 65.74562500463799,
+      "rerank": 0.0015829864423722029,
+      "generation": 1129.8247920058202
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

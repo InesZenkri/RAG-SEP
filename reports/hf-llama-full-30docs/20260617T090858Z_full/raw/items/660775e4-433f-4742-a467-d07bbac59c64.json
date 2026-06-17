@@ -1,0 +1,105 @@
+{
+  "item": {
+    "id": "660775e4-433f-4742-a467-d07bbac59c64",
+    "question": "Which application class is considered most critical for safety and protection in industrial networks?",
+    "answer": "The Safety and Protection application class is considered highly critical, with a PCP value of 6, indicating its importance in maintaining secure operations within industrial networks.",
+    "expected_answers": [
+      "The Safety and Protection application class is considered highly critical, with a PCP value of 6, indicating its importance in maintaining secure operations within industrial networks."
+    ],
+    "doc_ids": [
+      "2412.10243v3"
+    ],
+    "doc_sources": [
+      "2412.10243v3.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {
+      "source": "text-table",
+      "section_id": 7,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "660775e4-433f-4742-a467-d07bbac59c64",
+    "type": "extractive",
+    "question": "Which application class is considered most critical for safety and protection in industrial networks?",
+    "gold_answer": "The Safety and Protection application class is considered highly critical, with a PCP value of 6, indicating its importance in maintaining secure operations within industrial networks.",
+    "predicted": "According to the provided context, the application class considered most critical for safety and protection in industrial networks is the \"Safety Sensor\". This is stated in the context as: \"For example, if a fire or gas leak occurs, the appropriate decision must be taken regarding it.\" [2412.10243v3:p1]",
+    "abstained": false,
+    "confidence": 0.5166571736335754,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.3384615384615385,
+    "citation_precision": 0.0,
+    "citation_recall": 0.5,
+    "gold_retrieval_keys": [
+      "2412.10243v3:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2412.10243v3:p1:c36",
+        "doc_id": "2412.10243v3",
+        "page": 1,
+        "score": 0.5166571736335754,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2412.10243v3:p1:c30",
+        "doc_id": "2412.10243v3",
+        "page": 1,
+        "score": 0.4422009289264679,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2412.10243v3:p1:c7",
+        "doc_id": "2412.10243v3",
+        "page": 1,
+        "score": 0.4276838004589081,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2412.10243v3:p1:c68",
+        "doc_id": "2412.10243v3",
+        "page": 1,
+        "score": 0.42371898889541626,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2412.10243v3:p1:c35",
+        "doc_id": "2412.10243v3",
+        "page": 1,
+        "score": 0.4152028262615204,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [
+      {
+        "doc_id": "2412.10243v3",
+        "page": 1,
+        "chunk_id": null,
+        "quote": null,
+        "valid_retrieved_key": true
+      }
+    ],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1",
+      "unsupported_citation"
+    ],
+    "latency_ms": {
+      "retrieval": 163.669374975143,
+      "rerank": 0.0021669839043170214,
+      "generation": 672.6127919973806
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

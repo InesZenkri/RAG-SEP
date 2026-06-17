@@ -1,0 +1,97 @@
+{
+  "item": {
+    "id": "54794ee1-92d1-4e56-865a-224dda2788ae",
+    "question": "Is the inverter connected to a grid with a voltage of 480 V?",
+    "answer": "Yes.",
+    "expected_answers": [
+      "Yes."
+    ],
+    "doc_ids": [
+      "2410.14077v2"
+    ],
+    "doc_sources": [
+      "2410.14077v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 7,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "54794ee1-92d1-4e56-865a-224dda2788ae",
+    "type": "extractive",
+    "question": "Is the inverter connected to a grid with a voltage of 480 V?",
+    "gold_answer": "Yes.",
+    "predicted": "I cannot answer from the provided documents.",
+    "abstained": true,
+    "confidence": 0.0,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2410.14077v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2410.14077v2:p1:c7",
+        "doc_id": "2410.14077v2",
+        "page": 1,
+        "score": 0.4604938328266144,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2410.14077v2:p1:c72",
+        "doc_id": "2410.14077v2",
+        "page": 1,
+        "score": 0.4523468017578125,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2410.14077v2:p1:c9",
+        "doc_id": "2410.14077v2",
+        "page": 1,
+        "score": 0.44566768407821655,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2410.14077v2:p1:c73",
+        "doc_id": "2410.14077v2",
+        "page": 1,
+        "score": 0.4450315535068512,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2410.14077v2:p1:c6",
+        "doc_id": "2410.14077v2",
+        "page": 1,
+        "score": 0.42551493644714355,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "abstained",
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 60.91870798263699,
+      "rerank": 0.0012920063454657793,
+      "generation": 549.6665420068894
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

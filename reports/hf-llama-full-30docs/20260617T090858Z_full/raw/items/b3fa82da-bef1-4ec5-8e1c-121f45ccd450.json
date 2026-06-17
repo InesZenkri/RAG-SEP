@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "b3fa82da-bef1-4ec5-8e1c-121f45ccd450",
+    "question": "How are events encoded in a given time interval?",
+    "answer": "Events are encoded by a binary vector (1 if at least one occurs, 0 otherwise).",
+    "expected_answers": [
+      "Events are encoded by a binary vector (1 if at least one occurs, 0 otherwise)."
+    ],
+    "doc_ids": [
+      "2408.02322v2"
+    ],
+    "doc_sources": [
+      "2408.02322v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 6,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "b3fa82da-bef1-4ec5-8e1c-121f45ccd450",
+    "type": "abstractive",
+    "question": "How are events encoded in a given time interval?",
+    "gold_answer": "Events are encoded by a binary vector (1 if at least one occurs, 0 otherwise).",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.44046640396118164,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2408.02322v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2408.02322v2:p1:c72",
+        "doc_id": "2408.02322v2",
+        "page": 1,
+        "score": 0.44046640396118164,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2408.02322v2:p1:c49",
+        "doc_id": "2408.02322v2",
+        "page": 1,
+        "score": 0.40327155590057373,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2412.10243v3:p1:c24",
+        "doc_id": "2412.10243v3",
+        "page": 1,
+        "score": 0.3995596766471863,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2405.17070v2:p1:c59",
+        "doc_id": "2405.17070v2",
+        "page": 1,
+        "score": 0.3962911069393158,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2408.02322v2:p1:c46",
+        "doc_id": "2408.02322v2",
+        "page": 1,
+        "score": 0.3819763958454132,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 29.7449579811655,
+      "rerank": 0.0020830193534493446,
+      "generation": 213.71691601234488
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

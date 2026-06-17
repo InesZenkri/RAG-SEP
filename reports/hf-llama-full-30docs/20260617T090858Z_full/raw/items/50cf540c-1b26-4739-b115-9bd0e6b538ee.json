@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "50cf540c-1b26-4739-b115-9bd0e6b538ee",
+    "question": "Why are prime numbers important when discussing hypotheses like RH?",
+    "answer": "Prime numbers are fundamental building blocks of arithmetic, and their distribution has deep implications for various fields such as cryptography, numerical analysis, and theoretical computer science. Understanding hypotheses like RH can lead to breakthroughs in predicting how primes occur within natural numbers.",
+    "expected_answers": [
+      "Prime numbers are fundamental building blocks of arithmetic, and their distribution has deep implications for various fields such as cryptography, numerical analysis, and theoretical computer science. Understanding hypotheses like RH can lead to breakthroughs in predicting how primes occur within natural numbers."
+    ],
+    "doc_ids": [
+      "2412.11130v5"
+    ],
+    "doc_sources": [
+      "2412.11130v5.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 0,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "50cf540c-1b26-4739-b115-9bd0e6b538ee",
+    "type": "abstractive",
+    "question": "Why are prime numbers important when discussing hypotheses like RH?",
+    "gold_answer": "Prime numbers are fundamental building blocks of arithmetic, and their distribution has deep implications for various fields such as cryptography, numerical analysis, and theoretical computer science. Understanding hypotheses like RH can lead to breakthroughs in predicting how primes occur within natural numbers.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.36288025975227356,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.02666666666666667,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2412.11130v5:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2412.11130v5:p1:c2",
+        "doc_id": "2412.11130v5",
+        "page": 1,
+        "score": 0.36288025975227356,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2412.11130v5:p1:c1",
+        "doc_id": "2412.11130v5",
+        "page": 1,
+        "score": 0.34645700454711914,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2412.11130v5:p1:c65",
+        "doc_id": "2412.11130v5",
+        "page": 1,
+        "score": 0.3293173909187317,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2412.11130v5:p1:c67",
+        "doc_id": "2412.11130v5",
+        "page": 1,
+        "score": 0.3182847201824188,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2412.11130v5:p1:c66",
+        "doc_id": "2412.11130v5",
+        "page": 1,
+        "score": 0.28969332575798035,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 29.26216699415818,
+      "rerank": 0.0024999899324029684,
+      "generation": 182.9190000134986
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

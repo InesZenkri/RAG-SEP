@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "5632e246-99c7-4022-8937-419d803184cf",
+    "question": "Does a linearly polarized laser field affect the vectorial contribution to polarizability?",
+    "answer": "No, in a linearly polarized laser field, the vectorial contribution vanishes.",
+    "expected_answers": [
+      "No, in a linearly polarized laser field, the vectorial contribution vanishes."
+    ],
+    "doc_ids": [
+      "2403.18677v2"
+    ],
+    "doc_sources": [
+      "2403.18677v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 2,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "5632e246-99c7-4022-8937-419d803184cf",
+    "type": "extractive",
+    "question": "Does a linearly polarized laser field affect the vectorial contribution to polarizability?",
+    "gold_answer": "No, in a linearly polarized laser field, the vectorial contribution vanishes.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.7373781204223633,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2403.18677v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2403.18677v2:p1:c11",
+        "doc_id": "2403.18677v2",
+        "page": 1,
+        "score": 0.7373781204223633,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2403.18677v2:p1:c41",
+        "doc_id": "2403.18677v2",
+        "page": 1,
+        "score": 0.6137757897377014,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2403.18677v2:p1:c40",
+        "doc_id": "2403.18677v2",
+        "page": 1,
+        "score": 0.5608584880828857,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2403.18677v2:p1:c42",
+        "doc_id": "2403.18677v2",
+        "page": 1,
+        "score": 0.5475518107414246,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2403.18677v2:p1:c23",
+        "doc_id": "2403.18677v2",
+        "page": 1,
+        "score": 0.5419695377349854,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 32.07024998846464,
+      "rerank": 0.0021250161807984114,
+      "generation": 187.1862089901697
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

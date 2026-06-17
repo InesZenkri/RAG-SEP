@@ -1,3 +1,6 @@
+# Requires Python >=3.10. The codebase uses modern type-hint syntax that fails
+# on older Python versions.
+
 # Core
 pydantic>=2.6
 pyyaml>=6.0

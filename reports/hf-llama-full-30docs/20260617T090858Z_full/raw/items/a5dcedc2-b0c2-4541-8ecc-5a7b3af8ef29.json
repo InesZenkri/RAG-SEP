@@ -1,0 +1,94 @@
+{
+  "item": {
+    "id": "a5dcedc2-b0c2-4541-8ecc-5a7b3af8ef29",
+    "question": "Does inserting an RL agent event before a historical action assume any impact on future sequences?",
+    "answer": "No, it assumes that inserting another event does not change the future sequence of orders, hence that the impact of the new event is effectively zero.",
+    "expected_answers": [
+      "No, it assumes that inserting another event does not change the future sequence of orders, hence that the impact of the new event is effectively zero."
+    ],
+    "doc_ids": [
+      "2408.02322v2"
+    ],
+    "doc_sources": [
+      "2408.02322v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 2,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "a5dcedc2-b0c2-4541-8ecc-5a7b3af8ef29",
+    "type": "extractive",
+    "question": "Does inserting an RL agent event before a historical action assume any impact on future sequences?",
+    "gold_answer": "No, it assumes that inserting another event does not change the future sequence of orders, hence that the impact of the new event is effectively zero.",
+    "predicted": "According to the context, the first possibility assumes that the insertion of another event does not change the future sequence of orders, hence that the impact of the new event is effectively zero.",
+    "abstained": false,
+    "confidence": 0.7119619846343994,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.7999999999999999,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2408.02322v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2408.02322v2:p1:c23",
+        "doc_id": "2408.02322v2",
+        "page": 1,
+        "score": 0.7119619846343994,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2408.02322v2:p1:c24",
+        "doc_id": "2408.02322v2",
+        "page": 1,
+        "score": 0.7006505727767944,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2408.02322v2:p1:c46",
+        "doc_id": "2408.02322v2",
+        "page": 1,
+        "score": 0.697770357131958,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2408.02322v2:p1:c22",
+        "doc_id": "2408.02322v2",
+        "page": 1,
+        "score": 0.6447723507881165,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2408.02322v2:p1:c21",
+        "doc_id": "2408.02322v2",
+        "page": 1,
+        "score": 0.6343114376068115,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [],
+    "latency_ms": {
+      "retrieval": 20.04133301670663,
+      "rerank": 0.0019169820006936789,
+      "generation": 689.7615829948336
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

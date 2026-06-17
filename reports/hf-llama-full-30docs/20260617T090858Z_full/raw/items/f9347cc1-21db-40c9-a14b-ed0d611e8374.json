@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "f9347cc1-21db-40c9-a14b-ed0d611e8374",
+    "question": "What does the independence between observation modalities imply in state inference?",
+    "answer": "It implies that given a state, the different observation modalities are independent, which is expressed as \\( p(o_{\\tau} \\mid s_{\\tau}) = \\prod_{m} p(o_{\\tau}^{m} \\mid s_{\\tau}) \\).",
+    "expected_answers": [
+      "It implies that given a state, the different observation modalities are independent, which is expressed as \\( p(o_{\\tau} \\mid s_{\\tau}) = \\prod_{m} p(o_{\\tau}^{m} \\mid s_{\\tau}) \\)."
+    ],
+    "doc_ids": [
+      "2406.07726v3"
+    ],
+    "doc_sources": [
+      "2406.07726v3.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 30,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "f9347cc1-21db-40c9-a14b-ed0d611e8374",
+    "type": "abstractive",
+    "question": "What does the independence between observation modalities imply in state inference?",
+    "gold_answer": "It implies that given a state, the different observation modalities are independent, which is expressed as \\( p(o_{\\tau} \\mid s_{\\tau}) = \\prod_{m} p(o_{\\tau}^{m} \\mid s_{\\tau}) \\).",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.6742379665374756,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2406.07726v3:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2406.07726v3:p1:c91",
+        "doc_id": "2406.07726v3",
+        "page": 1,
+        "score": 0.6742379665374756,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2406.07726v3:p1:c38",
+        "doc_id": "2406.07726v3",
+        "page": 1,
+        "score": 0.5596554279327393,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2406.07726v3:p1:c24",
+        "doc_id": "2406.07726v3",
+        "page": 1,
+        "score": 0.47476375102996826,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2406.07726v3:p1:c36",
+        "doc_id": "2406.07726v3",
+        "page": 1,
+        "score": 0.46512526273727417,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2408.02322v2:p1:c27",
+        "doc_id": "2408.02322v2",
+        "page": 1,
+        "score": 0.44224029779434204,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 23.969417001353577,
+      "rerank": 0.003916997229680419,
+      "generation": 171.2180000031367
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

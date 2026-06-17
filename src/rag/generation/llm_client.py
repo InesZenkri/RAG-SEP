@@ -271,7 +271,11 @@ class HuggingFaceLLMClient(LLMClient):
 
         try:
             response = requests.post(self.api_url, json=payload, headers=headers, timeout=30)
-            response.raise_for_status()
+            if not response.ok:
+                detail = response.text.strip()
+                raise RuntimeError(
+                    f"{response.status_code} {response.reason}: {detail[:1000]}"
+                )
             res_json = response.json()
 
             output_text = ""

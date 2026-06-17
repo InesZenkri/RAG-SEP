@@ -1,0 +1,9 @@
+{
+  "cached": false,
+  "finish_reason": "",
+  "input_tokens": 1036,
+  "model": "meta-llama/Meta-Llama-3-8B-Instruct",
+  "output_tokens": 62,
+  "provider": "huggingface",
+  "text": "Non-Gaussianity is important for identifying shocks in nonlinear SVAR models because it allows for time-variation in the impact responses of the variables to the shocks, which is not restricted by the assumption of constant relative magnitudes of the impact responses over time, as in identification by heteroscedasticity."
+}

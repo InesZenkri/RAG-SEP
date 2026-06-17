@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "439a8de4-a2ad-4f4d-a809-9b15d46e17b0",
+    "question": "What are some terms associated with the 'Unethical' category?",
+    "answer": "Some terms include unethical, immoral, dishonest, unprincipled, corrupt.",
+    "expected_answers": [
+      "Some terms include unethical, immoral, dishonest, unprincipled, corrupt."
+    ],
+    "doc_ids": [
+      "2411.11853v3"
+    ],
+    "doc_sources": [
+      "2411.11853v3.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text-table-image",
+      "section_id": 23,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "439a8de4-a2ad-4f4d-a809-9b15d46e17b0",
+    "type": "abstractive",
+    "question": "What are some terms associated with the 'Unethical' category?",
+    "gold_answer": "Some terms include unethical, immoral, dishonest, unprincipled, corrupt.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.4521287977695465,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2411.11853v3:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2411.11853v3:p1:c46",
+        "doc_id": "2411.11853v3",
+        "page": 1,
+        "score": 0.4521287977695465,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2411.11853v3:p1:c10",
+        "doc_id": "2411.11853v3",
+        "page": 1,
+        "score": 0.41143131256103516,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2411.11853v3:p1:c89",
+        "doc_id": "2411.11853v3",
+        "page": 1,
+        "score": 0.40581250190734863,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2411.11853v3:p1:c33",
+        "doc_id": "2411.11853v3",
+        "page": 1,
+        "score": 0.403415709733963,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2411.11853v3:p1:c4",
+        "doc_id": "2411.11853v3",
+        "page": 1,
+        "score": 0.39352136850357056,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 25.729208020493388,
+      "rerank": 0.0018329883459955454,
+      "generation": 172.20462500699796
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "8707eb1d-227d-45f7-ad60-3ca84fe56463",
+    "question": "Why is it important to categorize feed positions into different circles in an array?",
+    "answer": "Categorizing feed positions into center, inner-circle, middle-circle, and outer-circle beams helps optimize data collection by aligning feeds with specific observational needs and improving overall coverage.",
+    "expected_answers": [
+      "Categorizing feed positions into center, inner-circle, middle-circle, and outer-circle beams helps optimize data collection by aligning feeds with specific observational needs and improving overall coverage."
+    ],
+    "doc_ids": [
+      "2412.02582v2"
+    ],
+    "doc_sources": [
+      "2412.02582v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text-image",
+      "section_id": 9,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "8707eb1d-227d-45f7-ad60-3ca84fe56463",
+    "type": "abstractive",
+    "question": "Why is it important to categorize feed positions into different circles in an array?",
+    "gold_answer": "Categorizing feed positions into center, inner-circle, middle-circle, and outer-circle beams helps optimize data collection by aligning feeds with specific observational needs and improving overall coverage.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.45948919653892517,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2412.02582v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2412.02582v2:p1:c76",
+        "doc_id": "2412.02582v2",
+        "page": 1,
+        "score": 0.45948919653892517,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2412.02582v2:p1:c72",
+        "doc_id": "2412.02582v2",
+        "page": 1,
+        "score": 0.4564523696899414,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2412.02582v2:p1:c43",
+        "doc_id": "2412.02582v2",
+        "page": 1,
+        "score": 0.44817954301834106,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2412.02582v2:p1:c70",
+        "doc_id": "2412.02582v2",
+        "page": 1,
+        "score": 0.41852134466171265,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2412.02582v2:p1:c87",
+        "doc_id": "2412.02582v2",
+        "page": 1,
+        "score": 0.41701871156692505,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 30.43274997617118,
+      "rerank": 0.002916989615187049,
+      "generation": 177.2953750041779
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

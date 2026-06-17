@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "2ca85e92-56fd-4e1b-8623-c5f2df601ea8",
+    "question": "Does the Gate Control List (GCL) manage queue gates for scheduled traffic?",
+    "answer": "Yes, the Gate Control List (GCL) manages queue gates for scheduled traffic.",
+    "expected_answers": [
+      "Yes, the Gate Control List (GCL) manages queue gates for scheduled traffic."
+    ],
+    "doc_ids": [
+      "2412.10243v3"
+    ],
+    "doc_sources": [
+      "2412.10243v3.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {
+      "source": "text-table-image",
+      "section_id": 2,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "2ca85e92-56fd-4e1b-8623-c5f2df601ea8",
+    "type": "extractive",
+    "question": "Does the Gate Control List (GCL) manage queue gates for scheduled traffic?",
+    "gold_answer": "Yes, the Gate Control List (GCL) manages queue gates for scheduled traffic.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.6281508207321167,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2412.10243v3:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2412.10243v3:p1:c23",
+        "doc_id": "2412.10243v3",
+        "page": 1,
+        "score": 0.6281508207321167,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2412.10243v3:p1:c24",
+        "doc_id": "2412.10243v3",
+        "page": 1,
+        "score": 0.3878259062767029,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2408.04307v3:p1:c93",
+        "doc_id": "2408.04307v3",
+        "page": 1,
+        "score": 0.33886802196502686,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2408.04307v3:p1:c91",
+        "doc_id": "2408.04307v3",
+        "page": 1,
+        "score": 0.3355545997619629,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2408.04307v3:p1:c95",
+        "doc_id": "2408.04307v3",
+        "page": 1,
+        "score": 0.3342929482460022,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 20.891374995699152,
+      "rerank": 0.0015420082490891218,
+      "generation": 209.3753750086762
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

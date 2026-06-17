@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "9d140ba8-7707-405c-85eb-2acc52934203",
+    "question": "What advantages does multimodal joint training offer in video-to-audio synthesis?",
+    "answer": "Multimodal joint training allows MMAudio to leverage larger-scale text-audio data, enabling it to generate semantically aligned high-quality audio samples. This approach improves performance in terms of audio quality, semantic alignment, and synchronization compared to single-modality training.",
+    "expected_answers": [
+      "Multimodal joint training allows MMAudio to leverage larger-scale text-audio data, enabling it to generate semantically aligned high-quality audio samples. This approach improves performance in terms of audio quality, semantic alignment, and synchronization compared to single-modality training."
+    ],
+    "doc_ids": [
+      "2412.15322v2"
+    ],
+    "doc_sources": [
+      "2412.15322v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 0,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "9d140ba8-7707-405c-85eb-2acc52934203",
+    "type": "abstractive",
+    "question": "What advantages does multimodal joint training offer in video-to-audio synthesis?",
+    "gold_answer": "Multimodal joint training allows MMAudio to leverage larger-scale text-audio data, enabling it to generate semantically aligned high-quality audio samples. This approach improves performance in terms of audio quality, semantic alignment, and synchronization compared to single-modality training.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.6973747611045837,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.08695652173913043,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2412.15322v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2412.15322v2:p1:c1",
+        "doc_id": "2412.15322v2",
+        "page": 1,
+        "score": 0.6973747611045837,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2412.15322v2:p1:c2",
+        "doc_id": "2412.15322v2",
+        "page": 1,
+        "score": 0.6472297310829163,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2412.15322v2:p1:c16",
+        "doc_id": "2412.15322v2",
+        "page": 1,
+        "score": 0.6427819728851318,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2412.15322v2:p1:c11",
+        "doc_id": "2412.15322v2",
+        "page": 1,
+        "score": 0.6387536525726318,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2412.15322v2:p1:c9",
+        "doc_id": "2412.15322v2",
+        "page": 1,
+        "score": 0.6318477988243103,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 29.523667006287724,
+      "rerank": 0.002874992787837982,
+      "generation": 170.61087497859262
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

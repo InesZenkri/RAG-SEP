@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "36277a53-d8db-4db3-9af6-67009a0a88ca",
+    "question": "What is the significance of laser cooling in mechanical systems for gravity studies?",
+    "answer": "Laser cooling is significant because it allows mechanical systems, like torsional oscillators, to reach extremely low temperatures necessary for exploring quantum effects. This capability is crucial for conducting experimental tests of gravity's fundamental nature in the quantum regime.",
+    "expected_answers": [
+      "Laser cooling is significant because it allows mechanical systems, like torsional oscillators, to reach extremely low temperatures necessary for exploring quantum effects. This capability is crucial for conducting experimental tests of gravity's fundamental nature in the quantum regime."
+    ],
+    "doc_ids": [
+      "2409.02275v2"
+    ],
+    "doc_sources": [
+      "2409.02275v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 0,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "36277a53-d8db-4db3-9af6-67009a0a88ca",
+    "type": "abstractive",
+    "question": "What is the significance of laser cooling in mechanical systems for gravity studies?",
+    "gold_answer": "Laser cooling is significant because it allows mechanical systems, like torsional oscillators, to reach extremely low temperatures necessary for exploring quantum effects. This capability is crucial for conducting experimental tests of gravity's fundamental nature in the quantum regime.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.5885114669799805,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.02857142857142857,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2409.02275v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2409.02275v2:p1:c38",
+        "doc_id": "2409.02275v2",
+        "page": 1,
+        "score": 0.5885114669799805,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2409.02275v2:p1:c1",
+        "doc_id": "2409.02275v2",
+        "page": 1,
+        "score": 0.5823460817337036,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2409.02275v2:p1:c3",
+        "doc_id": "2409.02275v2",
+        "page": 1,
+        "score": 0.4920557737350464,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2409.02275v2:p1:c43",
+        "doc_id": "2409.02275v2",
+        "page": 1,
+        "score": 0.48996686935424805,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2409.02275v2:p1:c56",
+        "doc_id": "2409.02275v2",
+        "page": 1,
+        "score": 0.481831431388855,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 27.94695901684463,
+      "rerank": 0.0024999899324029684,
+      "generation": 217.61462502763607
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

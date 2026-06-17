@@ -1,0 +1,9 @@
+{
+  "cached": false,
+  "finish_reason": "",
+  "input_tokens": 1037,
+  "model": "meta-llama/Meta-Llama-3-8B-Instruct",
+  "output_tokens": 64,
+  "provider": "huggingface",
+  "text": "According to the context, uncertainty in data affects standard quadratic optimization problems by making the data matrix Q uncertain. This uncertainty can be dealt with via robust optimization, where the decision-maker has to decide upon an uncertainty set $\\mathcal{U}$ which encapsulates all the known information about the uncertain parameter. [2]"
+}

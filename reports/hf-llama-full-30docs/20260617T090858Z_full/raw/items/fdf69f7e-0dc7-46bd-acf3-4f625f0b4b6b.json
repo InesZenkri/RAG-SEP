@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "fdf69f7e-0dc7-46bd-acf3-4f625f0b4b6b",
+    "question": "Does the average velocity within the carbon storage area differ from the surrounding background velocity?",
+    "answer": "Yes, the average velocity within the carbon storage area is about 11% lower than the surrounding background velocity.",
+    "expected_answers": [
+      "Yes, the average velocity within the carbon storage area is about 11% lower than the surrounding background velocity."
+    ],
+    "doc_ids": [
+      "2412.06611v2"
+    ],
+    "doc_sources": [
+      "2412.06611v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 7,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "fdf69f7e-0dc7-46bd-acf3-4f625f0b4b6b",
+    "type": "extractive",
+    "question": "Does the average velocity within the carbon storage area differ from the surrounding background velocity?",
+    "gold_answer": "Yes, the average velocity within the carbon storage area is about 11% lower than the surrounding background velocity.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.6925206184387207,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2412.06611v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2412.06611v2:p1:c24",
+        "doc_id": "2412.06611v2",
+        "page": 1,
+        "score": 0.6925206184387207,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2412.06611v2:p1:c8",
+        "doc_id": "2412.06611v2",
+        "page": 1,
+        "score": 0.4734470248222351,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2412.06611v2:p1:c29",
+        "doc_id": "2412.06611v2",
+        "page": 1,
+        "score": 0.4180949926376343,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2412.06611v2:p1:c11",
+        "doc_id": "2412.06611v2",
+        "page": 1,
+        "score": 0.3833952844142914,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2412.06611v2:p1:c7",
+        "doc_id": "2412.06611v2",
+        "page": 1,
+        "score": 0.3000626564025879,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 41.78691600100137,
+      "rerank": 0.0012920063454657793,
+      "generation": 181.78095799521543
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

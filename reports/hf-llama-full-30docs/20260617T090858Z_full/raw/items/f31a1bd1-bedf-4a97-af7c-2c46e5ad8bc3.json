@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "f31a1bd1-bedf-4a97-af7c-2c46e5ad8bc3",
+    "question": "Why is Tikhonov regularization sensitive to noise in seismic data processing?",
+    "answer": "Tikhonov regularization is sensitive to noise because it relies on minimizing discrepancies between observed and predicted data, which can be significantly affected by random variations introduced by noise, leading to less accurate results.",
+    "expected_answers": [
+      "Tikhonov regularization is sensitive to noise because it relies on minimizing discrepancies between observed and predicted data, which can be significantly affected by random variations introduced by noise, leading to less accurate results."
+    ],
+    "doc_ids": [
+      "2412.06611v2"
+    ],
+    "doc_sources": [
+      "2412.06611v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text-image",
+      "section_id": 3,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "f31a1bd1-bedf-4a97-af7c-2c46e5ad8bc3",
+    "type": "abstractive",
+    "question": "Why is Tikhonov regularization sensitive to noise in seismic data processing?",
+    "gold_answer": "Tikhonov regularization is sensitive to noise because it relies on minimizing discrepancies between observed and predicted data, which can be significantly affected by random variations introduced by noise, leading to less accurate results.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.6198141574859619,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.06060606060606061,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2412.06611v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2412.06611v2:p1:c36",
+        "doc_id": "2412.06611v2",
+        "page": 1,
+        "score": 0.6198141574859619,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2412.06611v2:p1:c10",
+        "doc_id": "2412.06611v2",
+        "page": 1,
+        "score": 0.5554410815238953,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2412.06611v2:p1:c11",
+        "doc_id": "2412.06611v2",
+        "page": 1,
+        "score": 0.5191012024879456,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2412.06611v2:p1:c35",
+        "doc_id": "2412.06611v2",
+        "page": 1,
+        "score": 0.4639139175415039,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2412.06611v2:p1:c37",
+        "doc_id": "2412.06611v2",
+        "page": 1,
+        "score": 0.46232399344444275,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 16.508250002516434,
+      "rerank": 0.0012080126907676458,
+      "generation": 167.8172910178546
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "b11ca9bd-187e-4328-b549-ca30175c8ece",
+    "question": "What role do non-expert parts play in the adaptive sharding strategy?",
+    "answer": "Non-expert parts are adaptively allocated based on PEC's selection pattern, helping balance workloads and utilize spare capacity effectively.",
+    "expected_answers": [
+      "Non-expert parts are adaptively allocated based on PEC's selection pattern, helping balance workloads and utilize spare capacity effectively."
+    ],
+    "doc_ids": [
+      "2408.04307v3"
+    ],
+    "doc_sources": [
+      "2408.04307v3.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text-image",
+      "section_id": 13,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "b11ca9bd-187e-4328-b549-ca30175c8ece",
+    "type": "abstractive",
+    "question": "What role do non-expert parts play in the adaptive sharding strategy?",
+    "gold_answer": "Non-expert parts are adaptively allocated based on PEC's selection pattern, helping balance workloads and utilize spare capacity effectively.",
+    "predicted": "The non-expert parts are based on the selection pattern of PEC and are divided into segments within each part, representing various layers. Additionally, the adaptive sharding strategy incorporates a greedy algorithm for shard allocation, prioritizing the assignment of larger modules to ranks exhibiting the least accumulated workload.",
+    "abstained": false,
+    "confidence": 0.6648024320602417,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.27118644067796616,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2408.04307v3:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2408.04307v3:p1:c58",
+        "doc_id": "2408.04307v3",
+        "page": 1,
+        "score": 0.6648024320602417,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2408.04307v3:p1:c60",
+        "doc_id": "2408.04307v3",
+        "page": 1,
+        "score": 0.6039760112762451,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2408.04307v3:p1:c59",
+        "doc_id": "2408.04307v3",
+        "page": 1,
+        "score": 0.5585446357727051,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2408.04307v3:p1:c57",
+        "doc_id": "2408.04307v3",
+        "page": 1,
+        "score": 0.5331099033355713,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2408.04307v3:p1:c77",
+        "doc_id": "2408.04307v3",
+        "page": 1,
+        "score": 0.5321516990661621,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 21.137667004950345,
+      "rerank": 0.0014999823179095984,
+      "generation": 811.1957080254797
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

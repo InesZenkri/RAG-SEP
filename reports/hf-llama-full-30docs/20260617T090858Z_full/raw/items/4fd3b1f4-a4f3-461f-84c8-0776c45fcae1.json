@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "4fd3b1f4-a4f3-461f-84c8-0776c45fcae1",
+    "question": "Does the Clayton copula exhibit dependency in the left or right tail?",
+    "answer": "The Clayton copula exhibits significant dependency in the left tail.",
+    "expected_answers": [
+      "The Clayton copula exhibits significant dependency in the left tail."
+    ],
+    "doc_ids": [
+      "2411.13384v2"
+    ],
+    "doc_sources": [
+      "2411.13384v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 22,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "4fd3b1f4-a4f3-461f-84c8-0776c45fcae1",
+    "type": "extractive",
+    "question": "Does the Clayton copula exhibit dependency in the left or right tail?",
+    "gold_answer": "The Clayton copula exhibits significant dependency in the left tail.",
+    "predicted": "The Clayton copula exhibits significant dependency in the left tail, meaning that when one variable exhibits an extreme value in the left tail, there is a higher probability for the other variable to also have an extreme value in the left tail.",
+    "abstained": false,
+    "confidence": 0.6336830854415894,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.38095238095238093,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2411.13384v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2411.13384v2:p1:c141",
+        "doc_id": "2411.13384v2",
+        "page": 1,
+        "score": 0.6336830854415894,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2411.13384v2:p1:c89",
+        "doc_id": "2411.13384v2",
+        "page": 1,
+        "score": 0.5953159928321838,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2411.13384v2:p1:c140",
+        "doc_id": "2411.13384v2",
+        "page": 1,
+        "score": 0.5766531229019165,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2411.13384v2:p1:c91",
+        "doc_id": "2411.13384v2",
+        "page": 1,
+        "score": 0.4859468638896942,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2411.13384v2:p1:c92",
+        "doc_id": "2411.13384v2",
+        "page": 1,
+        "score": 0.46653488278388977,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 211.10687498003244,
+      "rerank": 0.0014170072972774506,
+      "generation": 709.9365830072202
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

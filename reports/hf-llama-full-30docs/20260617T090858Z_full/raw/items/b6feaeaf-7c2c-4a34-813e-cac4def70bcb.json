@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "b6feaeaf-7c2c-4a34-813e-cac4def70bcb",
+    "question": "Does the exact posterior remain a Dirichlet distribution after observing $x^*$?",
+    "answer": "No, it is no longer a Dirichlet distribution.",
+    "expected_answers": [
+      "No, it is no longer a Dirichlet distribution."
+    ],
+    "doc_ids": [
+      "2406.07726v3"
+    ],
+    "doc_sources": [
+      "2406.07726v3.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 26,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "b6feaeaf-7c2c-4a34-813e-cac4def70bcb",
+    "type": "extractive",
+    "question": "Does the exact posterior remain a Dirichlet distribution after observing $x^*$?",
+    "gold_answer": "No, it is no longer a Dirichlet distribution.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.6018206477165222,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2406.07726v3:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2406.07726v3:p1:c74",
+        "doc_id": "2406.07726v3",
+        "page": 1,
+        "score": 0.6018206477165222,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2406.07726v3:p1:c73",
+        "doc_id": "2406.07726v3",
+        "page": 1,
+        "score": 0.5980206727981567,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2406.07726v3:p1:c76",
+        "doc_id": "2406.07726v3",
+        "page": 1,
+        "score": 0.5631086826324463,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2406.07726v3:p1:c32",
+        "doc_id": "2406.07726v3",
+        "page": 1,
+        "score": 0.5375851988792419,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2406.07726v3:p1:c64",
+        "doc_id": "2406.07726v3",
+        "page": 1,
+        "score": 0.5169413685798645,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 15.963624988216907,
+      "rerank": 0.0012090022210031748,
+      "generation": 226.55841597588733
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

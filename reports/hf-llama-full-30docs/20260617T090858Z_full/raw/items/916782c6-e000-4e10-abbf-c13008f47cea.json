@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "916782c6-e000-4e10-abbf-c13008f47cea",
+    "question": "Are syllabic structures visible without a denoising objective?",
+    "answer": "Yes, syllabic structures are visible even without a denoising objective due to self-segmentation distillation.",
+    "expected_answers": [
+      "Yes, syllabic structures are visible even without a denoising objective due to self-segmentation distillation."
+    ],
+    "doc_ids": [
+      "2410.07168v2"
+    ],
+    "doc_sources": [
+      "2410.07168v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {
+      "source": "text-image",
+      "section_id": 28,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "916782c6-e000-4e10-abbf-c13008f47cea",
+    "type": "extractive",
+    "question": "Are syllabic structures visible without a denoising objective?",
+    "gold_answer": "Yes, syllabic structures are visible even without a denoising objective due to self-segmentation distillation.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.4758017957210541,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.043478260869565216,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2410.07168v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2410.07168v2:p1:c121",
+        "doc_id": "2410.07168v2",
+        "page": 1,
+        "score": 0.4758017957210541,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2410.07168v2:p1:c22",
+        "doc_id": "2410.07168v2",
+        "page": 1,
+        "score": 0.3701893985271454,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2412.06611v2:p1:c46",
+        "doc_id": "2412.06611v2",
+        "page": 1,
+        "score": 0.3180914521217346,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2409.02275v2:p1:c10",
+        "doc_id": "2409.02275v2",
+        "page": 1,
+        "score": 0.3083827495574951,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2403.18677v2:p1:c31",
+        "doc_id": "2403.18677v2",
+        "page": 1,
+        "score": 0.3079816699028015,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 59.63854197761975,
+      "rerank": 0.0019170111045241356,
+      "generation": 271.79254198563285
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "cached": false,
+  "finish_reason": "",
+  "input_tokens": 0,
+  "model": "gemini-2.5-flash",
+  "output_tokens": 0,
+  "provider": "huggingface",
+  "text": "[HuggingFace Error] Router call failed: 400 Bad Request: {\"error\":{\"message\":\"The requested model 'gemini-2.5-flash' does not exist.\",\"type\":\"invalid_request_error\",\"param\":\"model\",\"code\":\"model_not_found\"}}"
+}

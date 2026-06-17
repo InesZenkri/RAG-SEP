@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "b1a658ab-fa4d-4ce9-9023-bd1fefe77d92",
+    "question": "What is the depth range of the storage velocity model used in seismic data acquisition?",
+    "answer": "The depth range of the storage velocity model is from 1000 m to 1300 m.",
+    "expected_answers": [
+      "The depth range of the storage velocity model is from 1000 m to 1300 m."
+    ],
+    "doc_ids": [
+      "2412.06611v2"
+    ],
+    "doc_sources": [
+      "2412.06611v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 7,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "b1a658ab-fa4d-4ce9-9023-bd1fefe77d92",
+    "type": "extractive",
+    "question": "What is the depth range of the storage velocity model used in seismic data acquisition?",
+    "gold_answer": "The depth range of the storage velocity model is from 1000 m to 1300 m.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.656126856803894,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.043478260869565216,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2412.06611v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2412.06611v2:p1:c24",
+        "doc_id": "2412.06611v2",
+        "page": 1,
+        "score": 0.656126856803894,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2412.06611v2:p1:c8",
+        "doc_id": "2412.06611v2",
+        "page": 1,
+        "score": 0.5132622718811035,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2412.06611v2:p1:c11",
+        "doc_id": "2412.06611v2",
+        "page": 1,
+        "score": 0.46705061197280884,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2412.06611v2:p1:c7",
+        "doc_id": "2412.06611v2",
+        "page": 1,
+        "score": 0.45366325974464417,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2412.06611v2:p1:c6",
+        "doc_id": "2412.06611v2",
+        "page": 1,
+        "score": 0.3803907036781311,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 20.8111249958165,
+      "rerank": 0.0015830155462026596,
+      "generation": 180.1090840017423
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

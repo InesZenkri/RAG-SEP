@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "b16783f0-6596-41be-9514-10982968030f",
+    "question": "What is the expression for the AC Stark shift of the atomic ground state?",
+    "answer": "The AC Stark shift of the atomic ground state is modeled as \\( U(\\boldsymbol{r}, \\omega) = -\\frac{\\operatorname{Re}[\\alpha(\\omega)]}{2 \\epsilon_{0} c} I(\\boldsymbol{r}) \\).",
+    "expected_answers": [
+      "The AC Stark shift of the atomic ground state is modeled as \\( U(\\boldsymbol{r}, \\omega) = -\\frac{\\operatorname{Re}[\\alpha(\\omega)]}{2 \\epsilon_{0} c} I(\\boldsymbol{r}) \\)."
+    ],
+    "doc_ids": [
+      "2403.18677v2"
+    ],
+    "doc_sources": [
+      "2403.18677v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 2,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "b16783f0-6596-41be-9514-10982968030f",
+    "type": "extractive",
+    "question": "What is the expression for the AC Stark shift of the atomic ground state?",
+    "gold_answer": "The AC Stark shift of the atomic ground state is modeled as \\( U(\\boldsymbol{r}, \\omega) = -\\frac{\\operatorname{Re}[\\alpha(\\omega)]}{2 \\epsilon_{0} c} I(\\boldsymbol{r}) \\).",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.5885262489318848,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2403.18677v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2403.18677v2:p1:c10",
+        "doc_id": "2403.18677v2",
+        "page": 1,
+        "score": 0.5885262489318848,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2409.02275v2:p1:c27",
+        "doc_id": "2409.02275v2",
+        "page": 1,
+        "score": 0.38894519209861755,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2403.18677v2:p1:c57",
+        "doc_id": "2403.18677v2",
+        "page": 1,
+        "score": 0.38437679409980774,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2403.18677v2:p1:c16",
+        "doc_id": "2403.18677v2",
+        "page": 1,
+        "score": 0.3829190731048584,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2403.18677v2:p1:c50",
+        "doc_id": "2403.18677v2",
+        "page": 1,
+        "score": 0.3736204504966736,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 30.199041997548193,
+      "rerank": 0.002874992787837982,
+      "generation": 221.38804200221784
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

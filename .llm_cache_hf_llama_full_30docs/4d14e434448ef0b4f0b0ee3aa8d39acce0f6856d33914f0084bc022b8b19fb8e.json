@@ -1,0 +1,9 @@
+{
+  "cached": false,
+  "finish_reason": "",
+  "input_tokens": 1257,
+  "model": "meta-llama/Meta-Llama-3-8B-Instruct",
+  "output_tokens": 74,
+  "provider": "huggingface",
+  "text": "According to the context, the robust setting deals with uncertain matrices via robust optimization, where the decision-maker decides upon an uncertainty set $\\mathcal{U}$ which encapsulates all the known information about the uncertain parameter. In contrast, the stochastic setting with known expectation is an alternative to get rid of the uncertainty, where random quantities are designated by a tilde sign."
+}

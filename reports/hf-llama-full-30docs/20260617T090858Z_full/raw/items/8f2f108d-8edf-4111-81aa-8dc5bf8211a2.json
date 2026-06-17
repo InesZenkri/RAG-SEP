@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "8f2f108d-8edf-4111-81aa-8dc5bf8211a2",
+    "question": "Does the VDF-RLS algorithm maintain stable resistance estimation after excitation ceases?",
+    "answer": "Yes, the VDF-RLS algorithm maintains stable resistance estimation after excitation ceases.",
+    "expected_answers": [
+      "Yes, the VDF-RLS algorithm maintains stable resistance estimation after excitation ceases."
+    ],
+    "doc_ids": [
+      "2410.14077v2"
+    ],
+    "doc_sources": [
+      "2410.14077v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {
+      "source": "text-table-image",
+      "section_id": 8,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "8f2f108d-8edf-4111-81aa-8dc5bf8211a2",
+    "type": "extractive",
+    "question": "Does the VDF-RLS algorithm maintain stable resistance estimation after excitation ceases?",
+    "gold_answer": "Yes, the VDF-RLS algorithm maintains stable resistance estimation after excitation ceases.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.6812346577644348,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2410.14077v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2410.14077v2:p1:c55",
+        "doc_id": "2410.14077v2",
+        "page": 1,
+        "score": 0.6812346577644348,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2410.14077v2:p1:c5",
+        "doc_id": "2410.14077v2",
+        "page": 1,
+        "score": 0.5315662622451782,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2410.14077v2:p1:c47",
+        "doc_id": "2410.14077v2",
+        "page": 1,
+        "score": 0.5269825458526611,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2410.14077v2:p1:c52",
+        "doc_id": "2410.14077v2",
+        "page": 1,
+        "score": 0.5184816122055054,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2410.14077v2:p1:c56",
+        "doc_id": "2410.14077v2",
+        "page": 1,
+        "score": 0.5097095966339111,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 17.232957994565368,
+      "rerank": 0.0012499804142862558,
+      "generation": 165.36429201369174
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

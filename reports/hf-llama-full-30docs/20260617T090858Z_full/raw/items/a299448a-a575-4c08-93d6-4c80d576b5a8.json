@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "a299448a-a575-4c08-93d6-4c80d576b5a8",
+    "question": "How do class and space calibrations differ in their impact on model accuracy?",
+    "answer": "Class calibration primarily reduces misclassification errors but may increase false background detections. In contrast, incorporating space calibration further decreases both types of errors beyond what class calibration alone achieves.",
+    "expected_answers": [
+      "Class calibration primarily reduces misclassification errors but may increase false background detections. In contrast, incorporating space calibration further decreases both types of errors beyond what class calibration alone achieves."
+    ],
+    "doc_ids": [
+      "2410.11774v2"
+    ],
+    "doc_sources": [
+      "2410.11774v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text-table-image",
+      "section_id": 17,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "a299448a-a575-4c08-93d6-4c80d576b5a8",
+    "type": "abstractive",
+    "question": "How do class and space calibrations differ in their impact on model accuracy?",
+    "gold_answer": "Class calibration primarily reduces misclassification errors but may increase false background detections. In contrast, incorporating space calibration further decreases both types of errors beyond what class calibration alone achieves.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.6426881551742554,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2410.11774v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2410.11774v2:p1:c104",
+        "doc_id": "2410.11774v2",
+        "page": 1,
+        "score": 0.6426881551742554,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2410.11774v2:p1:c105",
+        "doc_id": "2410.11774v2",
+        "page": 1,
+        "score": 0.5565362572669983,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2410.11774v2:p1:c39",
+        "doc_id": "2410.11774v2",
+        "page": 1,
+        "score": 0.47199076414108276,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2410.11774v2:p1:c106",
+        "doc_id": "2410.11774v2",
+        "page": 1,
+        "score": 0.4474884569644928,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2410.11774v2:p1:c23",
+        "doc_id": "2410.11774v2",
+        "page": 1,
+        "score": 0.44549477100372314,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 28.672499989625067,
+      "rerank": 0.0031249946914613247,
+      "generation": 167.37383397412486
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

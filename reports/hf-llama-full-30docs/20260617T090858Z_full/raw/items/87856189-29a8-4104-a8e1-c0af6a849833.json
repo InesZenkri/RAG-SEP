@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "87856189-29a8-4104-a8e1-c0af6a849833",
+    "question": "How do existing methods like signal injection compare with newer approaches for estimating line impedance?",
+    "answer": "Existing methods like signal injection often face limitations such as high sensitivity to noise and complexity. Newer approaches aim to address these issues by improving accuracy and adaptability through advanced algorithms like VDF-RLS.",
+    "expected_answers": [
+      "Existing methods like signal injection often face limitations such as high sensitivity to noise and complexity. Newer approaches aim to address these issues by improving accuracy and adaptability through advanced algorithms like VDF-RLS."
+    ],
+    "doc_ids": [
+      "2410.14077v2"
+    ],
+    "doc_sources": [
+      "2410.14077v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text-image",
+      "section_id": 1,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "87856189-29a8-4104-a8e1-c0af6a849833",
+    "type": "abstractive",
+    "question": "How do existing methods like signal injection compare with newer approaches for estimating line impedance?",
+    "gold_answer": "Existing methods like signal injection often face limitations such as high sensitivity to noise and complexity. Newer approaches aim to address these issues by improving accuracy and adaptability through advanced algorithms like VDF-RLS.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.6517926454544067,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.06060606060606061,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2410.14077v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2410.14077v2:p1:c12",
+        "doc_id": "2410.14077v2",
+        "page": 1,
+        "score": 0.6517926454544067,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2410.14077v2:p1:c10",
+        "doc_id": "2410.14077v2",
+        "page": 1,
+        "score": 0.6015046834945679,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2410.14077v2:p1:c17",
+        "doc_id": "2410.14077v2",
+        "page": 1,
+        "score": 0.5931196212768555,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2410.14077v2:p1:c3",
+        "doc_id": "2410.14077v2",
+        "page": 1,
+        "score": 0.5897501111030579,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2410.14077v2:p1:c9",
+        "doc_id": "2410.14077v2",
+        "page": 1,
+        "score": 0.5703607797622681,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 22.515916993143037,
+      "rerank": 0.002541986759752035,
+      "generation": 171.35004201554693
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "ec1a0619-e980-44f3-9072-2d9f237a69af",
+    "question": "What are the key differences between MMAudio and Movie Gen Audio in terms of data usage and performance?",
+    "answer": "MMAudio uses publicly available data, while Movie Gen Audio is trained on extensive non-public data. In performance, MMAudio is comparable to Movie Gen Audio in subjective assessments but slightly worse in semantic alignment and better in temporal alignment.",
+    "expected_answers": [
+      "MMAudio uses publicly available data, while Movie Gen Audio is trained on extensive non-public data. In performance, MMAudio is comparable to Movie Gen Audio in subjective assessments but slightly worse in semantic alignment and better in temporal alignment."
+    ],
+    "doc_ids": [
+      "2412.15322v2"
+    ],
+    "doc_sources": [
+      "2412.15322v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text-table-image",
+      "section_id": 17,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "ec1a0619-e980-44f3-9072-2d9f237a69af",
+    "type": "abstractive",
+    "question": "What are the key differences between MMAudio and Movie Gen Audio in terms of data usage and performance?",
+    "gold_answer": "MMAudio uses publicly available data, while Movie Gen Audio is trained on extensive non-public data. In performance, MMAudio is comparable to Movie Gen Audio in subjective assessments but slightly worse in semantic alignment and better in temporal alignment.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.7717500925064087,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.028169014084507043,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2412.15322v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2412.15322v2:p1:c95",
+        "doc_id": "2412.15322v2",
+        "page": 1,
+        "score": 0.7717500925064087,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2412.15322v2:p1:c98",
+        "doc_id": "2412.15322v2",
+        "page": 1,
+        "score": 0.7557965517044067,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2412.15322v2:p1:c94",
+        "doc_id": "2412.15322v2",
+        "page": 1,
+        "score": 0.7459784150123596,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2412.15322v2:p1:c97",
+        "doc_id": "2412.15322v2",
+        "page": 1,
+        "score": 0.7113139033317566,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2412.15322v2:p1:c96",
+        "doc_id": "2412.15322v2",
+        "page": 1,
+        "score": 0.6442745923995972,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 29.00829099235125,
+      "rerank": 0.003083987394347787,
+      "generation": 190.31662499764934
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

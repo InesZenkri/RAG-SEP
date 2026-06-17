@@ -1,0 +1,76 @@
+{
+  "item": {
+    "id": "q1",
+    "question": "What are the products of photosynthesis?",
+    "answer": "glucose and oxygen",
+    "expected_answers": [
+      "glucose and oxygen",
+      "oxygen and glucose",
+      "C6H12O6 and O2"
+    ],
+    "doc_ids": [],
+    "doc_sources": [
+      "photosynthesis.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {}
+  },
+  "result": {
+    "id": "q1",
+    "type": "extractive",
+    "question": "What are the products of photosynthesis?",
+    "gold_answer": "glucose and oxygen",
+    "predicted": "[Gemini Error] API call failed: [Errno 8] nodename nor servname provided, or not known",
+    "abstained": false,
+    "confidence": 0.8491453380041688,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "photosynthesis:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "photosynthesis:p1:c1",
+        "doc_id": "photosynthesis",
+        "page": 1,
+        "score": 0.8491453380041688,
+        "retriever": "bm25"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "mitochondria:p1:c1",
+        "doc_id": "mitochondria",
+        "page": 1,
+        "score": 0.43012963510125257,
+        "retriever": "bm25"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "transformers:p1:c1",
+        "doc_id": "transformers",
+        "page": 1,
+        "score": 0.34983857413084557,
+        "retriever": "bm25"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 0.21295901387929916,
+      "rerank": 0.0007500057108700275,
+      "generation": 0.27099999715574086
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

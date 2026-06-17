@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "73e5221b-147a-467b-a6c3-9efdd828cebb",
+    "question": "How does the predictive performance of the CAREER model compare when using different lengths of career history data?",
+    "answer": "The predictive performance of the CAREER model improves with longer career history data. Specifically, using 10 or 15 years of historical data significantly enhances prediction accuracy compared to just 5 years, highlighting a trade-off between model performance and the cost of collecting long-term career data.",
+    "expected_answers": [
+      "The predictive performance of the CAREER model improves with longer career history data. Specifically, using 10 or 15 years of historical data significantly enhances prediction accuracy compared to just 5 years, highlighting a trade-off between model performance and the cost of collecting long-term career data."
+    ],
+    "doc_ids": [
+      "2406.17972v3"
+    ],
+    "doc_sources": [
+      "2406.17972v3.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text-table",
+      "section_id": 24,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "73e5221b-147a-467b-a6c3-9efdd828cebb",
+    "type": "abstractive",
+    "question": "How does the predictive performance of the CAREER model compare when using different lengths of career history data?",
+    "gold_answer": "The predictive performance of the CAREER model improves with longer career history data. Specifically, using 10 or 15 years of historical data significantly enhances prediction accuracy compared to just 5 years, highlighting a trade-off between model performance and the cost of collecting long-term career data.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.6392175555229187,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.05405405405405405,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2406.17972v3:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2406.17972v3:p1:c150",
+        "doc_id": "2406.17972v3",
+        "page": 1,
+        "score": 0.6392175555229187,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2406.17972v3:p1:c23",
+        "doc_id": "2406.17972v3",
+        "page": 1,
+        "score": 0.6340690851211548,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2406.17972v3:p1:c80",
+        "doc_id": "2406.17972v3",
+        "page": 1,
+        "score": 0.6281896829605103,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2406.17972v3:p1:c122",
+        "doc_id": "2406.17972v3",
+        "page": 1,
+        "score": 0.6277250051498413,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2406.17972v3:p1:c64",
+        "doc_id": "2406.17972v3",
+        "page": 1,
+        "score": 0.6153348684310913,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 31.86587497475557,
+      "rerank": 0.002749991836026311,
+      "generation": 185.09608300519176
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

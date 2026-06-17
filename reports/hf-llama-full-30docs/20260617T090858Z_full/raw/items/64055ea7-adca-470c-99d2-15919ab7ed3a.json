@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "64055ea7-adca-470c-99d2-15919ab7ed3a",
+    "question": "Why is it important to consider dependent data structures in Monte Carlo simulations?",
+    "answer": "Considering dependent data structures is crucial because ignoring them can lead to biased or misleading conclusions. When multiple models are fitted on the same dataset without acknowledging these dependencies, it may result in overconfidence about results' robustness or misinterpretation regarding variable effects.",
+    "expected_answers": [
+      "Considering dependent data structures is crucial because ignoring them can lead to biased or misleading conclusions. When multiple models are fitted on the same dataset without acknowledging these dependencies, it may result in overconfidence about results' robustness or misinterpretation regarding variable effects."
+    ],
+    "doc_ids": [
+      "2401.07294v4"
+    ],
+    "doc_sources": [
+      "2401.07294v4.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 0,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "64055ea7-adca-470c-99d2-15919ab7ed3a",
+    "type": "abstractive",
+    "question": "Why is it important to consider dependent data structures in Monte Carlo simulations?",
+    "gold_answer": "Considering dependent data structures is crucial because ignoring them can lead to biased or misleading conclusions. When multiple models are fitted on the same dataset without acknowledging these dependencies, it may result in overconfidence about results' robustness or misinterpretation regarding variable effects.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.5073941349983215,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.027027027027027025,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2401.07294v4:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2401.07294v4:p1:c2",
+        "doc_id": "2401.07294v4",
+        "page": 1,
+        "score": 0.5073941349983215,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2401.07294v4:p1:c3",
+        "doc_id": "2401.07294v4",
+        "page": 1,
+        "score": 0.49431735277175903,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2401.07294v4:p1:c1",
+        "doc_id": "2401.07294v4",
+        "page": 1,
+        "score": 0.4799927771091461,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2401.07294v4:p1:c4",
+        "doc_id": "2401.07294v4",
+        "page": 1,
+        "score": 0.4746250510215759,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2401.07294v4:p1:c18",
+        "doc_id": "2401.07294v4",
+        "page": 1,
+        "score": 0.4722832441329956,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 15.202416980173439,
+      "rerank": 0.001333013642579317,
+      "generation": 168.98650000803173
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

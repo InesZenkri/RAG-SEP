@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "c3475764-04fe-4483-994a-662a6a77f4c2",
+    "question": "Which cryptocurrency has a shape parameter ($\\xi$) with an estimation closest to zero?",
+    "answer": "Bitcoin (BTC) has a shape parameter ($\\xi$) with an estimation closest to zero, at a value of 0.083.",
+    "expected_answers": [
+      "Bitcoin (BTC) has a shape parameter ($\\xi$) with an estimation closest to zero, at a value of 0.083."
+    ],
+    "doc_ids": [
+      "2411.13384v2"
+    ],
+    "doc_sources": [
+      "2411.13384v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {
+      "source": "text-table-image",
+      "section_id": 8,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "c3475764-04fe-4483-994a-662a6a77f4c2",
+    "type": "extractive",
+    "question": "Which cryptocurrency has a shape parameter ($\\xi$) with an estimation closest to zero?",
+    "gold_answer": "Bitcoin (BTC) has a shape parameter ($\\xi$) with an estimation closest to zero, at a value of 0.083.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.500058114528656,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.041666666666666664,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2411.13384v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2411.13384v2:p1:c82",
+        "doc_id": "2411.13384v2",
+        "page": 1,
+        "score": 0.500058114528656,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2411.13384v2:p1:c78",
+        "doc_id": "2411.13384v2",
+        "page": 1,
+        "score": 0.41446125507354736,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2412.11130v5:p1:c71",
+        "doc_id": "2412.11130v5",
+        "page": 1,
+        "score": 0.4010768532752991,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2411.13384v2:p1:c84",
+        "doc_id": "2411.13384v2",
+        "page": 1,
+        "score": 0.3736567497253418,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2411.13384v2:p1:c87",
+        "doc_id": "2411.13384v2",
+        "page": 1,
+        "score": 0.3676524758338928,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 18.112459016265348,
+      "rerank": 0.0017079873941838741,
+      "generation": 180.55779198766686
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

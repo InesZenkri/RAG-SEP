@@ -1,0 +1,102 @@
+{
+  "item": {
+    "id": "6af79595-412c-4768-bf68-66ebeef9bd14",
+    "question": "How is second-order smoothness achieved in Tikhonov regularization?",
+    "answer": "Second-order smoothness is achieved by using a second-order difference operator, which penalizes large second derivatives to enforce smooth curvature.",
+    "expected_answers": [
+      "Second-order smoothness is achieved by using a second-order difference operator, which penalizes large second derivatives to enforce smooth curvature."
+    ],
+    "doc_ids": [
+      "2412.06611v2"
+    ],
+    "doc_sources": [
+      "2412.06611v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 9,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "6af79595-412c-4768-bf68-66ebeef9bd14",
+    "type": "abstractive",
+    "question": "How is second-order smoothness achieved in Tikhonov regularization?",
+    "gold_answer": "Second-order smoothness is achieved by using a second-order difference operator, which penalizes large second derivatives to enforce smooth curvature.",
+    "predicted": "Second-order smoothness is achieved in Tikhonov regularization by penalizing large second derivatives, which is done by the term $g(\\mathbf{s})=\\left\\|D_{2} \\mathbf{s}\\right\\|_{2}^{2}$, where $D_{2}$ is the second-order difference operator. [2412.06611v2:p1]",
+    "abstained": false,
+    "confidence": 0.7187925577163696,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.5454545454545455,
+    "citation_precision": 1.0,
+    "citation_recall": 1.0,
+    "gold_retrieval_keys": [
+      "2412.06611v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2412.06611v2:p1:c36",
+        "doc_id": "2412.06611v2",
+        "page": 1,
+        "score": 0.7187925577163696,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2412.06611v2:p1:c38",
+        "doc_id": "2412.06611v2",
+        "page": 1,
+        "score": 0.7074174880981445,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2412.06611v2:p1:c37",
+        "doc_id": "2412.06611v2",
+        "page": 1,
+        "score": 0.6568877696990967,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2412.06611v2:p1:c44",
+        "doc_id": "2412.06611v2",
+        "page": 1,
+        "score": 0.53145831823349,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2412.06611v2:p1:c35",
+        "doc_id": "2412.06611v2",
+        "page": 1,
+        "score": 0.48869049549102783,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [
+      {
+        "doc_id": "2412.06611v2",
+        "page": 1,
+        "chunk_id": null,
+        "quote": null,
+        "valid_retrieved_key": true
+      }
+    ],
+    "invalid_citations": [],
+    "issues": [],
+    "latency_ms": {
+      "retrieval": 64.63529201573692,
+      "rerank": 0.0019170111045241356,
+      "generation": 1773.188791994471
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

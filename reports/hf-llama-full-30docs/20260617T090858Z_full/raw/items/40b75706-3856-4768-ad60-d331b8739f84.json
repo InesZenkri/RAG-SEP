@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "40b75706-3856-4768-ad60-d331b8739f84",
+    "question": "Why might aggregation be suitable when only average effects are considered in simulation studies?",
+    "answer": "Aggregation is suitable when only average effects are considered because it simplifies analysis by focusing on overall trends rather than individual variations or interactions that may require more complex modeling approaches like those offered by multilevel frameworks.",
+    "expected_answers": [
+      "Aggregation is suitable when only average effects are considered because it simplifies analysis by focusing on overall trends rather than individual variations or interactions that may require more complex modeling approaches like those offered by multilevel frameworks."
+    ],
+    "doc_ids": [
+      "2401.07294v4"
+    ],
+    "doc_sources": [
+      "2401.07294v4.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text-table",
+      "section_id": 7,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "40b75706-3856-4768-ad60-d331b8739f84",
+    "type": "abstractive",
+    "question": "Why might aggregation be suitable when only average effects are considered in simulation studies?",
+    "gold_answer": "Aggregation is suitable when only average effects are considered because it simplifies analysis by focusing on overall trends rather than individual variations or interactions that may require more complex modeling approaches like those offered by multilevel frameworks.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.5376242399215698,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.02857142857142857,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2401.07294v4:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2401.07294v4:p1:c43",
+        "doc_id": "2401.07294v4",
+        "page": 1,
+        "score": 0.5376242399215698,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2401.07294v4:p1:c101",
+        "doc_id": "2401.07294v4",
+        "page": 1,
+        "score": 0.5322214961051941,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2401.07294v4:p1:c46",
+        "doc_id": "2401.07294v4",
+        "page": 1,
+        "score": 0.5046613216400146,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2401.07294v4:p1:c121",
+        "doc_id": "2401.07294v4",
+        "page": 1,
+        "score": 0.4945242404937744,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2401.07294v4:p1:c10",
+        "doc_id": "2401.07294v4",
+        "page": 1,
+        "score": 0.4894423484802246,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 28.639875003136694,
+      "rerank": 0.0029579969123005867,
+      "generation": 191.3060829974711
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

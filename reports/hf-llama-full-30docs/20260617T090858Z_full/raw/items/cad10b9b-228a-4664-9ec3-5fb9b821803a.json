@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "cad10b9b-228a-4664-9ec3-5fb9b821803a",
+    "question": "How are prime numbers related to zero-free regions for Dirichlet L-functions?",
+    "answer": "Prime numbers are closely linked to zero-free regions for Dirichlet L-functions because these functions generalize the Riemann Zeta function and help describe properties of primes within arithmetic progressions. Zero-free regions can provide insights into how primes are distributed.",
+    "expected_answers": [
+      "Prime numbers are closely linked to zero-free regions for Dirichlet L-functions because these functions generalize the Riemann Zeta function and help describe properties of primes within arithmetic progressions. Zero-free regions can provide insights into how primes are distributed."
+    ],
+    "doc_ids": [
+      "2412.11130v5"
+    ],
+    "doc_sources": [
+      "2412.11130v5.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text-image",
+      "section_id": 12,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "cad10b9b-228a-4664-9ec3-5fb9b821803a",
+    "type": "abstractive",
+    "question": "How are prime numbers related to zero-free regions for Dirichlet L-functions?",
+    "gold_answer": "Prime numbers are closely linked to zero-free regions for Dirichlet L-functions because these functions generalize the Riemann Zeta function and help describe properties of primes within arithmetic progressions. Zero-free regions can provide insights into how primes are distributed.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.6839606761932373,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.02857142857142857,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2412.11130v5:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2412.11130v5:p1:c66",
+        "doc_id": "2412.11130v5",
+        "page": 1,
+        "score": 0.6839606761932373,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2412.11130v5:p1:c65",
+        "doc_id": "2412.11130v5",
+        "page": 1,
+        "score": 0.5329389572143555,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2412.11130v5:p1:c67",
+        "doc_id": "2412.11130v5",
+        "page": 1,
+        "score": 0.5255708694458008,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2412.11130v5:p1:c39",
+        "doc_id": "2412.11130v5",
+        "page": 1,
+        "score": 0.4940846562385559,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2412.11130v5:p1:c2",
+        "doc_id": "2412.11130v5",
+        "page": 1,
+        "score": 0.46678268909454346,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 35.501333011779934,
+      "rerank": 0.001500011421740055,
+      "generation": 261.3899999996647
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

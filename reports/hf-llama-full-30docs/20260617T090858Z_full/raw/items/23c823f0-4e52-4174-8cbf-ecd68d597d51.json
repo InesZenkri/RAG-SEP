@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "23c823f0-4e52-4174-8cbf-ecd68d597d51",
+    "question": "In what ways do imagined story continuations complement existing feature engineering techniques?",
+    "answer": "Imagined story continuations complement existing feature engineering techniques by providing additional dimensions\u2014expectations, uncertainty, and surprise\u2014that enhance explanatory power. These new features offer insights into how audiences might react based on their beliefs about future developments in a narrative.",
+    "expected_answers": [
+      "Imagined story continuations complement existing feature engineering techniques by providing additional dimensions\u2014expectations, uncertainty, and surprise\u2014that enhance explanatory power. These new features offer insights into how audiences might react based on their beliefs about future developments in a narrative."
+    ],
+    "doc_ids": [
+      "2412.15239v2"
+    ],
+    "doc_sources": [
+      "2412.15239v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 1,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "23c823f0-4e52-4174-8cbf-ecd68d597d51",
+    "type": "abstractive",
+    "question": "In what ways do imagined story continuations complement existing feature engineering techniques?",
+    "gold_answer": "Imagined story continuations complement existing feature engineering techniques by providing additional dimensions\u2014expectations, uncertainty, and surprise\u2014that enhance explanatory power. These new features offer insights into how audiences might react based on their beliefs about future developments in a narrative.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.7641831636428833,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2412.15239v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2412.15239v2:p1:c15",
+        "doc_id": "2412.15239v2",
+        "page": 1,
+        "score": 0.7641831636428833,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2412.15239v2:p1:c13",
+        "doc_id": "2412.15239v2",
+        "page": 1,
+        "score": 0.7311842441558838,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2412.15239v2:p1:c38",
+        "doc_id": "2412.15239v2",
+        "page": 1,
+        "score": 0.676424503326416,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2412.15239v2:p1:c59",
+        "doc_id": "2412.15239v2",
+        "page": 1,
+        "score": 0.6686781644821167,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2412.15239v2:p1:c39",
+        "doc_id": "2412.15239v2",
+        "page": 1,
+        "score": 0.6444063782691956,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 19.56733298720792,
+      "rerank": 0.001667009200900793,
+      "generation": 161.9722500036005
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "77cca035-ab03-4678-8149-1484b0c369fe",
+    "question": "Why are cumulative distribution functions (CDF) important for understanding Doppler effects?",
+    "answer": "Cumulative distribution functions (CDF) are important because they provide insights into the probability that observed Doppler frequencies fall below certain values. This helps characterize and predict signal behavior under various environmental conditions and motion scenarios.",
+    "expected_answers": [
+      "Cumulative distribution functions (CDF) are important because they provide insights into the probability that observed Doppler frequencies fall below certain values. This helps characterize and predict signal behavior under various environmental conditions and motion scenarios."
+    ],
+    "doc_ids": [
+      "2409.01631v3"
+    ],
+    "doc_sources": [
+      "2409.01631v3.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text-image",
+      "section_id": 3,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "77cca035-ab03-4678-8149-1484b0c369fe",
+    "type": "abstractive",
+    "question": "Why are cumulative distribution functions (CDF) important for understanding Doppler effects?",
+    "gold_answer": "Cumulative distribution functions (CDF) are important because they provide insights into the probability that observed Doppler frequencies fall below certain values. This helps characterize and predict signal behavior under various environmental conditions and motion scenarios.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.5704318881034851,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2409.01631v3:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2409.01631v3:p1:c15",
+        "doc_id": "2409.01631v3",
+        "page": 1,
+        "score": 0.5704318881034851,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2409.01631v3:p1:c25",
+        "doc_id": "2409.01631v3",
+        "page": 1,
+        "score": 0.5375336408615112,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2409.01631v3:p1:c24",
+        "doc_id": "2409.01631v3",
+        "page": 1,
+        "score": 0.5235216617584229,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2409.01631v3:p1:c13",
+        "doc_id": "2409.01631v3",
+        "page": 1,
+        "score": 0.5016810894012451,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2409.01631v3:p1:c23",
+        "doc_id": "2409.01631v3",
+        "page": 1,
+        "score": 0.490630567073822,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 23.880167020251974,
+      "rerank": 0.0022500171326100826,
+      "generation": 178.05604098248295
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

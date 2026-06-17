@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "0d61eea2-0c23-457f-b6db-88794d9c5dbe",
+    "question": "What is the purpose of data time travel in reinforcement learning for market making?",
+    "answer": "The purpose of data time travel is to maximize the consistency of the influence of the new RL agent's actions with what happened next in the system, i.e., with the next effective events conditionally on the state (static and dynamic) of the system.",
+    "expected_answers": [
+      "The purpose of data time travel is to maximize the consistency of the influence of the new RL agent's actions with what happened next in the system, i.e., with the next effective events conditionally on the state (static and dynamic) of the system."
+    ],
+    "doc_ids": [
+      "2408.02322v2"
+    ],
+    "doc_sources": [
+      "2408.02322v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 2,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "0d61eea2-0c23-457f-b6db-88794d9c5dbe",
+    "type": "abstractive",
+    "question": "What is the purpose of data time travel in reinforcement learning for market making?",
+    "gold_answer": "The purpose of data time travel is to maximize the consistency of the influence of the new RL agent's actions with what happened next in the system, i.e., with the next effective events conditionally on the state (static and dynamic) of the system.",
+    "predicted": "The purpose of data time travel in reinforcement learning for market making is to find a more consistent state of the system and the influence of the RL agent onto the system, thereby avoiding large discrepancies between the system's state and the RL agent's action.",
+    "abstained": false,
+    "confidence": 0.6454523801803589,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.47222222222222227,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2408.02322v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2408.02322v2:p1:c71",
+        "doc_id": "2408.02322v2",
+        "page": 1,
+        "score": 0.6454523801803589,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2408.02322v2:p1:c1",
+        "doc_id": "2408.02322v2",
+        "page": 1,
+        "score": 0.6445438861846924,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2408.02322v2:p1:c63",
+        "doc_id": "2408.02322v2",
+        "page": 1,
+        "score": 0.5950976610183716,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2408.02322v2:p1:c26",
+        "doc_id": "2408.02322v2",
+        "page": 1,
+        "score": 0.5848759412765503,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2408.02322v2:p1:c65",
+        "doc_id": "2408.02322v2",
+        "page": 1,
+        "score": 0.5842397212982178,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 27.250207989709452,
+      "rerank": 0.0027919886633753777,
+      "generation": 744.0108329756185
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

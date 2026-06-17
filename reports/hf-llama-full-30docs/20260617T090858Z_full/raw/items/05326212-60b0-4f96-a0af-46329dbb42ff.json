@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "05326212-60b0-4f96-a0af-46329dbb42ff",
+    "question": "Why are histograms and violin plots used in analyzing beam pattern residuals?",
+    "answer": "Histograms and violin plots are used to statistically analyze the distribution of residuals between measured and modeled beam patterns. They help compare main beams and side lobes, highlighting differences between models like Gaussian and ZP.",
+    "expected_answers": [
+      "Histograms and violin plots are used to statistically analyze the distribution of residuals between measured and modeled beam patterns. They help compare main beams and side lobes, highlighting differences between models like Gaussian and ZP."
+    ],
+    "doc_ids": [
+      "2412.02582v2"
+    ],
+    "doc_sources": [
+      "2412.02582v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text-image",
+      "section_id": 11,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "05326212-60b0-4f96-a0af-46329dbb42ff",
+    "type": "abstractive",
+    "question": "Why are histograms and violin plots used in analyzing beam pattern residuals?",
+    "gold_answer": "Histograms and violin plots are used to statistically analyze the distribution of residuals between measured and modeled beam patterns. They help compare main beams and side lobes, highlighting differences between models like Gaussian and ZP.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.7088570594787598,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.02985074626865672,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2412.02582v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2412.02582v2:p1:c57",
+        "doc_id": "2412.02582v2",
+        "page": 1,
+        "score": 0.7088570594787598,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2412.02582v2:p1:c60",
+        "doc_id": "2412.02582v2",
+        "page": 1,
+        "score": 0.579720139503479,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2412.02582v2:p1:c56",
+        "doc_id": "2412.02582v2",
+        "page": 1,
+        "score": 0.5549713373184204,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2412.02582v2:p1:c46",
+        "doc_id": "2412.02582v2",
+        "page": 1,
+        "score": 0.48456722497940063,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2412.02582v2:p1:c55",
+        "doc_id": "2412.02582v2",
+        "page": 1,
+        "score": 0.47851046919822693,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 30.783916998188943,
+      "rerank": 0.002541986759752035,
+      "generation": 189.11325000226498
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

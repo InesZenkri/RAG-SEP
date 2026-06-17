@@ -1,0 +1,75 @@
+{
+  "item": {
+    "id": "q2",
+    "question": "Where do the light-dependent reactions occur?",
+    "answer": "thylakoid membranes",
+    "expected_answers": [
+      "thylakoid membranes",
+      "thylakoid membranes of chloroplasts"
+    ],
+    "doc_ids": [],
+    "doc_sources": [
+      "photosynthesis.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {}
+  },
+  "result": {
+    "id": "q2",
+    "type": "extractive",
+    "question": "Where do the light-dependent reactions occur?",
+    "gold_answer": "thylakoid membranes",
+    "predicted": "[HuggingFace Error] Router call failed: 400 Bad Request: {\"error\":{\"message\":\"The requested model 'gemini-2.5-flash' does not exist.\",\"type\":\"invalid_request_error\",\"param\":\"model\",\"code\":\"model_not_found\"}}",
+    "abstained": false,
+    "confidence": 0.6174074411392212,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "photosynthesis:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "photosynthesis:p1:c1",
+        "doc_id": "photosynthesis",
+        "page": 1,
+        "score": 0.6174074411392212,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "mitochondria:p1:c1",
+        "doc_id": "mitochondria",
+        "page": 1,
+        "score": 0.24510395526885986,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "transformers:p1:c1",
+        "doc_id": "transformers",
+        "page": 1,
+        "score": 0.09387229382991791,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 20.1858340005856,
+      "rerank": 0.0019999861251562834,
+      "generation": 409.745707991533
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

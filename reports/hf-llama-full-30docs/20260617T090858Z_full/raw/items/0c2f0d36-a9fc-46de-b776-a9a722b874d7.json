@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "0c2f0d36-a9fc-46de-b776-a9a722b874d7",
+    "question": "How do ETS models assign weights to past observations?",
+    "answer": "ETS models apply exponential smoothing to assign exponentially diminishing weights to past observations.",
+    "expected_answers": [
+      "ETS models apply exponential smoothing to assign exponentially diminishing weights to past observations."
+    ],
+    "doc_ids": [
+      "2405.17070v2"
+    ],
+    "doc_sources": [
+      "2405.17070v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text-table",
+      "section_id": 8,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "0c2f0d36-a9fc-46de-b776-a9a722b874d7",
+    "type": "abstractive",
+    "question": "How do ETS models assign weights to past observations?",
+    "gold_answer": "ETS models apply exponential smoothing to assign exponentially diminishing weights to past observations.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.49210187792778015,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.08695652173913043,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2405.17070v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2405.17070v2:p1:c46",
+        "doc_id": "2405.17070v2",
+        "page": 1,
+        "score": 0.49210187792778015,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2405.17070v2:p1:c47",
+        "doc_id": "2405.17070v2",
+        "page": 1,
+        "score": 0.47106021642684937,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2405.17070v2:p1:c122",
+        "doc_id": "2405.17070v2",
+        "page": 1,
+        "score": 0.4499291777610779,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2405.17070v2:p1:c55",
+        "doc_id": "2405.17070v2",
+        "page": 1,
+        "score": 0.4045887291431427,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2405.17070v2:p1:c50",
+        "doc_id": "2405.17070v2",
+        "page": 1,
+        "score": 0.3747366666793823,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 26.155041996389627,
+      "rerank": 0.002374988980591297,
+      "generation": 242.79362501692958
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

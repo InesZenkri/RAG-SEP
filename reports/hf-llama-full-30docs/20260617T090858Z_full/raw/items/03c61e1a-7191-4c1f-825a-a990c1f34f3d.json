@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "03c61e1a-7191-4c1f-825a-a990c1f34f3d",
+    "question": "How do holidays affect electricity load in France and Germany?",
+    "answer": "Holidays significantly impact electricity load, with variations observed during Easter and Christmas. The effects differ between weekday and fixed date holidays, influencing the load patterns over time.",
+    "expected_answers": [
+      "Holidays significantly impact electricity load, with variations observed during Easter and Christmas. The effects differ between weekday and fixed date holidays, influencing the load patterns over time."
+    ],
+    "doc_ids": [
+      "2405.17070v2"
+    ],
+    "doc_sources": [
+      "2405.17070v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text-image",
+      "section_id": 26,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "03c61e1a-7191-4c1f-825a-a990c1f34f3d",
+    "type": "abstractive",
+    "question": "How do holidays affect electricity load in France and Germany?",
+    "gold_answer": "Holidays significantly impact electricity load, with variations observed during Easter and Christmas. The effects differ between weekday and fixed date holidays, influencing the load patterns over time.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.7976592779159546,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2405.17070v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2405.17070v2:p1:c29",
+        "doc_id": "2405.17070v2",
+        "page": 1,
+        "score": 0.7976592779159546,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2405.17070v2:p1:c33",
+        "doc_id": "2405.17070v2",
+        "page": 1,
+        "score": 0.744002640247345,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2405.17070v2:p1:c156",
+        "doc_id": "2405.17070v2",
+        "page": 1,
+        "score": 0.7200957536697388,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2405.17070v2:p1:c158",
+        "doc_id": "2405.17070v2",
+        "page": 1,
+        "score": 0.7167746424674988,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2405.17070v2:p1:c155",
+        "doc_id": "2405.17070v2",
+        "page": 1,
+        "score": 0.6772441864013672,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 31.539499992504716,
+      "rerank": 0.0023329921532422304,
+      "generation": 174.2296250013169
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "865a1e09-e4b4-4efb-8970-1383929799e8",
+    "question": "In what way does consistent time travel improve an RL agent's performance compared to using naive sequential historical data?",
+    "answer": "Consistent time travel enhances an RL agent's performance by aligning historical states with real-time actions, providing a more accurate representation of system dynamics. This method results in higher gains for the agent compared to using naive sequential historical data that may not reflect true interactions.",
+    "expected_answers": [
+      "Consistent time travel enhances an RL agent's performance by aligning historical states with real-time actions, providing a more accurate representation of system dynamics. This method results in higher gains for the agent compared to using naive sequential historical data that may not reflect true interactions."
+    ],
+    "doc_ids": [
+      "2408.02322v2"
+    ],
+    "doc_sources": [
+      "2408.02322v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 0,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "865a1e09-e4b4-4efb-8970-1383929799e8",
+    "type": "abstractive",
+    "question": "In what way does consistent time travel improve an RL agent's performance compared to using naive sequential historical data?",
+    "gold_answer": "Consistent time travel enhances an RL agent's performance by aligning historical states with real-time actions, providing a more accurate representation of system dynamics. This method results in higher gains for the agent compared to using naive sequential historical data that may not reflect true interactions.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.7302056550979614,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.08,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2408.02322v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2408.02322v2:p1:c72",
+        "doc_id": "2408.02322v2",
+        "page": 1,
+        "score": 0.7302056550979614,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2408.02322v2:p1:c26",
+        "doc_id": "2408.02322v2",
+        "page": 1,
+        "score": 0.6973717212677002,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2408.02322v2:p1:c2",
+        "doc_id": "2408.02322v2",
+        "page": 1,
+        "score": 0.6972745060920715,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2408.02322v2:p1:c63",
+        "doc_id": "2408.02322v2",
+        "page": 1,
+        "score": 0.6942826509475708,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2408.02322v2:p1:c24",
+        "doc_id": "2408.02322v2",
+        "page": 1,
+        "score": 0.693316638469696,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 15.71545799379237,
+      "rerank": 0.001167005393654108,
+      "generation": 172.40149999270216
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

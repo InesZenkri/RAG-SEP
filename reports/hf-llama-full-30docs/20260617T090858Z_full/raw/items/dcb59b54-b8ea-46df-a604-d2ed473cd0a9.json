@@ -1,0 +1,97 @@
+{
+  "item": {
+    "id": "dcb59b54-b8ea-46df-a604-d2ed473cd0a9",
+    "question": "What is the significance of pro-cdh descent in derived schemes?",
+    "answer": "Pro-cdh descent is significant in derived schemes as it provides a framework for understanding how certain invariants and complexes behave under specific conditions, particularly for connective localizing invariants and the cotangent complex on qcqs derived schemes.",
+    "expected_answers": [
+      "Pro-cdh descent is significant in derived schemes as it provides a framework for understanding how certain invariants and complexes behave under specific conditions, particularly for connective localizing invariants and the cotangent complex on qcqs derived schemes."
+    ],
+    "doc_ids": [
+      "2407.04378v2"
+    ],
+    "doc_sources": [
+      "2407.04378v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 0,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "dcb59b54-b8ea-46df-a604-d2ed473cd0a9",
+    "type": "abstractive",
+    "question": "What is the significance of pro-cdh descent in derived schemes?",
+    "gold_answer": "Pro-cdh descent is significant in derived schemes as it provides a framework for understanding how certain invariants and complexes behave under specific conditions, particularly for connective localizing invariants and the cotangent complex on qcqs derived schemes.",
+    "predicted": "I cannot answer from the provided documents.",
+    "abstained": true,
+    "confidence": 0.0,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2407.04378v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2407.04378v2:p1:c7",
+        "doc_id": "2407.04378v2",
+        "page": 1,
+        "score": 0.6539705395698547,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2407.04378v2:p1:c6",
+        "doc_id": "2407.04378v2",
+        "page": 1,
+        "score": 0.6533704400062561,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2407.04378v2:p1:c106",
+        "doc_id": "2407.04378v2",
+        "page": 1,
+        "score": 0.6522426605224609,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2407.04378v2:p1:c9",
+        "doc_id": "2407.04378v2",
+        "page": 1,
+        "score": 0.6510785222053528,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2407.04378v2:p1:c20",
+        "doc_id": "2407.04378v2",
+        "page": 1,
+        "score": 0.6314964294433594,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "abstained",
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 29.242083022836596,
+      "rerank": 0.0027919886633753777,
+      "generation": 410.25524999713525
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

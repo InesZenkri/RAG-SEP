@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "e54b272c-abc2-4a8c-8944-c1db1eed0af3",
+    "question": "What is a drawback of using beam search compared to greedy search in NL2SQL models?",
+    "answer": "Beam search increases memory and computational demands, slowing down the decoding speed compared to greedy search.",
+    "expected_answers": [
+      "Beam search increases memory and computational demands, slowing down the decoding speed compared to greedy search."
+    ],
+    "doc_ids": [
+      "2408.05109v4"
+    ],
+    "doc_sources": [
+      "2408.05109v4.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 14,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "e54b272c-abc2-4a8c-8944-c1db1eed0af3",
+    "type": "abstractive",
+    "question": "What is a drawback of using beam search compared to greedy search in NL2SQL models?",
+    "gold_answer": "Beam search increases memory and computational demands, slowing down the decoding speed compared to greedy search.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.6608881950378418,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.041666666666666664,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2408.05109v4:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2408.05109v4:p1:c79",
+        "doc_id": "2408.05109v4",
+        "page": 1,
+        "score": 0.6608881950378418,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2408.05109v4:p1:c102",
+        "doc_id": "2408.05109v4",
+        "page": 1,
+        "score": 0.5951570272445679,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2408.05109v4:p1:c80",
+        "doc_id": "2408.05109v4",
+        "page": 1,
+        "score": 0.5842827558517456,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2408.05109v4:p1:c78",
+        "doc_id": "2408.05109v4",
+        "page": 1,
+        "score": 0.5794439315795898,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2408.05109v4:p1:c81",
+        "doc_id": "2408.05109v4",
+        "page": 1,
+        "score": 0.5527997612953186,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 30.640500015579164,
+      "rerank": 0.002874992787837982,
+      "generation": 184.1096250282135
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

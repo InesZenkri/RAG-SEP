@@ -1,0 +1,76 @@
+{
+  "item": {
+    "id": "q1",
+    "question": "What are the products of photosynthesis?",
+    "answer": "glucose and oxygen",
+    "expected_answers": [
+      "glucose and oxygen",
+      "oxygen and glucose",
+      "C6H12O6 and O2"
+    ],
+    "doc_ids": [],
+    "doc_sources": [
+      "photosynthesis.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {}
+  },
+  "result": {
+    "id": "q1",
+    "type": "extractive",
+    "question": "What are the products of photosynthesis?",
+    "gold_answer": "glucose and oxygen",
+    "predicted": "[HuggingFace Error] Router call failed: 400 Bad Request: {\"error\":{\"message\":\"The requested model 'gemini-2.5-flash' does not exist.\",\"type\":\"invalid_request_error\",\"param\":\"model\",\"code\":\"model_not_found\"}}",
+    "abstained": false,
+    "confidence": 0.7041448354721069,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "photosynthesis:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "photosynthesis:p1:c1",
+        "doc_id": "photosynthesis",
+        "page": 1,
+        "score": 0.7041448354721069,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "mitochondria:p1:c1",
+        "doc_id": "mitochondria",
+        "page": 1,
+        "score": 0.2703021764755249,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "transformers:p1:c1",
+        "doc_id": "transformers",
+        "page": 1,
+        "score": 0.08314549922943115,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 53.84445801610127,
+      "rerank": 0.0008750066626816988,
+      "generation": 363.5599999979604
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

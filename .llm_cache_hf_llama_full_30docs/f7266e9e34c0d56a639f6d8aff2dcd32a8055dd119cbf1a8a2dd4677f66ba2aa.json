@@ -1,0 +1,9 @@
+{
+  "cached": false,
+  "finish_reason": "",
+  "input_tokens": 0,
+  "model": "meta-llama/Meta-Llama-3-8B-Instruct",
+  "output_tokens": 0,
+  "provider": "huggingface",
+  "text": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}"
+}

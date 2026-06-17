@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "3ff4eef8-e465-4593-9811-49b6bd1dc1e8",
+    "question": "What is the purpose of using latent factors in feature selection for multiclass classification?",
+    "answer": "Latent factors are used to represent each class separately, allowing for tailored feature selection based on signal-to-noise ratio (SNR) for each class. This approach facilitates class incremental learning and ensures that the method is theoretically grounded rather than heuristic.",
+    "expected_answers": [
+      "Latent factors are used to represent each class separately, allowing for tailored feature selection based on signal-to-noise ratio (SNR) for each class. This approach facilitates class incremental learning and ensures that the method is theoretically grounded rather than heuristic."
+    ],
+    "doc_ids": [
+      "2412.10128v2"
+    ],
+    "doc_sources": [
+      "2412.10128v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 12,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "3ff4eef8-e465-4593-9811-49b6bd1dc1e8",
+    "type": "abstractive",
+    "question": "What is the purpose of using latent factors in feature selection for multiclass classification?",
+    "gold_answer": "Latent factors are used to represent each class separately, allowing for tailored feature selection based on signal-to-noise ratio (SNR) for each class. This approach facilitates class incremental learning and ensures that the method is theoretically grounded rather than heuristic.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.6232959032058716,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.028169014084507043,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2412.10128v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2412.10128v2:p1:c2",
+        "doc_id": "2412.10128v2",
+        "page": 1,
+        "score": 0.6232959032058716,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2412.10128v2:p1:c9",
+        "doc_id": "2412.10128v2",
+        "page": 1,
+        "score": 0.6057438850402832,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2412.10128v2:p1:c1",
+        "doc_id": "2412.10128v2",
+        "page": 1,
+        "score": 0.546195387840271,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2412.10128v2:p1:c17",
+        "doc_id": "2412.10128v2",
+        "page": 1,
+        "score": 0.5359851121902466,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2412.10128v2:p1:c16",
+        "doc_id": "2412.10128v2",
+        "page": 1,
+        "score": 0.5180519223213196,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 82.29141699848697,
+      "rerank": 0.0017090060282498598,
+      "generation": 169.26541598513722
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

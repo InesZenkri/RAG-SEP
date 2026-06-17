@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "74c3d526-6941-4aea-b577-6ab76d6932e2",
+    "question": "How does foreground contamination affect H1 intensity mapping surveys?",
+    "answer": "Foreground contamination poses a major challenge in H1 intensity mapping surveys because it can obscure or distort the signals from neutral hydrogen, making it difficult to accurately map cosmic structures. Effective subtraction of these foregrounds is crucial for obtaining reliable data.",
+    "expected_answers": [
+      "Foreground contamination poses a major challenge in H1 intensity mapping surveys because it can obscure or distort the signals from neutral hydrogen, making it difficult to accurately map cosmic structures. Effective subtraction of these foregrounds is crucial for obtaining reliable data."
+    ],
+    "doc_ids": [
+      "2412.02582v2"
+    ],
+    "doc_sources": [
+      "2412.02582v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 0,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "74c3d526-6941-4aea-b577-6ab76d6932e2",
+    "type": "abstractive",
+    "question": "How does foreground contamination affect H1 intensity mapping surveys?",
+    "gold_answer": "Foreground contamination poses a major challenge in H1 intensity mapping surveys because it can obscure or distort the signals from neutral hydrogen, making it difficult to accurately map cosmic structures. Effective subtraction of these foregrounds is crucial for obtaining reliable data.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.4544745087623596,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.027777777777777776,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2412.02582v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2412.02582v2:p1:c3",
+        "doc_id": "2412.02582v2",
+        "page": 1,
+        "score": 0.4544745087623596,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2412.02582v2:p1:c10",
+        "doc_id": "2412.02582v2",
+        "page": 1,
+        "score": 0.4527445137500763,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2412.02582v2:p1:c5",
+        "doc_id": "2412.02582v2",
+        "page": 1,
+        "score": 0.4404425621032715,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2412.02582v2:p1:c11",
+        "doc_id": "2412.02582v2",
+        "page": 1,
+        "score": 0.4367373585700989,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2412.02582v2:p1:c1",
+        "doc_id": "2412.02582v2",
+        "page": 1,
+        "score": 0.4325580298900604,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 27.375334000680596,
+      "rerank": 0.00270901364274323,
+      "generation": 196.70645901351236
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

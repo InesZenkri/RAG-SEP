@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "8224f5b3-65bc-42c6-9be4-2a5914edf3db",
+    "question": "What is the purpose of using a 19-feed array in radio astronomy?",
+    "answer": "The 19-feed array is used to enhance the sensitivity and resolution of radio observations, allowing for detailed mapping of hydrogen intensity across different regions in space.",
+    "expected_answers": [
+      "The 19-feed array is used to enhance the sensitivity and resolution of radio observations, allowing for detailed mapping of hydrogen intensity across different regions in space."
+    ],
+    "doc_ids": [
+      "2412.02582v2"
+    ],
+    "doc_sources": [
+      "2412.02582v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text-image",
+      "section_id": 9,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "8224f5b3-65bc-42c6-9be4-2a5914edf3db",
+    "type": "abstractive",
+    "question": "What is the purpose of using a 19-feed array in radio astronomy?",
+    "gold_answer": "The 19-feed array is used to enhance the sensitivity and resolution of radio observations, allowing for detailed mapping of hydrogen intensity across different regions in space.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.5626603960990906,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.03508771929824561,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2412.02582v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2412.02582v2:p1:c43",
+        "doc_id": "2412.02582v2",
+        "page": 1,
+        "score": 0.5626603960990906,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2412.02582v2:p1:c80",
+        "doc_id": "2412.02582v2",
+        "page": 1,
+        "score": 0.508571982383728,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2412.02582v2:p1:c82",
+        "doc_id": "2412.02582v2",
+        "page": 1,
+        "score": 0.5078091025352478,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2412.02582v2:p1:c70",
+        "doc_id": "2412.02582v2",
+        "page": 1,
+        "score": 0.47999274730682373,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2412.02582v2:p1:c23",
+        "doc_id": "2412.02582v2",
+        "page": 1,
+        "score": 0.47605907917022705,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 19.939541001804173,
+      "rerank": 0.0012909877113997936,
+      "generation": 226.80204099742696
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

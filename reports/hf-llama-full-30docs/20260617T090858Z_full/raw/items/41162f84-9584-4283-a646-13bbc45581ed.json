@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "41162f84-9584-4283-a646-13bbc45581ed",
+    "question": "What is the significance of blowup squares in algebraic $K$-theory?",
+    "answer": "Blowup squares are significant in algebraic $K$-theory because they help compute algebraic $K$-groups for schemes, particularly when dealing with regular immersions that yield cartesian squares and long exact sequences.",
+    "expected_answers": [
+      "Blowup squares are significant in algebraic $K$-theory because they help compute algebraic $K$-groups for schemes, particularly when dealing with regular immersions that yield cartesian squares and long exact sequences."
+    ],
+    "doc_ids": [
+      "2407.04378v2"
+    ],
+    "doc_sources": [
+      "2407.04378v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text-image",
+      "section_id": 2,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "41162f84-9584-4283-a646-13bbc45581ed",
+    "type": "abstractive",
+    "question": "What is the significance of blowup squares in algebraic $K$-theory?",
+    "gold_answer": "Blowup squares are significant in algebraic $K$-theory because they help compute algebraic $K$-groups for schemes, particularly when dealing with regular immersions that yield cartesian squares and long exact sequences.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.6542329788208008,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2407.04378v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2407.04378v2:p1:c3",
+        "doc_id": "2407.04378v2",
+        "page": 1,
+        "score": 0.6542329788208008,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2407.04378v2:p1:c182",
+        "doc_id": "2407.04378v2",
+        "page": 1,
+        "score": 0.647977352142334,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2407.04378v2:p1:c17",
+        "doc_id": "2407.04378v2",
+        "page": 1,
+        "score": 0.6174062490463257,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2407.04378v2:p1:c7",
+        "doc_id": "2407.04378v2",
+        "page": 1,
+        "score": 0.5891767144203186,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2407.04378v2:p1:c6",
+        "doc_id": "2407.04378v2",
+        "page": 1,
+        "score": 0.56212317943573,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 32.60608299751766,
+      "rerank": 0.0024999899324029684,
+      "generation": 221.80041699903086
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "fbd63031-acfd-4362-8a1b-c1ff32db4ec8",
+    "question": "What is the purpose of using ringdown measurements in mechanical systems?",
+    "answer": "Ringdown measurements are used to estimate the mechanical quality factor (Q) of a system by observing how quickly oscillations decay over time.",
+    "expected_answers": [
+      "Ringdown measurements are used to estimate the mechanical quality factor (Q) of a system by observing how quickly oscillations decay over time."
+    ],
+    "doc_ids": [
+      "2409.02275v2"
+    ],
+    "doc_sources": [
+      "2409.02275v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text-image",
+      "section_id": 10,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "fbd63031-acfd-4362-8a1b-c1ff32db4ec8",
+    "type": "abstractive",
+    "question": "What is the purpose of using ringdown measurements in mechanical systems?",
+    "gold_answer": "Ringdown measurements are used to estimate the mechanical quality factor (Q) of a system by observing how quickly oscillations decay over time.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.5098426342010498,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.03773584905660378,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2409.02275v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2409.02275v2:p1:c60",
+        "doc_id": "2409.02275v2",
+        "page": 1,
+        "score": 0.5098426342010498,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2409.02275v2:p1:c57",
+        "doc_id": "2409.02275v2",
+        "page": 1,
+        "score": 0.37506160140037537,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2409.02275v2:p1:c104",
+        "doc_id": "2409.02275v2",
+        "page": 1,
+        "score": 0.3662809729576111,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2412.10243v3:p1:c30",
+        "doc_id": "2412.10243v3",
+        "page": 1,
+        "score": 0.3228907585144043,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2409.02275v2:p1:c34",
+        "doc_id": "2409.02275v2",
+        "page": 1,
+        "score": 0.3034047782421112,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 21.08020900050178,
+      "rerank": 0.001500011421740055,
+      "generation": 176.45225001615472
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "cached": false,
+  "finish_reason": "",
+  "input_tokens": 801,
+  "model": "meta-llama/Meta-Llama-3-8B-Instruct",
+  "output_tokens": 19,
+  "provider": "huggingface",
+  "text": "Traditional feature selection methods for classification use data from all classes to select features for each class."
+}

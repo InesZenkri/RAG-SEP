@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "83d96ef0-bf1f-4e5c-9ed5-0cd33d4878d3",
+    "question": "How is uncertainty in performance metrics quantified for occupation models?",
+    "answer": "Uncertainty in performance metrics is quantified by bootstrapping both the training set and test set, estimating variation across bootstrap samples, and calculating standard errors referred to as \"training-set-bootstrapped\" and \"test-set-bootstrap.\"",
+    "expected_answers": [
+      "Uncertainty in performance metrics is quantified by bootstrapping both the training set and test set, estimating variation across bootstrap samples, and calculating standard errors referred to as \"training-set-bootstrapped\" and \"test-set-bootstrap.\""
+    ],
+    "doc_ids": [
+      "2406.17972v3"
+    ],
+    "doc_sources": [
+      "2406.17972v3.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 4,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "83d96ef0-bf1f-4e5c-9ed5-0cd33d4878d3",
+    "type": "abstractive",
+    "question": "How is uncertainty in performance metrics quantified for occupation models?",
+    "gold_answer": "Uncertainty in performance metrics is quantified by bootstrapping both the training set and test set, estimating variation across bootstrap samples, and calculating standard errors referred to as \"training-set-bootstrapped\" and \"test-set-bootstrap.\"",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.7117943167686462,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.03225806451612904,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2406.17972v3:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2406.17972v3:p1:c39",
+        "doc_id": "2406.17972v3",
+        "page": 1,
+        "score": 0.7117943167686462,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2406.17972v3:p1:c37",
+        "doc_id": "2406.17972v3",
+        "page": 1,
+        "score": 0.5165711641311646,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2406.17972v3:p1:c97",
+        "doc_id": "2406.17972v3",
+        "page": 1,
+        "score": 0.47786983847618103,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2406.17972v3:p1:c38",
+        "doc_id": "2406.17972v3",
+        "page": 1,
+        "score": 0.4574158191680908,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2401.07294v4:p1:c8",
+        "doc_id": "2401.07294v4",
+        "page": 1,
+        "score": 0.4505458474159241,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 22.875166992889717,
+      "rerank": 0.0024579931050539017,
+      "generation": 195.9097500075586
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

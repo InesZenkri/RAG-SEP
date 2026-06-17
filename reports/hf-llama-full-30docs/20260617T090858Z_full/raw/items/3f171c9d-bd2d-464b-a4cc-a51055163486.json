@@ -1,0 +1,97 @@
+{
+  "item": {
+    "id": "3f171c9d-bd2d-464b-a4cc-a51055163486",
+    "question": "What role does the shape parameter play in the Generalized Pareto Distribution?",
+    "answer": "The shape parameter $\\xi$ determines whether GPD degenerates into an Exponential distribution when it equals zero. It influences how heavy or light-tailed a distribution appears.",
+    "expected_answers": [
+      "The shape parameter $\\xi$ determines whether GPD degenerates into an Exponential distribution when it equals zero. It influences how heavy or light-tailed a distribution appears."
+    ],
+    "doc_ids": [
+      "2411.13384v2"
+    ],
+    "doc_sources": [
+      "2411.13384v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text-table-image",
+      "section_id": 8,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "3f171c9d-bd2d-464b-a4cc-a51055163486",
+    "type": "abstractive",
+    "question": "What role does the shape parameter play in the Generalized Pareto Distribution?",
+    "gold_answer": "The shape parameter $\\xi$ determines whether GPD degenerates into an Exponential distribution when it equals zero. It influences how heavy or light-tailed a distribution appears.",
+    "predicted": "I cannot answer from the provided documents.",
+    "abstained": true,
+    "confidence": 0.0,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2411.13384v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2404.00822v2:p1:c62",
+        "doc_id": "2404.00822v2",
+        "page": 1,
+        "score": 0.43361473083496094,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2411.14884v3:p1:c22",
+        "doc_id": "2411.14884v3",
+        "page": 1,
+        "score": 0.4159221947193146,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2411.14884v3:p1:c28",
+        "doc_id": "2411.14884v3",
+        "page": 1,
+        "score": 0.40786129236221313,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2411.13384v2:p1:c108",
+        "doc_id": "2411.13384v2",
+        "page": 1,
+        "score": 0.3982427716255188,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2410.09697v2:p1:c35",
+        "doc_id": "2410.09697v2",
+        "page": 1,
+        "score": 0.3949611783027649,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "abstained",
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 17.742958007147536,
+      "rerank": 0.0015829864423722029,
+      "generation": 557.3407920019235
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

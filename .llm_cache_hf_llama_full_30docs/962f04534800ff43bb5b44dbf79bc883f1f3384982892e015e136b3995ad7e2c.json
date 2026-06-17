@@ -1,0 +1,9 @@
+{
+  "cached": false,
+  "finish_reason": "",
+  "input_tokens": 1003,
+  "model": "meta-llama/Meta-Llama-3-8B-Instruct",
+  "output_tokens": 58,
+  "provider": "huggingface",
+  "text": "The non-expert parts are based on the selection pattern of PEC and are divided into segments within each part, representing various layers. Additionally, the adaptive sharding strategy incorporates a greedy algorithm for shard allocation, prioritizing the assignment of larger modules to ranks exhibiting the least accumulated workload."
+}

@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "817a7bd6-fad8-4256-86f0-e2bb87d1b3fe",
+    "question": "Does the identification method impose restrictions on the impact responses of variables?",
+    "answer": "No, the identification method does not impose restrictions on the impact responses of variables.",
+    "expected_answers": [
+      "No, the identification method does not impose restrictions on the impact responses of variables."
+    ],
+    "doc_ids": [
+      "2404.19707v4"
+    ],
+    "doc_sources": [
+      "2404.19707v4.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 7,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "817a7bd6-fad8-4256-86f0-e2bb87d1b3fe",
+    "type": "extractive",
+    "question": "Does the identification method impose restrictions on the impact responses of variables?",
+    "gold_answer": "No, the identification method does not impose restrictions on the impact responses of variables.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.5860766768455505,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2404.19707v4:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2404.19707v4:p1:c27",
+        "doc_id": "2404.19707v4",
+        "page": 1,
+        "score": 0.5860766768455505,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2404.19707v4:p1:c63",
+        "doc_id": "2404.19707v4",
+        "page": 1,
+        "score": 0.5704215168952942,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2404.19707v4:p1:c11",
+        "doc_id": "2404.19707v4",
+        "page": 1,
+        "score": 0.5602713823318481,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2404.19707v4:p1:c61",
+        "doc_id": "2404.19707v4",
+        "page": 1,
+        "score": 0.5577408075332642,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2404.19707v4:p1:c8",
+        "doc_id": "2404.19707v4",
+        "page": 1,
+        "score": 0.5510718822479248,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 31.002874980913475,
+      "rerank": 0.002749991836026311,
+      "generation": 180.00183298136108
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

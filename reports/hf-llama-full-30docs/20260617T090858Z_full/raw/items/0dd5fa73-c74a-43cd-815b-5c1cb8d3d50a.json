@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "0dd5fa73-c74a-43cd-815b-5c1cb8d3d50a",
+    "question": "Why is post-calibrated softmax adjustment (PCSA) important in handling class imbalances?",
+    "answer": "PCSA is important because it adjusts class imbalances during inference without requiring model retraining, making it a more efficient approach to improving accuracy for both frequent and rare classes.",
+    "expected_answers": [
+      "PCSA is important because it adjusts class imbalances during inference without requiring model retraining, making it a more efficient approach to improving accuracy for both frequent and rare classes."
+    ],
+    "doc_ids": [
+      "2410.11774v2"
+    ],
+    "doc_sources": [
+      "2410.11774v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text-image",
+      "section_id": 1,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "0dd5fa73-c74a-43cd-815b-5c1cb8d3d50a",
+    "type": "abstractive",
+    "question": "Why is post-calibrated softmax adjustment (PCSA) important in handling class imbalances?",
+    "gold_answer": "PCSA is important because it adjusts class imbalances during inference without requiring model retraining, making it a more efficient approach to improving accuracy for both frequent and rare classes.",
+    "predicted": "Post-calibrated softmax adjustment (PCSA) is important in handling class imbalances because it boasts strong performance, good compatibility with many methods, and does not necessitate specialized loss function optimization, making it more user-friendly.",
+    "abstained": false,
+    "confidence": 0.5964663028717041,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.3666666666666667,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2410.11774v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2410.11774v2:p1:c14",
+        "doc_id": "2410.11774v2",
+        "page": 1,
+        "score": 0.5964663028717041,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2410.11774v2:p1:c7",
+        "doc_id": "2410.11774v2",
+        "page": 1,
+        "score": 0.5474180579185486,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2410.11774v2:p1:c8",
+        "doc_id": "2410.11774v2",
+        "page": 1,
+        "score": 0.5024266242980957,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2410.11774v2:p1:c104",
+        "doc_id": "2410.11774v2",
+        "page": 1,
+        "score": 0.4676790237426758,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2410.11774v2:p1:c39",
+        "doc_id": "2410.11774v2",
+        "page": 1,
+        "score": 0.4259345233440399,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 66.69599999440834,
+      "rerank": 0.0013750104699283838,
+      "generation": 687.9801670147572
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

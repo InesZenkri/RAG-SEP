@@ -1,0 +1,9 @@
+{
+  "cached": false,
+  "finish_reason": "",
+  "input_tokens": 909,
+  "model": "meta-llama/Meta-Llama-3-8B-Instruct",
+  "output_tokens": 81,
+  "provider": "huggingface",
+  "text": "A notable benefit of using multilevel metamodels (MLMM) in simulation studies is that they better account for the dependent data structure that arises from fitting multiple models to the same simulated data set, and allow for estimates of the generalizability of effects beyond the tested simulation conditions by providing prediction intervals or ranges of empirical Bayes estimates. [2401.07294v4:p1]"
+}

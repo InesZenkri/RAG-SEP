@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "2c2c63c9-2625-46c8-9b3c-5690746335c6",
+    "question": "What are the key differences between Autoregressive (AR) and Error-Trend-Seasonal (ETS) models in electricity load forecasting?",
+    "answer": "The main differences between AR and ETS models lie in their approach to handling past data and forecasting. AR models use a set of past observations with weights determined by minimizing the Akaike information criterion, without specific assumptions on these weights. In contrast, ETS models apply exponential smoothing with diminishing weights to decompose time series into components like level and seasonal factors, using smoothing parameters for regulation.",
+    "expected_answers": [
+      "The main differences between AR and ETS models lie in their approach to handling past data and forecasting. AR models use a set of past observations with weights determined by minimizing the Akaike information criterion, without specific assumptions on these weights. In contrast, ETS models apply exponential smoothing with diminishing weights to decompose time series into components like level and seasonal factors, using smoothing parameters for regulation."
+    ],
+    "doc_ids": [
+      "2405.17070v2"
+    ],
+    "doc_sources": [
+      "2405.17070v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text-table",
+      "section_id": 8,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "2c2c63c9-2625-46c8-9b3c-5690746335c6",
+    "type": "abstractive",
+    "question": "What are the key differences between Autoregressive (AR) and Error-Trend-Seasonal (ETS) models in electricity load forecasting?",
+    "gold_answer": "The main differences between AR and ETS models lie in their approach to handling past data and forecasting. AR models use a set of past observations with weights determined by minimizing the Akaike information criterion, without specific assumptions on these weights. In contrast, ETS models apply exponential smoothing with diminishing weights to decompose time series into components like level and seasonal factors, using smoothing parameters for regulation.",
+    "predicted": "The key differences between Autoregressive (AR) and Error-Trend-Seasonal (ETS) models in electricity load forecasting are not explicitly stated in the provided context. Therefore, I cannot answer from the provided documents.",
+    "abstained": false,
+    "confidence": 0.6783677339553833,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.19780219780219782,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2405.17070v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2405.17070v2:p1:c46",
+        "doc_id": "2405.17070v2",
+        "page": 1,
+        "score": 0.6783677339553833,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2405.17070v2:p1:c55",
+        "doc_id": "2405.17070v2",
+        "page": 1,
+        "score": 0.6628279089927673,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2405.17070v2:p1:c6",
+        "doc_id": "2405.17070v2",
+        "page": 1,
+        "score": 0.6555299758911133,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2405.17070v2:p1:c24",
+        "doc_id": "2405.17070v2",
+        "page": 1,
+        "score": 0.59834885597229,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2405.17070v2:p1:c50",
+        "doc_id": "2405.17070v2",
+        "page": 1,
+        "score": 0.5974817276000977,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 62.45504101389088,
+      "rerank": 0.00200001522898674,
+      "generation": 625.2206249919254
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

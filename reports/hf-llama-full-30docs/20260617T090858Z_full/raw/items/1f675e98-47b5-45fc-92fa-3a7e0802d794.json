@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "1f675e98-47b5-45fc-92fa-3a7e0802d794",
+    "question": "Does the repulsive potential affect the equilibrium position of atoms in the trap?",
+    "answer": "Yes.",
+    "expected_answers": [
+      "Yes."
+    ],
+    "doc_ids": [
+      "2403.18677v2"
+    ],
+    "doc_sources": [
+      "2403.18677v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 8,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "1f675e98-47b5-45fc-92fa-3a7e0802d794",
+    "type": "extractive",
+    "question": "Does the repulsive potential affect the equilibrium position of atoms in the trap?",
+    "gold_answer": "Yes.",
+    "predicted": "Yes, the repulsive potential tends to expel the atoms from the high-intensity region of the blue laser, leading to a new equilibrium position inside the combined IR and blue traps, where the intensity of the blue laser is lower.",
+    "abstained": false,
+    "confidence": 0.5364596843719482,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0625,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2403.18677v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2403.18677v2:p1:c45",
+        "doc_id": "2403.18677v2",
+        "page": 1,
+        "score": 0.5364596843719482,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2403.18677v2:p1:c37",
+        "doc_id": "2403.18677v2",
+        "page": 1,
+        "score": 0.5330005884170532,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2403.18677v2:p1:c44",
+        "doc_id": "2403.18677v2",
+        "page": 1,
+        "score": 0.5011463165283203,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2403.18677v2:p1:c57",
+        "doc_id": "2403.18677v2",
+        "page": 1,
+        "score": 0.47422006726264954,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2403.18677v2:p1:c53",
+        "doc_id": "2403.18677v2",
+        "page": 1,
+        "score": 0.4282892942428589,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 32.73616702063009,
+      "rerank": 0.002667016815394163,
+      "generation": 10305.108083004598
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

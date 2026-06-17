@@ -1,0 +1,9 @@
+{
+  "cached": false,
+  "finish_reason": "",
+  "input_tokens": 829,
+  "model": "meta-llama/Meta-Llama-3-8B-Instruct",
+  "output_tokens": 32,
+  "provider": "huggingface",
+  "text": "We further establish that demographics, most notably gender, but also the interaction of gender, ethnicity, and region, play an important role in predicting job transitions."
+}

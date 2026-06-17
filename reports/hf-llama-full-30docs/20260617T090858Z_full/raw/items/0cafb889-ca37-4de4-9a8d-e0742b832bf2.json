@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "0cafb889-ca37-4de4-9a8d-e0742b832bf2",
+    "question": "Why is theoretical grounding important in feature selection methods?",
+    "answer": "Theoretical grounding provides guarantees on true feature recovery, ensuring that the method's effectiveness is not just empirical but also supported by theoretical evidence. This adds reliability and predictability to its application in real-world scenarios.",
+    "expected_answers": [
+      "Theoretical grounding provides guarantees on true feature recovery, ensuring that the method's effectiveness is not just empirical but also supported by theoretical evidence. This adds reliability and predictability to its application in real-world scenarios."
+    ],
+    "doc_ids": [
+      "2412.10128v2"
+    ],
+    "doc_sources": [
+      "2412.10128v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 12,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "0cafb889-ca37-4de4-9a8d-e0742b832bf2",
+    "type": "abstractive",
+    "question": "Why is theoretical grounding important in feature selection methods?",
+    "gold_answer": "Theoretical grounding provides guarantees on true feature recovery, ensuring that the method's effectiveness is not just empirical but also supported by theoretical evidence. This adds reliability and predictability to its application in real-world scenarios.",
+    "predicted": "Theoretical grounding is important in feature selection methods because it provides true feature recovery guarantees under certain assumptions.",
+    "abstained": false,
+    "confidence": 0.534883439540863,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.3921568627450981,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2412.10128v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2412.10128v2:p1:c4",
+        "doc_id": "2412.10128v2",
+        "page": 1,
+        "score": 0.534883439540863,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2412.10128v2:p1:c5",
+        "doc_id": "2412.10128v2",
+        "page": 1,
+        "score": 0.5113548040390015,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2412.10128v2:p1:c67",
+        "doc_id": "2412.10128v2",
+        "page": 1,
+        "score": 0.48895812034606934,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2412.10128v2:p1:c3",
+        "doc_id": "2412.10128v2",
+        "page": 1,
+        "score": 0.48120102286338806,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2412.10128v2:p1:c86",
+        "doc_id": "2412.10128v2",
+        "page": 1,
+        "score": 0.4771840572357178,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 27.199333999305964,
+      "rerank": 0.002416985807940364,
+      "generation": 522.6055829843972
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

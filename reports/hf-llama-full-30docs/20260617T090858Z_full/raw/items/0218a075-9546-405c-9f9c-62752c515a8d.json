@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "0218a075-9546-405c-9f9c-62752c515a8d",
+    "question": "Does a firm's position within the domestic production network influence its importing decisions?",
+    "answer": "Yes.",
+    "expected_answers": [
+      "Yes."
+    ],
+    "doc_ids": [
+      "2405.13422v2"
+    ],
+    "doc_sources": [
+      "2405.13422v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 14,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "0218a075-9546-405c-9f9c-62752c515a8d",
+    "type": "extractive",
+    "question": "Does a firm's position within the domestic production network influence its importing decisions?",
+    "gold_answer": "Yes.",
+    "predicted": "Yes, according to the paper, a firm's position within the domestic production network influences its importing decisions.",
+    "abstained": false,
+    "confidence": 0.7133630514144897,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.13333333333333333,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2405.13422v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2405.13422v2:p1:c43",
+        "doc_id": "2405.13422v2",
+        "page": 1,
+        "score": 0.7133630514144897,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2405.13422v2:p1:c29",
+        "doc_id": "2405.13422v2",
+        "page": 1,
+        "score": 0.7108035087585449,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2405.13422v2:p1:c3",
+        "doc_id": "2405.13422v2",
+        "page": 1,
+        "score": 0.6875697374343872,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2405.13422v2:p1:c6",
+        "doc_id": "2405.13422v2",
+        "page": 1,
+        "score": 0.6740356683731079,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2405.13422v2:p1:c123",
+        "doc_id": "2405.13422v2",
+        "page": 1,
+        "score": 0.6675308346748352,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 31.31395799573511,
+      "rerank": 0.002834014594554901,
+      "generation": 575.8960829989519
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

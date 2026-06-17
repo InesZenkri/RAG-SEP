@@ -1,0 +1,97 @@
+{
+  "item": {
+    "id": "a1eb98ba-a821-42de-9d7d-894d9dd9594c",
+    "question": "Is there a statistically significant difference in labor productivity spillovers between Low and High peers?",
+    "answer": "No, there is no statistically significant difference between the strength of spillovers of Low and High peers for labor productivity.",
+    "expected_answers": [
+      "No, there is no statistically significant difference between the strength of spillovers of Low and High peers for labor productivity."
+    ],
+    "doc_ids": [
+      "2405.13422v2"
+    ],
+    "doc_sources": [
+      "2405.13422v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 12,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "a1eb98ba-a821-42de-9d7d-894d9dd9594c",
+    "type": "extractive",
+    "question": "Is there a statistically significant difference in labor productivity spillovers between Low and High peers?",
+    "gold_answer": "No, there is no statistically significant difference between the strength of spillovers of Low and High peers for labor productivity.",
+    "predicted": "I cannot answer from the provided documents.",
+    "abstained": true,
+    "confidence": 0.0,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2405.13422v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2405.13422v2:p1:c110",
+        "doc_id": "2405.13422v2",
+        "page": 1,
+        "score": 0.6996985673904419,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2405.13422v2:p1:c145",
+        "doc_id": "2405.13422v2",
+        "page": 1,
+        "score": 0.6181178092956543,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2405.13422v2:p1:c105",
+        "doc_id": "2405.13422v2",
+        "page": 1,
+        "score": 0.598502516746521,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2405.13422v2:p1:c113",
+        "doc_id": "2405.13422v2",
+        "page": 1,
+        "score": 0.5752625465393066,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2405.13422v2:p1:c106",
+        "doc_id": "2405.13422v2",
+        "page": 1,
+        "score": 0.5684096813201904,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "abstained",
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 25.6465419952292,
+      "rerank": 0.002249988028779626,
+      "generation": 542.7393330028281
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

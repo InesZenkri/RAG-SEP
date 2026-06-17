@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "e7dbb77c-2319-48e7-83cf-6cae929bcbcb",
+    "question": "What is the role of quantum annealing in seismic traveltime inversion?",
+    "answer": "Quantum annealing is used to solve the seismic traveltime inversion problem by converting it into a Quadratic Unconstrained Binary Optimization problem, which is well-suited for quantum computing. This approach allows for the development of highly accurate velocity models.",
+    "expected_answers": [
+      "Quantum annealing is used to solve the seismic traveltime inversion problem by converting it into a Quadratic Unconstrained Binary Optimization problem, which is well-suited for quantum computing. This approach allows for the development of highly accurate velocity models."
+    ],
+    "doc_ids": [
+      "2412.06611v2"
+    ],
+    "doc_sources": [
+      "2412.06611v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 0,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "e7dbb77c-2319-48e7-83cf-6cae929bcbcb",
+    "type": "abstractive",
+    "question": "What is the role of quantum annealing in seismic traveltime inversion?",
+    "gold_answer": "Quantum annealing is used to solve the seismic traveltime inversion problem by converting it into a Quadratic Unconstrained Binary Optimization problem, which is well-suited for quantum computing. This approach allows for the development of highly accurate velocity models.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.7791789770126343,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.029411764705882356,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2412.06611v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2412.06611v2:p1:c17",
+        "doc_id": "2412.06611v2",
+        "page": 1,
+        "score": 0.7791789770126343,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2412.06611v2:p1:c1",
+        "doc_id": "2412.06611v2",
+        "page": 1,
+        "score": 0.7584467530250549,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2412.06611v2:p1:c16",
+        "doc_id": "2412.06611v2",
+        "page": 1,
+        "score": 0.7469947338104248,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2412.06611v2:p1:c2",
+        "doc_id": "2412.06611v2",
+        "page": 1,
+        "score": 0.7342281341552734,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2412.06611v2:p1:c7",
+        "doc_id": "2412.06611v2",
+        "page": 1,
+        "score": 0.7258577942848206,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 30.732167011592537,
+      "rerank": 0.003207998815923929,
+      "generation": 180.8963330113329
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

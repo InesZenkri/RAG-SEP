@@ -1,0 +1,9 @@
+{
+  "cached": false,
+  "finish_reason": "",
+  "input_tokens": 833,
+  "model": "meta-llama/Meta-Llama-3-8B-Instruct",
+  "output_tokens": 22,
+  "provider": "huggingface",
+  "text": "According to the context, both \u03b1 and \u03b2 decrease with increasing heterogeneity in the effective microbial death rate."
+}

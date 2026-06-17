@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "36042a30-3e61-46a7-a620-84bef1116ffa",
+    "question": "What are co-risk measures and how do they improve upon traditional risk assessments?",
+    "answer": "Co-risk measures, such as Conditional Value-at-Risk (CoVaR) and Conditional Expected Shortfall (CoES), assess the impact of systemic stress on specific assets or portfolios by considering their interactions with other entities. These measures provide a more comprehensive evaluation of systemic risks by accounting for conditional dependencies between different parts of the financial system.",
+    "expected_answers": [
+      "Co-risk measures, such as Conditional Value-at-Risk (CoVaR) and Conditional Expected Shortfall (CoES), assess the impact of systemic stress on specific assets or portfolios by considering their interactions with other entities. These measures provide a more comprehensive evaluation of systemic risks by accounting for conditional dependencies between different parts of the financial system."
+    ],
+    "doc_ids": [
+      "2411.13384v2"
+    ],
+    "doc_sources": [
+      "2411.13384v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 1,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "36042a30-3e61-46a7-a620-84bef1116ffa",
+    "type": "abstractive",
+    "question": "What are co-risk measures and how do they improve upon traditional risk assessments?",
+    "gold_answer": "Co-risk measures, such as Conditional Value-at-Risk (CoVaR) and Conditional Expected Shortfall (CoES), assess the impact of systemic stress on specific assets or portfolios by considering their interactions with other entities. These measures provide a more comprehensive evaluation of systemic risks by accounting for conditional dependencies between different parts of the financial system.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.5655626058578491,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.024390243902439025,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2411.13384v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2411.13384v2:p1:c8",
+        "doc_id": "2411.13384v2",
+        "page": 1,
+        "score": 0.5655626058578491,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2411.13384v2:p1:c9",
+        "doc_id": "2411.13384v2",
+        "page": 1,
+        "score": 0.5398773550987244,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2411.13384v2:p1:c101",
+        "doc_id": "2411.13384v2",
+        "page": 1,
+        "score": 0.539789617061615,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2411.13384v2:p1:c13",
+        "doc_id": "2411.13384v2",
+        "page": 1,
+        "score": 0.5349071025848389,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2411.13384v2:p1:c14",
+        "doc_id": "2411.13384v2",
+        "page": 1,
+        "score": 0.5254740715026855,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 18.6692500137724,
+      "rerank": 0.0014170072972774506,
+      "generation": 165.4085420013871
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

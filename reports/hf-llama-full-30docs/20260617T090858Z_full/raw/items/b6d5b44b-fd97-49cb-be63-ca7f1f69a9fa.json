@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "b6d5b44b-fd97-49cb-be63-ca7f1f69a9fa",
+    "question": "What type of model does the MoC-System aim to improve fault tolerance for?",
+    "answer": "The MoC-System aims to improve fault tolerance for sparse mixture-of-experts models.",
+    "expected_answers": [
+      "The MoC-System aims to improve fault tolerance for sparse mixture-of-experts models."
+    ],
+    "doc_ids": [
+      "2408.04307v3"
+    ],
+    "doc_sources": [
+      "2408.04307v3.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 2,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "b6d5b44b-fd97-49cb-be63-ca7f1f69a9fa",
+    "type": "extractive",
+    "question": "What type of model does the MoC-System aim to improve fault tolerance for?",
+    "gold_answer": "The MoC-System aims to improve fault tolerance for sparse mixture-of-experts models.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.5810307264328003,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.04651162790697675,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2408.04307v3:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2408.04307v3:p1:c118",
+        "doc_id": "2408.04307v3",
+        "page": 1,
+        "score": 0.5810307264328003,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2408.04307v3:p1:c14",
+        "doc_id": "2408.04307v3",
+        "page": 1,
+        "score": 0.549322783946991,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2408.04307v3:p1:c99",
+        "doc_id": "2408.04307v3",
+        "page": 1,
+        "score": 0.5476626753807068,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2408.04307v3:p1:c112",
+        "doc_id": "2408.04307v3",
+        "page": 1,
+        "score": 0.5404359102249146,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2408.04307v3:p1:c104",
+        "doc_id": "2408.04307v3",
+        "page": 1,
+        "score": 0.5382501482963562,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 58.79999999888241,
+      "rerank": 0.0017910206224769354,
+      "generation": 170.12399999657646
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

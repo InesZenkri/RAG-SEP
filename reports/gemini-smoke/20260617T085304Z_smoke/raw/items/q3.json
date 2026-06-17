@@ -1,0 +1,83 @@
+{
+  "item": {
+    "id": "q3",
+    "question": "What organelle produces most of the ATP in eukaryotic cells?",
+    "answer": "mitochondria",
+    "expected_answers": [
+      "mitochondria",
+      "the mitochondria"
+    ],
+    "doc_ids": [],
+    "doc_sources": [
+      "mitochondria.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {}
+  },
+  "result": {
+    "id": "q3",
+    "type": "extractive",
+    "question": "What organelle produces most of the ATP in eukaryotic cells?",
+    "gold_answer": "mitochondria",
+    "predicted": "Mitochondria produce most of the cell's ATP through cellular respiration [mitochondria:p1].",
+    "abstained": false,
+    "confidence": 0.6802978515625,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.18181818181818182,
+    "citation_precision": 1.0,
+    "citation_recall": 1.0,
+    "gold_retrieval_keys": [
+      "mitochondria:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "mitochondria:p1:c1",
+        "doc_id": "mitochondria",
+        "page": 1,
+        "score": 0.6802978515625,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "photosynthesis:p1:c1",
+        "doc_id": "photosynthesis",
+        "page": 1,
+        "score": 0.3713221549987793,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "transformers:p1:c1",
+        "doc_id": "transformers",
+        "page": 1,
+        "score": 0.004316534847021103,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [
+      {
+        "doc_id": "mitochondria",
+        "page": 1,
+        "chunk_id": null,
+        "quote": null,
+        "valid_retrieved_key": true
+      }
+    ],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 60.33258300158195,
+      "rerank": 0.00045899651013314724,
+      "generation": 662.049541977467
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

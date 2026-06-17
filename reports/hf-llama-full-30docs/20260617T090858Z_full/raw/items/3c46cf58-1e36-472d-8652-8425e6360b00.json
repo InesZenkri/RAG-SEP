@@ -1,0 +1,94 @@
+{
+  "item": {
+    "id": "3c46cf58-1e36-472d-8652-8425e6360b00",
+    "question": "What happens to coma lobes as beams move further from the feed array center?",
+    "answer": "Coma lobes become more pronounced.",
+    "expected_answers": [
+      "Coma lobes become more pronounced."
+    ],
+    "doc_ids": [
+      "2412.02582v2"
+    ],
+    "doc_sources": [
+      "2412.02582v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {
+      "source": "text-image",
+      "section_id": 13,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "3c46cf58-1e36-472d-8652-8425e6360b00",
+    "type": "extractive",
+    "question": "What happens to coma lobes as beams move further from the feed array center?",
+    "gold_answer": "Coma lobes become more pronounced.",
+    "predicted": "The coma lobes become more pronounced with the larger separation distance between the beam and the feed array center.",
+    "abstained": false,
+    "confidence": 0.66353440284729,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.5,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2412.02582v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2412.02582v2:p1:c70",
+        "doc_id": "2412.02582v2",
+        "page": 1,
+        "score": 0.66353440284729,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2412.02582v2:p1:c77",
+        "doc_id": "2412.02582v2",
+        "page": 1,
+        "score": 0.587026834487915,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2412.02582v2:p1:c43",
+        "doc_id": "2412.02582v2",
+        "page": 1,
+        "score": 0.57283616065979,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2412.02582v2:p1:c87",
+        "doc_id": "2412.02582v2",
+        "page": 1,
+        "score": 0.5628387928009033,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2412.02582v2:p1:c86",
+        "doc_id": "2412.02582v2",
+        "page": 1,
+        "score": 0.5480190515518188,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [],
+    "latency_ms": {
+      "retrieval": 94.80662501300685,
+      "rerank": 0.0012500095181167126,
+      "generation": 718.9909160078969
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

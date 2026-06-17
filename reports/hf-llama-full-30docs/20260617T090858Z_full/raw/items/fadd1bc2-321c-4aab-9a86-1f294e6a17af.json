@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "fadd1bc2-321c-4aab-9a86-1f294e6a17af",
+    "question": "Is there any overlap between AVSync-15 and AudioSet in their respective sets?",
+    "answer": "No",
+    "expected_answers": [
+      "No"
+    ],
+    "doc_ids": [
+      "2412.15322v2"
+    ],
+    "doc_sources": [
+      "2412.15322v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {
+      "source": "text-table",
+      "section_id": 20,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "fadd1bc2-321c-4aab-9a86-1f294e6a17af",
+    "type": "extractive",
+    "question": "Is there any overlap between AVSync-15 and AudioSet in their respective sets?",
+    "gold_answer": "No",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.5668891668319702,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2412.15322v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2412.15322v2:p1:c107",
+        "doc_id": "2412.15322v2",
+        "page": 1,
+        "score": 0.5668891668319702,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2412.15322v2:p1:c108",
+        "doc_id": "2412.15322v2",
+        "page": 1,
+        "score": 0.5601879358291626,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2412.15322v2:p1:c106",
+        "doc_id": "2412.15322v2",
+        "page": 1,
+        "score": 0.5286537408828735,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2412.15322v2:p1:c55",
+        "doc_id": "2412.15322v2",
+        "page": 1,
+        "score": 0.45527899265289307,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2412.15322v2:p1:c53",
+        "doc_id": "2412.15322v2",
+        "page": 1,
+        "score": 0.4260094165802002,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 17.10266701411456,
+      "rerank": 0.001333013642579317,
+      "generation": 175.97462501726113
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

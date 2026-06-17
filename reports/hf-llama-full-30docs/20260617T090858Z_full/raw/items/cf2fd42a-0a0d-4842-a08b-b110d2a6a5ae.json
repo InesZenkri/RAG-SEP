@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "cf2fd42a-0a0d-4842-a08b-b110d2a6a5ae",
+    "question": "How do different AI models incorporate ethical considerations into their outputs?",
+    "answer": "Different AI models vary in how frequently they incorporate ethical considerations, with some models showing higher percentages of usage than others.",
+    "expected_answers": [
+      "Different AI models vary in how frequently they incorporate ethical considerations, with some models showing higher percentages of usage than others."
+    ],
+    "doc_ids": [
+      "2411.11853v3"
+    ],
+    "doc_sources": [
+      "2411.11853v3.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text-image",
+      "section_id": 24,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "cf2fd42a-0a0d-4842-a08b-b110d2a6a5ae",
+    "type": "abstractive",
+    "question": "How do different AI models incorporate ethical considerations into their outputs?",
+    "gold_answer": "Different AI models vary in how frequently they incorporate ethical considerations, with some models showing higher percentages of usage than others.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.6818512678146362,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.037037037037037035,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2411.11853v3:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2411.11853v3:p1:c49",
+        "doc_id": "2411.11853v3",
+        "page": 1,
+        "score": 0.6818512678146362,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2411.11853v3:p1:c3",
+        "doc_id": "2411.11853v3",
+        "page": 1,
+        "score": 0.5483031272888184,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2411.11853v3:p1:c46",
+        "doc_id": "2411.11853v3",
+        "page": 1,
+        "score": 0.5453614592552185,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2411.11853v3:p1:c59",
+        "doc_id": "2411.11853v3",
+        "page": 1,
+        "score": 0.5379984378814697,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2411.11853v3:p1:c48",
+        "doc_id": "2411.11853v3",
+        "page": 1,
+        "score": 0.523339033126831,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 15.567833004752174,
+      "rerank": 0.0012500095181167126,
+      "generation": 179.92195900296792
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

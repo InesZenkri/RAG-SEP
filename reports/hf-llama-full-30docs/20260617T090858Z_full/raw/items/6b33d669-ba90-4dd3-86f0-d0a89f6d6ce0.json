@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "6b33d669-ba90-4dd3-86f0-d0a89f6d6ce0",
+    "question": "How does a T-maze experiment illustrate action selection in cognitive science?",
+    "answer": "A T-maze experiment illustrates action selection by presenting an agent, such as a mouse, with choices at a junction. The agent uses cues and past experiences to decide which path to take, demonstrating decision-making processes and learning mechanisms.",
+    "expected_answers": [
+      "A T-maze experiment illustrates action selection by presenting an agent, such as a mouse, with choices at a junction. The agent uses cues and past experiences to decide which path to take, demonstrating decision-making processes and learning mechanisms."
+    ],
+    "doc_ids": [
+      "2406.07726v3"
+    ],
+    "doc_sources": [
+      "2406.07726v3.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text-image",
+      "section_id": 10,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "6b33d669-ba90-4dd3-86f0-d0a89f6d6ce0",
+    "type": "abstractive",
+    "question": "How does a T-maze experiment illustrate action selection in cognitive science?",
+    "gold_answer": "A T-maze experiment illustrates action selection by presenting an agent, such as a mouse, with choices at a junction. The agent uses cues and past experiences to decide which path to take, demonstrating decision-making processes and learning mechanisms.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.6796215772628784,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.06060606060606061,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2406.07726v3:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2406.07726v3:p1:c34",
+        "doc_id": "2406.07726v3",
+        "page": 1,
+        "score": 0.6796215772628784,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2406.07726v3:p1:c3",
+        "doc_id": "2406.07726v3",
+        "page": 1,
+        "score": 0.5512779951095581,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2406.07726v3:p1:c5",
+        "doc_id": "2406.07726v3",
+        "page": 1,
+        "score": 0.5090543627738953,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2406.07726v3:p1:c43",
+        "doc_id": "2406.07726v3",
+        "page": 1,
+        "score": 0.49992048740386963,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2406.07726v3:p1:c7",
+        "doc_id": "2406.07726v3",
+        "page": 1,
+        "score": 0.48547500371932983,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 25.505291996523738,
+      "rerank": 0.002082990249618888,
+      "generation": 233.70208300184458
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

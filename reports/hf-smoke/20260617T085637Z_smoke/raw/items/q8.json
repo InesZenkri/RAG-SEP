@@ -1,0 +1,82 @@
+{
+  "item": {
+    "id": "q8",
+    "question": "What technique replaces recurrence in Transformers?",
+    "answer": "self-attention",
+    "expected_answers": [
+      "self-attention"
+    ],
+    "doc_ids": [],
+    "doc_sources": [
+      "transformers.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {}
+  },
+  "result": {
+    "id": "q8",
+    "type": "extractive",
+    "question": "What technique replaces recurrence in Transformers?",
+    "gold_answer": "self-attention",
+    "predicted": "The Transformer replaces recurrence and convolutions with self-attention to model dependencies between input and output tokens [transformers:p1].",
+    "abstained": false,
+    "confidence": 0.46318867802619934,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.11764705882352941,
+    "citation_precision": 1.0,
+    "citation_recall": 1.0,
+    "gold_retrieval_keys": [
+      "transformers:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "transformers:p1:c1",
+        "doc_id": "transformers",
+        "page": 1,
+        "score": 0.46318867802619934,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "photosynthesis:p1:c1",
+        "doc_id": "photosynthesis",
+        "page": 1,
+        "score": 0.17447596788406372,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "mitochondria:p1:c1",
+        "doc_id": "mitochondria",
+        "page": 1,
+        "score": 0.1313529908657074,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [
+      {
+        "doc_id": "transformers",
+        "page": 1,
+        "chunk_id": null,
+        "quote": null,
+        "valid_retrieved_key": true
+      }
+    ],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 9.80808399617672,
+      "rerank": 0.0004999747034162283,
+      "generation": 0.34466697252355516
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

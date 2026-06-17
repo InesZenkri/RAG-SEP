@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "fabed26a-afc7-45ae-b31f-f39e99ec1609",
+    "question": "Are uncertainty and surprise factors considered in predicting user engagement?",
+    "answer": "Yes, uncertainty and surprise based on imagined story continuations are considered.",
+    "expected_answers": [
+      "Yes, uncertainty and surprise based on imagined story continuations are considered."
+    ],
+    "doc_ids": [
+      "2412.15239v2"
+    ],
+    "doc_sources": [
+      "2412.15239v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 7,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "fabed26a-afc7-45ae-b31f-f39e99ec1609",
+    "type": "extractive",
+    "question": "Are uncertainty and surprise factors considered in predicting user engagement?",
+    "gold_answer": "Yes, uncertainty and surprise based on imagined story continuations are considered.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.5995837450027466,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2412.15239v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2412.15239v2:p1:c8",
+        "doc_id": "2412.15239v2",
+        "page": 1,
+        "score": 0.5995837450027466,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2412.15239v2:p1:c62",
+        "doc_id": "2412.15239v2",
+        "page": 1,
+        "score": 0.5730271935462952,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2412.15239v2:p1:c17",
+        "doc_id": "2412.15239v2",
+        "page": 1,
+        "score": 0.5271165370941162,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2412.15239v2:p1:c16",
+        "doc_id": "2412.15239v2",
+        "page": 1,
+        "score": 0.5227050185203552,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2412.15239v2:p1:c43",
+        "doc_id": "2412.15239v2",
+        "page": 1,
+        "score": 0.5136929750442505,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 23.165250022429973,
+      "rerank": 0.00204198295250535,
+      "generation": 172.29837499326095
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

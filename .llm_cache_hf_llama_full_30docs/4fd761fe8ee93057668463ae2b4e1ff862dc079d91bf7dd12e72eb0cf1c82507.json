@@ -1,0 +1,9 @@
+{
+  "cached": false,
+  "finish_reason": "",
+  "input_tokens": 715,
+  "model": "meta-llama/Meta-Llama-3-8B-Instruct",
+  "output_tokens": 30,
+  "provider": "huggingface",
+  "text": "Precise mathematical notation is important in describing active inference because it ensures consistency with existing texts and links all equations to widely used references on active inference."
+}

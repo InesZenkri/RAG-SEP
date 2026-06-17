@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "99f847b7-45cd-427c-8b12-70f3f293a025",
+    "question": "What is the purpose of the FRACAL method in object detection?",
+    "answer": "The purpose of the FRACAL method is to calibrate the classification logits of the detector using precomputed weights based on class and space statistics, decreasing frequent class predictions and increasing rare class predictions.",
+    "expected_answers": [
+      "The purpose of the FRACAL method is to calibrate the classification logits of the detector using precomputed weights based on class and space statistics, decreasing frequent class predictions and increasing rare class predictions."
+    ],
+    "doc_ids": [
+      "2410.11774v2"
+    ],
+    "doc_sources": [
+      "2410.11774v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 3,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "99f847b7-45cd-427c-8b12-70f3f293a025",
+    "type": "abstractive",
+    "question": "What is the purpose of the FRACAL method in object detection?",
+    "gold_answer": "The purpose of the FRACAL method is to calibrate the classification logits of the detector using precomputed weights based on class and space statistics, decreasing frequent class predictions and increasing rare class predictions.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.6287145614624023,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.06451612903225808,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2410.11774v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2410.11774v2:p1:c52",
+        "doc_id": "2410.11774v2",
+        "page": 1,
+        "score": 0.6287145614624023,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2410.11774v2:p1:c16",
+        "doc_id": "2410.11774v2",
+        "page": 1,
+        "score": 0.5979183912277222,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2410.11774v2:p1:c63",
+        "doc_id": "2410.11774v2",
+        "page": 1,
+        "score": 0.5619208812713623,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2410.11774v2:p1:c19",
+        "doc_id": "2410.11774v2",
+        "page": 1,
+        "score": 0.5613895654678345,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2410.11774v2:p1:c22",
+        "doc_id": "2410.11774v2",
+        "page": 1,
+        "score": 0.5583963394165039,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 19.5576669939328,
+      "rerank": 0.0015420082490891218,
+      "generation": 228.85666700312868
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

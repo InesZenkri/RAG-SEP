@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "ab59e157-c521-474e-84fd-b46483b46845",
+    "question": "Does the temperature increase significantly below a reflected optical power of 5 mW?",
+    "answer": "No, it does not increase significantly.",
+    "expected_answers": [
+      "No, it does not increase significantly."
+    ],
+    "doc_ids": [
+      "2409.02275v2"
+    ],
+    "doc_sources": [
+      "2409.02275v2.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {
+      "source": "text-image",
+      "section_id": 21,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "ab59e157-c521-474e-84fd-b46483b46845",
+    "type": "extractive",
+    "question": "Does the temperature increase significantly below a reflected optical power of 5 mW?",
+    "gold_answer": "No, it does not increase significantly.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.5039603114128113,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.0,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2409.02275v2:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2409.02275v2:p1:c122",
+        "doc_id": "2409.02275v2",
+        "page": 1,
+        "score": 0.5039603114128113,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2409.02275v2:p1:c38",
+        "doc_id": "2409.02275v2",
+        "page": 1,
+        "score": 0.4221518635749817,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2409.02275v2:p1:c52",
+        "doc_id": "2409.02275v2",
+        "page": 1,
+        "score": 0.41254937648773193,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2409.02275v2:p1:c30",
+        "doc_id": "2409.02275v2",
+        "page": 1,
+        "score": 0.4025791585445404,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2409.02275v2:p1:c35",
+        "doc_id": "2409.02275v2",
+        "page": 1,
+        "score": 0.39714834094047546,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 18.372666992945597,
+      "rerank": 0.0013750104699283838,
+      "generation": 169.80158400838263
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

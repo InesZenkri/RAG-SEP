@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "c35f4948-506a-46c4-9259-114920f407ee",
+    "question": "What does the random slopes MLMM capture in terms of uncertainty?",
+    "answer": "The random slopes MLMM captures the level of uncertainty consistent with generalizability to other similar but untested simulation conditions.",
+    "expected_answers": [
+      "The random slopes MLMM captures the level of uncertainty consistent with generalizability to other similar but untested simulation conditions."
+    ],
+    "doc_ids": [
+      "2401.07294v4"
+    ],
+    "doc_sources": [
+      "2401.07294v4.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "abstractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 17,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "c35f4948-506a-46c4-9259-114920f407ee",
+    "type": "abstractive",
+    "question": "What does the random slopes MLMM capture in terms of uncertainty?",
+    "gold_answer": "The random slopes MLMM captures the level of uncertainty consistent with generalizability to other similar but untested simulation conditions.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.666399359703064,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.04,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2401.07294v4:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2401.07294v4:p1:c124",
+        "doc_id": "2401.07294v4",
+        "page": 1,
+        "score": 0.666399359703064,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2401.07294v4:p1:c45",
+        "doc_id": "2401.07294v4",
+        "page": 1,
+        "score": 0.6453460454940796,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2401.07294v4:p1:c125",
+        "doc_id": "2401.07294v4",
+        "page": 1,
+        "score": 0.6383359432220459,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2401.07294v4:p1:c84",
+        "doc_id": "2401.07294v4",
+        "page": 1,
+        "score": 0.5496008396148682,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2401.07294v4:p1:c91",
+        "doc_id": "2401.07294v4",
+        "page": 1,
+        "score": 0.548298716545105,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 22.02770800795406,
+      "rerank": 0.002083979779854417,
+      "generation": 176.231709017884
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}

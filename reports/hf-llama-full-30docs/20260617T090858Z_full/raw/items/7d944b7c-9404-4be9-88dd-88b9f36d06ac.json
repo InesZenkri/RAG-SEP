@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "7d944b7c-9404-4be9-88dd-88b9f36d06ac",
+    "question": "Are all decompositions of the conditional covariance matrix \\( \\Omega_{y, t} = B_{y, t} B_{y, t}^{\\prime} \\) observationally distinct in non-Gaussian cases?",
+    "answer": "Yes, different decompositions generally lead to observationally distinct models in non-Gaussian cases.",
+    "expected_answers": [
+      "Yes, different decompositions generally lead to observationally distinct models in non-Gaussian cases."
+    ],
+    "doc_ids": [
+      "2404.19707v4"
+    ],
+    "doc_sources": [
+      "2404.19707v4.txt"
+    ],
+    "pages": [
+      1
+    ],
+    "type": "extractive",
+    "metadata": {
+      "source": "text",
+      "section_id": 3,
+      "benchmark": "open_rag_bench"
+    }
+  },
+  "result": {
+    "id": "7d944b7c-9404-4be9-88dd-88b9f36d06ac",
+    "type": "extractive",
+    "question": "Are all decompositions of the conditional covariance matrix \\( \\Omega_{y, t} = B_{y, t} B_{y, t}^{\\prime} \\) observationally distinct in non-Gaussian cases?",
+    "gold_answer": "Yes, different decompositions generally lead to observationally distinct models in non-Gaussian cases.",
+    "predicted": "[HuggingFace Error] Router call failed: 402 Payment Required: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.\"}",
+    "abstained": false,
+    "confidence": 0.629416823387146,
+    "retrieval_hit@5": 1.0,
+    "exact_match": 0.0,
+    "token_f1": 0.04444444444444444,
+    "citation_precision": 0.0,
+    "citation_recall": 0.0,
+    "gold_retrieval_keys": [
+      "2404.19707v4:p1"
+    ],
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "2404.19707v4:p1:c34",
+        "doc_id": "2404.19707v4",
+        "page": 1,
+        "score": 0.629416823387146,
+        "retriever": "dense"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2404.19707v4:p1:c33",
+        "doc_id": "2404.19707v4",
+        "page": 1,
+        "score": 0.5475707054138184,
+        "retriever": "dense"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2404.19707v4:p1:c220",
+        "doc_id": "2404.19707v4",
+        "page": 1,
+        "score": 0.5385684967041016,
+        "retriever": "dense"
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2404.19707v4:p1:c189",
+        "doc_id": "2404.19707v4",
+        "page": 1,
+        "score": 0.5369715094566345,
+        "retriever": "dense"
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2404.19707v4:p1:c209",
+        "doc_id": "2404.19707v4",
+        "page": 1,
+        "score": 0.5236432552337646,
+        "retriever": "dense"
+      }
+    ],
+    "citations": [],
+    "invalid_citations": [],
+    "issues": [
+      "low_answer_f1"
+    ],
+    "latency_ms": {
+      "retrieval": 137.98162501188926,
+      "rerank": 0.0010830117389559746,
+      "generation": 213.2112910039723
+    },
+    "cost_eur": 0.0,
+    "error": ""
+  }
+}
