@@ -31,6 +31,12 @@ faiss_index/
 .llm_cache*/
 reports/*
 !reports/.gitkeep
+!reports/**/
+reports/**/raw/
+!reports/**/report.md
+!reports/**/report.json
+!reports/**/ragas_report.json
+!reports/**/ragas_scores.csv
 
 
 README.md
