@@ -1,9 +1,0 @@
-{
-  "cached": false,
-  "finish_reason": "",
-  "input_tokens": 191,
-  "model": "meta-llama/Meta-Llama-3-8B-Instruct",
-  "output_tokens": 9,
-  "provider": "huggingface",
-  "text": "I cannot answer from the provided documents."
-}

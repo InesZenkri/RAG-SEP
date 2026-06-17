@@ -1,9 +1,0 @@
-{
-  "cached": false,
-  "finish_reason": "",
-  "input_tokens": 916,
-  "model": "meta-llama/Meta-Llama-3-8B-Instruct",
-  "output_tokens": 25,
-  "provider": "huggingface",
-  "text": "Indexing is a key method for improving retrieval efficiency by enabling faster access to relevant cell values [49], [54]."
-}

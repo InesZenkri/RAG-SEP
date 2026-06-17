@@ -1,9 +1,0 @@
-{
-  "cached": false,
-  "finish_reason": "",
-  "input_tokens": 852,
-  "model": "meta-llama/Meta-Llama-3-8B-Instruct",
-  "output_tokens": 18,
-  "provider": "huggingface",
-  "text": "Our approach uses a simplified, implementable model of how readers form expectations about stories."
-}

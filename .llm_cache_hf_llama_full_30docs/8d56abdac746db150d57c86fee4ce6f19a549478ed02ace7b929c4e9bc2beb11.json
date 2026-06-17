@@ -1,9 +1,0 @@
-{
-  "cached": false,
-  "finish_reason": "",
-  "input_tokens": 1049,
-  "model": "meta-llama/Meta-Llama-3-8B-Instruct",
-  "output_tokens": 33,
-  "provider": "huggingface",
-  "text": "The angular displacement response to thermoelastic torque follows a single-pole low-pass filter characteristic at a specific cutoff frequency, while the radiation pressure torque remains frequency-independent."
-}

@@ -1,9 +1,0 @@
-{
-  "cached": false,
-  "finish_reason": "",
-  "input_tokens": 929,
-  "model": "meta-llama/Meta-Llama-3-8B-Instruct",
-  "output_tokens": 30,
-  "provider": "huggingface",
-  "text": "Yes, incorporating temperature effects contributes to improved forecasting accuracy in France, with an approximate 10% improvement for horizons greater than a few days."
-}

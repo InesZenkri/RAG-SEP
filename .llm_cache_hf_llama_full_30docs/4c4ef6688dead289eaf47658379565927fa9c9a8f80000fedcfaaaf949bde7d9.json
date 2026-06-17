@@ -1,9 +1,0 @@
-{
-  "cached": false,
-  "finish_reason": "",
-  "input_tokens": 993,
-  "model": "meta-llama/Meta-Llama-3-8B-Instruct",
-  "output_tokens": 70,
-  "provider": "huggingface",
-  "text": "The MLMM approach allows for the direct modeling of the squared error, as shown in Equation 6, which includes a square root link function. This approach provides a succinct and interpretable method to demonstrate the findings, and it can be used to analyze the Root Mean Squared Error (RMSE) in a three-level random slopes MLMM."
-}

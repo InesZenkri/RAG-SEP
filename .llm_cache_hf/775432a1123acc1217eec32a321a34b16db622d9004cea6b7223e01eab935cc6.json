@@ -1,9 +1,0 @@
-{
-  "cached": false,
-  "finish_reason": "",
-  "input_tokens": 0,
-  "model": "mistralai/Mistral-Nemo-Instruct-2407",
-  "output_tokens": 0,
-  "provider": "huggingface",
-  "text": "[HuggingFace Error] Router call failed: 400 Client Error: Bad Request for url: https://router.huggingface.co/v1/chat/completions"
-}

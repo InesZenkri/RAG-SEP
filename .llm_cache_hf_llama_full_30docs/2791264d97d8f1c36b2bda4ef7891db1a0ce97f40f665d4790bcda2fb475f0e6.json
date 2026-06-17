@@ -1,9 +1,0 @@
-{
-  "cached": false,
-  "finish_reason": "",
-  "input_tokens": 1208,
-  "model": "meta-llama/Meta-Llama-3-8B-Instruct",
-  "output_tokens": 80,
-  "provider": "huggingface",
-  "text": "Second-order smoothness is achieved in Tikhonov regularization by penalizing large second derivatives, which is done by the term $g(\\mathbf{s})=\\left\\|D_{2} \\mathbf{s}\\right\\|_{2}^{2}$, where $D_{2}$ is the second-order difference operator. [2412.06611v2:p1]"
-}

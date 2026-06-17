@@ -1,9 +1,0 @@
-{
-  "cached": false,
-  "finish_reason": "",
-  "input_tokens": 1222,
-  "model": "meta-llama/Meta-Llama-3-8B-Instruct",
-  "output_tokens": 73,
-  "provider": "huggingface",
-  "text": "The standard quantum limit (SQL) is important in measuring angular noise because it defines the ideal limit of the measurement, which is achieved at zero temperature, perfect detection efficiency, beam perfectly centered, no extraneous imprecision or back-action. This limit is used to compare the performance of the measurement against the ideal performance achievable in weak continuous measurement of angular displacements."
-}

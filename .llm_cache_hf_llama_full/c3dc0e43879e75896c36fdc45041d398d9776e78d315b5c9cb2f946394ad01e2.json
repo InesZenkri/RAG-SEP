@@ -1,9 +1,0 @@
-{
-  "cached": false,
-  "finish_reason": "",
-  "input_tokens": 1110,
-  "model": "meta-llama/Meta-Llama-3-8B-Instruct",
-  "output_tokens": 47,
-  "provider": "huggingface",
-  "text": "According to Table II, a low-bandwidth PLL results in an RMSPE value of 1.933% for inductance estimation, which is better than the high-bandwidth PLL's value of 14.0925%."
-}

@@ -1,9 +1,0 @@
-{
-  "cached": false,
-  "finish_reason": "",
-  "input_tokens": 996,
-  "model": "meta-llama/Meta-Llama-3-8B-Instruct",
-  "output_tokens": 23,
-  "provider": "huggingface",
-  "text": "The Doppler spectrum is observed to exhibit a Gaussian shape for mobile antenna motion perpendicular to the mean scattering direction."
-}

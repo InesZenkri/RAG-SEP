@@ -1,9 +1,0 @@
-{
-  "cached": false,
-  "finish_reason": "",
-  "input_tokens": 917,
-  "model": "meta-llama/Meta-Llama-3-8B-Instruct",
-  "output_tokens": 38,
-  "provider": "huggingface",
-  "text": "The VDF-RLS method achieves more than three times lower error compared to existing approaches such as constant forgetting RLS and the Kalman filter, particularly in low-excitation conditions."
-}

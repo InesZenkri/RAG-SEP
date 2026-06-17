@@ -1,9 +1,0 @@
-{
-  "cached": false,
-  "finish_reason": "",
-  "input_tokens": 936,
-  "model": "meta-llama/Meta-Llama-3-8B-Instruct",
-  "output_tokens": 57,
-  "provider": "huggingface",
-  "text": "Transforming measurements into the direct-quadrature (dq) coordinate frame aids in impedance estimation by facilitating a simpler and more accurate estimation. This is achieved by isolating the variation-sensitive q-axis and relying solely on the less sensitive d-axis, which minimizes the impact of variations."
-}

@@ -1,9 +1,0 @@
-{
-  "cached": false,
-  "finish_reason": "",
-  "input_tokens": 1164,
-  "model": "meta-llama/Meta-Llama-3-8B-Instruct",
-  "output_tokens": 85,
-  "provider": "huggingface",
-  "text": "The number of infected hosts, I, obeys a Poisson-Binomial distribution, I \u223c Poisson Bin(H, {P_h}) [31]. The mean and variance of the number of infected individuals are then given by E(I) = \u2211_{h=1}^H P_h and Var(I) = \u2211_{h=1}^H P_h (1 - P_h)."
-}

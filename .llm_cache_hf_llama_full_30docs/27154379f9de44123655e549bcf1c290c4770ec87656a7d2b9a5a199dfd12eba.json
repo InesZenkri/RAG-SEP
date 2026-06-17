@@ -1,9 +1,0 @@
-{
-  "cached": false,
-  "finish_reason": "",
-  "input_tokens": 973,
-  "model": "meta-llama/Meta-Llama-3-8B-Instruct",
-  "output_tokens": 50,
-  "provider": "huggingface",
-  "text": "The purpose of data time travel in reinforcement learning for market making is to find a more consistent state of the system and the influence of the RL agent onto the system, thereby avoiding large discrepancies between the system's state and the RL agent's action."
-}

@@ -1,9 +1,0 @@
-{
-  "cached": false,
-  "finish_reason": "",
-  "input_tokens": 973,
-  "model": "meta-llama/Meta-Llama-3-8B-Instruct",
-  "output_tokens": 21,
-  "provider": "huggingface",
-  "text": "Theoretical grounding is important in feature selection methods because it provides true feature recovery guarantees under certain assumptions."
-}

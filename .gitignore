@@ -28,8 +28,8 @@ datasets/cache/
 *.sqlite3
 chroma_store/
 faiss_index/
-.llm_cache/
-reports/runs/
+.llm_cache*/
+reports/*
 !reports/.gitkeep
 
 

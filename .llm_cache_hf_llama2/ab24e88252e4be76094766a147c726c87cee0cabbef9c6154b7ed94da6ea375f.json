@@ -1,9 +1,0 @@
-{
-  "cached": false,
-  "finish_reason": "",
-  "input_tokens": 544,
-  "model": "meta-llama/Meta-Llama-3-8B-Instruct",
-  "output_tokens": 25,
-  "provider": "huggingface",
-  "text": "The light-dependent reactions take place in the thylakoid membranes of chloroplasts. [photosynthesis:p1]"
-}

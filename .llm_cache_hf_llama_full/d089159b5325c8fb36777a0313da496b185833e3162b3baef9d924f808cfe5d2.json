@@ -1,9 +1,0 @@
-{
-  "cached": false,
-  "finish_reason": "",
-  "input_tokens": 964,
-  "model": "meta-llama/Meta-Llama-3-8B-Instruct",
-  "output_tokens": 78,
-  "provider": "huggingface",
-  "text": "The main challenges in accurately estimating output line impedance stem from several factors, including: (i) lack of access to global measurements or networkwide data, (ii) measured signals often lack the necessary persistence of excitation, (iii) only local output voltage and current are measurable, and (iv) altering the power system to assist in impedance estimation is either impractical or not allowed."
-}

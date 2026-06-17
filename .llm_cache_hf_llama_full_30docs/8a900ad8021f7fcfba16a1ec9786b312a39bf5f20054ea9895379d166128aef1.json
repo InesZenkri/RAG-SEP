@@ -1,9 +1,0 @@
-{
-  "cached": false,
-  "finish_reason": "",
-  "input_tokens": 1026,
-  "model": "meta-llama/Meta-Llama-3-8B-Instruct",
-  "output_tokens": 52,
-  "provider": "huggingface",
-  "text": "The challenges in mid-term electricity load forecasting are the multifaceted characteristics of load, including daily, weekly and annual seasonal patterns, as well as autoregressive effects, weather and holiday impacts, and the lack of exact weather forecasts for a medium horizon."
-}

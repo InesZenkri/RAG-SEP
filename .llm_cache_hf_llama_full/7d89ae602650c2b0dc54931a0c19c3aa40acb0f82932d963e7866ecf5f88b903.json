@@ -1,9 +1,0 @@
-{
-  "cached": false,
-  "finish_reason": "",
-  "input_tokens": 952,
-  "model": "meta-llama/Meta-Llama-3-8B-Instruct",
-  "output_tokens": 26,
-  "provider": "huggingface",
-  "text": "The VDF-RLS algorithm demonstrates superior performance in adapting to impedance changes and maintaining stable estimation under no-excitation conditions."
-}

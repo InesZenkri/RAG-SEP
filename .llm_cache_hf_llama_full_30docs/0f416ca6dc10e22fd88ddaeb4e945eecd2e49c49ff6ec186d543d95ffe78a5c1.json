@@ -1,9 +1,0 @@
-{
-  "cached": false,
-  "finish_reason": "",
-  "input_tokens": 915,
-  "model": "meta-llama/Meta-Llama-3-8B-Instruct",
-  "output_tokens": 45,
-  "provider": "huggingface",
-  "text": "The large values of $\\alpha_{t}$ observed in this work can also be exploited to create controllable state-dependent potentials for dysprosium atoms in different Zeeman states, such as bilayer potentials [33]."
-}
