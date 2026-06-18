@@ -31,6 +31,9 @@ faiss_index/
 .llm_cache*/
 reports/*
 !reports/.gitkeep
+!reports/comparisons/
+!reports/comparisons/**
+reports/comparisons/20260617_friend-answers-only_unknown-prompt_openragbench_1503q_no-ragas-scores/
 !reports/hf-llama-full-30docs/
 reports/hf-llama-full-30docs/*
 !reports/hf-llama-full-30docs/20260617T090858Z_full/
