@@ -129,6 +129,119 @@ Reports are written to `reports/runs/<timestamp>_<suite>/report.json` and
 per-item diagnostics: retrieved chunks, parsed citations, invalid citations,
 per-question answer scores, retrieval hits, latency, and issue labels.
 
+### Evaluation Pipeline Details
+
+The repository has two related evaluation entry points.
+
+#### Standard eval
+
+Use `eval.run` for quick smoke tests, provider comparisons, and deterministic
+diagnostics:
+
+```bash
+python -m eval.run --config configs/hf-strict-smoke.yaml --tag my-run
+```
+
+The standard eval pipeline runs in this order:
+
+1. Load the YAML config and the selected suite.
+2. Parse and index the suite documents.
+3. Answer each question with the configured provider.
+4. Save each completed item incrementally.
+5. Compute built-in metrics.
+6. Write `report.json` and `report.md`.
+
+Incremental raw outputs are written while the run is still in progress:
+
+```text
+reports/<run-root>/<timestamp>_<suite>/raw/items/<item_id>.json
+reports/<run-root>/<timestamp>_<suite>/raw/items.jsonl
+```
+
+The final standard report contains:
+
+```text
+retrieval:   recall@5, MRR, nDCG@5, hit@5
+answer:      exact match, token F1
+grounding:   citation precision, citation recall
+abstention:  false refusal rate, false answer rate
+efficiency:  latency, tokens, cost summary
+```
+
+#### RAGAS eval
+
+Use `eval.ragas_run` when the goal is judge-based RAGAS scoring:
+
+```bash
+python -m eval.ragas_run --suite full --config configs/ollama-full.yaml
+```
+
+The RAGAS pipeline has three stages:
+
+1. **Prepare inputs**: answer every question and collect the generated answer,
+   retrieved contexts, and reference answer.
+2. **Score inputs**: call RAGAS metrics with the configured judge model and
+   embedding model.
+3. **Write report**: aggregate scores and write the final RAGAS artifacts.
+
+RAGAS input preparation writes:
+
+```text
+raw/inputs/<item_id>.json
+raw/ragas_inputs.jsonl
+```
+
+RAGAS scoring writes:
+
+```text
+raw/scores/<item_id>.json
+raw/ragas_scores.jsonl
+```
+
+The final RAGAS outputs are:
+
+```text
+ragas_report.json
+ragas_scores.csv
+```
+
+This matters for long runs: if a run is interrupted during answer generation,
+only `ragas_inputs.jsonl` may exist. If it reaches scoring, partial scores are
+still preserved in `ragas_scores.jsonl` and `raw/scores/`. RAGAS may write
+`NaN` for a metric when the judge model cannot produce a parseable or
+applicable score; these values should be counted separately when comparing
+runs.
+
+#### Prompt templates
+
+Generation prompts are selected with `generation.prompt_template`.
+
+- `default`: short baseline prompt for context-grounded answers.
+- `strict_citation`: structured prompt with role, `<context>`,
+  `<user_query>`, numbered instructions, strict no-outside-knowledge behavior,
+  concise answer preference, and mandatory `[doc_id:pN]` citations.
+
+Use `strict_citation` for prompt-quality experiments and RAGAS comparisons.
+Keep retrieval, chunking, model, and dataset fixed when comparing prompt
+variants so score changes can be attributed to the prompt.
+
+#### Report tracking policy
+
+Generated raw folders and LLM caches should stay local-only. The repository
+tracks selected comparison summaries under:
+
+```text
+reports/comparisons/
+```
+
+Use meaningful comparison folder names that encode the provider/model, prompt,
+dataset size, and score coverage, for example:
+
+```text
+20260618_ollama-llama3-1-8b_default-prompt_openragbench-10docs_87q-77scored
+20260618_hf-llama3-8b_strict-citation-prompt_smoke_8q
+```
+
 ## Datasets
 
 - **`datasets/sample/`**: a small hand-written corpus (photosynthesis,
@@ -244,6 +357,10 @@ python scripts/download_benchmark.py --subset 10
 python scripts/download_benchmark.py --subset 50
 python scripts/download_benchmark.py --subset all
 ```
+
+`--subset` selects benchmark documents/PDFs, not questions. For example,
+`--subset 10` can still produce many more than 10 questions because all QA
+pairs attached to the selected documents are prepared.
 
 The downloader fetches `vectara/open_ragbench` from Hugging Face and writes a
 prepared text corpus plus QA file under `datasets/open_rag_bench/prepared/`.

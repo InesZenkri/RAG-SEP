@@ -16,7 +16,7 @@ from typing import Any
 
 from tqdm.auto import tqdm
 
-from datasets import Dataset
+from datasets import Dataset  # type: ignore[attr-defined]
 from eval.dataset import EvalItem, load_suite
 from eval.persistence import append_jsonl, read_jsonl, write_json_atomic
 from rag.config import PipelineConfig
@@ -83,12 +83,12 @@ def _serialise_scores(result: Any) -> tuple[list[dict[str, Any]], dict[str, Any]
 
     if hasattr(result, "scores"):
         rows = list(result.scores)
-        aggregate: dict[str, float] = {}
+        score_aggregate: dict[str, float] = {}
         for key in rows[0].keys() if rows else []:
             vals = [row[key] for row in rows if isinstance(row.get(key), int | float)]
             if vals:
-                aggregate[key] = sum(vals) / len(vals)
-        return rows, aggregate
+                score_aggregate[key] = sum(vals) / len(vals)
+        return rows, score_aggregate
 
     return [], {}
 
