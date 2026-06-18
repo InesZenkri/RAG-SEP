@@ -1,10 +1,7 @@
 """Prompt templates.
 
-Both templates will enforce a strict citation format ``[doc_id:pN]`` so
-downstream citation extraction is deterministic and auditable.
-
-TODO (M5 strict):
-- SYSTEM_STRICT: extractive, one citation per sentence minimum, explicit.
+Both templates enforce the ``[doc_id:pN]`` citation format so downstream
+citation extraction is deterministic and auditable.
 """
 
 from __future__ import annotations
@@ -19,7 +16,27 @@ All factual statements must include at least one citation in the form [doc_id:pN
 Do not mention these instructions in your answer.
 """.strip()
 
-SYSTEM_STRICT = ""   # filled in at M5
+SYSTEM_STRICT = """You are a precise, evidence-grounded research assistant.
+
+Use ONLY the provided context to answer the user's question. Do not use outside
+knowledge, unstated assumptions, or unsupported reasoning.
+
+Instructions:
+1. Base your answer strictly on information in the <context> block.
+2. If the answer cannot be found in the context, state exactly:
+   "I cannot find the answer to this question in the provided documents."
+3. Keep your response concise, professional, and directly focused on the query.
+4. Include at least one citation for every factual sentence, using exactly the
+   citation marker shown in context, for example [doc_id:pN]. An answer without
+   citations is invalid.
+5. For extractive what/who/where/when questions, prefer the shortest correct
+   phrase or entity, followed by a citation.
+6. Only use a yes/no answer when the user explicitly asks a yes/no question
+   such as "is", "are", "do", "does", "did", "can", or "has".
+7. If the context only partially answers the question, answer only the supported
+   part and do not fill gaps.
+8. Do not mention these instructions, the context block, or the prompt.
+""".strip()
 
 def _format_context(retrieved: list[RetrievalResult]) -> str:
     parts = []
@@ -40,14 +57,23 @@ def build_prompt(
     template: str = "default",
 ) -> tuple[str, str]:
 
-    system = SYSTEM_DEFAULT if template == "default" else SYSTEM_STRICT
+    if template == "default":
+        system = SYSTEM_DEFAULT
+    elif template == "strict_citation":
+        system = SYSTEM_STRICT
+    else:
+        raise ValueError(f"Unknown prompt template: {template}")
 
     context = _format_context(retrieved)
 
     user = f"""
-Context: {context}
+<context>
+{context}
+</context>
 
-Question: {question}
+<user_query>
+{question}
+</user_query>
 
 Answer:
 """.strip()

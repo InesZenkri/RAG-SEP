@@ -31,12 +31,23 @@ faiss_index/
 .llm_cache*/
 reports/*
 !reports/.gitkeep
-!reports/**/
-reports/**/raw/
-!reports/**/report.md
-!reports/**/report.json
-!reports/**/ragas_report.json
-!reports/**/ragas_scores.csv
+!reports/hf-llama-full-30docs/
+reports/hf-llama-full-30docs/*
+!reports/hf-llama-full-30docs/20260617T090858Z_full/
+reports/hf-llama-full-30docs/20260617T090858Z_full/*
+!reports/hf-llama-full-30docs/20260617T090858Z_full/report.md
+!reports/hf-llama-full-30docs/20260617T090858Z_full/report.json
+!reports/imported-raw/
+reports/imported-raw/*
+!reports/imported-raw/20260617_friend_partial_ragas_inputs/
+reports/imported-raw/20260617_friend_partial_ragas_inputs/*
+!reports/imported-raw/20260617_friend_partial_ragas_inputs/report.md
+!reports/imported-raw/20260617_friend_partial_ragas_inputs/report.json
+!reports/imported-raw/20260618_friend_ragas_scored/
+reports/imported-raw/20260618_friend_ragas_scored/*
+!reports/imported-raw/20260618_friend_ragas_scored/report.md
+!reports/imported-raw/20260618_friend_ragas_scored/ragas_report.json
+!reports/imported-raw/20260618_friend_ragas_scored/ragas_scores.csv
 
 
 README.md
