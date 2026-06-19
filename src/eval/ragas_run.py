@@ -93,6 +93,36 @@ def _serialise_scores(result: Any) -> tuple[list[dict[str, Any]], dict[str, Any]
     return [], {}
 
 
+def _select_metrics(metric_names: str) -> list[Any]:
+    from ragas.metrics import (
+        answer_correctness,
+        answer_relevancy,
+        context_precision,
+        context_recall,
+        faithfulness,
+    )
+
+    available = {
+        "faithfulness": faithfulness,
+        "answer_relevancy": answer_relevancy,
+        "context_precision": context_precision,
+        "context_recall": context_recall,
+        "answer_correctness": answer_correctness,
+    }
+    selected: list[Any] = []
+    for raw_name in metric_names.split(","):
+        name = raw_name.strip()
+        if not name:
+            continue
+        if name not in available:
+            choices = ", ".join(sorted(available))
+            raise ValueError(f"Unknown RAGAS metric '{name}'. Choose from: {choices}")
+        selected.append(available[name])
+    if not selected:
+        raise ValueError("At least one RAGAS metric must be selected.")
+    return selected
+
+
 def _write_outputs(
     *,
     out_dir: Path,
@@ -138,6 +168,14 @@ def main(argv: list[str] | None = None) -> int:
     )
     parser.add_argument("--ollama-base-url", default=_ollama_base_url())
     parser.add_argument("--batch-size", type=int, default=1)
+    parser.add_argument(
+        "--metrics",
+        default="faithfulness,context_precision,context_recall",
+        help=(
+            "Comma-separated RAGAS metrics. Choices: faithfulness, "
+            "answer_relevancy, context_precision, context_recall, answer_correctness."
+        ),
+    )
     args = parser.parse_args(argv)
 
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(name)s: %(message)s")
@@ -163,13 +201,6 @@ def main(argv: list[str] | None = None) -> int:
         append_jsonl(raw_dir / "ragas_inputs.jsonl", raw_payload)
 
     from ragas import evaluate
-    from ragas.metrics import (
-        answer_correctness,
-        answer_relevancy,
-        context_precision,
-        context_recall,
-        faithfulness,
-    )
 
     ragas_llm, ragas_embeddings = _build_ragas_backends(
         llm_model=args.judge_model,
@@ -179,13 +210,7 @@ def main(argv: list[str] | None = None) -> int:
         num_predict=1024,
     )
 
-    metrics = [
-        faithfulness,
-        answer_relevancy,
-        context_precision,
-        context_recall,
-        answer_correctness,
-    ]
+    metrics = _select_metrics(args.metrics)
 
     score_rows: list[dict[str, Any]] = []
     for idx, row in enumerate(tqdm(rows, desc="Scoring RAGAS", unit="item")):
@@ -243,6 +268,7 @@ def main(argv: list[str] | None = None) -> int:
             "judge_model": args.judge_model,
             "embedding_model": args.embedding_model,
             "ollama_base_url": args.ollama_base_url,
+            "metrics": args.metrics,
             "num_corpus_files": len(corpus_paths),
             "num_items": len(eval_items),
         },
