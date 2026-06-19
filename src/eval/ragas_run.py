@@ -93,6 +93,13 @@ def _serialise_scores(result: Any) -> tuple[list[dict[str, Any]], dict[str, Any]
     return [], {}
 
 
+def _latest_run_dir(out_root: Path, suite: str) -> Path | None:
+    if not out_root.exists():
+        return None
+    runs = sorted(path for path in out_root.glob(f"*_{suite}") if path.is_dir())
+    return runs[-1] if runs else None
+
+
 def _select_metrics(metric_names: str) -> list[Any]:
     from ragas.metrics import (
         answer_correctness,
@@ -191,14 +198,32 @@ def main(argv: list[str] | None = None) -> int:
     pipeline = RAGPipeline(config=config)
     pipeline.add_documents(corpus_paths)
 
+    existing_inputs: dict[str, dict[str, Any]] = {}
+    latest_run = _latest_run_dir(Path(args.out), suite)
+    if latest_run is not None:
+        latest_inputs = latest_run / "raw" / "ragas_inputs.jsonl"
+        for raw_item in read_jsonl(latest_inputs):
+            if not isinstance(raw_item, dict):
+                continue
+            item = raw_item.get("item")
+            row = raw_item.get("ragas_input")
+            if isinstance(item, dict) and isinstance(row, dict) and item.get("id"):
+                existing_inputs[str(item["id"])] = row
+        if existing_inputs:
+            print(f"Resuming with {len(existing_inputs)} existing RAGAS inputs from {latest_run}")
+            out_dir = latest_run
+            raw_dir = out_dir / "raw"
+
     rows: list[dict[str, Any]] = []
     for item in tqdm(eval_items, desc=f"Answering {suite}", unit="item"):
-        answer = pipeline.answer(item.question)
-        row = _answer_to_row(item, answer)
+        row = existing_inputs.get(item.id)
+        if row is None:
+            answer = pipeline.answer(item.question)
+            row = _answer_to_row(item, answer)
+            raw_payload = {"item": item.__dict__, "ragas_input": row}
+            write_json_atomic(raw_dir / "inputs" / f"{item.id}.json", raw_payload)
+            append_jsonl(raw_dir / "ragas_inputs.jsonl", raw_payload)
         rows.append(row)
-        raw_payload = {"item": item.__dict__, "ragas_input": row}
-        write_json_atomic(raw_dir / "inputs" / f"{item.id}.json", raw_payload)
-        append_jsonl(raw_dir / "ragas_inputs.jsonl", raw_payload)
 
     from ragas import evaluate
 
@@ -212,8 +237,23 @@ def main(argv: list[str] | None = None) -> int:
 
     metrics = _select_metrics(args.metrics)
 
+    existing_scores: dict[str, dict[str, Any]] = {}
+    for raw_item in read_jsonl(raw_dir / "ragas_scores.jsonl"):
+        if not isinstance(raw_item, dict):
+            continue
+        item_id = raw_item.get("item_id")
+        scores = raw_item.get("scores")
+        if item_id and isinstance(scores, dict):
+            existing_scores[str(item_id)] = scores
+    if existing_scores:
+        print(f"Resuming with {len(existing_scores)} existing RAGAS scores from {raw_dir}")
+
     score_rows: list[dict[str, Any]] = []
     for idx, row in enumerate(tqdm(rows, desc="Scoring RAGAS", unit="item")):
+        item_id = eval_items[idx].id
+        if item_id in existing_scores:
+            score_rows.append(existing_scores[item_id])
+            continue
         result = evaluate(
             Dataset.from_list([row]),
             metrics=metrics,
@@ -225,7 +265,6 @@ def main(argv: list[str] | None = None) -> int:
         item_scores, _ = _serialise_scores(result)
         score_row = item_scores[0] if item_scores else {}
         score_rows.append(score_row)
-        item_id = eval_items[idx].id
         raw_payload = {"item_id": item_id, "scores": score_row}
         write_json_atomic(raw_dir / "scores" / f"{item_id}.json", raw_payload)
         append_jsonl(raw_dir / "ragas_scores.jsonl", raw_payload)
