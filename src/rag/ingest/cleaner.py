@@ -19,7 +19,7 @@ def strip_headers_footers(
         lines = page.split("\n")
         candidates = lines[:window] + lines[-window:]
 
-        for line in candidates:
+        for line in set(candidates):
             cleaned = line.strip()
             if cleaned:
                 line_counts[cleaned] += 1
@@ -27,7 +27,7 @@ def strip_headers_footers(
     repeated = {
         line
         for line, count in line_counts.items()
-        if count / total_pages >= min_repeat_ratio
+        if count > 1 and count / total_pages >= min_repeat_ratio
     }
 
     cleaned_pages: list[str] = []

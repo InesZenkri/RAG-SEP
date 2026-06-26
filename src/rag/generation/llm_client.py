@@ -22,8 +22,16 @@ from dataclasses import dataclass
 from typing import Any
 from urllib.parse import urlparse
 
-import requests
-from dotenv import load_dotenv
+try:
+    import requests
+except ImportError:  # pragma: no cover - optional for non-HTTP tests/providers
+    requests = None
+
+try:
+    from dotenv import load_dotenv
+except ImportError:  # pragma: no cover - optional in minimal test environments
+    def load_dotenv(*_args, **_kwargs) -> bool:
+        return False
 
 load_dotenv()
 
@@ -197,6 +205,13 @@ class OllamaLLMClient(LLMClient):
     def _call(
         self, system: str, user: str, *, temperature: float, max_tokens: int
     ) -> LLMResponse:
+        if requests is None:
+            return LLMResponse(
+                text="[Ollama Error] requests dependency missing.",
+                provider=self.provider,
+                model=self.model,
+            )
+
         payload = {
             "model": self.model,
             "messages": [
@@ -252,6 +267,12 @@ class HuggingFaceLLMClient(LLMClient):
                 text="[HuggingFace Error] API Token missing.",
                 provider=self.provider,
                 model=self.model
+            )
+        if requests is None:
+            return LLMResponse(
+                text="[HuggingFace Error] requests dependency missing.",
+                provider=self.provider,
+                model=self.model,
             )
 
         headers = {

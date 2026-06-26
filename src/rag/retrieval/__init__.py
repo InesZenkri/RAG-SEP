@@ -2,9 +2,19 @@
 
 from rag.retrieval.base import Retriever
 from rag.retrieval.bm25 import BM25Retriever
-from rag.retrieval.dense import DenseRetriever
 from rag.retrieval.factory import build_retriever
-from rag.retrieval.hybrid import HybridRetriever
+
+
+def __getattr__(name: str):
+    if name == "DenseRetriever":
+        from rag.retrieval.dense import DenseRetriever
+
+        return DenseRetriever
+    if name == "HybridRetriever":
+        from rag.retrieval.hybrid import HybridRetriever
+
+        return HybridRetriever
+    raise AttributeError(name)
 
 __all__ = [
     "Retriever",

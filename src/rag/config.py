@@ -8,7 +8,13 @@ from pathlib import Path
 from typing import Any
 
 import yaml
-from dotenv import load_dotenv
+
+try:
+    from dotenv import load_dotenv
+except ImportError:  # pragma: no cover - optional in minimal test environments
+    def load_dotenv(*_args, **_kwargs) -> bool:
+        return False
+
 
 load_dotenv()
 

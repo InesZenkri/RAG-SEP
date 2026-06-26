@@ -16,7 +16,7 @@ import os
 from collections.abc import Sequence
 from pathlib import Path
 
-from rag.chunking.recursive import chunk_document
+from rag.chunking import chunk_document_by_strategy
 from rag.config import PipelineConfig
 from rag.cost import estimate_cost_eur
 from rag.generation.citation import extract_citations
@@ -55,7 +55,7 @@ class RAGPipeline:
     def add_document_objects(self, documents: list[Document]) -> None:
         new_chunks: list[Chunk] = []
         for document in documents:
-            new_chunks.extend(chunk_document(document, config=self.config.chunking))
+            new_chunks.extend(chunk_document_by_strategy(document, config=self.config.chunking))
 
         self._documents.extend(documents)
         self._chunks.extend(new_chunks)

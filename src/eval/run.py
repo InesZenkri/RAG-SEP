@@ -9,7 +9,11 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from tqdm.auto import tqdm
+try:
+    from tqdm.auto import tqdm
+except ImportError:  # pragma: no cover - optional progress bar dependency
+    def tqdm(iterable, *args, **kwargs):
+        return iterable
 
 from eval.dataset import EvalItem, load_suite
 from eval.metrics.answer import exact_match, token_f1

@@ -17,8 +17,9 @@ rank-bm25>=0.2.2
 chromadb>=0.5
 sentence-transformers>=3.0
 
-# Optional reranker / OCR (install on demand)
-# pytesseract>=0.3.10
+# Optional reranker / OCR
+pytesseract>=0.3.10
+Pillow>=10.0
 # ocrmypdf>=16.0
 
 # LLM clients (optional providers)

@@ -9,8 +9,6 @@ from __future__ import annotations
 from rag.config import RetrievalConfig
 from rag.retrieval.base import Retriever
 from rag.retrieval.bm25 import BM25Retriever
-from rag.retrieval.dense import DenseRetriever
-from rag.retrieval.hybrid import HybridRetriever
 
 
 def build_retriever(cfg: RetrievalConfig) -> Retriever:
@@ -21,6 +19,8 @@ def build_retriever(cfg: RetrievalConfig) -> Retriever:
         return BM25Retriever()
 
     if mode == "dense":
+        from rag.retrieval.dense import DenseRetriever
+
         return DenseRetriever(
             embedding_model=cfg.embedding_model,
             store=cfg.store,
@@ -28,6 +28,9 @@ def build_retriever(cfg: RetrievalConfig) -> Retriever:
         )
 
     if mode == "hybrid":
+        from rag.retrieval.dense import DenseRetriever
+        from rag.retrieval.hybrid import HybridRetriever
+
         dense = DenseRetriever(
             embedding_model=cfg.embedding_model,
             store=cfg.store,

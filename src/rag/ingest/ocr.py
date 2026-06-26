@@ -1,9 +1,8 @@
-"""Optional OCR fallback for scanned PDFs (requires Tesseract + pytesseract).
+"""Optional OCR fallback for scanned PDFs.
 
-TODO (M3):
-- Render each PDF page to an image via PyMuPDF.
-- Run pytesseract.image_to_string per page, return list[str].
-- Return [] if pytesseract / Tesseract binary is unavailable so callers can fall back.
+The function is deliberately best-effort: missing optional dependencies or a
+missing Tesseract binary result in ``[]`` so callers can continue with normal
+text extraction.
 """
 
 from __future__ import annotations
@@ -12,4 +11,25 @@ from pathlib import Path
 
 
 def maybe_ocr(path: str | Path, language: str = "eng") -> list[str]:
-    raise NotImplementedError
+    try:
+        import fitz
+        import pytesseract
+        from PIL import Image
+    except ImportError:
+        return []
+
+    pages: list[str] = []
+    try:
+        with fitz.open(Path(path)) as pdf:
+            for page in pdf:
+                pixmap = page.get_pixmap(matrix=fitz.Matrix(2, 2), alpha=False)
+                image = Image.frombytes(
+                    "RGB",
+                    [pixmap.width, pixmap.height],
+                    pixmap.samples,
+                )
+                pages.append(pytesseract.image_to_string(image, lang=language).strip())
+    except Exception:
+        return []
+
+    return pages

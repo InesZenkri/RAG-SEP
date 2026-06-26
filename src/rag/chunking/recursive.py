@@ -1,11 +1,9 @@
 """Recursive character splitter with overlap.
 
-Contract:
-- recursive_split(text, chunk_size, chunk_overlap, separators=None) -> list[str]
-- chunk_document(document, config) -> list[Chunk] (one chunk per piece,
-  annotated with doc_id, page, offsets, and metadata).
-
-TODO (M2): implement; keep it pure-Python so it has no heavy deps.
+The splitter prefers larger textual boundaries first (paragraphs, lines,
+sentences, words) and falls back to fixed-width slices only when a segment is
+still too large. It stays dependency-free so ingestion/chunking can run in CI
+without model downloads.
 """
 
 from __future__ import annotations
@@ -14,8 +12,68 @@ from rag.config import ChunkingConfig
 from rag.types import Chunk, Document
 
 
-def _split_long_piece(text: str, chunk_size: int) -> list[str]:
-    return [text[i : i + chunk_size] for i in range(0, len(text), chunk_size)]
+def _split_text(text: str, chunk_size: int, separators: list[str]) -> list[str]:
+    if len(text) <= chunk_size:
+        return [text]
+
+    if not separators:
+        return [text[i : i + chunk_size] for i in range(0, len(text), chunk_size)]
+
+    separator = separators[0]
+    parts = text.split(separator)
+    if len(parts) == 1:
+        return _split_text(text, chunk_size, separators[1:])
+
+    pieces: list[str] = []
+    for index, part in enumerate(parts):
+        if not part:
+            continue
+        piece = part if index == len(parts) - 1 else part + separator
+        if len(piece) <= chunk_size:
+            pieces.append(piece)
+        else:
+            pieces.extend(_split_text(piece, chunk_size, separators[1:]))
+    return pieces
+
+
+def _merge_pieces(pieces: list[str], chunk_size: int) -> list[str]:
+    chunks: list[str] = []
+    current = ""
+
+    for piece in pieces:
+        if not piece:
+            continue
+
+        if not current:
+            current = piece
+            continue
+
+        if len(current) + len(piece) <= chunk_size:
+            current += piece
+        else:
+            chunks.append(current.strip())
+            current = piece
+
+    if current:
+        chunks.append(current.strip())
+
+    return [chunk for chunk in chunks if chunk]
+
+
+def _add_overlap(chunks: list[str], chunk_size: int, chunk_overlap: int) -> list[str]:
+    if chunk_overlap <= 0 or len(chunks) <= 1:
+        return chunks
+
+    overlapped = [chunks[0]]
+    for index in range(1, len(chunks)):
+        previous = chunks[index - 1]
+        current = chunks[index]
+        available = max(chunk_size - len(current), 0)
+        overlap_len = min(chunk_overlap, available, len(previous))
+        prefix = previous[-overlap_len:] if overlap_len else ""
+        overlapped.append((prefix + current).strip())
+
+    return overlapped
 
 
 def recursive_split(
@@ -36,53 +94,9 @@ def recursive_split(
         return []
 
     separators = separators or ["\n\n", "\n", ". ", " "]
-    pieces = [text]
-    for separator in separators:
-        next_pieces: list[str] = []
-        for piece in pieces:
-            if len(piece) <= chunk_size:
-                next_pieces.append(piece)
-                continue
-            split_parts = [part.strip() for part in piece.split(separator) if part.strip()]
-            if not split_parts:
-                next_pieces.append(piece)
-                continue
-            for idx, part in enumerate(split_parts):
-                suffix = separator.strip() if separator.strip() and idx < len(split_parts) - 1 else ""
-                next_pieces.append(f"{part}{suffix}".strip())
-        pieces = next_pieces
-
-    chunks: list[str] = []
-    current = ""
-    for piece in pieces:
-        if len(piece) > chunk_size:
-            if current:
-                chunks.append(current.strip())
-                current = ""
-            chunks.extend(_split_long_piece(piece, chunk_size))
-            continue
-
-        candidate = f"{current} {piece}".strip() if current else piece
-        if len(candidate) <= chunk_size:
-            current = candidate
-        else:
-            if current:
-                chunks.append(current.strip())
-            current = piece
-
-    if current:
-        chunks.append(current.strip())
-
-    if chunk_overlap == 0 or len(chunks) <= 1:
-        return chunks
-
-    overlapped: list[str] = []
-    previous_tail = ""
-    for chunk in chunks:
-        merged = f"{previous_tail} {chunk}".strip() if previous_tail else chunk
-        overlapped.append(merged[-chunk_size:])
-        previous_tail = chunk[-chunk_overlap:]
-    return overlapped
+    pieces = _split_text(text, chunk_size, separators)
+    chunks = _merge_pieces(pieces, chunk_size)
+    return _add_overlap(chunks, chunk_size, chunk_overlap)
 
 
 def chunk_document(
@@ -90,6 +104,7 @@ def chunk_document(
 ) -> list[Chunk]:
     cfg = config or ChunkingConfig()
     chunks: list[Chunk] = []
+    chunk_number = 0
 
     for page_index, page_text in enumerate(document.pages, start=1):
         page_chunks = recursive_split(
@@ -102,9 +117,11 @@ def chunk_document(
         for chunk_index, text in enumerate(page_chunks, start=1):
             start = page_text.find(text, search_from)
             if start == -1:
-                start = 0
-            end = start + len(text)
+                start = search_from
+            end = min(start + len(text), len(page_text))
             search_from = end
+            chunk_number += 1
+
             chunks.append(
                 Chunk(
                     chunk_id=f"{document.doc_id}:p{page_index}:c{chunk_index}",
@@ -113,7 +130,11 @@ def chunk_document(
                     page=page_index,
                     start=start,
                     end=end,
-                    metadata={"source": document.source, "title": document.title},
+                    metadata={
+                        "source": document.source,
+                        "title": document.title,
+                        "chunk_number": chunk_number,
+                    },
                 )
             )
 

@@ -2,9 +2,8 @@
 
 from __future__ import annotations
 
+import math
 from dataclasses import dataclass
-
-import numpy as np
 
 from rag.types import Answer
 
@@ -31,6 +30,25 @@ class EfficiencySummary:
         }
 
 
+def _mean(values: list[float]) -> float:
+    return sum(values) / len(values) if values else 0.0
+
+
+def _percentile(values: list[float], percentile: float) -> float:
+    if not values:
+        return 0.0
+    ordered = sorted(values)
+    if len(ordered) == 1:
+        return ordered[0]
+    rank = (len(ordered) - 1) * percentile / 100
+    lower = math.floor(rank)
+    upper = math.ceil(rank)
+    if lower == upper:
+        return ordered[int(rank)]
+    weight = rank - lower
+    return ordered[lower] * (1 - weight) + ordered[upper] * weight
+
+
 def summarise_efficiency(
     answers: list[Answer], index_build_ms: float = 0.0
 ) -> EfficiencySummary:
@@ -53,10 +71,10 @@ def summarise_efficiency(
     avg_latency: dict[str, float] = {}
     p95_latency: dict[str, float] = {}
     for key in sorted(latency_keys):
-        values = np.array([a.latency_ms.get(key, 0.0) for a in answers])
-        avg_latency[key] = float(values.mean())
+        values = [a.latency_ms.get(key, 0.0) for a in answers]
+        avg_latency[key] = _mean(values)
         # p95 is standard for latency reporting — avoids hiding outliers in the average
-        p95_latency[key] = float(np.percentile(values, 95))
+        p95_latency[key] = _percentile(values, 95)
 
     # average token counts
     token_keys: set[str] = set()
@@ -65,8 +83,8 @@ def summarise_efficiency(
 
     avg_tokens: dict[str, float] = {}
     for key in sorted(token_keys):
-        values = np.array([float(a.tokens.get(key, 0)) for a in answers])
-        avg_tokens[key] = float(values.mean())
+        values = [float(a.tokens.get(key, 0)) for a in answers]
+        avg_tokens[key] = _mean(values)
 
     total_cost = sum(a.cost_eur for a in answers)
 
