@@ -33,6 +33,9 @@ load_dotenv()  # cwd, if you launch from elsewhere
 _UI_DIR = Path(__file__).resolve().parent
 _FAVICON = _UI_DIR / "assets" / "favicon.png"
 _UPLOAD_DIR = _REPO_ROOT / ".uploads"
+_PUBLIC_DEMO = bool(os.getenv("SPACE_ID") or os.getenv("PUBLIC_DEMO"))
+_MAX_UPLOADS = int(os.getenv("MAX_DEMO_UPLOADS", "3"))
+_MAX_UPLOAD_MB = float(os.getenv("MAX_DEMO_UPLOAD_MB", "8"))
 
 # ---------------------------------------------------------------------------
 # Brand palette
@@ -131,7 +134,7 @@ html, body, .stApp, [class*="css"] {{
 .hero-left h1 {{
     font-size: 3rem;
     font-weight: 800;
-    letter-spacing: -0.02em;
+    letter-spacing: 0;
     margin: 0;
     line-height: 1;
     color: white;
@@ -399,11 +402,13 @@ div[data-testid="stHorizontalBlock"]:has(.gemini-star) {{
     font-size: 0.98rem;
     line-height: 1.55;
     word-wrap: break-word;
+    overflow-wrap: anywhere;
 }}
 .assistant-answer {{
     color: #1f2937;
     font-size: 0.98rem;
     line-height: 1.65;
+    overflow-wrap: anywhere;
 }}
 .citation-detail {{
     display: inline-block;
@@ -708,7 +713,7 @@ div[data-testid="stHorizontalBlock"]:has(.gemini-star) {{
     margin: 0.35rem 0 0;
     font-size: 2.75rem;
     font-weight: 400;
-    letter-spacing: -0.03em;
+    letter-spacing: 0;
     color: #1f1f1f;
 }}
 .chat-control-caption {{
@@ -747,6 +752,351 @@ div.stButton > button[kind="tertiary"]:hover {{
 }}
 .empty-state h4 {{
     color: {_INK}; margin: 0 0 0.3rem 0; font-weight: 700;
+}}
+.demo-callout {{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    background: #ffffff;
+    border: 1px solid #dbeafe;
+    border-left: 4px solid {_BLUE};
+    border-radius: 10px;
+    padding: 0.95rem 1.1rem;
+    margin: 0 0 1.2rem 0;
+    color: {_INK};
+    box-shadow: 0 1px 3px rgba(15,23,42,0.05);
+}}
+.demo-callout strong {{
+    display: block;
+    font-size: 0.92rem;
+    margin-bottom: 0.15rem;
+}}
+.demo-callout span {{
+    color: {_MUTED};
+    font-size: 0.86rem;
+}}
+.prompt-examples {{
+    max-width: {_CHAT_COL_MAX_PX}px;
+    margin: 0 auto 1.35rem auto;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+}}
+.prompt-example {{
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 0.85rem 0.95rem;
+    color: {_INK};
+    font-size: 0.88rem;
+    line-height: 1.35;
+    box-shadow: 0 1px 3px rgba(15,23,42,0.04);
+}}
+.prompt-example b {{
+    display: block;
+    color: {_BLUE};
+    font-size: 0.78rem;
+    margin-bottom: 0.25rem;
+}}
+.benchmark-grid {{
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.9rem;
+    margin-top: 0.5rem;
+}}
+.benchmark-card {{
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 1px 3px rgba(15,23,42,0.04);
+}}
+.benchmark-card b {{
+    color: {_INK};
+}}
+.benchmark-card p {{
+    color: {_MUTED};
+    font-size: 0.86rem;
+    margin: 0.35rem 0 0;
+}}
+.compact-metrics {{
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.85rem;
+    margin-bottom: 1rem;
+}}
+.compact-metric {{
+    background: #ffffff;
+    border: 1px solid #eef2f7;
+    border-radius: 12px;
+    padding: 1rem 1.1rem;
+    box-shadow: 0 1px 3px rgba(15,23,42,0.06), 0 8px 24px rgba(15,23,42,0.04);
+}}
+.compact-metric span {{
+    display: block;
+    color: {_MUTED};
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.35rem;
+}}
+.compact-metric strong {{
+    display: block;
+    color: {_INK};
+    font-size: 1.85rem;
+    line-height: 1;
+    font-weight: 800;
+}}
+@media (max-width: 760px) {{
+    .stApp {{
+        background: {_BG};
+    }}
+    [data-testid="stMainBlockContainer"] {{
+        padding-bottom: 0 !important;
+    }}
+    [data-testid="stTabs"] {{
+        max-width: 100%;
+        padding: 0 0.9rem;
+    }}
+    [data-testid="stTabs"] [data-baseweb="tab-list"] {{
+        gap: 0.15rem;
+        margin-bottom: 1rem;
+        overflow-x: auto;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+    }}
+    [data-testid="stTabs"] [data-baseweb="tab-list"]::-webkit-scrollbar {{
+        display: none;
+    }}
+    button[data-baseweb="tab"] {{
+        flex: 0 0 auto !important;
+        min-width: max-content !important;
+        padding: 0.72rem 0.75rem !important;
+        font-size: 0.86rem !important;
+    }}
+    .hero {{
+        padding: 1rem 0.95rem;
+        margin-bottom: 1rem;
+        gap: 0.8rem;
+        min-height: 116px;
+        align-items: flex-start;
+    }}
+    .hero::before {{
+        display: none;
+    }}
+    .hero-left h1 {{
+        font-size: 2.05rem;
+        line-height: 1.05;
+    }}
+    .hero-left p {{
+        font-size: 0.84rem;
+        line-height: 1.35;
+        max-width: 15rem;
+    }}
+    .hero-status {{
+        margin-top: 0.55rem;
+        padding: 5px 10px;
+        font-size: 0.76rem;
+    }}
+    .hero-logo {{
+        height: 44px;
+        max-width: 42vw;
+        object-fit: contain;
+    }}
+    [data-testid="stMetric"] {{
+        border-radius: 10px;
+        padding: 0.9rem 1rem !important;
+        margin-bottom: 0.55rem;
+    }}
+    [data-testid="stMetricValue"] {{
+        font-size: 1.55rem !important;
+    }}
+    .section-h {{
+        margin: 1.1rem 0 0.7rem;
+    }}
+    .section-h h3 {{
+        font-size: 1rem;
+    }}
+    .card,
+    .empty-state {{
+        border-radius: 10px;
+        padding: 1rem;
+    }}
+    .demo-callout {{
+        display: block;
+        border-radius: 8px;
+        padding: 0.85rem 0.9rem;
+        margin-bottom: 0.85rem;
+    }}
+    .demo-callout strong {{
+        font-size: 0.88rem;
+    }}
+    .demo-callout span {{
+        display: block;
+        font-size: 0.8rem;
+        line-height: 1.35;
+    }}
+    .prompt-examples,
+    .benchmark-grid,
+    .compact-metrics {{
+        grid-template-columns: 1fr;
+        gap: 0.55rem;
+    }}
+    .compact-metrics {{
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.45rem;
+        margin-bottom: 0.65rem;
+    }}
+    .compact-metric {{
+        border-radius: 8px;
+        padding: 0.62rem 0.55rem;
+        min-width: 0;
+    }}
+    .compact-metric span {{
+        font-size: 0.62rem;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.28rem;
+        overflow-wrap: anywhere;
+    }}
+    .compact-metric strong {{
+        font-size: 1.2rem;
+    }}
+    .prompt-examples {{
+        margin: 0 auto 0.9rem auto;
+    }}
+    .prompt-example,
+    .benchmark-card {{
+        border-radius: 8px;
+        padding: 0.72rem 0.8rem;
+        font-size: 0.82rem;
+    }}
+    [data-testid="stFileUploaderDropzone"] {{
+        min-height: 124px !important;
+        border-radius: 10px !important;
+    }}
+    [data-testid="stFileUploaderDropzone"]::after {{
+        content: "Upload PDFs\\A Tap to choose files";
+        font-size: 0.92rem;
+        line-height: 1.65;
+    }}
+    .gemini-chat-toolbar {{
+        margin: 0 auto 0.65rem auto;
+        padding: 0;
+    }}
+    .chat-control-caption {{
+        font-size: 0.78rem;
+        overflow-wrap: anywhere;
+    }}
+    .playground-hero {{
+        margin-bottom: 0.8rem;
+    }}
+    .playground-hero .title {{
+        font-size: 1.85rem;
+        line-height: 1.12;
+    }}
+    .gemini-chat-wrap {{
+        margin-bottom: 6.25rem;
+        padding: 0;
+    }}
+    .gemini-row-user {{
+        margin: 0.5rem 0;
+    }}
+    .gemini-bubble-user {{
+        max-width: 92%;
+        padding: 0.5rem 0.78rem;
+        border-radius: 18px 18px 6px 18px;
+        font-size: 0.92rem;
+        line-height: 1.45;
+    }}
+    .assistant-answer {{
+        font-size: 0.92rem;
+        line-height: 1.55;
+    }}
+    div[data-testid="stHorizontalBlock"]:has(.gemini-star) {{
+        margin: 0.65rem 0 0.85rem 0 !important;
+    }}
+    .gemini-star {{
+        width: 24px;
+        height: 24px;
+        font-size: 0.74rem;
+    }}
+    .citation-modal {{
+        align-items: stretch;
+        justify-content: stretch;
+        padding: 0.6rem;
+    }}
+    .citation-popover {{
+        width: 100%;
+        max-height: calc(100dvh - 1.2rem);
+        border-radius: 10px;
+        padding: 0.85rem;
+    }}
+    .citation-title {{
+        display: block;
+        font-size: 0.9rem;
+        line-height: 1.35;
+    }}
+    .citation-title span:last-child {{
+        display: block;
+        margin-top: 0.25rem;
+        color: {_MUTED};
+        font-size: 0.76rem;
+        font-weight: 500;
+    }}
+    .citation-page-heading {{
+        align-items: flex-start;
+        font-size: 0.84rem;
+    }}
+    .citation-page-img {{
+        max-height: 52dvh;
+    }}
+    .citation-page-text {{
+        font-size: 0.76rem;
+        line-height: 1.4;
+        max-height: 34dvh;
+        overflow: auto;
+    }}
+    [data-testid="stChatInput"] {{
+        left: max(0.65rem, env(safe-area-inset-left));
+        right: max(0.65rem, env(safe-area-inset-right));
+        bottom: env(safe-area-inset-bottom);
+        padding: 0.55rem 0 0.75rem 0;
+    }}
+    [data-testid="stChatInput"] div:has([data-testid="stChatInputTextArea"]):has([data-testid="stChatInputSubmitButton"]) {{
+        min-height: 50px !important;
+        padding: 4px 7px 4px 13px !important;
+        border-radius: 25px !important;
+        box-shadow: 0 10px 28px rgba(15,23,42,0.16) !important;
+    }}
+    [data-testid="stChatInput"] textarea {{
+        min-height: 38px !important;
+        font-size: 0.95rem !important;
+        padding-top: 0.45rem !important;
+        padding-bottom: 0.45rem !important;
+    }}
+    [data-testid="stChatInput"] [data-testid="stChatInputSubmitButton"] {{
+        width: 32px !important;
+        height: 32px !important;
+        min-width: 32px !important;
+        min-height: 32px !important;
+    }}
+    div.stButton > button[kind="primary"],
+    div.stButton > button[kind="secondary"],
+    div.stButton > button[kind="tertiary"],
+    div.stForm button {{
+        min-height: 42px !important;
+        padding-left: 0.85rem !important;
+        padding-right: 0.85rem !important;
+        font-size: 0.88rem !important;
+    }}
+    [data-testid="stDataFrame"] {{
+        font-size: 0.78rem;
+    }}
+    iframe {{
+        min-height: 520px;
+    }}
 }}
 </style>
 """
@@ -1201,6 +1551,35 @@ def _empty(icon: str, title: str, msg: str) -> None:
     )
 
 
+def _demo_callout(title: str, message: str) -> None:
+    import streamlit as st
+
+    st.markdown(
+        f"""
+        <div class="demo-callout">
+            <div>
+                <strong>{html.escape(title)}</strong>
+                <span>{html.escape(message)}</span>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+
+def _compact_metrics(items: list[tuple[str, Any]]) -> None:
+    import streamlit as st
+
+    cards = "".join(
+        "<div class='compact-metric'>"
+        f"<span>{html.escape(label)}</span>"
+        f"<strong>{html.escape(str(value))}</strong>"
+        "</div>"
+        for label, value in items
+    )
+    st.markdown(f"<div class='compact-metrics'>{cards}</div>", unsafe_allow_html=True)
+
+
 def _archive_current_chat_to_history() -> None:
     import streamlit as st
 
@@ -1378,11 +1757,19 @@ def _tab_corpus() -> None:
         return latest, None
 
     _section("Library overview")
+    if _PUBLIC_DEMO:
+        _demo_callout(
+            "Public TDSE demo",
+            f"Uploads are limited to {_MAX_UPLOADS} PDF files and {_MAX_UPLOAD_MB:g} MB per file.",
+        )
     stats, err = _get("/stats")
-    c1, c2, c3 = st.columns(3)
-    c1.metric("Documents", stats.get("documents", "–") if not err else "–")
-    c2.metric("Chunks",    stats.get("chunks", "–")    if not err else "–")
-    c3.metric("Pages",     stats.get("pages", "–")     if not err else "–")
+    _compact_metrics(
+        [
+            ("Documents", stats.get("documents", "–") if not err else "–"),
+            ("Chunks", stats.get("chunks", "–") if not err else "–"),
+            ("Pages", stats.get("pages", "–") if not err else "–"),
+        ]
+    )
 
     documents, doc_err = _get("/documents")
     indexed_sources = {
@@ -1424,15 +1811,32 @@ def _tab_corpus() -> None:
         st.info("No documents indexed yet.")
 
     _section("Index new documents")
-    upload_tab, path_tab = st.tabs(["☁️  Upload files", "🗂️  File paths"])
+    if _PUBLIC_DEMO:
+        upload_container = st.container()
+        path_tab = None
+    else:
+        upload_tab, path_tab = st.tabs(["☁️  Upload files", "🗂️  File paths"])
+        upload_container = upload_tab
 
-    with upload_tab:
+    with upload_container:
         uploaded = st.file_uploader(
             "Upload",
             type=["pdf"], accept_multiple_files=True,
             label_visibility="collapsed",
         )
         if uploaded:
+            if len(uploaded) > _MAX_UPLOADS:
+                st.error(f"Please upload at most {_MAX_UPLOADS} PDFs at once.")
+                return
+            too_large = [
+                uf.name for uf in uploaded if len(uf.getvalue()) > _MAX_UPLOAD_MB * 1024 * 1024
+            ]
+            if too_large:
+                st.error(
+                    f"These files are above the {_MAX_UPLOAD_MB:g} MB demo limit: "
+                    + ", ".join(too_large)
+                )
+                return
             new_uploads = [
                 uf for uf in uploaded if not is_already_indexed(uf.name, indexed_sources)
             ]
@@ -1485,28 +1889,29 @@ def _tab_corpus() -> None:
                         )
                         st.rerun()
 
-    with path_tab:
-        st.caption("One absolute path per line (paths are read by the backend).")
-        raw = st.text_area(
-            "Paths", height=130,
-            placeholder="/data/paper.pdf\n/data/report.pdf",
-            label_visibility="collapsed",
-        )
-        if st.button("Index paths", type="primary", key="btn_paths"):
-            paths = [p.strip() for p in raw.splitlines() if p.strip()]
-            if not paths:
-                st.error("Enter at least one path.")
-            else:
-                labels = [Path(path).name or path for path in paths]
-                res, err = index_with_progress(paths, labels)
-                if err:
-                    st.error(f"Indexing failed: {err}")
-                elif res is not None:
-                    st.success(
-                        f"✅ {res['documents']} doc(s) · {res['chunks']} chunks · "
-                        f"{res['pages']} pages indexed."
-                    )
-                    st.rerun()
+    if path_tab is not None:
+        with path_tab:
+            st.caption("One absolute path per line (paths are read by the backend).")
+            raw = st.text_area(
+                "Paths", height=130,
+                placeholder="/data/paper.pdf\n/data/report.pdf",
+                label_visibility="collapsed",
+            )
+            if st.button("Index paths", type="primary", key="btn_paths"):
+                paths = [p.strip() for p in raw.splitlines() if p.strip()]
+                if not paths:
+                    st.error("Enter at least one path.")
+                else:
+                    labels = [Path(path).name or path for path in paths]
+                    res, err = index_with_progress(paths, labels)
+                    if err:
+                        st.error(f"Indexing failed: {err}")
+                    elif res is not None:
+                        st.success(
+                            f"✅ {res['documents']} doc(s) · {res['chunks']} chunks · "
+                            f"{res['pages']} pages indexed."
+                        )
+                        st.rerun()
 
 
 def _tab_playground() -> None:
@@ -1546,6 +1951,18 @@ def _tab_playground() -> None:
                 min-width: 320px !important;
                 max-width: 320px !important;
             }
+            @media (max-width: 760px) {
+                [data-testid="stSidebar"] {
+                    width: min(88vw, 340px) !important;
+                    min-width: min(88vw, 340px) !important;
+                    max-width: min(88vw, 340px) !important;
+                }
+                [data-testid="stSidebar"] > div:first-child {
+                    width: min(88vw, 340px) !important;
+                    min-width: min(88vw, 340px) !important;
+                    max-width: min(88vw, 340px) !important;
+                }
+            }
             </style>
             """,
             unsafe_allow_html=True,
@@ -1567,7 +1984,12 @@ def _render_playground_chat(model_name: str, chat_messages: list[dict[str, Any]]
         st.markdown(
             """
             <div class="playground-hero">
-                <p class="title">What should CoDex look up?</p>
+                <p class="title">Ask your PDFs, then inspect the evidence.</p>
+            </div>
+            <div class="prompt-examples">
+                <div class="prompt-example"><b>Summarize</b>What is the main contribution of this document?</div>
+                <div class="prompt-example"><b>Locate</b>Where does the document define the system requirements?</div>
+                <div class="prompt-example"><b>Compare</b>Which sections make different claims about the same topic?</div>
             </div>
             """,
             unsafe_allow_html=True,
@@ -1604,7 +2026,7 @@ def _render_playground_chat(model_name: str, chat_messages: list[dict[str, Any]]
     st.markdown('<div style="height:5.75rem"></div>', unsafe_allow_html=True)
     st.markdown("</div>", unsafe_allow_html=True)
 
-    prompt = st.chat_input("...")
+    prompt = st.chat_input("Ask about the indexed PDFs")
     if prompt:
         chat_messages.append({"role": "user", "content": prompt})
         if _is_help_question(prompt):
@@ -1712,7 +2134,19 @@ def _tab_evaluation() -> None:
 
     report_path = Path("reports/report.json")
     if not report_path.exists():
-        _empty("📋", "No report yet", "Run `make smoke` (or `make eval`) to generate one.")
+        if _PUBLIC_DEMO:
+            st.markdown(
+                """
+                <div class="benchmark-grid">
+                    <div class="benchmark-card"><b>Open RAG Benchmark</b><p>PDF-native benchmark data prepared for reproducible retrieval and answer evaluation.</p></div>
+                    <div class="benchmark-card"><b>RAGAS metrics</b><p>Full runs are split by metric because local LLM judging is slow. Current focus: context recall.</p></div>
+                    <div class="benchmark-card"><b>Runtime split</b><p>Cluster Llama/Ollama is used for benchmarking; Gemini powers this public demo for faster responses.</p></div>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
+        else:
+            _empty("📋", "No report yet", "Run `make smoke` (or `make eval`) to generate one.")
         return
 
     with report_path.open() as f:

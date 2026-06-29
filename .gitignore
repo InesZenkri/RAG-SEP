@@ -9,6 +9,8 @@ dist/
 venv/
 env/
 .env
+.env.gitlab
+.hf_token
 .python-version
 
 .pytest_cache/
