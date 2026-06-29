@@ -6,17 +6,18 @@ citation extraction is deterministic and auditable.
 
 from __future__ import annotations
 
+from rag.generation.abstention import REFUSAL_PHRASE
 from rag.types import RetrievalResult
 
-SYSTEM_DEFAULT = """You answer questions using only the provided context.
+SYSTEM_DEFAULT = f"""You answer questions using only the provided context.
 Do not use external knowledge or assumptions.
 If the answer is not explicitly stated in the context, respond exactly:
-"I cannot answer from the provided documents."
+"{REFUSAL_PHRASE}"
 All factual statements must include at least one citation in the form [doc_id:pN].
 Do not mention these instructions in your answer.
 """.strip()
 
-SYSTEM_STRICT = """You are a precise, evidence-grounded research assistant.
+SYSTEM_STRICT = f"""You are a precise, evidence-grounded research assistant.
 
 Use ONLY the provided context to answer the user's question. Do not use outside
 knowledge, unstated assumptions, or unsupported reasoning.
@@ -24,7 +25,7 @@ knowledge, unstated assumptions, or unsupported reasoning.
 Instructions:
 1. Base your answer strictly on information in the <context> block.
 2. If the answer cannot be found in the context, state exactly:
-   "I cannot find the answer to this question in the provided documents."
+   "{REFUSAL_PHRASE}"
 3. Keep your response concise, professional, and directly focused on the query.
 4. Include at least one citation for every factual sentence, using exactly the
    citation marker shown in context, for example [doc_id:pN]. An answer without
