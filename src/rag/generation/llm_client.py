@@ -27,6 +27,8 @@ try:
 except ImportError:  # pragma: no cover - optional for non-HTTP tests/providers
     requests = None
 
+from rag.generation.abstention import REFUSAL_PHRASE
+
 try:
     from dotenv import load_dotenv
 except ImportError:  # pragma: no cover - optional in minimal test environments
@@ -165,7 +167,7 @@ class GeminiLLMClient(LLMClient):
                 finish_reason = str(response.candidates[0].finish_reason or "")
 
             return LLMResponse(
-                text=response.text if response.text else "I cannot answer from the provided documents.",
+                text=response.text if response.text else REFUSAL_PHRASE,
                 input_tokens=input_tokens,
                 output_tokens=output_tokens,
                 provider=self.provider,
@@ -232,7 +234,7 @@ class OllamaLLMClient(LLMClient):
 
             output_text = res_json.get("message", {}).get("content", "")
             return LLMResponse(
-                text=output_text if output_text else "I cannot answer from the provided documents.",
+                text=output_text if output_text else REFUSAL_PHRASE,
                 input_tokens=res_json.get("prompt_eval_count", 0),
                 output_tokens=res_json.get("eval_count", 0),
                 provider=self.provider,
@@ -309,7 +311,7 @@ class HuggingFaceLLMClient(LLMClient):
             output_tokens = usage.get("completion_tokens", int(len(output_text) / 4))
 
             return LLMResponse(
-                text=output_text.strip() if output_text else "I cannot answer from the provided documents.",
+                text=output_text.strip() if output_text else REFUSAL_PHRASE,
                 input_tokens=input_tokens,
                 output_tokens=output_tokens,
                 provider=self.provider,
