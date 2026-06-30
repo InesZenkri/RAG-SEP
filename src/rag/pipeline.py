@@ -2,12 +2,6 @@
 
 This is the orchestrator every milestone plugs into. The constructor accepts
 optional pre-built Retriever / LLMClient so tests can inject fakes.
-
-TODO (M2):
-- add_documents(paths): parse -> chunk -> index.
-- answer(question): retrieve, optional rerank, prompt, generate, extract
-  citations, validate, score confidence, decide abstention, return Answer.
-- stats(): corpus stats (docs/chunks/pages) for the UI dashboard.
 """
 
 from __future__ import annotations
@@ -19,7 +13,9 @@ from pathlib import Path
 from rag.chunking import chunk_document_by_strategy
 from rag.config import PipelineConfig
 from rag.cost import estimate_cost_eur
-from rag.generation.citation import extract_citations
+from rag.generation.abstention import REFUSAL_PHRASE, AbstentionDecision, should_abstain
+from rag.generation.citation import extract_citations, validate_citations
+from rag.generation.confidence import compute_confidence
 from rag.generation.llm_client import LLMClient, build_llm_client
 from rag.generation.prompt import build_prompt
 from rag.ingest.parser import parse_document
@@ -85,10 +81,7 @@ class RAGPipeline:
         answer = Answer(question=question, text="")
 
         if self.retriever is None or not self._chunks:
-            answer.text = "I cannot answer from the provided documents."
-            answer.abstained = True
-            answer.confidence = 0.0
-            return answer
+            return self._abstain(answer, should_abstain([], None, self.config.abstention))
 
         top_k = self.config.retrieval.top_k
         candidate_k = max(top_k, self.config.retrieval.rerank_top_n)
@@ -107,11 +100,9 @@ class RAGPipeline:
 
         answer.retrieved = retrieved
 
-        if not retrieved:
-            answer.text = "I cannot answer from the provided documents."
-            answer.abstained = True
-            answer.confidence = 0.0
-            return answer
+        pre_decision = should_abstain(retrieved, None, self.config.abstention)
+        if pre_decision.abstain:
+            return self._abstain(answer, pre_decision)
 
         system, user = build_prompt(
             question,
@@ -140,6 +131,7 @@ class RAGPipeline:
 
         answer.text = response.text.strip()
         answer.citations = extract_citations(answer.text)
+        citation_supports = validate_citations(answer.text, retrieved)
         answer.tokens = {
             "input": response.input_tokens,
             "output": response.output_tokens,
@@ -150,16 +142,76 @@ class RAGPipeline:
             self.config.cost.eur_per_1k_input,
             self.config.cost.eur_per_1k_output,
         )
-        answer.abstained = answer.text == "I cannot answer from the provided documents."
-        answer.confidence = 0.0 if answer.abstained else min(1.0, max(0.1, retrieved[0].score))
+
+        post_decision = should_abstain(
+            retrieved,
+            answer.text,
+            self.config.abstention,
+            citation_supports=citation_supports,
+        )
+        if post_decision.abstain:
+            return self._abstain(
+                answer,
+                post_decision,
+                trace={
+                    "provider": response.provider,
+                    "model": response.model,
+                    "cached": response.cached,
+                    "finish_reason": response.finish_reason,
+                    "retrieved": len(retrieved),
+                    "citation_support": self._citation_support_trace(citation_supports),
+                },
+            )
+
+        answer.abstained = False
+        answer.confidence = compute_confidence(retrieved, citation_supports)
         answer.trace = {
             "provider": response.provider,
             "model": response.model,
             "cached": response.cached,
             "finish_reason": response.finish_reason,
             "retrieved": len(retrieved),
+            "abstention": {
+                "reason": post_decision.reason,
+                "top_score": post_decision.top_score,
+            },
+            "citation_support": self._citation_support_trace(citation_supports),
         }
         return answer
+
+    def _abstain(
+        self,
+        answer: Answer,
+        decision: AbstentionDecision,
+        trace: dict | None = None,
+    ) -> Answer:
+        answer.text = REFUSAL_PHRASE
+        answer.abstained = True
+        answer.confidence = 0.0
+        answer.trace = trace or {
+            "abstention": {
+                "reason": decision.reason,
+                "top_score": decision.top_score,
+            },
+        }
+        if "abstention" not in answer.trace:
+            answer.trace["abstention"] = {
+                "reason": decision.reason,
+                "top_score": decision.top_score,
+            }
+        return answer
+
+    @staticmethod
+    def _citation_support_trace(citation_supports) -> list[dict]:
+        return [
+            {
+                "doc_id": support.citation.doc_id,
+                "page": support.citation.page,
+                "supported": support.supported,
+                "overlap": support.overlap,
+            }
+            for support in citation_supports
+        ]
 
     def _is_broad_document_question(self, question: str) -> bool:
         terms = question.lower()
