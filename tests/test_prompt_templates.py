@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import pytest
 
+from rag.generation.abstention import REFUSAL_PHRASE
 from rag.generation.prompt import build_prompt
 from rag.types import Chunk, RetrievalResult
 
@@ -28,7 +29,7 @@ def test_strict_prompt_has_role_context_query_and_citation_rules() -> None:
     assert "citation marker shown in context" in system
     assert "An answer without\n   citations is invalid." in system
     assert "prefer the shortest correct\n   phrase or entity" in system
-    assert "I cannot find the answer to this question in the provided documents." in system
+    assert REFUSAL_PHRASE in system
     assert "<context>" in user
     assert "[doc-a:p3] The answer is supported here." in user
     assert "<user_query>\nWhat is supported?\n</user_query>" in user

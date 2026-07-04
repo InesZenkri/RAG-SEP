@@ -16,7 +16,6 @@ from eval.metrics.answer import token_f1
 from eval.metrics.grounding import citation_precision, citation_recall
 from rag.types import Answer
 
-
 _DEFAULT_SLICE_KEYS = (
     "long_doc",
     "tabular",
@@ -55,10 +54,7 @@ def slice_by(
     slices: dict[str, list[tuple[EvalItem, Answer]]] = defaultdict(list)
 
     for item, answer in pairs:
-        if hasattr(item, key):
-            values = [getattr(item, key)]
-        else:
-            values = _metadata_values(item, key)
+        values = [getattr(item, key)] if hasattr(item, key) else _metadata_values(item, key)
 
         for value in values:
             if value is None or value is False:
