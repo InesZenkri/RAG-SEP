@@ -11,6 +11,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 from rag.config import AbstentionConfig
+from rag.generation.citation import CitationSupport
 from rag.types import RetrievalResult
 
 REFUSAL_PHRASE = "I cannot answer from the provided documents."
@@ -27,6 +28,7 @@ def should_abstain(
     retrieved: list[RetrievalResult],
     answer_text: str | None,
     config: AbstentionConfig,
+    citation_supports: list[CitationSupport] | None = None,
 ) -> AbstentionDecision:
     """Evaluates if the system should abstain from answering"""
 
@@ -60,9 +62,17 @@ def should_abstain(
             top_score=top_score
         )
 
+    if answer_text is not None and config.min_citations > 0 and citation_supports is not None:
+        supported_citations = sum(1 for support in citation_supports if support.supported)
+        if supported_citations < config.min_citations:
+            return AbstentionDecision(
+                abstain=True,
+                reason="missing_citations",
+                top_score=top_score,
+            )
+
     return AbstentionDecision(
         abstain=False,
         reason="success",
         top_score=top_score
     )
-

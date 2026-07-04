@@ -25,7 +25,7 @@ def maybe_ocr(path: str | Path, language: str = "eng") -> list[str]:
                 pixmap = page.get_pixmap(matrix=fitz.Matrix(2, 2), alpha=False)
                 image = Image.frombytes(
                     "RGB",
-                    [pixmap.width, pixmap.height],
+                    (pixmap.width, pixmap.height),
                     pixmap.samples,
                 )
                 pages.append(pytesseract.image_to_string(image, lang=language).strip())

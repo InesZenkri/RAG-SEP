@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
@@ -10,13 +11,15 @@ from typing import Any
 import yaml
 
 try:
-    from dotenv import load_dotenv
+    import dotenv
 except ImportError:  # pragma: no cover - optional in minimal test environments
-    def load_dotenv(*_args, **_kwargs) -> bool:
-        return False
+    _load_dotenv: Callable[..., bool] | None = None
+else:
+    _load_dotenv = dotenv.load_dotenv
 
 
-load_dotenv()
+if _load_dotenv is not None:
+    _load_dotenv()
 
 
 @dataclass
