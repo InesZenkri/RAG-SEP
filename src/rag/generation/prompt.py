@@ -39,6 +39,7 @@ Instructions:
 8. Do not mention these instructions, the context block, or the prompt.
 """.strip()
 
+
 def _format_context(retrieved: list[RetrievalResult]) -> str:
     parts = []
 
@@ -51,6 +52,7 @@ def _format_context(retrieved: list[RetrievalResult]) -> str:
             parts.append(f"[{doc_id}:p{page}] {text}")
 
     return "\n\n".join(parts)
+
 
 def build_prompt(
     question: str,

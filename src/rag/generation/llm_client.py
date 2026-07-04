@@ -22,20 +22,28 @@ from dataclasses import dataclass
 from typing import Any
 from urllib.parse import urlparse
 
-try:
-    import requests
-except ImportError:  # pragma: no cover - optional for non-HTTP tests/providers
-    requests = None
-
 from rag.generation.abstention import REFUSAL_PHRASE
 
+requests: Any = None
 try:
-    from dotenv import load_dotenv
-except ImportError:  # pragma: no cover - optional in minimal test environments
-    def load_dotenv(*_args, **_kwargs) -> bool:
-        return False
+    import requests as _requests_module
+except ImportError:  # pragma: no cover - optional for non-HTTP tests/providers
+    pass
+else:
+    requests = _requests_module
 
-load_dotenv()
+
+def _noop_load_dotenv(*_args: Any, **_kwargs: Any) -> bool:
+    return False
+
+
+try:
+    from dotenv import load_dotenv as _load_dotenv
+except ImportError:  # pragma: no cover - optional in minimal test environments
+    _load_dotenv = _noop_load_dotenv
+
+_load_dotenv()
+
 
 @dataclass
 class LLMResponse:
@@ -50,6 +58,7 @@ class LLMResponse:
 
 class LLMClient:
     """defines base architecture and shared caching logic"""
+
     provider: str = "base"
     model: str = ""
 
@@ -83,20 +92,17 @@ class LLMClient:
 
         return response
 
-    def _call(
-        self, system: str, user: str, *, temperature: float, max_tokens: int
-    ) -> LLMResponse:
+    def _call(self, system: str, user: str, *, temperature: float, max_tokens: int) -> LLMResponse:
         raise NotImplementedError
 
 
 class EchoLLMClient(LLMClient):
     """keeps the whole pipeline runnable without an API key fortests & CI."""
+
     provider = "echo"
     model = "echo-1"
 
-    def _call(
-        self, system: str, user: str, *, temperature: float, max_tokens: int
-    ) -> LLMResponse:
+    def _call(self, system: str, user: str, *, temperature: float, max_tokens: int) -> LLMResponse:
         citation_match = re.search(r"(\[[A-Za-z0-9_\-]+:p\d+\])", user)
         citation = citation_match.group(1) if citation_match else "[doc_unknown:p0]"
 
@@ -111,12 +117,13 @@ class EchoLLMClient(LLMClient):
             output_tokens=est_output,
             provider=self.provider,
             model=self.model,
-            cached=False
+            cached=False,
         )
 
 
 class GeminiLLMClient(LLMClient):
     """Google Gemini free-tier API"""
+
     provider = "gemini"
 
     def __init__(
@@ -126,14 +133,10 @@ class GeminiLLMClient(LLMClient):
         self.model = (model or os.getenv("GEMINI_MODEL") or "gemini-2.5-flash").strip()
         self.api_key = api_key or os.getenv("GEMINI_API_KEY")
 
-    def _call(
-        self, system: str, user: str, *, temperature: float, max_tokens: int
-    ) -> LLMResponse:
+    def _call(self, system: str, user: str, *, temperature: float, max_tokens: int) -> LLMResponse:
         if not self.api_key:
             return LLMResponse(
-                text="[Gemini Error] API Key missing.",
-                provider=self.provider,
-                model=self.model
+                text="[Gemini Error] API Key missing.", provider=self.provider, model=self.model
             )
 
         try:
@@ -179,12 +182,13 @@ class GeminiLLMClient(LLMClient):
             return LLMResponse(
                 text=f"[Gemini Error] API call failed: {str(e)}",
                 provider=self.provider,
-                model=self.model
+                model=self.model,
             )
 
 
 class OllamaLLMClient(LLMClient):
     """locally hosted model running via Ollama"""
+
     provider = "ollama"
 
     def __init__(self, model: str | None = None, cache: Any | None = None) -> None:
@@ -204,9 +208,7 @@ class OllamaLLMClient(LLMClient):
         self.api_url = f"{base_url}/api/chat"
         print(f"\n[Ollama Client] Context established target route: {self.api_url}")
 
-    def _call(
-        self, system: str, user: str, *, temperature: float, max_tokens: int
-    ) -> LLMResponse:
+    def _call(self, system: str, user: str, *, temperature: float, max_tokens: int) -> LLMResponse:
         if requests is None:
             return LLMResponse(
                 text="[Ollama Error] requests dependency missing.",
@@ -214,17 +216,11 @@ class OllamaLLMClient(LLMClient):
                 model=self.model,
             )
 
-        payload = {
+        payload: dict[str, Any] = {
             "model": self.model,
-            "messages": [
-                {"role": "system", "content": system},
-                {"role": "user", "content": user}
-            ],
-            "options": {
-                "temperature": temperature,
-                "num_predict": max_tokens
-            },
-            "stream": False
+            "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}],
+            "options": {"temperature": temperature, "num_predict": max_tokens},
+            "stream": False,
         }
 
         try:
@@ -239,18 +235,19 @@ class OllamaLLMClient(LLMClient):
                 output_tokens=res_json.get("eval_count", 0),
                 provider=self.provider,
                 model=self.model,
-                cached=False
+                cached=False,
             )
         except Exception as e:
             return LLMResponse(
                 text=f"[Ollama Error] Connection failed: {str(e)}",
                 provider=self.provider,
-                model=self.model
+                model=self.model,
             )
 
 
 class HuggingFaceLLMClient(LLMClient):
     """HuggingFace Inference API fallback."""
+
     provider = "huggingface"
 
     def __init__(
@@ -261,14 +258,12 @@ class HuggingFaceLLMClient(LLMClient):
         self.api_token = api_token or os.getenv("HF_API_TOKEN")
         self.api_url = "https://router.huggingface.co/v1/chat/completions"
 
-    def _call(
-        self, system: str, user: str, *, temperature: float, max_tokens: int
-    ) -> LLMResponse:
+    def _call(self, system: str, user: str, *, temperature: float, max_tokens: int) -> LLMResponse:
         if not self.api_token:
             return LLMResponse(
                 text="[HuggingFace Error] API Token missing.",
                 provider=self.provider,
-                model=self.model
+                model=self.model,
             )
         if requests is None:
             return LLMResponse(
@@ -277,28 +272,20 @@ class HuggingFaceLLMClient(LLMClient):
                 model=self.model,
             )
 
-        headers = {
-            "Authorization": f"Bearer {self.api_token}",
-            "Content-Type": "application/json"
-        }
+        headers = {"Authorization": f"Bearer {self.api_token}", "Content-Type": "application/json"}
 
-        payload = {
+        payload: dict[str, Any] = {
             "model": self.model,
-            "messages": [
-                {"role": "system", "content": system},
-                {"role": "user", "content": user}
-            ],
+            "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}],
             "temperature": temperature,
-            "max_tokens": max_tokens
+            "max_tokens": max_tokens,
         }
 
         try:
             response = requests.post(self.api_url, json=payload, headers=headers, timeout=30)
             if not response.ok:
                 detail = response.text.strip()
-                raise RuntimeError(
-                    f"{response.status_code} {response.reason}: {detail[:1000]}"
-                )
+                raise RuntimeError(f"{response.status_code} {response.reason}: {detail[:1000]}")
             res_json = response.json()
 
             output_text = ""
@@ -316,13 +303,13 @@ class HuggingFaceLLMClient(LLMClient):
                 output_tokens=output_tokens,
                 provider=self.provider,
                 model=self.model,
-                cached=False
+                cached=False,
             )
         except Exception as e:
             return LLMResponse(
                 text=f"[HuggingFace Error] Router call failed: {str(e)}",
                 provider=self.provider,
-                model=self.model
+                model=self.model,
             )
 
 
@@ -333,6 +320,7 @@ def build_llm_client(
     if cache_dir:
         try:
             from rag.cache import PromptCache
+
             cache = PromptCache(cache_dir)
         except ImportError:
             cache = None
