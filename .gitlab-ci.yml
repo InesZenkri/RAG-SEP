@@ -53,9 +53,7 @@ issue-reminders:
   stage: maintenance
   image: python:3.11-slim
   needs: []
-  # Team-management automation only.
   rules:
-    - if: '$CI_PIPELINE_SOURCE == "schedule" && $RUN_ISSUE_REMINDERS == "true"'
     - when: never
   before_script:
     - python -V
@@ -67,9 +65,7 @@ stale-issue-comments:
   stage: maintenance
   image: python:3.11-slim
   needs: []
-  # Team-management automation only.
   rules:
-    - if: '$CI_PIPELINE_SOURCE == "schedule" && $RUN_STALE_ISSUE_COMMENTS == "true"'
     - when: never
   before_script:
     - python -V
@@ -81,9 +77,7 @@ weekly-team-digest:
   stage: maintenance
   image: python:3.11-slim
   needs: []
-  # Team-management automation only.
   rules:
-    - if: '$CI_PIPELINE_SOURCE == "schedule" && $RUN_WEEKLY_TEAM_DIGEST == "true"'
     - when: never
   before_script:
     - python -V
