@@ -11,6 +11,17 @@ Project documentation and submitted PDFs are maintained in the
 > active milestone development, so some advanced modules are implemented as
 > stubs or are not yet wired into the end-to-end pipeline.
 
+## Recognition
+
+- **1st place at the Tag der jungen Softwareentwickler*innen (TdSE) 2026** at
+  TU Braunschweig: a jury from research, industry and the student body awarded
+  CoDex first prize among the 33 projects of this year's
+  Softwareentwicklungspraktikum (16 July 2026). Coverage:
+  [TU Braunschweig Magazin](https://magazin.tu-braunschweig.de/m-post/tag-der-jungen-softwareentwicklerinnen-intelligenter-pdf-suchagent-gewinnt/)
+  (German).
+
+<img src="docs/codex-poster.jpg" alt="CoDex project poster" width="420">
+
 ## Quick start
 
 Prerequisite: use Python 3.10 or newer. The project uses modern type-hint
